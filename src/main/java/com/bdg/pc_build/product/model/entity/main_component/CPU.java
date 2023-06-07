@@ -1,10 +1,14 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import com.bdg.pc_build.product.model.entity.Product;
 
 /**
  * @author Arman Hakhverdyan
@@ -12,71 +16,27 @@ import com.bdg.pc_build.product.model.entity.Product;
  * Entity for CPU
  */
 @Entity
+@Table(name = "cpu")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@Setter
+@Getter
 public class CPU extends Product {
     @Column(name = "core_count", nullable = false, updatable = false)
-    private Integer coreCount;
+    Integer coreCount;
 
     @Column(name = "core_clock", nullable = false, updatable = false)
-    private Integer coreClock;
+    Integer coreClock;
 
     @Column(name = "boost_clock", nullable = false, updatable = false)
-    private Integer boostClock;
+    Integer boostClock;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    private Integer tdp;
+    Integer tdp;
 
     @Column(name = "integrated_graphics", updatable = false)
-    private String integratedGraphics;
+    String integratedGraphics;
 
     @Column(name = "socket", nullable = false, updatable = false)
-    private String socket;
-
-    public Integer getCoreCount() {
-        return coreCount;
-    }
-
-    public void setCoreCount(Integer coreCount) {
-        this.coreCount = coreCount;
-    }
-
-    public Integer getCoreClock() {
-        return coreClock;
-    }
-
-    public void setCoreClock(Integer coreClock) {
-        this.coreClock = coreClock;
-    }
-
-    public Integer getBoostClock() {
-        return boostClock;
-    }
-
-    public void setBoostClock(Integer boostClock) {
-        this.boostClock = boostClock;
-    }
-
-    public Integer getTdp() {
-        return tdp;
-    }
-
-    public void setTdp(Integer tdp) {
-        this.tdp = tdp;
-    }
-
-    public String getIntegratedGraphics() {
-        return integratedGraphics;
-    }
-
-    public void setIntegratedGraphics(String integratedGraphics) {
-        this.integratedGraphics = integratedGraphics;
-    }
-
-    public String getSocket() {
-        return socket;
-    }
-
-    public void setSocket(String socket) {
-        this.socket = socket;
-    }
+    String socket;
 }

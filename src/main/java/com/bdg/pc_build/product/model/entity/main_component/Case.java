@@ -1,49 +1,32 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import com.bdg.pc_build.product.model.entity.Product;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 @Entity
+@Table(name = "case")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@Setter
+@Getter
 public class Case extends Product {
+
     @Column(name = "max_CPU_cooler_height", nullable = false, updatable = false)
-    private int maxCPUCoolerHeight;
+    Integer maxCPUCoolerHeight;
+
     @Column(name = "max_GPU_length", nullable = false, updatable = false)
-    private double maxGPULength;
+    Double maxGPULength;
+
     @Column(name = "pre_installed_fans", nullable = false, updatable = false)
-    private int preInstalledFans;
+    Integer preInstalledFans;
+
     @Column(name = "is_ATX", nullable = false, updatable = false)
-    private boolean isATX;
-
-    public int getMaxCPUCoolerHeight() {
-        return maxCPUCoolerHeight;
-    }
-
-    public void setMaxCPUCoolerHeight(int maxCPUCoolerHeight) {
-        this.maxCPUCoolerHeight = maxCPUCoolerHeight;
-    }
-
-    public double getMaxGPULength() {
-        return maxGPULength;
-    }
-
-    public void setMaxGPULength(double maxGPULength) {
-        this.maxGPULength = maxGPULength;
-    }
-
-    public int getPreInstalledFans() {
-        return preInstalledFans;
-    }
-
-    public void setPreInstalledFans(int preInstalledFans) {
-        this.preInstalledFans = preInstalledFans;
-    }
-
-    public boolean isATX() {
-        return isATX;
-    }
-
-    public void setATX(boolean ATX) {
-        isATX = ATX;
-    }
+    Boolean isATX;
 }
