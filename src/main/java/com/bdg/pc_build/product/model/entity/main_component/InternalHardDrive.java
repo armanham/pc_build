@@ -1,29 +1,25 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import com.bdg.pc_build.product.model.entity.Product;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 @Entity
+@Table(name = "internal_hard_drive")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@Setter
+@Getter
 public class InternalHardDrive extends Product {
     @Column(name = "capacity", nullable = false, updatable = false)
-    private int capacity;
+    Integer capacity;
+
     @Column(name = "tdp", nullable = false, updatable = false)
-    private Integer tdp;
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public Integer getTdp() {
-        return tdp;
-    }
-
-    public void setTdp(Integer tdp) {
-        this.tdp = tdp;
-    }
+    Integer tdp;
 }

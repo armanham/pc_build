@@ -1,10 +1,14 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import com.bdg.pc_build.product.model.entity.Product;
 
 /**
  * @Author Arman Hakhverdyan
@@ -12,51 +16,22 @@ import com.bdg.pc_build.product.model.entity.Product;
  * Entity for PowerSupply
  */
 @Entity
+@Table(name = "power_supply")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@Setter
+@Getter
 public class PowerSupply extends Product {
 
     @Column(name = "efficiency_rating", nullable = false, updatable = false)
-    private String efficiencyRating;
+    String efficiencyRating;
 
     @Column(name = "wattage", nullable = false, updatable = false)
-    private Integer wattage;
+    Integer wattage;
 
     @Column(name = "modular", nullable = false, updatable = false)
-    private Boolean modular;
+    Boolean modular;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    private Integer tdp;
-
-    public String getEfficiencyRating() {
-        return efficiencyRating;
-    }
-
-    public void setEfficiencyRating(String efficiencyRating) {
-        this.efficiencyRating = efficiencyRating;
-    }
-
-    public Integer getWattage() {
-        return wattage;
-    }
-
-    public void setWattage(Integer wattage) {
-        this.wattage = wattage;
-    }
-
-    public Boolean getModular() {
-        return modular;
-    }
-
-    public void setModular(Boolean modular) {
-        this.modular = modular;
-    }
-
-    public Integer getTdp() {
-        return tdp;
-    }
-
-    public void setTdp(Integer tdp) {
-        this.tdp = tdp;
-    }
+    Integer tdp;
 }
-
