@@ -1,4 +1,4 @@
-package com.bdg.pc_build.product.model.dto;
+package com.bdg.pc_build.product.model.dto.main_component;
 
 
 /**
@@ -17,7 +17,7 @@ package com.bdg.pc_build.product.model.dto;
  * <p>
  * An Immutable DataTransferObject of RAM for service layer.
  */
-public record RamDTO(
+public record RAMDTO(
         String name,
         double rating,
         int ratingCount,

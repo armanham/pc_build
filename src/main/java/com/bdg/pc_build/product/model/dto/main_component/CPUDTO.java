@@ -1,4 +1,4 @@
-package com.bdg.pc_build.product.model.dto;
+package com.bdg.pc_build.product.model.dto.main_component;
 
 /**
  * @param name
@@ -9,12 +9,11 @@ package com.bdg.pc_build.product.model.dto;
  * @param tdp
  * @param integratedGraphics
  * @param socket
- * @param smt
  * @author Arman Hakhverdyan
  * <p>
  * An Immutable DataTransferObject of CPU for service layer.
  */
-public record CpuDTO(
+public record CPUDTO(
         String name,
         Double price,
         Integer coreCount,
@@ -22,8 +21,7 @@ public record CpuDTO(
         Integer boostClock,
         Integer tdp,
         String integratedGraphics,
-        String socket,
-        String smt
+        String socket
 ) {
     //equals and hashcode
 }

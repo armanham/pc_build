@@ -1,13 +1,10 @@
-package com.bdg.pc_build.product.model.dto;
+package com.bdg.pc_build.product.model.dto.main_component;
 
 /**
  * @param name
- * @param priceUSD
- * @param formFactor
  * @param efficiencyRating
  * @param wattage
  * @param modular
- * @param color
  * @param tdp
  * @author Arman Hakhverdyan
  * <p>
@@ -15,12 +12,10 @@ package com.bdg.pc_build.product.model.dto;
  */
 public record PowerSupplyDTO(
         String name,
-        double priceUSD,
-        String formFactor,
+        Double price,
         String efficiencyRating,
-        int wattage,
-        boolean modular,
-        String color,
-        int tdp
+        Integer wattage,
+        Boolean modular,
+        Integer tdp
 ) {
 }
