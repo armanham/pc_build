@@ -15,6 +15,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 public record MotherboardDTO(
         String name,
         Double price,
+        Integer count,
         String socketCpu,
         String formFactor,
         Integer memoryMax,

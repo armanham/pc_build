@@ -19,15 +19,11 @@ package com.bdg.pc_build.product.model.dto.main_component;
  */
 public record RAMDTO(
         String name,
-        double rating,
-        int ratingCount,
-        double priceUSD,
-        int speed,
-        int modules,
-        double priceGB,
-        String color,
-        int firstWordLatency,
-        int casLatency,
-        boolean rgb
+        Double price,
+        Integer count,
+        Integer speed,
+        Integer countOfRAM,
+        Integer GBOfRAM,
+        Integer tdp
 ) {
 }
