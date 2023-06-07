@@ -3,47 +3,29 @@ package com.bdg.pc_build.product.model.entity.peripheral;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import com.bdg.pc_build.product.model.entity.Product;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 @Entity
+@Table(name = "speaker")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@Setter
+@Getter
 public class Speaker extends Product {
     @Column(name = "frequency", nullable = false, updatable = false)
-    private int frequency;
+    Integer frequency;
+
     @Column(name = "power_source", nullable = false, updatable = false)
-    private String powerSource;
+    String powerSource;
+
     @Column(name = "cable_length", nullable = false, updatable = false)
-    private double cableLength;
+    Double cableLength;
+
     @Column(name = "dimension", nullable = false, updatable = false)
-    private String dimension;
-
-    public int getFrequency() {
-        return frequency;
-    }
-
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
-    }
-
-    public String getPowerSource() {
-        return powerSource;
-    }
-
-    public void setPowerSource(String powerSource) {
-        this.powerSource = powerSource;
-    }
-
-    public double getCableLength() {
-        return cableLength;
-    }
-
-    public void setCableLength(double cableLength) {
-        this.cableLength = cableLength;
-    }
-
-    public String getDimension() {
-        return dimension;
-    }
-
-    public void setDimension(String dimension) {
-        this.dimension = dimension;
-    }
+    String dimension;
 }
