@@ -1,4 +1,4 @@
-package com.bdg.pc_build.product.model.entity.peripherals;
+package com.bdg.pc_build.product.model.entity.peripheral;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
