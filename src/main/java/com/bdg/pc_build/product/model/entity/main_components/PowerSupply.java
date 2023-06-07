@@ -1,10 +1,10 @@
-package com.bdg.pc_build.product.model.entity;
+package com.bdg.pc_build.product.model.entity.main_components;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import com.bdg.pc_build.product.model.entity.Product;
 
 /**
  * @Author Arman Hakhverdyan
@@ -15,39 +15,17 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PowerSupply extends Product {
 
-    @NotBlank(message = "Form factor must be provided")
-    @Column(name = "form_factor", nullable = false, updatable = false)
-    String formFactor;
-
-    @NotBlank(message = "Efficiency rating must be provided")
     @Column(name = "efficiency_rating", nullable = false, updatable = false)
-    String efficiencyRating;
+    private String efficiencyRating;
 
-    @NotBlank(message = "Wattage must be provided")
     @Column(name = "wattage", nullable = false, updatable = false)
-    Integer wattage;
+    private Integer wattage;
 
-    @NotBlank(message = "Modular must be provided")
     @Column(name = "modular", nullable = false, updatable = false)
-    Boolean modular;
+    private Boolean modular;
 
-    @Column(name = "color")
-    String color;
-
-    @NotBlank(message = "TDP must be provided")
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
-
-    public PowerSupply() {
-    }
-
-    public String getFormFactor() {
-        return formFactor;
-    }
-
-    public void setFormFactor(String formFactor) {
-        this.formFactor = formFactor;
-    }
+    private Integer tdp;
 
     public String getEfficiencyRating() {
         return efficiencyRating;
@@ -73,14 +51,6 @@ public class PowerSupply extends Product {
         this.modular = modular;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public Integer getTdp() {
         return tdp;
     }
@@ -89,3 +59,4 @@ public class PowerSupply extends Product {
         this.tdp = tdp;
     }
 }
+

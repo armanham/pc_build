@@ -1,11 +1,11 @@
-package com.bdg.pc_build.product.model.entity;
+package com.bdg.pc_build.product.model.entity.main_components;
 
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import com.bdg.pc_build.product.model.entity.Product;
 
 /**
  * @author Arman Hakhverdyan
@@ -16,36 +16,23 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Motherboard extends Product {
-
-    @NotBlank(message = "socket  must be provided")
     @Column(name = "socket_cpu", nullable = false, updatable = false)
-    String socketCpu;
+    private String socketCpu;
 
-    @NotBlank(message = "chipset  must be provided")
-    @Column(name = "chip_set", nullable = false, updatable = false)
-    String chipset;
-
-    @NotBlank(message = "form factor must be provided")
     @Column(name = "form_factor", nullable = false, updatable = false)
-    String formFactor;
+    private String formFactor;
 
-    @NotBlank(message = "memory max must be provided")
     @Column(name = "memory_max", nullable = false, updatable = false)
-    Integer memoryMax;
+    private Integer memoryMax;
 
-    @NotBlank(message = "memory slots must be provided")
     @Column(name = "memory_slots", nullable = false, updatable = false)
-    Integer memorySlots;
+    private Integer memorySlots;
 
-    @NotBlank(message = "memory type must be provided")
     @Column(name = "memory_type", nullable = false, updatable = false)
-    String memoryType;
+    private String memoryType;
 
-    @Column(name = "color", updatable = false)
-    String color;
-
-    public Motherboard() {
-    }
+    @Column(name = "tdp", nullable = false, updatable = false)
+    private Integer tdp;
 
     public String getSocketCpu() {
         return socketCpu;
@@ -53,14 +40,6 @@ public class Motherboard extends Product {
 
     public void setSocketCpu(String socketCpu) {
         this.socketCpu = socketCpu;
-    }
-
-    public String getChipset() {
-        return chipset;
-    }
-
-    public void setChipset(String chipset) {
-        this.chipset = chipset;
     }
 
     public String getFormFactor() {
@@ -95,11 +74,11 @@ public class Motherboard extends Product {
         this.memoryType = memoryType;
     }
 
-    public String getColor() {
-        return color;
+    public Integer getTdp() {
+        return tdp;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setTdp(Integer tdp) {
+        this.tdp = tdp;
     }
 }
