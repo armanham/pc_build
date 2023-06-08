@@ -21,6 +21,9 @@ public abstract class Product {
     @Column(name = "price", nullable = false)
     Double price;
 
+    @Column(name = "purchased_price", nullable = false)
+    Double purchasedPrice;
+
     @Column(name = "count", nullable = false)
     Integer count;
 }

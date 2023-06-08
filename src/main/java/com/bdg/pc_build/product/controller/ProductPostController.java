@@ -1,14 +1,18 @@
 package com.bdg.pc_build.product.controller;
 
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
+import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.product.model.entity.main_component.CPU;
+import com.bdg.pc_build.product.model.request.ProductRequest;
 import com.bdg.pc_build.product.service.ProductService;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/product/new")
@@ -16,10 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ProductPostController {
     ProductService productService;
+    ModelMapper modelMapper;
 
-    @PostMapping(value = "/monitor")
-    public MonitorDTO save(@RequestBody MonitorDTO monitorDTO){
-        return productService.saveMonitor(monitorDTO);
+    @PostMapping("/{componentType}")
+    public ResponseEntity<String> saveComponent(@PathVariable String componentType, @RequestBody ProductRequest product) {
+        switch (componentType) {
+            case "monitor":
+                  productService.saveMonitor(MonitorDTO.initDTOFromRequest(product));
+                  break;
+            default:
+                return ResponseEntity.badRequest().body("Invalid component type");
+        }
+        return ResponseEntity.ok("Component saved successfully");
     }
+
+
 
 }
