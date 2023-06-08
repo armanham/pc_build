@@ -29,7 +29,7 @@ public class Monitor extends Product {
     String screenType;
 
     public Monitor(final MonitorDTO dto) {
-        super(dto.getName(), dto.getPrice(), dto.getCount());
+        super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.screenSize = dto.getScreenSize();
         this.refreshRate = dto.getRefreshRate();
         this.screenType = dto.getScreenType();
