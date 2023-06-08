@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import com.bdg.pc_build.product.model.entity.Product;
@@ -28,4 +29,5 @@ public class Keyboard extends Product {
 
     @Column(name = "weight", nullable = false, updatable = false)
     Double weight;
+
 }

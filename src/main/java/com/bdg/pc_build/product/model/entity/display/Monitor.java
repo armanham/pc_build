@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.display;
 
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
@@ -19,6 +20,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class Monitor extends Product {
+
     @Column(name = "screen_size", nullable = false, updatable = false)
     Double screenSize;
 

@@ -1,5 +1,7 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.dto.main_component.CaseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "case")
@@ -29,4 +33,28 @@ public class Case extends Product {
 
     @Column(name = "is_ATX", nullable = false, updatable = false)
     Boolean isATX;
+
+    public Case(final CaseDTO dto) {
+        super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
+        this.maxCPUCoolerHeight = dto.getMaxCPUCoolerHeight();
+        this.maxGPULength = dto.getMaxGPULength();
+        this.preInstalledFans = dto.getPreInstalledFans();
+        this.isATX = dto.getIsATX();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Case aCase = (Case) o;
+        return Objects.equals(maxCPUCoolerHeight, aCase.maxCPUCoolerHeight)
+                && Objects.equals(maxGPULength, aCase.maxGPULength)
+                && Objects.equals(preInstalledFans, aCase.preInstalledFans)
+                && Objects.equals(isATX, aCase.isATX);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maxCPUCoolerHeight, maxGPULength, preInstalledFans, isATX);
+    }
 }

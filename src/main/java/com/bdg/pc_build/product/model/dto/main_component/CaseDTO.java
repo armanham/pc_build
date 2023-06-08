@@ -1,6 +1,8 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.Case;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.AccessLevel;
@@ -13,6 +15,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CaseDTO extends ProductDTO {
+
     Integer maxCPUCoolerHeight;
     Double maxGPULength;
     Integer preInstalledFans;
@@ -36,7 +39,7 @@ public class CaseDTO extends ProductDTO {
         this.isATX = isATX;
     }
 
-    public static CaseDTO initDTOFromEntity(final Case entity){
+    public static CaseDTO initDTOFromEntity(final Case entity) {
         return CaseDTO.builder()
                 .name(entity.getName())
                 .price(entity.getPrice())
@@ -47,16 +50,17 @@ public class CaseDTO extends ProductDTO {
                 .isATX(entity.getIsATX())
                 .build();
     }
-    public static CaseDTO initDTOFromRequest(final ProductRequest request){
+
+    public static CaseDTO initDTOFromRequest(final ProductRequest request) {
         return CaseDTO.builder()
-                .name(request.getName())
-                .price(request.getPrice())
-                .purchasedPrice(request.getPurchasedPrice())
-                .count(request.getCount())
-                .maxCPUCoolerHeight(request.getMaxCPUCoolerHeight())
-                .maxGPULength(request.getMaxGPULength())
-                .preInstalledFans(request.getPreInstalledFans())
-                .isATX(request.getIsATX())
+                .name(request.name())
+                .price(request.price())
+                .purchasedPrice(request.purchasedPrice())
+                .count(request.count())
+                .maxCPUCoolerHeight(request.maxCPUCoolerHeight())
+                .maxGPULength(request.maxGPULength())
+                .preInstalledFans(request.preInstalledFans())
+                .isATX(request.isATX())
                 .build();
     }
 }

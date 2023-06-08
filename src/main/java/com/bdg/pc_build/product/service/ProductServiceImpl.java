@@ -8,6 +8,8 @@ import com.bdg.pc_build.product.model.dto.peripheral.MouseDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
+import com.bdg.pc_build.product.model.entity.main_component.Case;
+import com.bdg.pc_build.product.model.entity.main_component.Cooler;
 import com.bdg.pc_build.product.repository.BaseProductRepository;
 import com.bdg.pc_build.product.repository.display.MonitorRepository;
 import com.bdg.pc_build.product.repository.main_component.*;
@@ -20,13 +22,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
+
     //Display repositories
     MonitorRepository monitorRepository;
 
@@ -49,12 +53,15 @@ public class ProductServiceImpl implements ProductService{
     SpeakerRepository speakerRepository;
 
 
-    private <T extends Product> T save(T product, BaseProductRepository<T> repository) {
-        Optional<T> optional = repository.findByName(product.getName());
-        if(optional.isPresent()){
-            T foundedProduct = optional.get();
-            if(!foundedProduct.equals(product)){
-                //todo
+    private <ENTITY extends Product> ENTITY save(
+            final ENTITY product,
+            final BaseProductRepository<ENTITY> repository
+    ) {
+        Optional<ENTITY> optionalENTITY = repository.findByName(product.getName());
+        if (optionalENTITY.isPresent()) {
+            ENTITY foundedProduct = optionalENTITY.get();
+            if (!foundedProduct.equals(product)) {
+                //todo DiferentProdEx
                 throw new IllegalArgumentException();
             }
             foundedProduct.setCount(foundedProduct.getCount() + product.getCount());
@@ -63,19 +70,86 @@ public class ProductServiceImpl implements ProductService{
         return repository.save(product);
     }
 
+
+    private <ENTITY extends Product> ENTITY findByName(
+            final String name,
+            final BaseProductRepository<ENTITY> repository
+    ) {
+        Optional<ENTITY> optionalENTITY = repository.findByName(name);
+        if (optionalENTITY.isEmpty()) {
+            //TODO NotFoundEx
+            throw new IllegalArgumentException();
+        }
+        return optionalENTITY.get();
+    }
+
+
+    private <ENTITY extends Product> List<ENTITY> findAllByPrice(
+            final Double minPrice,
+            final Double maxPrice,
+            final BaseProductRepository<ENTITY> repository
+    ) {
+        return repository.findAllByPriceBetween(minPrice, maxPrice);
+    }
+
+    private <ENTITY extends Product> List<ENTITY> findAllByPurchasedPrice(
+            final Double minPurchasedPrice,
+            final Double maxPurchasedPrice,
+            final BaseProductRepository<ENTITY> repository
+    ) {
+        return repository.findAllByPurchasedPriceBetween(minPurchasedPrice, maxPurchasedPrice);
+    }
+
+    private <ENTITY extends Product> ENTITY updatePriceByName(
+            final String name,
+            final Double newPrice,
+            final BaseProductRepository<ENTITY> repository
+    ) {
+        Optional<ENTITY> optionalENTITY = repository.findByName(name);
+        if (optionalENTITY.isEmpty()) {
+            //TODO notFoundEx
+            throw new IllegalArgumentException();
+        }
+        ENTITY foundedProduct = optionalENTITY.get();
+        foundedProduct.setPrice(newPrice);
+        return repository.save(foundedProduct);
+    }
+
+
+    private <ENTITY extends Product> ENTITY reduceCountByName(
+            final String name,
+            final Integer countToBeReduced,
+            final BaseProductRepository<ENTITY> repository
+    ) {
+        Optional<ENTITY> optionalENTITY = repository.findByName(name);
+        if (optionalENTITY.isEmpty()) {
+            //TODO notFoundEx
+            throw new IllegalArgumentException();
+        }
+        ENTITY foundedProduct = optionalENTITY.get();
+
+        if (foundedProduct.getCount() < countToBeReduced) {
+            //todo customEx
+            throw new IllegalArgumentException("aaaaaaaa");
+        }
+        foundedProduct.setCount(foundedProduct.getCount() - countToBeReduced);
+        return repository.save(foundedProduct);
+    }
+
+
     @Override
     public MonitorDTO saveMonitor(final MonitorDTO dto) {
         return MonitorDTO.initDTOFromEntity(save(new Monitor(dto), monitorRepository));
     }
 
     @Override
-    public CaseDTO saveCase(CaseDTO dto) {
-        return null;
+    public CaseDTO saveCase(final CaseDTO dto) {
+        return CaseDTO.initDTOFromEntity(save(new Case(dto), caseRepository));
     }
 
     @Override
-    public CoolerDTO saveCooler(CoolerDTO dto) {
-        return null;
+    public CoolerDTO saveCooler(final CoolerDTO dto) {
+        return CoolerDTO.initDTOFromEntity(save(new Cooler(dto), coolerRepository));
     }
 
     @Override
@@ -138,12 +212,49 @@ public class ProductServiceImpl implements ProductService{
         return null;
     }
 
-//    public CPU saveCpu(CPU cpu){
-//        return save(cpu, cpuRepository);
-//    }
+    @Override
+    public MonitorDTO findMonitorByName(final String name) {
+        return MonitorDTO.initDTOFromEntity(findByName(name, monitorRepository));
+    }
 
+    @Override
+    public List<MonitorDTO> findMonitorByPrice(final Double minPrice, final Double maxPrice) {
+        return findAllByPrice(minPrice, maxPrice, monitorRepository)
+                .stream()
+                .map(MonitorDTO::initDTOFromEntity)
+                .toList();
+    }
 
+    @Override
+    public List<MonitorDTO> findMonitorByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, monitorRepository)
+                .stream()
+                .map(MonitorDTO::initDTOFromEntity)
+                .toList();
+    }
 
+    @Override
+    public CaseDTO findCaseByName(final String name) {
+        return CaseDTO.initDTOFromEntity(findByName(name, caseRepository));
+    }
 
+    @Override
+    public List<CaseDTO> findCaseByPrice(Double minPrice, Double maxPrice) {
+        return null;
+    }
 
+    @Override
+    public List<CaseDTO> findCaseByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice) {
+        return null;
+    }
+
+    @Override
+    public MonitorDTO updateMonitorPriceByName(final String name, final Double newPrice) {
+        return MonitorDTO.initDTOFromEntity(updatePriceByName(name, newPrice, monitorRepository));
+    }
+
+    @Override
+    public MonitorDTO reduceMonitorCountByName(String name, Integer countToBeReduced) {
+        return MonitorDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, monitorRepository));
+    }
 }

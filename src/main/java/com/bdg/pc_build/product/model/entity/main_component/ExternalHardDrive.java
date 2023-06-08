@@ -25,4 +25,5 @@ public class ExternalHardDrive extends Product {
 
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
+
 }

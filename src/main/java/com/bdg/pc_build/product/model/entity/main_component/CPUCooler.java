@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,5 +25,4 @@ public class CPUCooler extends Product {
     String socket;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
-}
+    Integer tdp;}

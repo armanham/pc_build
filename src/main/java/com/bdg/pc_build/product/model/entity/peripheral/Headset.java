@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import com.bdg.pc_build.product.model.entity.Product;
@@ -25,4 +26,5 @@ public class Headset extends Product {
 
     @Column(name = "cable_length", nullable = false, updatable = false)
     Double cableLength;
+
 }

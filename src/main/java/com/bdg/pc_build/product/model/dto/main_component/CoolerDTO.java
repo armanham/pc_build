@@ -1,6 +1,7 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.entity.main_component.Cooler;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.AccessLevel;
@@ -13,6 +14,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CoolerDTO extends ProductDTO {
+
     Integer tdp;
 
     @Builder
@@ -39,11 +41,11 @@ public class CoolerDTO extends ProductDTO {
 
     public static CoolerDTO initDTOFromRequest(final ProductRequest request){
         return CoolerDTO.builder()
-                .name(request.getName())
-                .price(request.getPrice())
-                .purchasedPrice(request.getPurchasedPrice())
-                .count(request.getCount())
-                .tdp(request.getTdp())
+                .name(request.name())
+                .price(request.price())
+                .purchasedPrice(request.purchasedPrice())
+                .count(request.count())
+                .tdp(request.tdp())
                 .build();
     }
 }

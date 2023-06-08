@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.dto;
 
-import jakarta.persistence.Access;
+import com.bdg.pc_build.product.model.entity.Product;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,7 +9,9 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ProductDTO {
+
+public abstract class ProductDTO {
+
     String name;
     Double price;
     Double purchasedPrice;

@@ -1,6 +1,7 @@
 package com.bdg.pc_build.product.model.dto.display;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -8,9 +9,10 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.logging.Level;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class MonitorDTO extends ProductDTO {
 
     Double screenSize;
@@ -33,6 +35,8 @@ public class MonitorDTO extends ProductDTO {
         this.screenType = screenType;
     }
 
+
+
     public static MonitorDTO initDTOFromEntity(final Monitor entity) {
        return MonitorDTO.builder()
                 .name(entity.getName())
@@ -48,13 +52,13 @@ public class MonitorDTO extends ProductDTO {
 
     public static MonitorDTO initDTOFromRequest(final ProductRequest request){
         return MonitorDTO.builder()
-                .name(request.getName())
-                .price(request.getPrice())
-                .price(request.getPurchasedPrice())
-                .count(request.getCount())
-                .screenType(request.getScreenType())
-                .refreshRate(request.getRefreshRate())
-                .screenSize(request.getScreenSize())
+                .name(request.name())
+                .price(request.price())
+                .purchasedPrice(request.purchasedPrice())
+                .count(request.count())
+                .screenType(request.screenType())
+                .refreshRate(request.refreshRate())
+                .screenSize(request.screenSize())
                 .build();
     }
 }
