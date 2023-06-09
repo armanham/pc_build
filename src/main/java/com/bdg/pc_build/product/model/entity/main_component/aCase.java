@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.CaseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
@@ -12,13 +11,13 @@ import lombok.experimental.FieldDefaults;
 import java.util.Objects;
 
 @Entity
-@Table(name = "case")
+@Table(name = "a_case")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
-public class Case extends Product {
+public class aCase extends Product {
 
     @Column(name = "max_CPU_cooler_height", nullable = false, updatable = false)
     Integer maxCPUCoolerHeight;
@@ -32,7 +31,7 @@ public class Case extends Product {
     @Column(name = "is_ATX", nullable = false, updatable = false)
     Boolean isATX;
 
-    public Case(final CaseDTO dto) {
+    public aCase(final CaseDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.maxCPUCoolerHeight = dto.getMaxCPUCoolerHeight();
         this.maxGPULength = dto.getMaxGPULength();
@@ -44,7 +43,7 @@ public class Case extends Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Case aCase = (Case) o;
+        aCase aCase = (com.bdg.pc_build.product.model.entity.main_component.aCase) o;
         return Objects.equals(maxCPUCoolerHeight, aCase.maxCPUCoolerHeight)
                 && Objects.equals(maxGPULength, aCase.maxGPULength)
                 && Objects.equals(preInstalledFans, aCase.preInstalledFans)

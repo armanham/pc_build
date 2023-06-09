@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.RAMDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
@@ -38,7 +37,7 @@ public class RAM extends Product {
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
 
-    public RAM(RAMDTO dto) {
+    public RAM(final RAMDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.speed = dto.getSpeed();
         this.countOfRAM = dto.getCountOfRAM();

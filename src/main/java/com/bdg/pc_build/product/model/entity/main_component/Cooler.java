@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.CoolerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;

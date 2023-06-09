@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.entity.display;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;

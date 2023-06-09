@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
@@ -19,13 +18,14 @@ import java.util.Objects;
 @Setter
 @Getter
 public class InternalHardDrive extends Product {
+
     @Column(name = "capacity", nullable = false, updatable = false)
     Integer capacity;
 
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
 
-    public InternalHardDrive(InternalHardDriveDTO dto) {
+    public InternalHardDrive(final InternalHardDriveDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.capacity = dto.getCapacity();
         this.tdp = dto.getTdp();

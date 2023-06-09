@@ -1,7 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.MotherboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
@@ -26,6 +25,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class Motherboard extends Product {
+
     @Column(name = "socket_cpu", nullable = false, updatable = false)
     String socketCpu;
 
@@ -44,7 +44,7 @@ public class Motherboard extends Product {
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
 
-    public Motherboard(MotherboardDTO dto) {
+    public Motherboard(final MotherboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.socketCpu = dto.getSocketCpu();
         this.formFactor = dto.getFormFactor();

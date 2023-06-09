@@ -1,10 +1,9 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
+import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -19,6 +18,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class Headset extends Product {
+
     @Column(name = "frequency", nullable = false, updatable = false)
     Integer frequency;
 
@@ -28,7 +28,7 @@ public class Headset extends Product {
     @Column(name = "cable_length", nullable = false, updatable = false)
     Double cableLength;
 
-    public Headset(HeadsetDTO dto) {
+    public Headset(final HeadsetDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.frequency = dto.getFrequency();
         this.connectivity = dto.getConnectivity();

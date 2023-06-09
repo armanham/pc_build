@@ -1,10 +1,9 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.KeyboardDTO;
+import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -19,6 +18,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class Keyboard extends Product {
+
     @Column(name = "keyboard_class", nullable = false, updatable = false)
     String keyboardClass;
 
@@ -31,7 +31,7 @@ public class Keyboard extends Product {
     @Column(name = "weight", nullable = false, updatable = false)
     Double weight;
 
-    public Keyboard(KeyboardDTO dto) {
+    public Keyboard(final KeyboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.keyboardClass = dto.getKeyboardClass();
         this.cableLength = dto.getCableLength();

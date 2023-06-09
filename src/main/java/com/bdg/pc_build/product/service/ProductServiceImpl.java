@@ -148,7 +148,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public CaseDTO saveCase(final CaseDTO dto) {
-        return CaseDTO.initDTOFromEntity(save(new Case(dto), caseRepository));
+        return CaseDTO.initDTOFromEntity(save(new aCase(dto), caseRepository));
     }
 
     @Override

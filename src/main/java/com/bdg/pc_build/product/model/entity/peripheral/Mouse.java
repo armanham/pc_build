@@ -1,10 +1,9 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.MouseDTO;
+import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -19,6 +18,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class Mouse extends Product {
+
     @Column(name = "type", nullable = false, updatable = false)
     String type;
 
@@ -31,7 +31,7 @@ public class Mouse extends Product {
     @Column(name = "weight", nullable = false, updatable = false)
     Double weight;
 
-    public Mouse(MouseDTO dto) {
+    public Mouse(final MouseDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.type = dto.getType();
         this.maxResolution = dto.getMaxResolution();

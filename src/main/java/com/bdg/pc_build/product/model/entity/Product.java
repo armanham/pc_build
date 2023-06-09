@@ -31,7 +31,7 @@ public abstract class Product {
     @Column(name = "count", nullable = false)
     Integer count;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
     Timestamp createdAt;
 

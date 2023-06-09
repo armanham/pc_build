@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.CPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
@@ -24,6 +23,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class CPU extends Product {
+
     @Column(name = "core_count", nullable = false, updatable = false)
     Integer coreCount;
 

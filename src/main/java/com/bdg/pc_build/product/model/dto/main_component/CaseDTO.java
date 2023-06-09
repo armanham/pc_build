@@ -1,9 +1,7 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
-import com.bdg.pc_build.product.model.entity.main_component.Case;
+import com.bdg.pc_build.product.model.entity.main_component.aCase;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -37,7 +35,7 @@ public class CaseDTO extends ProductDTO {
         this.isATX = isATX;
     }
 
-    public static CaseDTO initDTOFromEntity(final Case entity) {
+    public static CaseDTO initDTOFromEntity(final aCase entity) {
         return CaseDTO.builder()
                 .name(entity.getName())
                 .price(entity.getPrice())

@@ -18,6 +18,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class ExternalHardDrive extends Product {
+
     @Column(name = "type", nullable = false, updatable = false)
     String type;
 
@@ -27,7 +28,7 @@ public class ExternalHardDrive extends Product {
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
 
-    public ExternalHardDrive(ExternalHardDriveDTO dto) {
+    public ExternalHardDrive(final ExternalHardDriveDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.type = dto.getType();
         this.capacity = dto.getCapacity();

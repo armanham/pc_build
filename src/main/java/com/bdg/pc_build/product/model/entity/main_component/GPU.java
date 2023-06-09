@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
@@ -19,6 +18,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class GPU extends Product {
+
     @Column(name = "chipset", nullable = false, updatable = false)
     String chipset;
 
@@ -37,7 +37,7 @@ public class GPU extends Product {
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
 
-    public GPU(GPUDTO dto) {
+    public GPU(final GPUDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.chipset = dto.getChipset();
         this.memory = dto.getMemory();

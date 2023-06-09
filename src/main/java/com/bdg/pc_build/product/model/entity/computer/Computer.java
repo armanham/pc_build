@@ -41,8 +41,8 @@ public class Computer {
     Monitor monitor;
 
     @OneToOne
-    @JoinColumn(name = "case", referencedColumnName = "name")
-    Case aCase;
+    @JoinColumn(name = "a_case", referencedColumnName = "name")
+    com.bdg.pc_build.product.model.entity.main_component.aCase aCase;
 
     @OneToOne
     @JoinColumn(name = "cooler", referencedColumnName = "name")

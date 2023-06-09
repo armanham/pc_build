@@ -1,10 +1,9 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
+import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -19,6 +18,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class Speaker extends Product {
+
     @Column(name = "frequency", nullable = false, updatable = false)
     Integer frequency;
 
@@ -31,7 +31,7 @@ public class Speaker extends Product {
     @Column(name = "dimension", nullable = false, updatable = false)
     String dimension;
 
-    public Speaker(SpeakerDTO dto) {
+    public Speaker(final SpeakerDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.frequency = dto.getFrequency();
         this.powerSource = dto.getPowerSource();
