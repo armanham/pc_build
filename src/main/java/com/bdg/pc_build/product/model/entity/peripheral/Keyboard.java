@@ -1,20 +1,21 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.dto.peripheral.KeyboardDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "keyboard")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 public class Keyboard extends Product {
@@ -30,4 +31,27 @@ public class Keyboard extends Product {
     @Column(name = "weight", nullable = false, updatable = false)
     Double weight;
 
+    public Keyboard(KeyboardDTO dto) {
+        super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
+        this.keyboardClass = dto.getKeyboardClass();
+        this.cableLength = dto.getCableLength();
+        this.dimension = dto.getDimension();
+        this.weight = dto.getWeight();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Keyboard keyboard = (Keyboard) o;
+        return Objects.equals(keyboardClass, keyboard.keyboardClass)
+                && Objects.equals(cableLength, keyboard.cableLength)
+                && Objects.equals(dimension, keyboard.dimension)
+                && Objects.equals(weight, keyboard.weight);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(keyboardClass, cableLength, dimension, weight);
+    }
 }

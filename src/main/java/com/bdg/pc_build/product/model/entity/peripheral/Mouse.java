@@ -1,20 +1,21 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.dto.peripheral.MouseDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "mouse")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 public class Mouse extends Product {
@@ -30,4 +31,27 @@ public class Mouse extends Product {
     @Column(name = "weight", nullable = false, updatable = false)
     Double weight;
 
+    public Mouse(MouseDTO dto) {
+        super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
+        this.type = dto.getType();
+        this.maxResolution = dto.getMaxResolution();
+        this.cableLength = dto.getCableLength();
+        this.weight = dto.getWeight();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mouse mouse = (Mouse) o;
+        return Objects.equals(type, mouse.type)
+                && Objects.equals(maxResolution, mouse.maxResolution)
+                && Objects.equals(cableLength, mouse.cableLength)
+                && Objects.equals(weight, mouse.weight);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, maxResolution, cableLength, weight);
+    }
 }

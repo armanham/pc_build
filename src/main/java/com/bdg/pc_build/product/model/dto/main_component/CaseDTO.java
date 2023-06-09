@@ -5,15 +5,13 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.Case;
 import com.bdg.pc_build.product.model.request.ProductRequest;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CaseDTO extends ProductDTO {
 
     Integer maxCPUCoolerHeight;
@@ -47,6 +45,7 @@ public class CaseDTO extends ProductDTO {
                 .count(entity.getCount())
                 .maxCPUCoolerHeight(entity.getMaxCPUCoolerHeight())
                 .maxGPULength(entity.getMaxGPULength())
+                .preInstalledFans(entity.getPreInstalledFans())
                 .isATX(entity.getIsATX())
                 .build();
     }

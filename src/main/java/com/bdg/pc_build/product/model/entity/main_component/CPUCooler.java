@@ -1,20 +1,21 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.dto.main_component.CPUCoolerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "cpu_cooler")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 public class CPUCooler extends Product {
@@ -25,4 +26,27 @@ public class CPUCooler extends Product {
     String socket;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;}
+    Integer tdp;
+
+    public CPUCooler(CPUCoolerDTO dto) {
+        super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
+        this.fanRPM = dto.getFanRPM();
+        this.socket = dto.getSocket();
+        this.tdp = dto.getTdp();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CPUCooler cpuCooler = (CPUCooler) o;
+        return Objects.equals(fanRPM, cpuCooler.fanRPM)
+                && Objects.equals(socket, cpuCooler.socket)
+                && Objects.equals(tdp, cpuCooler.tdp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fanRPM, socket, tdp);
+    }
+}
