@@ -3,9 +3,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -26,6 +24,7 @@ import java.util.Objects;
 public class PowerSupply extends Product {
 
     @Column(name = "efficiency_rating", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     EfficiencyRating efficiencyRating;
 
     @Column(name = "wattage", nullable = false, updatable = false)

@@ -3,9 +3,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -21,6 +19,7 @@ import java.util.Objects;
 public class GPU extends Product {
 
     @Column(name = "chipset", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     GPUInterfaceType gpuInterfaceType;
 
     @Column(name = "memory", nullable = false, updatable = false)

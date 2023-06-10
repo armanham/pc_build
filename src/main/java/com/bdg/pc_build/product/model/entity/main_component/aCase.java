@@ -3,9 +3,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 import com.bdg.pc_build.product.model.dto.main_component.CaseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.TowerType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -30,6 +28,7 @@ public class aCase extends Product {
     Integer preInstalledFans;
 
     @Column(name = "is_ATX", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     TowerType towerType;
 
     public aCase(final CaseDTO dto) {

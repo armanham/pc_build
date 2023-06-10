@@ -3,9 +3,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 import com.bdg.pc_build.product.model.dto.main_component.CPUCoolerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -24,6 +22,7 @@ public class CPUCooler extends Product {
     Integer fanRPM;
 
     @Column(name = "socket", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     SocketType socketType;
 
     @Column(name = "tdp", nullable = false, updatable = false)

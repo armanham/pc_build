@@ -7,9 +7,7 @@ import com.bdg.pc_build.product.model.enumerations.ATXType;
 import com.bdg.pc_build.product.model.enumerations.DDRType;
 import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -31,9 +29,11 @@ import java.util.Objects;
 public class Motherboard extends Product {
 
     @Column(name = "socket_type", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     SocketType socketType;
 
     @Column(name = "is_ATX", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     ATXType atxType;
 
     @Column(name = "memory_max", nullable = false, updatable = false)
@@ -43,12 +43,14 @@ public class Motherboard extends Product {
     Integer memorySlots;
 
     @Column(name = "memory_type", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     DDRType memoryType;
 
     @Column(name = "internal_connections", nullable = false, updatable = false)
     String internalConnections;
     
     @Column(name= "gpu_interface", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     GPUInterfaceType gpuInterfaceType;
 
     @Column(name = "tdp", nullable = false, updatable = false)

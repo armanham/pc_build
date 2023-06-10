@@ -3,9 +3,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 import com.bdg.pc_build.product.model.dto.main_component.CPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -41,6 +39,7 @@ public class CPU extends Product {
     String integratedGraphics;
 
     @Column(name = "socket", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     SocketType socketType;
 
     public CPU(final CPUDTO dto) {
