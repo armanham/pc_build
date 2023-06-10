@@ -64,11 +64,15 @@ public record ProductRequest(
         @JsonProperty(value = "integrated_graphics")
         String integratedGraphics,
 
+        @JsonProperty(value = "socket_type")
+        SocketType socketType,
+
         //External Hard Drive
         @JsonProperty(value = "type")
         String type,
         @JsonProperty(value = "capacity")
         Integer capacity,
+
 
         //GPU
         @JsonProperty(value = "gpu_interface")

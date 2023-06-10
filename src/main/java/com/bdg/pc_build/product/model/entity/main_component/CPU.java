@@ -50,7 +50,7 @@ public class CPU extends Product {
         this.boostClock = dto.getBoostClock();
         this.tdp = dto.getTdp();
         this.integratedGraphics = dto.getIntegratedGraphics();
-        this.socketType = SocketType.valueOf(dto.getSocket());
+        this.socketType = dto.getSocket();
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPU;
+import com.bdg.pc_build.product.model.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -22,7 +23,7 @@ public class CPUDTO extends ProductDTO {
     Double boostClock;
     Integer tdp;
     String integratedGraphics;
-    String socket;
+    SocketType socket;
 
     @Builder
 
@@ -36,7 +37,7 @@ public class CPUDTO extends ProductDTO {
             final Double boostClock,
             final Integer tdp,
             final String integratedGraphics,
-            final String socket
+            final SocketType socket
     ) {
         super(name, price, purchasedPrice, count);
         this.coreCount = coreCount;
@@ -58,7 +59,7 @@ public class CPUDTO extends ProductDTO {
                 .boostClock(entity.getBoostClock())
                 .tdp(entity.getTdp())
                 .integratedGraphics(entity.getIntegratedGraphics())
-                .socket(String.valueOf(entity.getSocketType()))
+                .socket(entity.getSocketType())
                 .build();
     }
 
@@ -73,7 +74,7 @@ public class CPUDTO extends ProductDTO {
                 .boostClock(request.boostClock())
                 .tdp(request.tdp())
                 .integratedGraphics(request.integratedGraphics())
-                .socket(request.socket())
+                .socket(request.socketType())
                 .build();
     }
 }
