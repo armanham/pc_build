@@ -9,13 +9,13 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "cpu_cooler")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "cpu_cooler")
 public class CPUCooler extends Product {
 
     @Column(name = "fan_RPM", nullable = false, updatable = false)

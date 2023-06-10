@@ -1,14 +1,15 @@
 package com.bdg.pc_build.product.model.dto;
 
-import com.bdg.pc_build.product.model.entity.Product;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-//@AllArgsConstructor
-//@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public abstract class ProductDTO {
 
     String name;
@@ -16,13 +17,14 @@ public abstract class ProductDTO {
     Double purchasedPrice;
     Integer count;
 
-    public ProductDTO(String name, Double price, Double purchasedPrice, Integer count) {
+    public ProductDTO(
+            final String name,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count) {
         this.name = name;
         this.price = price;
         this.purchasedPrice = purchasedPrice;
         this.count = count;
-    }
-
-    public ProductDTO() {
     }
 }

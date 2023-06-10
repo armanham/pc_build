@@ -1,7 +1,6 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.entity.main_component.Cooler;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -37,7 +36,7 @@ public class CoolerDTO extends ProductDTO {
                 .build();
     }
 
-    public static CoolerDTO initDTOFromRequest(final ProductRequest request){
+    public static CoolerDTO initDTOFromRequest(final ProductRequest request) {
         return CoolerDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))

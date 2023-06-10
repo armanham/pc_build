@@ -68,7 +68,7 @@ public class ProductController {
         List<ProductDTO> productDTOList;
         switch (componentType) {
             case "monitor" -> {
-                return productService.findMonitorByPrice(request.minPrice(), request.maxPrice());
+                return productService.findMonitorByPrice(Double.valueOf(request.minPrice()), Double.valueOf(request.maxPrice()));
 //            case "case" -> productService.findCaseByName(name);
 //            case "cooler" -> productService.
                 //TODO cases
@@ -120,7 +120,7 @@ public class ProductController {
     public List<ProductDTO> getAllByPrice(
             @RequestBody BetweenPricesRequest request
     ) {
-        return productService.findAllProductsByPrice(request.minPrice(), request.maxPrice());
+        return productService.findAllProductsByPrice(Double.valueOf(request.minPrice()), Double.valueOf(request.maxPrice()));
     }
 
     @GetMapping(value = "/getAllByName/{name}")

@@ -1,8 +1,6 @@
 package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -50,7 +48,7 @@ public class KeyboardDTO extends ProductDTO {
                 .build();
     }
 
-    public static KeyboardDTO initDTOFromRequest(final ProductRequest request){
+    public static KeyboardDTO initDTOFromRequest(final ProductRequest request) {
         return KeyboardDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))

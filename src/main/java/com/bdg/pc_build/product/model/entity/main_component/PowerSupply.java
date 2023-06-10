@@ -14,13 +14,13 @@ import java.util.Objects;
  * <p>
  * Entity for PowerSupply
  */
-@Entity
-@Table(name = "power_supply")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "power_supply")
 public class PowerSupply extends Product {
 
     @Column(name = "efficiency_rating", nullable = false, updatable = false)

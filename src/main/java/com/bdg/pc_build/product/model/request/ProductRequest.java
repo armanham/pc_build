@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.request;
 
-import com.bdg.pc_build.product.model.enumerations.*;
+import com.bdg.pc_build.checking.ValidationUtil;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record ProductRequest(
@@ -138,4 +138,13 @@ public record ProductRequest(
         @JsonProperty(value = "dimension")
         String dimension
 ) {
+    public ProductRequest {
+        ValidationUtil.nullCheck(name);
+        ValidationUtil.nullCheck(purchasedPrice);
+        ValidationUtil.nullCheck(price);
+        ValidationUtil.nullCheck(count);
+        ValidationUtil.validateCount(Integer.valueOf(count));
+        ValidationUtil.validatePrice(Double.valueOf(purchasedPrice));
+        ValidationUtil.validatePrice(Double.valueOf(price));
+    }
 }

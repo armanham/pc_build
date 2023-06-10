@@ -40,7 +40,7 @@ public class ExternalHardDriveDTO extends ProductDTO {
                 .build();
     }
 
-    public static ExternalHardDriveDTO initDTOFromRequest(final ProductRequest request){
+    public static ExternalHardDriveDTO initDTOFromRequest(final ProductRequest request) {
         return ExternalHardDriveDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))

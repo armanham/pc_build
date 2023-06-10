@@ -1,9 +1,11 @@
 package com.bdg.pc_build.product.service;
 
+import com.bdg.pc_build.checking.exception.ApranqyQichAException;
+import com.bdg.pc_build.checking.exception.ProductNotFoundException;
+import com.bdg.pc_build.checking.exception.SameNameDifferentDescriptionException;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
-import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
@@ -58,8 +60,7 @@ public class ProductServiceImpl implements ProductService {
         if (optionalENTITY.isPresent()) {
             ENTITY foundedProduct = optionalENTITY.get();
             if (!foundedProduct.equals(product)) {
-                //todo DiferentProdEx
-                throw new IllegalArgumentException();
+                throw new SameNameDifferentDescriptionException(foundedProduct.getClass());
             }
             foundedProduct.setCount(foundedProduct.getCount() + product.getCount());
             return repository.save(foundedProduct);
@@ -74,8 +75,7 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findByName(name);
         if (optionalENTITY.isEmpty()) {
-            //TODO NotFoundEx
-            throw new IllegalArgumentException();
+            throw new ProductNotFoundException(optionalENTITY.getClass(), name);
         }
         return optionalENTITY.get();
     }
@@ -104,8 +104,7 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findByName(name);
         if (optionalENTITY.isEmpty()) {
-            //TODO notFoundEx
-            throw new IllegalArgumentException();
+            throw new ProductNotFoundException(optionalENTITY.getClass(), name);
         }
         ENTITY foundedProduct = optionalENTITY.get();
         foundedProduct.setPrice(newPrice);
@@ -120,15 +119,13 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findByName(name);
         if (optionalENTITY.isEmpty()) {
-            //TODO notFoundEx
-            throw new IllegalArgumentException();
+            throw new ProductNotFoundException(optionalENTITY.getClass(), name);
         }
 
         ENTITY foundedProduct = optionalENTITY.get();
 
         if (foundedProduct.getCount() < countToBeReduced) {
-            //todo customEx
-            throw new IllegalArgumentException("aaaaaaaa");
+            throw new ApranqyQichAException(foundedProduct.getClass(), name, foundedProduct.getCount());
         }
         foundedProduct.setCount(foundedProduct.getCount() - countToBeReduced);
         return repository.save(foundedProduct);

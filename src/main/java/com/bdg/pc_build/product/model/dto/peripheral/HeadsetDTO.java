@@ -1,7 +1,6 @@
 package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Headset;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -45,7 +44,7 @@ public class HeadsetDTO extends ProductDTO {
                 .build();
     }
 
-    public static HeadsetDTO initDTOFromRequest(final ProductRequest request){
+    public static HeadsetDTO initDTOFromRequest(final ProductRequest request) {
         return HeadsetDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))

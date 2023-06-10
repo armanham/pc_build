@@ -16,13 +16,13 @@ import java.util.Objects;
  * <p>
  * Entity for RAM
  */
-@Entity
-@Table(name = "ram")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "ram")
 public class RAM extends Product {
 
     @Column(name = "speed", nullable = false, updatable = false)
@@ -41,7 +41,7 @@ public class RAM extends Product {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.speed = dto.getSpeed();
         this.countOfRAM = dto.getCountOfRAM();
-        this.gbOfRAM = dto.getGBOfRAM();
+        this.gbOfRAM = dto.getGbOfRam();
         this.tdp = dto.getTdp();
     }
 

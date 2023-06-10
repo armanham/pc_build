@@ -9,4 +9,7 @@ public record ReduceCountRequest(
         @JsonProperty(value = "count_tobe_reduced")
         Integer countToBeReduced
 ) {
+        public ReduceCountRequest {
+                //TODO VALIDATIONS
+        }
 }

@@ -10,13 +10,13 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "internal_hard_drive")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "external_hard_drive")
 public class ExternalHardDrive extends Product {
 
     @Column(name = "capacity", nullable = false, updatable = false)

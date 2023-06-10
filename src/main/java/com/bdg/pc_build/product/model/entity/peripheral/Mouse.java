@@ -10,13 +10,13 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "mouse")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "mouse")
 public class Mouse extends Product {
 
     @Column(name = "type", nullable = false, updatable = false)

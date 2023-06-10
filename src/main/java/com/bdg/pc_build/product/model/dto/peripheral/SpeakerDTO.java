@@ -1,8 +1,6 @@
 package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.peripheral.Speaker;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -50,7 +48,7 @@ public class SpeakerDTO extends ProductDTO {
                 .build();
     }
 
-    public static SpeakerDTO initDTOFromRequest(final ProductRequest request){
+    public static SpeakerDTO initDTOFromRequest(final ProductRequest request) {
         return SpeakerDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))

@@ -9,13 +9,13 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "a_case")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "a_case")
 public class aCase extends Product {
 
     @Column(name = "max_CPU_cooler_height", nullable = false, updatable = false)

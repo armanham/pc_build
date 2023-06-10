@@ -17,7 +17,7 @@ public class FilterDTOForMonitor {
     Integer refreshRate;
     String screenType;
 
-    public FilterDTOForMonitor(final FilterRequestForMonitor request){
+    public FilterDTOForMonitor(final FilterRequestForMonitor request) {
         this.screenType = request.screenType();
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());

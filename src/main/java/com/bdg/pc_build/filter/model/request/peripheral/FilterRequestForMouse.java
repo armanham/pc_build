@@ -15,7 +15,7 @@ public record FilterRequestForMouse(
         @JsonProperty(value = "max_resolution")
         String maxResolution,
 
-        @JsonProperty(value = "cable_lenght")
+        @JsonProperty(value = "cable_length")
         String cableLength,
 
         @JsonProperty(value = "weight")

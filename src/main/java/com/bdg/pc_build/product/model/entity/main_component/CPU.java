@@ -14,13 +14,13 @@ import java.util.Objects;
  * <p>
  * Entity for CPU
  */
-@Entity
-@Table(name = "cpu")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "cpu")
 public class CPU extends Product {
 
     @Column(name = "core_count", nullable = false, updatable = false)

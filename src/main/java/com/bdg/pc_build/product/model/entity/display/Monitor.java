@@ -11,13 +11,13 @@ import lombok.experimental.FieldDefaults;
 import java.util.Objects;
 
 
-@Entity
-@Table(name = "monitor")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "monitor")
 public class Monitor extends Product {
 
     @Column(name = "screen_size", nullable = false, updatable = false)

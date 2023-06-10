@@ -16,7 +16,7 @@ public class FilterDTOForExternalHardDrive {
     Integer capacity;
     Integer tdp;
 
-    public FilterDTOForExternalHardDrive(final FilterRequestForExternalHardDrive request){
+    public FilterDTOForExternalHardDrive(final FilterRequestForExternalHardDrive request) {
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

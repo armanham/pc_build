@@ -9,13 +9,13 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "gpu")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "gpu")
 public class GPU extends Product {
 
     @Column(name = "chipset", nullable = false, updatable = false)

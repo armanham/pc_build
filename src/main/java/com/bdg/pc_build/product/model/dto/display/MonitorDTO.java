@@ -35,8 +35,6 @@ public class MonitorDTO extends ProductDTO {
         this.screenType = screenType;
     }
 
-
-
     public static MonitorDTO initDTOFromEntity(final Monitor entity) {
        return MonitorDTO.builder()
                 .name(entity.getName())
@@ -48,7 +46,6 @@ public class MonitorDTO extends ProductDTO {
                 .screenSize(entity.getScreenSize())
                 .build();
     }
-
 
     public static MonitorDTO initDTOFromRequest(final ProductRequest request){
         return MonitorDTO.builder()

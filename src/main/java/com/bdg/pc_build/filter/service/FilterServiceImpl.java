@@ -92,7 +92,6 @@ public class FilterServiceImpl implements FilterService {
         productDTOList.addAll(speakerDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
                 .stream().map(SpeakerDTO::initDTOFromEntity).toList());
 
-
         return productDTOList;
     }
 }

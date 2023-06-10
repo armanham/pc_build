@@ -18,7 +18,7 @@ public class FilterDTOForMouse {
     Double cableLength;
     Double weight;
 
-    public FilterDTOForMouse(final FilterRequestForMouse request){
+    public FilterDTOForMouse(final FilterRequestForMouse request) {
         this.type = request.type();
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());

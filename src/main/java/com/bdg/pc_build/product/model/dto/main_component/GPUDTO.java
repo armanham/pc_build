@@ -57,7 +57,7 @@ public class GPUDTO extends ProductDTO {
                 .build();
     }
 
-    public static GPUDTO initDTOFromRequest(final ProductRequest request){
+    public static GPUDTO initDTOFromRequest(final ProductRequest request) {
         return GPUDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))

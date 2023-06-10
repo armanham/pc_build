@@ -2,8 +2,6 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.RAM;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -22,7 +20,7 @@ public class RAMDTO extends ProductDTO {
 
     Integer speed;
     Integer countOfRAM;
-    Double GBOfRAM;
+    Double gbOfRam;
     Integer tdp;
 
     @Builder
@@ -33,13 +31,13 @@ public class RAMDTO extends ProductDTO {
             final Integer count,
             final Integer speed,
             final Integer countOfRAM,
-            final Double GBOfRAM,
+            final Double gbOfRam,
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
         this.speed = speed;
         this.countOfRAM = countOfRAM;
-        this.GBOfRAM = GBOfRAM;
+        this.gbOfRam = gbOfRam;
         this.tdp = tdp;
     }
 
@@ -51,11 +49,12 @@ public class RAMDTO extends ProductDTO {
                 .count(entity.getCount())
                 .speed(entity.getSpeed())
                 .countOfRAM(entity.getCountOfRAM())
-                .GBOfRAM(entity.getGbOfRAM())
+                .gbOfRam(entity.getGbOfRAM())
                 .tdp(entity.getTdp())
                 .build();
     }
-    public static RAMDTO initDTOFromRequest(final ProductRequest request){
+
+    public static RAMDTO initDTOFromRequest(final ProductRequest request) {
         return RAMDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))
@@ -63,7 +62,7 @@ public class RAMDTO extends ProductDTO {
                 .count(Integer.valueOf(request.count()))
                 .speed(Integer.valueOf(request.speed()))
                 .countOfRAM(Integer.valueOf(request.countOfRAM()))
-                .GBOfRAM(Double.valueOf(request.GBOfRAM()))
+                .gbOfRam(Double.valueOf(request.GBOfRAM()))
                 .tdp(Integer.valueOf(request.tdp()))
                 .build();
     }

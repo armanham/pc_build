@@ -10,13 +10,13 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "cooler")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "cooler")
 public class Cooler extends Product {
 
     @Column(name = "tdp", nullable = false, updatable = false)

@@ -19,13 +19,13 @@ import java.util.Objects;
  * Entity for Motherboard
  */
 
-@Entity
-@Table(name = "motherboard")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "motherboard")
 public class Motherboard extends Product {
 
     @Column(name = "socket_type", nullable = false, updatable = false)

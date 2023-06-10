@@ -19,23 +19,23 @@ public class FilterDTOForPowerSupply {
     Boolean modular;
     Integer tdp;
 
-    public FilterDTOForPowerSupply(final FilterRequestForPowerSupply request){
-        if(request.minPrice() != null && !request.minPrice().isBlank()){
+    public FilterDTOForPowerSupply(final FilterRequestForPowerSupply request) {
+        if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }
-        if(request.maxPrice() != null && !request.maxPrice().isBlank()){
+        if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-        if(request.efficiencyRating() != null && !request.efficiencyRating().isBlank()){
+        if (request.efficiencyRating() != null && !request.efficiencyRating().isBlank()) {
             this.efficiencyRating = EfficiencyRating.valueOf(request.efficiencyRating());
         }
-        if(request.wattage() != null && !request.wattage().isBlank()){
+        if (request.wattage() != null && !request.wattage().isBlank()) {
             this.wattage = Integer.valueOf(request.wattage());
         }
-        if(request.modular() != null && !request.modular().isBlank()){
+        if (request.modular() != null && !request.modular().isBlank()) {
             this.modular = Boolean.valueOf(request.modular());
         }
-        if(request.tdp() != null && !request.tdp().isBlank()){
+        if (request.tdp() != null && !request.tdp().isBlank()) {
             this.tdp = Integer.valueOf(request.tdp());
         }
     }

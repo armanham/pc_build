@@ -10,4 +10,7 @@ public record EditPriceRequest(
         @JsonProperty(value = "new_price")
         Double newPrice
 ) {
+        public EditPriceRequest {
+                //TODO VALIDATIONS
+        }
 }

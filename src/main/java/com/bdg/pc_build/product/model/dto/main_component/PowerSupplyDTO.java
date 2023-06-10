@@ -1,8 +1,6 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.model.request.ProductRequest;
@@ -11,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 
 /**
  * @author Arman Hakhverdyan
- *
+ * <p>
  * DTO (Data Transfer Object) representing a power supply.
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -55,7 +53,7 @@ public class PowerSupplyDTO extends ProductDTO {
                 .build();
     }
 
-    public static PowerSupplyDTO initDTOFromRequest(final ProductRequest request){
+    public static PowerSupplyDTO initDTOFromRequest(final ProductRequest request) {
         return PowerSupplyDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))

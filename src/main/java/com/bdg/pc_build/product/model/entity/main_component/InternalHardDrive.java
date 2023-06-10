@@ -2,25 +2,25 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.model.enumerations.InternalHardDriveInterfaceTypes;
+import com.bdg.pc_build.product.model.enumerations.InternalHardDriveInterfaceType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "external_hard_drive")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "internal_hard_drive")
 public class InternalHardDrive extends Product {
 
     @Column(name = "type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    InternalHardDriveInterfaceTypes type;
+    InternalHardDriveInterfaceType type;
 
     @Column(name = "capacity", nullable = false, updatable = false)
     Integer capacity;

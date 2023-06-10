@@ -18,7 +18,7 @@ public class FilterDTOForKeyboard {
     String dimension;
     Double weight;
 
-    public FilterDTOForKeyboard(final FilterRequestForKeyboard request){
+    public FilterDTOForKeyboard(final FilterRequestForKeyboard request) {
         this.keyboardClass = request.keyboardClass();
         this.dimension = request.dimension();
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
@@ -34,5 +34,4 @@ public class FilterDTOForKeyboard {
             this.weight = Double.valueOf(request.weight());
         }
     }
-
 }

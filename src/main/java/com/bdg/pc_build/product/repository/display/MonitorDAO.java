@@ -15,11 +15,11 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
 //            "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
 //            "AND ((:minPrice IS NULL AND :maxPrice IS NULL) " +
 //            "OR (p.price BETWEEN COALESCE(:minPrice, 0) AND COALESCE(:maxPrice, 1000000)))")
-    List<Monitor> filterAllMonitorsBasedOnSpecification(
-            @Param("screenSize") Double screenSize,
-            @Param("refreshRate") Integer refreshRate,
-            @Param("screenType") String screenType,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice
-    );
+//    List<Monitor> filterAllMonitorsBasedOnSpecification(
+//            @Param("screenSize") Double screenSize,
+//            @Param("refreshRate") Integer refreshRate,
+//            @Param("screenType") String screenType,
+//            @Param("minPrice") Double minPrice,
+//            @Param("maxPrice") Double maxPrice
+//    );
 }

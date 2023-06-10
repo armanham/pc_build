@@ -1,8 +1,6 @@
 package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -50,7 +48,7 @@ public class MouseDTO extends ProductDTO {
                 .build();
     }
 
-    public static MouseDTO initDTOFromRequest(final ProductRequest request){
+    public static MouseDTO initDTOFromRequest(final ProductRequest request) {
         return MouseDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))
@@ -62,5 +60,4 @@ public class MouseDTO extends ProductDTO {
                 .weight(Double.valueOf(request.weight()))
                 .build();
     }
-
 }

@@ -10,13 +10,13 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "keyboard")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "keyboard")
 public class Keyboard extends Product {
 
     @Column(name = "keyboard_class", nullable = false, updatable = false)

@@ -48,7 +48,7 @@ public class CPUDTO extends ProductDTO {
         this.socket = socket;
     }
 
-    public static CPUDTO initDTOFromEntity(final CPU entity){
+    public static CPUDTO initDTOFromEntity(final CPU entity) {
         return CPUDTO.builder()
                 .name(entity.getName())
                 .price(entity.getPrice())
@@ -63,7 +63,7 @@ public class CPUDTO extends ProductDTO {
                 .build();
     }
 
-    public static CPUDTO initDTOFromRequest(final ProductRequest request){
+    public static CPUDTO initDTOFromRequest(final ProductRequest request) {
         return CPUDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))

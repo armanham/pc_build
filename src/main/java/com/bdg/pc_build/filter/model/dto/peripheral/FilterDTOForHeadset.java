@@ -17,7 +17,7 @@ public class FilterDTOForHeadset {
     String connectivity;
     Double cableLength;
 
-    public FilterDTOForHeadset(final FilterRequestForHeadset request){
+    public FilterDTOForHeadset(final FilterRequestForHeadset request) {
         this.connectivity = request.connectivity();
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());

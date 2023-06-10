@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.InternalHardDrive;
-import com.bdg.pc_build.product.model.enumerations.InternalHardDriveInterfaceTypes;
+import com.bdg.pc_build.product.model.enumerations.InternalHardDriveInterfaceType;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class InternalHardDriveDTO extends ProductDTO {
 
-    InternalHardDriveInterfaceTypes type;
+    InternalHardDriveInterfaceType type;
     Integer capacity;
     Integer tdp;
 
@@ -23,7 +23,7 @@ public class InternalHardDriveDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final InternalHardDriveInterfaceTypes type,
+            final InternalHardDriveInterfaceType type,
             final Integer capacity,
             final Integer tdp
     ) {
@@ -45,13 +45,13 @@ public class InternalHardDriveDTO extends ProductDTO {
                 .build();
     }
 
-    public static InternalHardDriveDTO initDTOFromRequest(final ProductRequest request){
+    public static InternalHardDriveDTO initDTOFromRequest(final ProductRequest request) {
         return InternalHardDriveDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))
                 .purchasedPrice(Double.valueOf(request.purchasedPrice()))
                 .count(Integer.valueOf(request.count()))
-                .type(InternalHardDriveInterfaceTypes.valueOf(request.type()))
+                .type(InternalHardDriveInterfaceType.valueOf(request.type()))
                 .capacity(Integer.valueOf(request.capacity()))
                 .tdp(Integer.valueOf(request.tdp()))
                 .build();
