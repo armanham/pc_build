@@ -10,7 +10,6 @@ import com.bdg.pc_build.product.model.request.ProductRequest;
 import com.bdg.pc_build.product.model.request.ReduceCountRequest;
 import com.bdg.pc_build.product.service.ProductService;
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
@@ -61,11 +60,11 @@ public class ProductController {
     }
 
 
-    @GetMapping(value = "/getAll/{componentType}")
+    @GetMapping(value = "/getAllByComponentTypeAndPrice/{componentType}")
     public List<?> getAllBetweenPrice(
             @PathVariable("componentType") String componentType,
             @RequestBody BetweenPricesRequest request
-            ){
+    ) {
         List<ProductDTO> productDTOList;
         switch (componentType) {
             case "monitor" -> {
@@ -85,7 +84,7 @@ public class ProductController {
     public ResponseEntity<?> editPrice(
             @PathVariable("componentType") String componentType,
             @RequestBody EditPriceRequest request
-    ){
+    ) {
         switch (componentType) {
             case "monitor" -> {
                 return ResponseEntity.ok().body(productService.updateMonitorPriceByName(request.productName(), request.newPrice()));
@@ -103,7 +102,7 @@ public class ProductController {
     public ResponseEntity<?> reduceCount(
             @PathVariable("componentType") String componentType,
             @RequestBody ReduceCountRequest request
-    ){
+    ) {
         switch (componentType) {
             case "monitor" -> {
                 return ResponseEntity.ok().body(productService.reduceMonitorCountByName(request.productName(), request.countToBeReduced()));
@@ -115,5 +114,19 @@ public class ProductController {
                 return ResponseEntity.badRequest().body("Invalid component type");
             }
         }
+    }
+
+    @GetMapping(value = "/getAllByPrice")
+    public List<ProductDTO> getAllByPrice(
+            @RequestBody BetweenPricesRequest request
+    ) {
+        return productService.findAllProductsByPrice(request.minPrice(), request.maxPrice());
+    }
+
+    @GetMapping(value = "/getAllByName/{name}")
+    public List<ProductDTO> getAllByPrice(
+            @PathVariable("name") String name
+    ) {
+        return productService.findAllProductsByNameIgnoreCaseAndLikeTerm(name);
     }
 }
