@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.service;
 
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
@@ -41,6 +42,12 @@ public interface ProductService {
     MouseDTO saveMouse(MouseDTO dto);
 
     SpeakerDTO saveSpeaker(SpeakerDTO dto);
+
+
+    //general find method
+    List<ProductDTO> findAllProductsByPrice(Double minPrice, Double maxPrice);
+
+    List<ProductDTO> findAllProductsByNameIgnoreCaseAndLikeTerm(String name);
 
 
     //find methods for display components

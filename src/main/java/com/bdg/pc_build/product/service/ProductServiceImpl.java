@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.service;
 
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
             final Double maxPrice,
             final BaseProductRepository<ENTITY> repository
     ) {
-        return repository.findAllByPriceBetween(minPrice, maxPrice);
+        return repository.findAllProductsByPriceBetween(minPrice, maxPrice);
     }
 
     private <ENTITY extends Product> List<ENTITY> findAllByPurchasedPrice(
@@ -94,7 +96,7 @@ public class ProductServiceImpl implements ProductService {
             final Double maxPurchasedPrice,
             final BaseProductRepository<ENTITY> repository
     ) {
-        return repository.findAllByPurchasedPriceBetween(minPurchasedPrice, maxPurchasedPrice);
+        return repository.findAllProductsByPurchasedPriceBetween(minPurchasedPrice, maxPurchasedPrice);
     }
 
     private <ENTITY extends Product> ENTITY updatePriceByName(
@@ -673,5 +675,125 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public SpeakerDTO reduceSpeakerCountByName(final String name, final Integer countToBeReduced) {
         return SpeakerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, speakerRepository));
+    }
+
+    @Override
+    public List<ProductDTO> findAllProductsByPrice(Double minPrice, Double maxPrice) {
+        List<ProductDTO> productDTOs = new ArrayList<>();
+
+        productDTOs.addAll(findMonitorByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findCaseByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findCoolerByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findCPUByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findCPUCoolerByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findExternalHardDriveByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findGPUByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findInternalHardDriveByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findMotherboardByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findPowerSupplyByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findRAMByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findHeadsetByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findKeyboardByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findMouseByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findSpeakerByPrice(minPrice, maxPrice));
+
+        return productDTOs;
+    }
+
+
+    @Override
+    public List<ProductDTO> findAllProductsByNameIgnoreCaseAndLikeTerm(String name) {
+        List<ProductDTO> productDTOs = new ArrayList<>();
+
+        productDTOs.addAll(monitorRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(MonitorDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(caseRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(CaseDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(coolerRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(CoolerDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(cpuRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(CPUDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(cpuCoolerRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(CPUCoolerDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(externalHardDriveRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(ExternalHardDriveDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(gpuRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(GPUDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(internalHardDriveRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(InternalHardDriveDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(motherboardRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(MotherboardDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(powerSupplyRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(PowerSupplyDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(ramRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(RAMDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(headsetRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(HeadsetDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(keyboardRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(KeyboardDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(mouseRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(MouseDTO::initDTOFromEntity)
+                .toList());
+
+        productDTOs.addAll(speakerRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+                .stream()
+                .map(SpeakerDTO::initDTOFromEntity)
+                .toList());
+
+        return productDTOs;
+    }
+
+
+    List<ProductDTO> filterByPriceAndName(Double minPrice, Double maxPrice, String name) {
+        List<ProductDTO> allByNameIgnoreCaseAndLikeTerm = new ArrayList<>();
+        if (name != null) {
+            allByNameIgnoreCaseAndLikeTerm = findAllProductsByNameIgnoreCaseAndLikeTerm(name);
+        }
+        List<ProductDTO> allProductsByPrice = findAllProductsByPrice(minPrice, maxPrice);
+
+        return allByNameIgnoreCaseAndLikeTerm
+                .stream()
+                .filter(allProductsByPrice::contains)
+                .toList();
     }
 }
