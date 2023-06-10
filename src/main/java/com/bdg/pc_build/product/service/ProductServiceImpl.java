@@ -8,13 +8,10 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
-import com.bdg.pc_build.product.repository.BaseProductRepository;
-import com.bdg.pc_build.product.repository.display.MonitorRepository;
+import com.bdg.pc_build.product.repository.ProductDAO;
+import com.bdg.pc_build.product.repository.display.MonitorDAO;
 import com.bdg.pc_build.product.repository.main_component.*;
-import com.bdg.pc_build.product.repository.peripheral.HeadsetRepository;
-import com.bdg.pc_build.product.repository.peripheral.KeyboardRepository;
-import com.bdg.pc_build.product.repository.peripheral.MouseRepository;
-import com.bdg.pc_build.product.repository.peripheral.SpeakerRepository;
+import com.bdg.pc_build.product.repository.peripheral.*;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -31,30 +28,30 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     //Display repositories
-    MonitorRepository monitorRepository;
+    MonitorDAO monitorDAO;
 
     //Main component repositories
-    CaseRepository caseRepository;
-    CoolerRepository coolerRepository;
-    CPUCoolerRepository cpuCoolerRepository;
-    CPURepository cpuRepository;
-    ExternalHardDriveRepository externalHardDriveRepository;
-    GPURepository gpuRepository;
-    InternalHardDriveRepository internalHardDriveRepository;
-    MotherboardRepository motherboardRepository;
-    PowerSupplyRepository powerSupplyRepository;
-    RAMRepository ramRepository;
+    CaseDAO caseDAO;
+    CoolerDAO coolerDAO;
+    CPUCoolerDAO cpuCoolerDAO;
+    CPUDAO cpuDAO;
+    ExternalHardDriveDAO externalHardDriveDAO;
+    GPUDAO gpuDAO;
+    InternalHardDriveDAO internalHardDriveDAO;
+    MotherboardDAO motherboardDAO;
+    PowerSupplyDAO powerSupplyDAO;
+    RAMDAO ramDAO;
 
     //Peripheral repositories
-    HeadsetRepository headsetRepository;
-    KeyboardRepository keyboardRepository;
-    MouseRepository mouseRepository;
-    SpeakerRepository speakerRepository;
+    HeadsetDAO headsetDAO;
+    KeyboardDAO keyboardDAO;
+    MouseDAO mouseDAO;
+    SpeakerDAO speakerDAO;
 
 
     private <ENTITY extends Product> ENTITY save(
             final ENTITY product,
-            final BaseProductRepository<ENTITY> repository
+            final ProductDAO<ENTITY> repository
     ) {
         Optional<ENTITY> optionalENTITY = repository.findByName(product.getName());
         if (optionalENTITY.isPresent()) {
@@ -72,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
 
     private <ENTITY extends Product> ENTITY findByName(
             final String name,
-            final BaseProductRepository<ENTITY> repository
+            final ProductDAO<ENTITY> repository
     ) {
         Optional<ENTITY> optionalENTITY = repository.findByName(name);
         if (optionalENTITY.isEmpty()) {
@@ -86,7 +83,7 @@ public class ProductServiceImpl implements ProductService {
     private <ENTITY extends Product> List<ENTITY> findAllByPrice(
             final Double minPrice,
             final Double maxPrice,
-            final BaseProductRepository<ENTITY> repository
+            final ProductDAO<ENTITY> repository
     ) {
         return repository.findAllProductsByPriceBetween(minPrice, maxPrice);
     }
@@ -94,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
     private <ENTITY extends Product> List<ENTITY> findAllByPurchasedPrice(
             final Double minPurchasedPrice,
             final Double maxPurchasedPrice,
-            final BaseProductRepository<ENTITY> repository
+            final ProductDAO<ENTITY> repository
     ) {
         return repository.findAllProductsByPurchasedPriceBetween(minPurchasedPrice, maxPurchasedPrice);
     }
@@ -102,7 +99,7 @@ public class ProductServiceImpl implements ProductService {
     private <ENTITY extends Product> ENTITY updatePriceByName(
             final String name,
             final Double newPrice,
-            final BaseProductRepository<ENTITY> repository
+            final ProductDAO<ENTITY> repository
     ) {
         Optional<ENTITY> optionalENTITY = repository.findByName(name);
         if (optionalENTITY.isEmpty()) {
@@ -118,7 +115,7 @@ public class ProductServiceImpl implements ProductService {
     private <ENTITY extends Product> ENTITY reduceCountByName(
             final String name,
             final Integer countToBeReduced,
-            final BaseProductRepository<ENTITY> repository
+            final ProductDAO<ENTITY> repository
     ) {
         Optional<ENTITY> optionalENTITY = repository.findByName(name);
         if (optionalENTITY.isEmpty()) {
@@ -139,27 +136,27 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public MonitorDTO saveMonitor(final MonitorDTO dto) {
-        return MonitorDTO.initDTOFromEntity(save(new Monitor(dto), monitorRepository));
+        return MonitorDTO.initDTOFromEntity(save(new Monitor(dto), monitorDAO));
     }
 
     @Override
     public CaseDTO saveCase(final CaseDTO dto) {
-        return CaseDTO.initDTOFromEntity(save(new aCase(dto), caseRepository));
+        return CaseDTO.initDTOFromEntity(save(new aCase(dto), caseDAO));
     }
 
     @Override
     public CoolerDTO saveCooler(final CoolerDTO dto) {
-        return CoolerDTO.initDTOFromEntity(save(new Cooler(dto), coolerRepository));
+        return CoolerDTO.initDTOFromEntity(save(new Cooler(dto), coolerDAO));
     }
 
     @Override
     public CPUCoolerDTO saveCpuCooler(final CPUCoolerDTO dto) {
-        return CPUCoolerDTO.initDTOFromEntity(save(new CPUCooler(dto), cpuCoolerRepository));
+        return CPUCoolerDTO.initDTOFromEntity(save(new CPUCooler(dto), cpuCoolerDAO));
     }
 
     @Override
     public CPUDTO saveCPU(final CPUDTO dto) {
-        return CPUDTO.initDTOFromEntity(save(new CPU(dto), cpuRepository));
+        return CPUDTO.initDTOFromEntity(save(new CPU(dto), cpuDAO));
     }
 
     @Override
@@ -169,7 +166,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public GPUDTO saveGPU(final GPUDTO dto) {
-        return GPUDTO.initDTOFromEntity(save(new GPU(dto), gpuRepository));
+        return GPUDTO.initDTOFromEntity(save(new GPU(dto), gpuDAO));
     }
 
     @Override
@@ -179,47 +176,47 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public MotherboardDTO saveMotherBoard(final MotherboardDTO dto) {
-        return MotherboardDTO.initDTOFromEntity(save(new Motherboard(dto), motherboardRepository));
+        return MotherboardDTO.initDTOFromEntity(save(new Motherboard(dto), motherboardDAO));
     }
 
     @Override
     public PowerSupplyDTO savePowerSupply(final PowerSupplyDTO dto) {
-        return PowerSupplyDTO.initDTOFromEntity(save(new PowerSupply(dto), powerSupplyRepository));
+        return PowerSupplyDTO.initDTOFromEntity(save(new PowerSupply(dto), powerSupplyDAO));
     }
 
     @Override
     public RAMDTO saveRAM(final RAMDTO dto) {
-        return RAMDTO.initDTOFromEntity(save(new RAM(dto), ramRepository));
+        return RAMDTO.initDTOFromEntity(save(new RAM(dto), ramDAO));
     }
 
     @Override
     public HeadsetDTO saveHeadSet(final HeadsetDTO dto) {
-        return HeadsetDTO.initDTOFromEntity(save(new Headset(dto), headsetRepository));
+        return HeadsetDTO.initDTOFromEntity(save(new Headset(dto), headsetDAO));
     }
 
     @Override
     public KeyboardDTO saveKeyboard(final KeyboardDTO dto) {
-        return KeyboardDTO.initDTOFromEntity(save(new Keyboard(dto), keyboardRepository));
+        return KeyboardDTO.initDTOFromEntity(save(new Keyboard(dto), keyboardDAO));
     }
 
     @Override
     public MouseDTO saveMouse(final MouseDTO dto) {
-        return MouseDTO.initDTOFromEntity(save(new Mouse(dto), mouseRepository));
+        return MouseDTO.initDTOFromEntity(save(new Mouse(dto), mouseDAO));
     }
 
     @Override
     public SpeakerDTO saveSpeaker(final SpeakerDTO dto) {
-        return SpeakerDTO.initDTOFromEntity(save(new Speaker(dto), speakerRepository));
+        return SpeakerDTO.initDTOFromEntity(save(new Speaker(dto), speakerDAO));
     }
 
     @Override
     public MonitorDTO findMonitorByName(final String name) {
-        return MonitorDTO.initDTOFromEntity(findByName(name, monitorRepository));
+        return MonitorDTO.initDTOFromEntity(findByName(name, monitorDAO));
     }
 
     @Override
     public List<MonitorDTO> findMonitorByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, monitorRepository)
+        return findAllByPrice(minPrice, maxPrice, monitorDAO)
                 .stream()
                 .map(MonitorDTO::initDTOFromEntity)
                 .toList();
@@ -227,7 +224,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<MonitorDTO> findMonitorByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, monitorRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, monitorDAO)
                 .stream()
                 .map(MonitorDTO::initDTOFromEntity)
                 .toList();
@@ -235,12 +232,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public CaseDTO findCaseByName(final String name) {
-        return CaseDTO.initDTOFromEntity(findByName(name, caseRepository));
+        return CaseDTO.initDTOFromEntity(findByName(name, caseDAO));
     }
 
     @Override
     public List<CaseDTO> findCaseByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, caseRepository)
+        return findAllByPrice(minPrice, maxPrice, caseDAO)
                 .stream()
                 .map(CaseDTO::initDTOFromEntity)
                 .toList();
@@ -248,7 +245,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<CaseDTO> findCaseByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, caseRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, caseDAO)
                 .stream()
                 .map(CaseDTO::initDTOFromEntity)
                 .toList();
@@ -256,12 +253,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public CoolerDTO findCoolerByName(final String name) {
-        return CoolerDTO.initDTOFromEntity(findByName(name, coolerRepository));
+        return CoolerDTO.initDTOFromEntity(findByName(name, coolerDAO));
     }
 
     @Override
     public List<CoolerDTO> findCoolerByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, coolerRepository)
+        return findAllByPrice(minPrice, maxPrice, coolerDAO)
                 .stream()
                 .map(CoolerDTO::initDTOFromEntity)
                 .toList();
@@ -269,7 +266,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<CoolerDTO> findCoolerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, coolerRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, coolerDAO)
                 .stream()
                 .map(CoolerDTO::initDTOFromEntity)
                 .toList();
@@ -277,12 +274,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public CPUCoolerDTO findCPUCoolerByName(final String name) {
-        return CPUCoolerDTO.initDTOFromEntity(findByName(name, cpuCoolerRepository));
+        return CPUCoolerDTO.initDTOFromEntity(findByName(name, cpuCoolerDAO));
     }
 
     @Override
     public List<CPUCoolerDTO> findCPUCoolerByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, cpuCoolerRepository)
+        return findAllByPrice(minPrice, maxPrice, cpuCoolerDAO)
                 .stream()
                 .map(CPUCoolerDTO::initDTOFromEntity)
                 .toList();
@@ -290,7 +287,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<CPUCoolerDTO> findCPUCoolerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuCoolerRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuCoolerDAO)
                 .stream()
                 .map(CPUCoolerDTO::initDTOFromEntity)
                 .toList();
@@ -298,12 +295,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public CPUDTO findCPUByName(final String name) {
-        return CPUDTO.initDTOFromEntity(findByName(name, cpuRepository));
+        return CPUDTO.initDTOFromEntity(findByName(name, cpuDAO));
     }
 
     @Override
     public List<CPUDTO> findCPUByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, cpuRepository)
+        return findAllByPrice(minPrice, maxPrice, cpuDAO)
                 .stream()
                 .map(CPUDTO::initDTOFromEntity)
                 .toList();
@@ -311,7 +308,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<CPUDTO> findCPUByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuDAO)
                 .stream()
                 .map(CPUDTO::initDTOFromEntity)
                 .toList();
@@ -340,12 +337,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public GPUDTO findGPUByName(final String name) {
-        return GPUDTO.initDTOFromEntity(findByName(name, gpuRepository));
+        return GPUDTO.initDTOFromEntity(findByName(name, gpuDAO));
     }
 
     @Override
     public List<GPUDTO> findGPUByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, gpuRepository)
+        return findAllByPrice(minPrice, maxPrice, gpuDAO)
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
@@ -353,7 +350,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<GPUDTO> findGPUByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, gpuRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, gpuDAO)
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
@@ -382,12 +379,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public MotherboardDTO findMotherboardByName(final String name) {
-        return MotherboardDTO.initDTOFromEntity(findByName(name, motherboardRepository));
+        return MotherboardDTO.initDTOFromEntity(findByName(name, motherboardDAO));
     }
 
     @Override
     public List<MotherboardDTO> findMotherboardByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, motherboardRepository)
+        return findAllByPrice(minPrice, maxPrice, motherboardDAO)
                 .stream()
                 .map(MotherboardDTO::initDTOFromEntity)
                 .toList();
@@ -395,7 +392,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<MotherboardDTO> findMotherboardByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, motherboardRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, motherboardDAO)
                 .stream()
                 .map(MotherboardDTO::initDTOFromEntity)
                 .toList();
@@ -403,12 +400,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public PowerSupplyDTO findPowerSupplyByName(final String name) {
-        return PowerSupplyDTO.initDTOFromEntity(findByName(name, powerSupplyRepository));
+        return PowerSupplyDTO.initDTOFromEntity(findByName(name, powerSupplyDAO));
     }
 
     @Override
     public List<PowerSupplyDTO> findPowerSupplyByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, powerSupplyRepository)
+        return findAllByPrice(minPrice, maxPrice, powerSupplyDAO)
                 .stream()
                 .map(PowerSupplyDTO::initDTOFromEntity)
                 .toList();
@@ -416,7 +413,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<PowerSupplyDTO> findPowerSupplyByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, powerSupplyRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, powerSupplyDAO)
                 .stream()
                 .map(PowerSupplyDTO::initDTOFromEntity)
                 .toList();
@@ -424,12 +421,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public RAMDTO findRAMByName(final String name) {
-        return RAMDTO.initDTOFromEntity(findByName(name, ramRepository));
+        return RAMDTO.initDTOFromEntity(findByName(name, ramDAO));
     }
 
     @Override
     public List<RAMDTO> findRAMByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, ramRepository)
+        return findAllByPrice(minPrice, maxPrice, ramDAO)
                 .stream()
                 .map(RAMDTO::initDTOFromEntity)
                 .toList();
@@ -437,7 +434,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<RAMDTO> findRAMByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, ramRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, ramDAO)
                 .stream()
                 .map(RAMDTO::initDTOFromEntity)
                 .toList();
@@ -445,12 +442,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public HeadsetDTO findHeadsetByName(final String name) {
-        return HeadsetDTO.initDTOFromEntity(findByName(name, headsetRepository));
+        return HeadsetDTO.initDTOFromEntity(findByName(name, headsetDAO));
     }
 
     @Override
     public List<HeadsetDTO> findHeadsetByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, headsetRepository)
+        return findAllByPrice(minPrice, maxPrice, headsetDAO)
                 .stream()
                 .map(HeadsetDTO::initDTOFromEntity)
                 .toList();
@@ -458,7 +455,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<HeadsetDTO> findHeadsetByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, headsetRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, headsetDAO)
                 .stream()
                 .map(HeadsetDTO::initDTOFromEntity)
                 .toList();
@@ -466,12 +463,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public KeyboardDTO findKeyboardByName(final String name) {
-        return KeyboardDTO.initDTOFromEntity(findByName(name, keyboardRepository));
+        return KeyboardDTO.initDTOFromEntity(findByName(name, keyboardDAO));
     }
 
     @Override
     public List<KeyboardDTO> findKeyboardByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, keyboardRepository)
+        return findAllByPrice(minPrice, maxPrice, keyboardDAO)
                 .stream()
                 .map(KeyboardDTO::initDTOFromEntity)
                 .toList();
@@ -479,7 +476,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<KeyboardDTO> findKeyboardByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, keyboardRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, keyboardDAO)
                 .stream()
                 .map(KeyboardDTO::initDTOFromEntity)
                 .toList();
@@ -487,12 +484,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public MouseDTO findMouseByName(final String name) {
-        return MouseDTO.initDTOFromEntity(findByName(name, mouseRepository));
+        return MouseDTO.initDTOFromEntity(findByName(name, mouseDAO));
     }
 
     @Override
     public List<MouseDTO> findMouseByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, mouseRepository)
+        return findAllByPrice(minPrice, maxPrice, mouseDAO)
                 .stream()
                 .map(MouseDTO::initDTOFromEntity)
                 .toList();
@@ -500,7 +497,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<MouseDTO> findMouseByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, mouseRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, mouseDAO)
                 .stream()
                 .map(MouseDTO::initDTOFromEntity)
                 .toList();
@@ -508,12 +505,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public SpeakerDTO findSpeakerByName(final String name) {
-        return SpeakerDTO.initDTOFromEntity(findByName(name, speakerRepository));
+        return SpeakerDTO.initDTOFromEntity(findByName(name, speakerDAO));
     }
 
     @Override
     public List<SpeakerDTO> findSpeakerByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, speakerRepository)
+        return findAllByPrice(minPrice, maxPrice, speakerDAO)
                 .stream()
                 .map(SpeakerDTO::initDTOFromEntity)
                 .toList();
@@ -521,7 +518,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<SpeakerDTO> findSpeakerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, speakerRepository)
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, speakerDAO)
                 .stream()
                 .map(SpeakerDTO::initDTOFromEntity)
                 .toList();
@@ -529,27 +526,27 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public MonitorDTO updateMonitorPriceByName(final String name, final Double newPrice) {
-        return MonitorDTO.initDTOFromEntity(updatePriceByName(name, newPrice, monitorRepository));
+        return MonitorDTO.initDTOFromEntity(updatePriceByName(name, newPrice, monitorDAO));
     }
 
     @Override
     public CaseDTO updateCasePriceByName(final String name, final Double newPrice) {
-        return CaseDTO.initDTOFromEntity(updatePriceByName(name, newPrice, caseRepository));
+        return CaseDTO.initDTOFromEntity(updatePriceByName(name, newPrice, caseDAO));
     }
 
     @Override
     public CoolerDTO updateCoolerPriceByName(final String name, final Double newPrice) {
-        return CoolerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, coolerRepository));
+        return CoolerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, coolerDAO));
     }
 
     @Override
     public CPUDTO updateCPUPriceByName(final String name, final Double newPrice) {
-        return CPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuRepository));
+        return CPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuDAO));
     }
 
     @Override
     public CPUCoolerDTO updateCPUCoolerPriceByName(final String name, final Double newPrice) {
-        return CPUCoolerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuCoolerRepository));
+        return CPUCoolerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuCoolerDAO));
     }
 
     @Override
@@ -559,7 +556,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public GPUDTO updateGPUPriceByName(final String name, final Double newPrice) {
-        return GPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, gpuRepository));
+        return GPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, gpuDAO));
     }
 
     @Override
@@ -569,62 +566,62 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public MotherboardDTO updateMotherboardPriceByName(final String name, final Double newPrice) {
-        return MotherboardDTO.initDTOFromEntity(updatePriceByName(name, newPrice, motherboardRepository));
+        return MotherboardDTO.initDTOFromEntity(updatePriceByName(name, newPrice, motherboardDAO));
     }
 
     @Override
     public PowerSupplyDTO updatePowerSupplyPriceByName(final String name, final Double newPrice) {
-        return PowerSupplyDTO.initDTOFromEntity(updatePriceByName(name, newPrice, powerSupplyRepository));
+        return PowerSupplyDTO.initDTOFromEntity(updatePriceByName(name, newPrice, powerSupplyDAO));
     }
 
     @Override
     public RAMDTO updateRAMPriceByName(final String name, final Double newPrice) {
-        return RAMDTO.initDTOFromEntity(updatePriceByName(name, newPrice, ramRepository));
+        return RAMDTO.initDTOFromEntity(updatePriceByName(name, newPrice, ramDAO));
     }
 
     @Override
     public HeadsetDTO updateHeadsetPriceByName(final String name, final Double newPrice) {
-        return HeadsetDTO.initDTOFromEntity(updatePriceByName(name, newPrice, headsetRepository));
+        return HeadsetDTO.initDTOFromEntity(updatePriceByName(name, newPrice, headsetDAO));
     }
 
     @Override
     public KeyboardDTO updateKeyboardPriceByName(final String name, final Double newPrice) {
-        return KeyboardDTO.initDTOFromEntity(updatePriceByName(name, newPrice, keyboardRepository));
+        return KeyboardDTO.initDTOFromEntity(updatePriceByName(name, newPrice, keyboardDAO));
     }
 
     @Override
     public MouseDTO updateMousePriceByName(final String name, final Double newPrice) {
-        return MouseDTO.initDTOFromEntity(updatePriceByName(name, newPrice, mouseRepository));
+        return MouseDTO.initDTOFromEntity(updatePriceByName(name, newPrice, mouseDAO));
     }
 
     @Override
     public SpeakerDTO updateSpeakerPriceByName(final String name, final Double newPrice) {
-        return SpeakerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, speakerRepository));
+        return SpeakerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, speakerDAO));
     }
 
     @Override
     public MonitorDTO reduceMonitorCountByName(final String name, final Integer countToBeReduced) {
-        return MonitorDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, monitorRepository));
+        return MonitorDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, monitorDAO));
     }
 
     @Override
     public CaseDTO reduceCaseCountByName(final String name, final Integer countToBeReduced) {
-        return CaseDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, caseRepository));
+        return CaseDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, caseDAO));
     }
 
     @Override
     public CoolerDTO reduceCoolerCountByName(final String name, final Integer countToBeReduced) {
-        return CoolerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, coolerRepository));
+        return CoolerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, coolerDAO));
     }
 
     @Override
     public CPUDTO reduceCPUCountByName(final String name, final Integer countToBeReduced) {
-        return CPUDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, cpuRepository));
+        return CPUDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, cpuDAO));
     }
 
     @Override
     public CPUCoolerDTO reduceCPUCoolerCountByName(final String name, final Integer countToBeReduced) {
-        return CPUCoolerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, cpuCoolerRepository));
+        return CPUCoolerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, cpuCoolerDAO));
     }
 
     @Override
@@ -634,7 +631,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public GPUDTO reduceGPUCountByName(final String name, final Integer countToBeReduced) {
-        return GPUDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, gpuRepository));
+        return GPUDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, gpuDAO));
     }
 
     @Override
@@ -644,37 +641,37 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public MotherboardDTO reduceMotherboardCountByName(final String name, final Integer countToBeReduced) {
-        return MotherboardDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, motherboardRepository));
+        return MotherboardDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, motherboardDAO));
     }
 
     @Override
     public PowerSupplyDTO reducePowerSupplyCountByName(final String name, final Integer countToBeReduced) {
-        return PowerSupplyDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, powerSupplyRepository));
+        return PowerSupplyDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, powerSupplyDAO));
     }
 
     @Override
     public RAMDTO reduceRAMCountByName(final String name, final Integer countToBeReduced) {
-        return RAMDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, ramRepository));
+        return RAMDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, ramDAO));
     }
 
     @Override
     public HeadsetDTO reduceHeadsetCountByName(final String name, final Integer countToBeReduced) {
-        return HeadsetDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, headsetRepository));
+        return HeadsetDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, headsetDAO));
     }
 
     @Override
     public KeyboardDTO reduceKeyboardCountByName(final String name, final Integer countToBeReduced) {
-        return KeyboardDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, keyboardRepository));
+        return KeyboardDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, keyboardDAO));
     }
 
     @Override
     public MouseDTO reduceMouseCountByName(final String name, final Integer countToBeReduced) {
-        return MouseDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, mouseRepository));
+        return MouseDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, mouseDAO));
     }
 
     @Override
     public SpeakerDTO reduceSpeakerCountByName(final String name, final Integer countToBeReduced) {
-        return SpeakerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, speakerRepository));
+        return SpeakerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, speakerDAO));
     }
 
     @Override
@@ -686,9 +683,9 @@ public class ProductServiceImpl implements ProductService {
         productDTOs.addAll(findCoolerByPrice(minPrice, maxPrice));
         productDTOs.addAll(findCPUByPrice(minPrice, maxPrice));
         productDTOs.addAll(findCPUCoolerByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findExternalHardDriveByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findGPUByPrice(minPrice, maxPrice));
         productDTOs.addAll(findInternalHardDriveByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findGPUByPrice(minPrice, maxPrice));
+        productDTOs.addAll(findExternalHardDriveByPrice(minPrice, maxPrice));
         productDTOs.addAll(findMotherboardByPrice(minPrice, maxPrice));
         productDTOs.addAll(findPowerSupplyByPrice(minPrice, maxPrice));
         productDTOs.addAll(findRAMByPrice(minPrice, maxPrice));
@@ -705,77 +702,77 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDTO> findAllProductsByNameIgnoreCaseAndLikeTerm(String name) {
         List<ProductDTO> productDTOs = new ArrayList<>();
 
-        productDTOs.addAll(monitorRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(monitorDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(MonitorDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(caseRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(caseDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(CaseDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(coolerRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(coolerDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(CoolerDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(cpuRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(cpuDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(CPUDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(cpuCoolerRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(cpuCoolerDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(CPUCoolerDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(externalHardDriveRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(internalHardDriveDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(ExternalHardDriveDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(gpuRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(gpuDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(internalHardDriveRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(externalHardDriveDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(InternalHardDriveDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(motherboardRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(motherboardDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(MotherboardDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(powerSupplyRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(powerSupplyDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(PowerSupplyDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(ramRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(ramDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(RAMDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(headsetRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(headsetDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(HeadsetDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(keyboardRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(keyboardDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(KeyboardDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(mouseRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(mouseDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(MouseDTO::initDTOFromEntity)
                 .toList());
 
-        productDTOs.addAll(speakerRepository.findAllProductsByNameIgnoreCaseLikeTerm(name)
+        productDTOs.addAll(speakerDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
                 .map(SpeakerDTO::initDTOFromEntity)
                 .toList());
@@ -784,16 +781,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
-    List<ProductDTO> filterByPriceAndName(Double minPrice, Double maxPrice, String name) {
-        List<ProductDTO> allByNameIgnoreCaseAndLikeTerm = new ArrayList<>();
-        if (name != null) {
-            allByNameIgnoreCaseAndLikeTerm = findAllProductsByNameIgnoreCaseAndLikeTerm(name);
-        }
-        List<ProductDTO> allProductsByPrice = findAllProductsByPrice(minPrice, maxPrice);
-
-        return allByNameIgnoreCaseAndLikeTerm
-                .stream()
-                .filter(allProductsByPrice::contains)
-                .toList();
-    }
+//    List<ProductDTO> filterByPriceAndName(Double minPrice, Double maxPrice, String name) {
+//        List<ProductDTO> allByNameIgnoreCaseAndLikeTerm = new ArrayList<>();
+//        if (name != null) {
+//            allByNameIgnoreCaseAndLikeTerm = findAllProductsByNameIgnoreCaseAndLikeTerm(name);
+//        }
+//        List<ProductDTO> allProductsByPrice = findAllProductsByPrice(minPrice, maxPrice);
+//
+//        return allByNameIgnoreCaseAndLikeTerm
+//                .stream()
+//                .filter(allProductsByPrice::contains)
+//                .toList();
+//    }
 }

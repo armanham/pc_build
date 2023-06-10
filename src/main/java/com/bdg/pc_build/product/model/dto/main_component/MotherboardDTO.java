@@ -4,7 +4,7 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.Motherboard;
 import com.bdg.pc_build.product.model.enumerations.ATXType;
 import com.bdg.pc_build.product.model.enumerations.DDRType;
-import com.bdg.pc_build.product.model.enumerations.GPUInterface;
+import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -21,13 +21,13 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class MotherboardDTO extends ProductDTO {
 
-    SocketType socketCpu;
+    SocketType socketType;
     ATXType atxType;
     Integer memoryMax;
     Integer memorySlots;
     DDRType memoryType;
     String internalConnections;
-    GPUInterface gpuInterface;
+    GPUInterfaceType gpuInterfaceType;
     Integer tdp;
 
     @Builder
@@ -36,23 +36,23 @@ public class MotherboardDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final SocketType socketCpu,
+            final SocketType socketType,
             final ATXType atxtype,
             final Integer memoryMax,
             final Integer memorySlots,
             final DDRType memoryType,
             final String internalConnections,
-            final GPUInterface gpuInterface,
+            final GPUInterfaceType gpuInterfaceType,
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.socketCpu = socketCpu;
+        this.socketType = socketType;
         this.atxType = atxtype;
         this.memoryMax = memoryMax;
         this.memorySlots = memorySlots;
         this.memoryType = memoryType;
         this.internalConnections = internalConnections;
-        this.gpuInterface = gpuInterface;
+        this.gpuInterfaceType = gpuInterfaceType;
         this.tdp = tdp;
     }
 
@@ -68,7 +68,7 @@ public class MotherboardDTO extends ProductDTO {
                 .memorySlots(entity.getMemorySlots())
                 .memoryType(entity.getMemoryType())
                 .internalConnections(String.valueOf(entity.getInternalConnections()))
-                .gpuInterface(entity.getGpuInterface())
+                .gpuInterfaceType(entity.getGpuInterfaceType())
                 .tdp(entity.getTdp())
                 .build();
     }
@@ -76,17 +76,17 @@ public class MotherboardDTO extends ProductDTO {
     public static MotherboardDTO initDTOFromRequest(final ProductRequest request) {
         return MotherboardDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
-                .socketCpu(request.socketCpu())
-                .atxtype(request.atxType())
-                .memoryMax(request.memoryMax())
-                .memorySlots(request.memorySlots())
-                .memoryType(request.memoryType())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
+                .socketType(SocketType.valueOf(request.socketType()))
+                .atxtype(ATXType.valueOf(request.atxType()))
+                .memoryMax(Integer.valueOf(request.memoryMax()))
+                .memorySlots(Integer.valueOf(request.memorySlots()))
+                .memoryType(DDRType.valueOf(request.memoryType()))
                 .internalConnections(request.internalConnections())
-                .gpuInterface(request.gpuInterface())
-                .tdp(request.tdp())
+                .gpuInterfaceType(GPUInterfaceType.valueOf(request.gpuInterfaceType()))
+                .tdp(Integer.valueOf(request.tdp()))
                 .build();
     }
 

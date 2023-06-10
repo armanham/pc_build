@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.model.enumerations.GPUInterface;
+import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -21,7 +21,7 @@ import java.util.Objects;
 public class GPU extends Product {
 
     @Column(name = "chipset", nullable = false, updatable = false)
-    GPUInterface gpuInterface;
+    GPUInterfaceType gpuInterfaceType;
 
     @Column(name = "memory", nullable = false, updatable = false)
     Integer memory;
@@ -40,7 +40,7 @@ public class GPU extends Product {
 
     public GPU(final GPUDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
-        this.gpuInterface = dto.getGpuInterface();
+        this.gpuInterfaceType = dto.getGpuInterfaceType();
         this.memory = dto.getMemory();
         this.coreClock = dto.getCoreClock();
         this.boostClock = dto.getBoostClock();
@@ -53,7 +53,7 @@ public class GPU extends Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GPU gpu = (GPU) o;
-        return Objects.equals(gpuInterface, gpu.gpuInterface)
+        return Objects.equals(gpuInterfaceType, gpu.gpuInterfaceType)
                 && Objects.equals(memory, gpu.memory)
                 && Objects.equals(coreClock, gpu.coreClock)
                 && Objects.equals(boostClock, gpu.boostClock)
@@ -63,6 +63,6 @@ public class GPU extends Product {
 
     @Override
     public int hashCode() {
-        return Objects.hash(gpuInterface, memory, coreClock, boostClock, length, tdp);
+        return Objects.hash(gpuInterfaceType, memory, coreClock, boostClock, length, tdp);
     }
 }

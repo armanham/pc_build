@@ -1,12 +1,11 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 
-import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
 import com.bdg.pc_build.product.model.dto.main_component.MotherboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.ATXType;
 import com.bdg.pc_build.product.model.enumerations.DDRType;
-import com.bdg.pc_build.product.model.enumerations.GPUInterface;
+import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,20 +49,20 @@ public class Motherboard extends Product {
     String internalConnections;
     
     @Column(name= "gpu_interface", nullable = false, updatable = false)
-    GPUInterface gpuInterface;
+    GPUInterfaceType gpuInterfaceType;
 
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
 
     public Motherboard(final MotherboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
-        this.socketTypeCpu = dto.getSocketCpu();
+        this.socketType = dto.getSocketType();
         this.atxType = dto.getAtxType();
         this.memoryMax = dto.getMemoryMax();
         this.memorySlots = dto.getMemorySlots();
         this.memoryType = dto.getMemoryType();
         this.internalConnections = dto.getInternalConnections();
-        this.gpuInterface = dto.getGpuInterface();
+        this.gpuInterfaceType = dto.getGpuInterfaceType();
         this.tdp = dto.getTdp();
     }
 
@@ -78,12 +77,12 @@ public class Motherboard extends Product {
                 && Objects.equals(memorySlots, that.memorySlots)
                 && Objects.equals(memoryType, that.memoryType)
                 && Objects.equals(internalConnections, that.internalConnections)
-                && Objects.equals(gpuInterface, that.gpuInterface)
+                && Objects.equals(gpuInterfaceType, that.gpuInterfaceType)
                 && Objects.equals(tdp, that.tdp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(socketTypeCpu, atxType, memoryMax, memorySlots, memoryType,internalConnections,gpuInterface ,tdp);
+        return Objects.hash(socketType, atxType, memoryMax, memorySlots, memoryType,internalConnections, gpuInterfaceType,tdp);
     }
 }

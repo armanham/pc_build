@@ -21,7 +21,7 @@ import java.util.Objects;
 public class aCase extends Product {
 
     @Column(name = "max_CPU_cooler_height", nullable = false, updatable = false)
-    Integer maxCPUCoolerHeight;
+    Double maxCPUCoolerHeight;
 
     @Column(name = "max_GPU_length", nullable = false, updatable = false)
     Double maxGPULength;

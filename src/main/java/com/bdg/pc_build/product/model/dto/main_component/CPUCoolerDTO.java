@@ -3,6 +3,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPUCooler;
+import com.bdg.pc_build.product.model.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 public class CPUCoolerDTO extends ProductDTO {
 
         Integer fanRPM;
-        String socket;
+        SocketType socketType;
         Integer tdp;
 
         @Builder
@@ -24,12 +25,12 @@ public class CPUCoolerDTO extends ProductDTO {
                 final Double purchasedPrice,
                 final Integer count,
                 final Integer fanRPM,
-                final String socket,
+                final SocketType socketType,
                 final Integer tdp
         ) {
                 super(name, price, purchasedPrice, count);
                 this.fanRPM = fanRPM;
-                this.socket = socket;
+                this.socketType = socketType;
                 this.tdp = tdp;
         }
 
@@ -41,7 +42,7 @@ public class CPUCoolerDTO extends ProductDTO {
                         .purchasedPrice(entity.getPurchasedPrice())
                         .count(entity.getCount())
                         .fanRPM(entity.getFanRPM())
-                        .socket(String.valueOf(entity.getSocketType()))
+                        .socketType(entity.getSocketType())
                         .tdp(entity.getTdp())
                         .build();
         }
@@ -50,12 +51,12 @@ public class CPUCoolerDTO extends ProductDTO {
         public static CPUCoolerDTO initDTOFromRequest(final ProductRequest request){
                 return CPUCoolerDTO.builder()
                         .name(request.name())
-                        .price(request.price())
-                        .purchasedPrice(request.purchasedPrice())
-                        .count(request.count())
-                        .fanRPM(request.fanRPM())
-                        .socket(request.socket())
-                        .tdp(request.tdp())
+                        .price(Double.valueOf(request.price()))
+                        .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                        .count(Integer.valueOf(request.purchasedPrice()))
+                        .fanRPM(Integer.valueOf(request.fanRPM()))
+                        .socketType(SocketType.valueOf(request.socket()))
+                        .tdp(Integer.valueOf(request.tdp()))
                         .build();
         }
 }

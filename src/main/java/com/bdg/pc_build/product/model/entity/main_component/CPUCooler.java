@@ -32,7 +32,7 @@ public class CPUCooler extends Product {
     public CPUCooler(final CPUCoolerDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.fanRPM = dto.getFanRPM();
-        this.socketType = SocketType.valueOf(dto.getSocket());
+        this.socketType = dto.getSocketType();
         this.tdp = dto.getTdp();
     }
 

@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.GPU;
-import com.bdg.pc_build.product.model.enumerations.GPUInterface;
+import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class GPUDTO extends ProductDTO {
 
-    GPUInterface gpuInterface;
+    GPUInterfaceType gpuInterfaceType;
     Integer memory;
     Double coreClock;
     Double boostClock;
@@ -26,7 +26,7 @@ public class GPUDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final GPUInterface gpuInterface,
+            final GPUInterfaceType gpuInterfaceType,
             final Integer memory,
             final Double coreClock,
             final Double boostClock,
@@ -34,7 +34,7 @@ public class GPUDTO extends ProductDTO {
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.gpuInterface = gpuInterface;
+        this.gpuInterfaceType = gpuInterfaceType;
         this.memory = memory;
         this.coreClock = coreClock;
         this.boostClock = boostClock;
@@ -48,7 +48,7 @@ public class GPUDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .gpuInterface(entity.getGpuInterface())
+                .gpuInterfaceType(entity.getGpuInterfaceType())
                 .memory(entity.getMemory())
                 .coreClock(entity.getCoreClock())
                 .boostClock(entity.getBoostClock())
@@ -60,15 +60,15 @@ public class GPUDTO extends ProductDTO {
     public static GPUDTO initDTOFromRequest(final ProductRequest request){
         return GPUDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
-                .gpuInterface(request.gpuInterface())
-                .memory(request.memory())
-                .coreClock(request.coreClock())
-                .boostClock(request.boostClock())
-                .length(request.length())
-                .tdp(request.tdp())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
+                .gpuInterfaceType(GPUInterfaceType.valueOf(request.gpuInterfaceType()))
+                .memory(Integer.valueOf(request.memory()))
+                .coreClock(Double.valueOf(request.coreClock()))
+                .boostClock(Double.valueOf(request.boostClock()))
+                .length(Double.valueOf(request.length()))
+                .tdp(Integer.valueOf(request.tdp()))
                 .build();
     }
 }

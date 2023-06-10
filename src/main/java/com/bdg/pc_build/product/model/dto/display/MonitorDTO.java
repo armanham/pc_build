@@ -53,12 +53,12 @@ public class MonitorDTO extends ProductDTO {
     public static MonitorDTO initDTOFromRequest(final ProductRequest request){
         return MonitorDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
                 .screenType(request.screenType())
-                .refreshRate(request.refreshRate())
-                .screenSize(request.screenSize())
+                .refreshRate(Integer.valueOf(request.refreshRate()))
+                .screenSize(Double.valueOf(request.screenSize()))
                 .build();
     }
 }

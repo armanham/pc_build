@@ -21,7 +21,7 @@ public interface ProductService {
 
     CPUDTO saveCPU(CPUDTO dto);
 
-    ExternalHardDriveDTO saveExternalHardDrive(ExternalHardDriveDTO dto);
+    InternalHardDriveDTO saveInternalHardDrive(InternalHardDriveDTO dto);
 
     GPUDTO saveGPU(GPUDTO dto);
 

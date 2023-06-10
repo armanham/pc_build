@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class CaseDTO extends ProductDTO {
 
-    Integer maxCPUCoolerHeight;
+    Double maxCPUCoolerHeight;
     Double maxGPULength;
     Integer preInstalledFans;
     TowerType towerType;
@@ -24,7 +24,7 @@ public class CaseDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final Integer maxCPUCoolerHeight,
+            final Double maxCPUCoolerHeight,
             final Double maxGPULength,
             final Integer preInstalledFans,
             final TowerType towerType
@@ -52,13 +52,13 @@ public class CaseDTO extends ProductDTO {
     public static CaseDTO initDTOFromRequest(final ProductRequest request) {
         return CaseDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
-                .maxCPUCoolerHeight(request.maxCPUCoolerHeight())
-                .maxGPULength(request.maxGPULength())
-                .preInstalledFans(request.preInstalledFans())
-                .towerType(request.towerType())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
+                .maxCPUCoolerHeight(Double.valueOf(request.maxCPUCoolerHeight()))
+                .maxGPULength(Double.valueOf(request.maxGPULength()))
+                .preInstalledFans(Integer.valueOf(request.preInstalledFans()))
+                .towerType(TowerType.valueOf(request.towerType()))
                 .build();
     }
 }

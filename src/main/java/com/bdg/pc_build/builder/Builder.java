@@ -17,7 +17,7 @@ public class Builder {
         if (computer.getCpu() == null || computer.getMotherboard() == null){
             return;
         }
-        if (!computer.getMotherboard().getSocketTypeCpu().equals(computer.getCpu().getSocketType())){
+        if (!computer.getMotherboard().getSocketType().equals(computer.getCpu().getSocketType())){
             //todo notCompEx
             throw new IllegalArgumentException();
         }

@@ -55,7 +55,7 @@ public class Computer {
 
     @OneToOne
     @JoinColumn(name = "external_hard_drive", referencedColumnName = "name")
-    ExternalHardDrive externalHardDrive;
+    InternalHardDrive internalHardDrive;
 
     @OneToOne
     @JoinColumn(name = "gpu", referencedColumnName = "name")
@@ -63,7 +63,7 @@ public class Computer {
 
     @OneToOne
     @JoinColumn(name = "internal_hard_drive", referencedColumnName = "name")
-    InternalHardDrive internalHardDrive;
+    ExternalHardDrive externalHardDrive;
 
     @OneToOne
     @JoinColumn(name = "motherboard", referencedColumnName = "name")

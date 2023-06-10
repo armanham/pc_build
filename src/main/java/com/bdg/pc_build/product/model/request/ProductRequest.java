@@ -9,16 +9,16 @@ public record ProductRequest(
         String name,
 
         @JsonProperty(value = "price")
-        Double price,
+        String price,
 
         @JsonProperty(value = "purchased_price")
-        Double purchasedPrice,
+        String purchasedPrice,
 
         @JsonProperty(value = "count")
-        Integer count,
+        String count,
 
         @JsonProperty(value = "tdp")
-        Integer tdp,
+        String tdp,
         @JsonProperty(value = "socket")
         String socket,
 
@@ -26,10 +26,10 @@ public record ProductRequest(
 
         //Monitor
         @JsonProperty(value = "screen_size")
-        Double screenSize,
+        String screenSize,
 
         @JsonProperty(value = "refresh_rate")
-        Integer refreshRate,
+        String refreshRate,
 
         @JsonProperty(value = "screen_type")
         String screenType,
@@ -38,100 +38,95 @@ public record ProductRequest(
 
         //Case
         @JsonProperty(value = "max_CPU_cooler_height")
-        Integer maxCPUCoolerHeight,
+        String maxCPUCoolerHeight,
 
         @JsonProperty(value = "max_GPU_length")
-        Double maxGPULength,
+        String maxGPULength,
 
         @JsonProperty(value = "pre_installed_fans")
-        Integer preInstalledFans,
+        String preInstalledFans,
 
         @JsonProperty(value = "is_ATX")
-        TowerType towerType,
+        String towerType,
 
 
         //CPUCooler
         @JsonProperty(value = "fan_RPM")
-        Integer fanRPM,
+        String fanRPM,
 
         //CPU
         @JsonProperty(value = "core_count")
-        Integer coreCount,
+        String coreCount,
         @JsonProperty(value = "core_clock")
-        Double coreClock,
+        String coreClock,
         @JsonProperty(value = "boost_clock")
-        Double boostClock,
+        String boostClock,
         @JsonProperty(value = "integrated_graphics")
         String integratedGraphics,
 
         @JsonProperty(value = "socket_type")
-        SocketType socketType,
+        String socketType,
 
         //External Hard Drive
         @JsonProperty(value = "type")
         String type,
         @JsonProperty(value = "capacity")
-        Integer capacity,
+        String capacity,
 
 
         //GPU
         @JsonProperty(value = "gpu_interface")
-        GPUInterface gpuInterface,
+        String gpuInterfaceType,
         @JsonProperty(value = "memory")
-        Integer memory,
+        String memory,
         @JsonProperty(value = "length")
-        Double length,
+        String length,
 
         //Motherboard
-        @JsonProperty(value = "socket_CPU")
-        SocketType socketCpu,
         @JsonProperty(value = "memory_max")
-        Integer memoryMax,
+        String memoryMax,
         @JsonProperty(value = "memory_slots")
-        Integer memorySlots,
+        String memorySlots,
         @JsonProperty(value = "memory_type")
-        DDRType memoryType,
+        String memoryType,
         @JsonProperty(value = "internal_connections")
         String internalConnections,
-
-        @JsonProperty(value = "gpu_interface")
-        GPUInterface gpuInterfaceMotherboard,
         @JsonProperty(value = "atx_type")
-        ATXType atxType,
+        String atxType,
 
         //PowerSupply
         @JsonProperty(value = "efficiency_rating")
-        EfficiencyRating efficiencyRating,
+        String efficiencyRating,
         @JsonProperty(value = "wattage")
-        Integer wattage,
+        String wattage,
         @JsonProperty(value = "modular")
-        Boolean modular,
+        String modular,
 
         //RAM
         @JsonProperty(value = "speed")
-        Integer speed,
+        String speed,
         @JsonProperty(value = "count_of_RAM")
-        Integer countOfRAM,
+        String countOfRAM,
         @JsonProperty(value = "GB_of_RAM")
-        Double GBOfRAM,
+        String GBOfRAM,
 
 
 //peripheral
 
         @JsonProperty(value = "cable_length")
-        Double cableLength,
+        String cableLength,
 
         //Headset
         @JsonProperty(value = "frequency")
-        Integer frequency,
+        String frequency,
         @JsonProperty(value = "connectivity")
         String connectivity,
 
         //Mouse
         @JsonProperty(value = "max_resolution")
-        Integer maxResolution,
+        String maxResolution,
         @JsonProperty(value = "weight")
-        Double weight,
+        String weight,
 
         //Keyboard
         @JsonProperty(value = "keyboard_class")
