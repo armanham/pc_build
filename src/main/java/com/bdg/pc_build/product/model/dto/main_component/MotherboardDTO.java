@@ -62,7 +62,7 @@ public class MotherboardDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .socketCpu(entity.getSocketTypeCpu())
+                .socketType(entity.getSocketType())
                 .atxtype(entity.getAtxType())
                 .memoryMax(entity.getMemoryMax())
                 .memorySlots(entity.getMemorySlots())

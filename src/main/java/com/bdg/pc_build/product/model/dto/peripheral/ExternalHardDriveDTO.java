@@ -1,4 +1,4 @@
-package com.bdg.pc_build.product.model.dto.main_component;
+package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.ExternalHardDrive;
@@ -12,7 +12,6 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class ExternalHardDriveDTO extends ProductDTO {
 
-    String type;
     Integer capacity;
     Integer tdp;
 
@@ -22,12 +21,10 @@ public class ExternalHardDriveDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final String type,
             final Integer capacity,
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.type = type;
         this.capacity = capacity;
         this.tdp = tdp;
     }
@@ -38,7 +35,6 @@ public class ExternalHardDriveDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .type(String.valueOf(entity.getType()))
                 .capacity(entity.getCapacity())
                 .tdp(entity.getTdp())
                 .build();
@@ -47,12 +43,11 @@ public class ExternalHardDriveDTO extends ProductDTO {
     public static ExternalHardDriveDTO initDTOFromRequest(final ProductRequest request){
         return ExternalHardDriveDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
-                .type(request.type())
-                .capacity(request.capacity())
-                .tdp(request.tdp())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
+                .capacity(Integer.valueOf(request.capacity()))
+                .tdp(Integer.valueOf(request.tdp()))
                 .build();
     }
 }

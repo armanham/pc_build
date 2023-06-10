@@ -53,12 +53,12 @@ public class SpeakerDTO extends ProductDTO {
     public static SpeakerDTO initDTOFromRequest(final ProductRequest request){
         return SpeakerDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
-                .frequency(request.frequency())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
+                .frequency(Integer.valueOf(request.frequency()))
                 .powerSource(request.powerSource())
-                .cableLength(request.cableLength())
+                .cableLength(Double.valueOf(request.cableLength()))
                 .dimension(request.dimension())
                 .build();
     }

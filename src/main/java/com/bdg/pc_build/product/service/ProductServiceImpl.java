@@ -3,6 +3,7 @@ package com.bdg.pc_build.product.service;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
+import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
@@ -160,8 +161,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ExternalHardDriveDTO saveExternalHardDrive(final ExternalHardDriveDTO dto) {
-        return ExternalHardDriveDTO.initDTOFromEntity(save(new ExternalHardDrive(dto), externalHardDriveRepository));
+    public InternalHardDriveDTO saveInternalHardDrive(final InternalHardDriveDTO dto) {
+        return InternalHardDriveDTO.initDTOFromEntity(save(new InternalHardDrive(dto), internalHardDriveDAO));
     }
 
     @Override
@@ -170,8 +171,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public InternalHardDriveDTO saveInternalHardDrive(final InternalHardDriveDTO dto) {
-        return InternalHardDriveDTO.initDTOFromEntity(save(new InternalHardDrive(dto), internalHardDriveRepository));
+    public ExternalHardDriveDTO saveExternalHardDrive(final ExternalHardDriveDTO dto) {
+        return ExternalHardDriveDTO.initDTOFromEntity(save(new ExternalHardDrive(dto), externalHardDriveDAO));
     }
 
     @Override
@@ -315,23 +316,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ExternalHardDriveDTO findExternalHardDriveByName(final String name) {
-        return ExternalHardDriveDTO.initDTOFromEntity(findByName(name, externalHardDriveRepository));
+    public InternalHardDriveDTO findInternalHardDriveByName(final String name) {
+        return InternalHardDriveDTO.initDTOFromEntity(findByName(name, internalHardDriveDAO));
     }
 
     @Override
-    public List<ExternalHardDriveDTO> findExternalHardDriveByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, externalHardDriveRepository)
+    public List<InternalHardDriveDTO> findInternalHardDriveByPrice(final Double minPrice, final Double maxPrice) {
+        return findAllByPrice(minPrice, maxPrice, internalHardDriveDAO)
                 .stream()
-                .map(ExternalHardDriveDTO::initDTOFromEntity)
+                .map(InternalHardDriveDTO::initDTOFromEntity)
                 .toList();
     }
 
     @Override
-    public List<ExternalHardDriveDTO> findExternalHardDriveByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, externalHardDriveRepository)
+    public List<InternalHardDriveDTO> findInternalHardDriveByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, internalHardDriveDAO)
                 .stream()
-                .map(ExternalHardDriveDTO::initDTOFromEntity)
+                .map(InternalHardDriveDTO::initDTOFromEntity)
                 .toList();
     }
 
@@ -357,23 +358,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public InternalHardDriveDTO findInternalHardDriveByName(final String name) {
-        return InternalHardDriveDTO.initDTOFromEntity(findByName(name, internalHardDriveRepository));
+    public ExternalHardDriveDTO findExternalHardDriveByName(final String name) {
+        return ExternalHardDriveDTO.initDTOFromEntity(findByName(name, externalHardDriveDAO));
     }
 
     @Override
-    public List<InternalHardDriveDTO> findInternalHardDriveByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, internalHardDriveRepository)
+    public List<ExternalHardDriveDTO> findExternalHardDriveByPrice(final Double minPrice, final Double maxPrice) {
+        return findAllByPrice(minPrice, maxPrice, externalHardDriveDAO)
                 .stream()
-                .map(InternalHardDriveDTO::initDTOFromEntity)
+                .map(ExternalHardDriveDTO::initDTOFromEntity)
                 .toList();
     }
 
     @Override
-    public List<InternalHardDriveDTO> findInternalHardDriveByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, internalHardDriveRepository)
+    public List<ExternalHardDriveDTO> findExternalHardDriveByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
+        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, externalHardDriveDAO)
                 .stream()
-                .map(InternalHardDriveDTO::initDTOFromEntity)
+                .map(ExternalHardDriveDTO::initDTOFromEntity)
                 .toList();
     }
 
@@ -550,8 +551,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ExternalHardDriveDTO updateExternalHardDrivePriceByName(final String name, final Double newPrice) {
-        return ExternalHardDriveDTO.initDTOFromEntity(updatePriceByName(name, newPrice, externalHardDriveRepository));
+    public InternalHardDriveDTO updateInternalHardDrivePriceByName(final String name, final Double newPrice) {
+        return InternalHardDriveDTO.initDTOFromEntity(updatePriceByName(name, newPrice, internalHardDriveDAO));
     }
 
     @Override
@@ -560,8 +561,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public InternalHardDriveDTO updateInternalHardDrivePriceByName(final String name, final Double newPrice) {
-        return InternalHardDriveDTO.initDTOFromEntity(updatePriceByName(name, newPrice, internalHardDriveRepository));
+    public ExternalHardDriveDTO updateExternalHardDrivePriceByName(final String name, final Double newPrice) {
+        return ExternalHardDriveDTO.initDTOFromEntity(updatePriceByName(name, newPrice, externalHardDriveDAO));
     }
 
     @Override
@@ -625,8 +626,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ExternalHardDriveDTO reduceExternalHardDriveCountByName(final String name, final Integer countToBeReduced) {
-        return ExternalHardDriveDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, externalHardDriveRepository));
+    public InternalHardDriveDTO reduceInternalHardDriveCountByName(final String name, final Integer countToBeReduced) {
+        return InternalHardDriveDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, internalHardDriveDAO));
     }
 
     @Override
@@ -635,8 +636,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public InternalHardDriveDTO reduceInternalHardDriveCountByName(final String name, final Integer countToBeReduced) {
-        return InternalHardDriveDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, internalHardDriveRepository));
+    public ExternalHardDriveDTO reduceExternalHardDriveCountByName(final String name, final Integer countToBeReduced) {
+        return ExternalHardDriveDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, externalHardDriveDAO));
     }
 
     @Override
@@ -729,7 +730,7 @@ public class ProductServiceImpl implements ProductService {
 
         productDTOs.addAll(internalHardDriveDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
-                .map(ExternalHardDriveDTO::initDTOFromEntity)
+                .map(InternalHardDriveDTO::initDTOFromEntity)
                 .toList());
 
         productDTOs.addAll(gpuDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
@@ -739,7 +740,7 @@ public class ProductServiceImpl implements ProductService {
 
         productDTOs.addAll(externalHardDriveDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
                 .stream()
-                .map(InternalHardDriveDTO::initDTOFromEntity)
+                .map(ExternalHardDriveDTO::initDTOFromEntity)
                 .toList());
 
         productDTOs.addAll(motherboardDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)

@@ -53,13 +53,13 @@ public class MouseDTO extends ProductDTO {
     public static MouseDTO initDTOFromRequest(final ProductRequest request){
         return MouseDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
                 .type(request.type())
-                .maxResolution(request.maxResolution())
-                .cableLength(request.cableLength())
-                .weight(request.weight())
+                .maxResolution(Integer.valueOf(request.maxResolution()))
+                .cableLength(Double.valueOf(request.cableLength()))
+                .weight(Double.valueOf(request.weight()))
                 .build();
     }
 

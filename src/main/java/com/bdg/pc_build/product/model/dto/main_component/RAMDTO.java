@@ -58,13 +58,13 @@ public class RAMDTO extends ProductDTO {
     public static RAMDTO initDTOFromRequest(final ProductRequest request){
         return RAMDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
-                .speed(request.speed())
-                .countOfRAM(request.countOfRAM())
-                .GBOfRAM(request.GBOfRAM())
-                .tdp(request.tdp())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
+                .speed(Integer.valueOf(request.speed()))
+                .countOfRAM(Integer.valueOf(request.countOfRAM()))
+                .GBOfRAM(Double.valueOf(request.GBOfRAM()))
+                .tdp(Integer.valueOf(request.tdp()))
                 .build();
     }
 }

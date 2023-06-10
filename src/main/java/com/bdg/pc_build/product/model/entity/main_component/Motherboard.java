@@ -30,8 +30,8 @@ import java.util.Objects;
 @Getter
 public class Motherboard extends Product {
 
-    @Column(name = "socket_cpu", nullable = false, updatable = false)
-    SocketType socketTypeCpu;
+    @Column(name = "socket_type", nullable = false, updatable = false)
+    SocketType socketType;
 
     @Column(name = "is_ATX", nullable = false, updatable = false)
     ATXType atxType;
@@ -71,7 +71,7 @@ public class Motherboard extends Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Motherboard that = (Motherboard) o;
-        return Objects.equals(socketTypeCpu, that.socketTypeCpu)
+        return Objects.equals(socketType, that.socketType)
                 && Objects.equals(atxType, that.atxType)
                 && Objects.equals(memoryMax, that.memoryMax)
                 && Objects.equals(memorySlots, that.memorySlots)

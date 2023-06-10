@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.model.dto.computer;
 
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
+import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -29,11 +30,11 @@ public class ComputerDTO {
 
     CPUCoolerDTO cpuCooler;
 
-    ExternalHardDriveDTO externalHardDrive;
+    InternalHardDriveDTO externalHardDrive;
 
     GPUDTO gpu;
 
-    InternalHardDriveDTO internalHardDrive;
+    ExternalHardDriveDTO internalHardDrive;
 
     MotherboardDTO motherboard;
 
@@ -57,9 +58,9 @@ public class ComputerDTO {
             final CoolerDTO cooler,
             final CPUDTO cpu,
             final CPUCoolerDTO cpuCooler,
-            final ExternalHardDriveDTO externalHardDrive,
+            final InternalHardDriveDTO externalHardDrive,
             final GPUDTO gpu,
-            final InternalHardDriveDTO internalHardDrive,
+            final ExternalHardDriveDTO internalHardDrive,
             final MotherboardDTO motherboard,
             final PowerSupplyDTO powerSupply,
             final RAMDTO ram, HeadsetDTO headset,

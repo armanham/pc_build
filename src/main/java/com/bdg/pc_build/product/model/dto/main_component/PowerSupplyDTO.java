@@ -58,13 +58,13 @@ public class PowerSupplyDTO extends ProductDTO {
     public static PowerSupplyDTO initDTOFromRequest(final ProductRequest request){
         return PowerSupplyDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
-                .efficiencyRating(request.efficiencyRating())
-                .wattage(request.wattage())
-                .modular(request.modular())
-                .tdp(request.tdp())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
+                .efficiencyRating(EfficiencyRating.valueOf(request.efficiencyRating()))
+                .wattage(Integer.valueOf(request.wattage()))
+                .modular(Boolean.valueOf(request.modular()))
+                .tdp(Integer.valueOf(request.tdp()))
                 .build();
     }
 }

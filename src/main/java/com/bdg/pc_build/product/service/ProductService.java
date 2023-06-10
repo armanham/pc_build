@@ -3,6 +3,7 @@ package com.bdg.pc_build.product.service;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
+import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface ProductService {
 
     GPUDTO saveGPU(GPUDTO dto);
 
-    InternalHardDriveDTO saveInternalHardDrive(InternalHardDriveDTO dto);
+    ExternalHardDriveDTO saveExternalHardDrive(ExternalHardDriveDTO dto);
 
     MotherboardDTO saveMotherBoard(MotherboardDTO dto);
 
@@ -83,11 +84,11 @@ public interface ProductService {
 
     List<CPUDTO> findCPUByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    ExternalHardDriveDTO findExternalHardDriveByName(String name);
+    InternalHardDriveDTO findInternalHardDriveByName(String name);
 
-    List<ExternalHardDriveDTO> findExternalHardDriveByPrice(Double minPrice, Double maxPrice);
+    List<InternalHardDriveDTO> findInternalHardDriveByPrice(Double minPrice, Double maxPrice);
 
-    List<ExternalHardDriveDTO> findExternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
+    List<InternalHardDriveDTO> findInternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     GPUDTO findGPUByName(String name);
 
@@ -95,11 +96,11 @@ public interface ProductService {
 
     List<GPUDTO> findGPUByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    InternalHardDriveDTO findInternalHardDriveByName(String name);
+    ExternalHardDriveDTO findExternalHardDriveByName(String name);
 
-    List<InternalHardDriveDTO> findInternalHardDriveByPrice(Double minPrice, Double maxPrice);
+    List<ExternalHardDriveDTO> findExternalHardDriveByPrice(Double minPrice, Double maxPrice);
 
-    List<InternalHardDriveDTO> findInternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
+    List<ExternalHardDriveDTO> findExternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     MotherboardDTO findMotherboardByName(String name);
 
@@ -159,11 +160,11 @@ public interface ProductService {
 
     CPUCoolerDTO updateCPUCoolerPriceByName(String name, Double newPrice);
 
-    ExternalHardDriveDTO updateExternalHardDrivePriceByName(String name, Double newPrice);
+    InternalHardDriveDTO updateInternalHardDrivePriceByName(String name, Double newPrice);
 
     GPUDTO updateGPUPriceByName(String name, Double newPrice);
 
-    InternalHardDriveDTO updateInternalHardDrivePriceByName(String name, Double newPrice);
+    ExternalHardDriveDTO updateExternalHardDrivePriceByName(String name, Double newPrice);
 
     MotherboardDTO updateMotherboardPriceByName(String name, Double newPrice);
 
@@ -193,11 +194,11 @@ public interface ProductService {
 
     CPUCoolerDTO reduceCPUCoolerCountByName(String name, Integer count);
 
-    ExternalHardDriveDTO reduceExternalHardDriveCountByName(String name, Integer count);
+    InternalHardDriveDTO reduceInternalHardDriveCountByName(String name, Integer count);
 
     GPUDTO reduceGPUCountByName(String name, Integer count);
 
-    InternalHardDriveDTO reduceInternalHardDriveCountByName(String name, Integer count);
+    ExternalHardDriveDTO reduceExternalHardDriveCountByName(String name, Integer count);
 
     MotherboardDTO reduceMotherboardCountByName(String name, Integer count);
 

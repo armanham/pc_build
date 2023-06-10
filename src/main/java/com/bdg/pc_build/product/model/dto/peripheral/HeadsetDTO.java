@@ -48,12 +48,12 @@ public class HeadsetDTO extends ProductDTO {
     public static HeadsetDTO initDTOFromRequest(final ProductRequest request){
         return HeadsetDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
-                .frequency(request.frequency())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
+                .frequency(Integer.valueOf(request.frequency()))
                 .connectivity(request.connectivity())
-                .cableLength(request.cableLength())
+                .cableLength(Double.valueOf(request.cableLength()))
                 .build();
     }
 }

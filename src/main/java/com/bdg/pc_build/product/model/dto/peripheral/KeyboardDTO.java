@@ -53,13 +53,13 @@ public class KeyboardDTO extends ProductDTO {
     public static KeyboardDTO initDTOFromRequest(final ProductRequest request){
         return KeyboardDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
                 .keyboardClass(request.keyboardClass())
-                .cableLength(request.cableLength())
+                .cableLength(Double.valueOf(request.cableLength()))
                 .dimension(request.dimension())
-                .weight(request.weight())
+                .weight(Double.valueOf(request.weight()))
                 .build();
     }
 }
