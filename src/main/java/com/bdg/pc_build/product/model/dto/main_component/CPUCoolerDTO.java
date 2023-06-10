@@ -2,8 +2,6 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.main_component.CPU;
 import com.bdg.pc_build.product.model.entity.main_component.CPUCooler;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -43,7 +41,7 @@ public class CPUCoolerDTO extends ProductDTO {
                         .purchasedPrice(entity.getPurchasedPrice())
                         .count(entity.getCount())
                         .fanRPM(entity.getFanRPM())
-                        .socket(entity.getSocket())
+                        .socket(String.valueOf(entity.getSocketType()))
                         .tdp(entity.getTdp())
                         .build();
         }

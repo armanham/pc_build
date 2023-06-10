@@ -80,8 +80,6 @@ public record ProductRequest(
         //Motherboard
         @JsonProperty(value = "socket_CPU")
         String socketCpu,
-        @JsonProperty(value = "form_factor")
-        String formFactor,
         @JsonProperty(value = "memory_max")
         Integer memoryMax,
         @JsonProperty(value = "memory_slots")

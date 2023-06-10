@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.ExternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.product.model.enumerations.ExternalHardDriveInterfaceTypes;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -20,7 +21,7 @@ import java.util.Objects;
 public class ExternalHardDrive extends Product {
 
     @Column(name = "type", nullable = false, updatable = false)
-    String type;
+    ExternalHardDriveInterfaceTypes type;
 
     @Column(name = "capacity", nullable = false, updatable = false)
     Integer capacity;
@@ -30,7 +31,7 @@ public class ExternalHardDrive extends Product {
 
     public ExternalHardDrive(final ExternalHardDriveDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
-        this.type = dto.getType();
+        this.type = ExternalHardDriveInterfaceTypes.valueOf(dto.getType());
         this.capacity = dto.getCapacity();
         this.tdp = dto.getTdp();
     }

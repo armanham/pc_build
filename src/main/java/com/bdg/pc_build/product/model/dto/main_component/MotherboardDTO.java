@@ -1,15 +1,13 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.Motherboard;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 /**
-  * @author Arman Hakhverdyan
+ * @author Arman Hakhverdyan
  * <p>
  * An Immutable DataTransferObject of Motherboard for service layer.
  */
@@ -20,7 +18,7 @@ import lombok.experimental.FieldDefaults;
 public class MotherboardDTO extends ProductDTO {
 
     String socketCpu;
-    String formFactor;
+    Boolean isATX;
     Integer memoryMax;
     Integer memorySlots;
     String memoryType;
@@ -33,7 +31,7 @@ public class MotherboardDTO extends ProductDTO {
             final Double purchasedPrice,
             final Integer count,
             final String socketCpu,
-            final String formFactor,
+            final Boolean isATX,
             final Integer memoryMax,
             final Integer memorySlots,
             final String memoryType,
@@ -41,7 +39,7 @@ public class MotherboardDTO extends ProductDTO {
     ) {
         super(name, price, purchasedPrice, count);
         this.socketCpu = socketCpu;
-        this.formFactor = formFactor;
+        this.isATX = isATX;
         this.memoryMax = memoryMax;
         this.memorySlots = memorySlots;
         this.memoryType = memoryType;
@@ -54,23 +52,22 @@ public class MotherboardDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .socketCpu(entity.getSocketCpu())
-                .formFactor(entity.getFormFactor())
+                .socketCpu(String.valueOf(entity.getSocketTypeCpu()))
                 .memoryMax(entity.getMemoryMax())
                 .memorySlots(entity.getMemorySlots())
-                .memoryType(entity.getMemoryType())
+                .memoryType(String.valueOf(entity.getMemoryType()))
                 .tdp(entity.getTdp())
                 .build();
     }
 
-    public static MotherboardDTO initDTOFromRequest(final ProductRequest request){
+    public static MotherboardDTO initDTOFromRequest(final ProductRequest request) {
         return MotherboardDTO.builder()
                 .name(request.name())
                 .price(request.price())
                 .purchasedPrice(request.purchasedPrice())
                 .count(request.count())
                 .socketCpu(request.socketCpu())
-                .formFactor(request.formFactor())
+                .isATX(request.isATX())
                 .memoryMax(request.memoryMax())
                 .memorySlots(request.memorySlots())
                 .memoryType(request.memoryType())

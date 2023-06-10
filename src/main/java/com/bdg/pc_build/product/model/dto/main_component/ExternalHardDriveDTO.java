@@ -1,8 +1,6 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.ExternalHardDrive;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -40,7 +38,7 @@ public class ExternalHardDriveDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .type(entity.getType())
+                .type(String.valueOf(entity.getType()))
                 .capacity(entity.getCapacity())
                 .tdp(entity.getTdp())
                 .build();

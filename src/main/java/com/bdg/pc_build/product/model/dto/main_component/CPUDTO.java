@@ -1,7 +1,6 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPU;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
@@ -59,7 +58,7 @@ public class CPUDTO extends ProductDTO {
                 .boostClock(entity.getBoostClock())
                 .tdp(entity.getTdp())
                 .integratedGraphics(entity.getIntegratedGraphics())
-                .socket(entity.getSocket())
+                .socket(String.valueOf(entity.getSocketType()))
                 .build();
     }
 

@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.CPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.product.model.enumerations.SocketType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -40,7 +41,7 @@ public class CPU extends Product {
     String integratedGraphics;
 
     @Column(name = "socket", nullable = false, updatable = false)
-    String socket;
+    SocketType socketType;
 
     public CPU(final CPUDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
@@ -49,7 +50,7 @@ public class CPU extends Product {
         this.boostClock = dto.getBoostClock();
         this.tdp = dto.getTdp();
         this.integratedGraphics = dto.getIntegratedGraphics();
-        this.socket = dto.getSocket();
+        this.socketType = SocketType.valueOf(dto.getSocket());
     }
 
     @Override
@@ -62,11 +63,11 @@ public class CPU extends Product {
                 && Objects.equals(boostClock, cpu.boostClock)
                 && Objects.equals(tdp, cpu.tdp)
                 && Objects.equals(integratedGraphics, cpu.integratedGraphics)
-                && Objects.equals(socket, cpu.socket);
+                && Objects.equals(socketType, cpu.socketType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coreCount, coreClock, boostClock, tdp, integratedGraphics, socket);
+        return Objects.hash(coreCount, coreClock, boostClock, tdp, integratedGraphics, socketType);
     }
 }
