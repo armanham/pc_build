@@ -1,6 +1,6 @@
-package com.bdg.pc_build.product.model.entity.main_component;
+package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
+import com.bdg.pc_build.product.model.dto.peripheral.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

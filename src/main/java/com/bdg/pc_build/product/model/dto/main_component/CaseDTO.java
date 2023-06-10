@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.aCase;
+import com.bdg.pc_build.product.model.enumerations.TowerType;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -15,7 +16,7 @@ public class CaseDTO extends ProductDTO {
     Integer maxCPUCoolerHeight;
     Double maxGPULength;
     Integer preInstalledFans;
-    Boolean isATX;
+    TowerType towerType;
 
     @Builder
     public CaseDTO(
@@ -26,13 +27,13 @@ public class CaseDTO extends ProductDTO {
             final Integer maxCPUCoolerHeight,
             final Double maxGPULength,
             final Integer preInstalledFans,
-            final Boolean isATX
+            final TowerType towerType
     ) {
         super(name, price, purchasedPrice, count);
         this.maxCPUCoolerHeight = maxCPUCoolerHeight;
         this.maxGPULength = maxGPULength;
         this.preInstalledFans = preInstalledFans;
-        this.isATX = isATX;
+        this.towerType = towerType;
     }
 
     public static CaseDTO initDTOFromEntity(final aCase entity) {
@@ -44,7 +45,7 @@ public class CaseDTO extends ProductDTO {
                 .maxCPUCoolerHeight(entity.getMaxCPUCoolerHeight())
                 .maxGPULength(entity.getMaxGPULength())
                 .preInstalledFans(entity.getPreInstalledFans())
-                .isATX(entity.getIsATX())
+                .towerType(entity.getTowerType())
                 .build();
     }
 
@@ -57,7 +58,7 @@ public class CaseDTO extends ProductDTO {
                 .maxCPUCoolerHeight(request.maxCPUCoolerHeight())
                 .maxGPULength(request.maxGPULength())
                 .preInstalledFans(request.preInstalledFans())
-                .isATX(request.isATX())
+                .towerType(request.towerType())
                 .build();
     }
 }

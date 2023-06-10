@@ -2,10 +2,7 @@ package com.bdg.pc_build.product.model.dto.computer;
 
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
-import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
-import com.bdg.pc_build.product.model.dto.peripheral.KeyboardDTO;
-import com.bdg.pc_build.product.model.dto.peripheral.MouseDTO;
-import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
+import com.bdg.pc_build.product.model.dto.peripheral.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

@@ -4,13 +4,14 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
+import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 /**
  * @author Arman Hakhverdyan
- * <p>
+ *
  * DTO (Data Transfer Object) representing a power supply.
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -19,7 +20,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class PowerSupplyDTO extends ProductDTO {
 
-    String efficiencyRating;
+    EfficiencyRating efficiencyRating;
     Integer wattage;
     Boolean modular;
     Integer tdp;
@@ -30,7 +31,7 @@ public class PowerSupplyDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final String efficiencyRating,
+            final EfficiencyRating efficiencyRating,
             final Integer wattage,
             final Boolean modular,
             final Integer tdp) {

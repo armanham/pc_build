@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.request;
 
+import com.bdg.pc_build.product.model.enumerations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record ProductRequest(
@@ -46,7 +47,7 @@ public record ProductRequest(
         Integer preInstalledFans,
 
         @JsonProperty(value = "is_ATX")
-        Boolean isATX,
+        TowerType towerType,
 
 
         //CPUCooler
@@ -70,8 +71,8 @@ public record ProductRequest(
         Integer capacity,
 
         //GPU
-        @JsonProperty(value = "chipset")
-        String chipset,
+        @JsonProperty(value = "gpu_interface")
+        GPUInterface gpuInterface,
         @JsonProperty(value = "memory")
         Integer memory,
         @JsonProperty(value = "length")
@@ -79,17 +80,24 @@ public record ProductRequest(
 
         //Motherboard
         @JsonProperty(value = "socket_CPU")
-        String socketCpu,
+        SocketType socketCpu,
         @JsonProperty(value = "memory_max")
         Integer memoryMax,
         @JsonProperty(value = "memory_slots")
         Integer memorySlots,
         @JsonProperty(value = "memory_type")
-        String memoryType,
+        DDRType memoryType,
+        @JsonProperty(value = "internal_connections")
+        String internalConnections,
+
+        @JsonProperty(value = "gpu_interface")
+        GPUInterface gpuInterfaceMotherboard,
+        @JsonProperty(value = "atx_type")
+        ATXType atxType,
 
         //PowerSupply
         @JsonProperty(value = "efficiency_rating")
-        String efficiencyRating,
+        EfficiencyRating efficiencyRating,
         @JsonProperty(value = "wattage")
         Integer wattage,
         @JsonProperty(value = "modular")

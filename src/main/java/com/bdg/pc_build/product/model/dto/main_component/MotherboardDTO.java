@@ -2,6 +2,10 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.Motherboard;
+import com.bdg.pc_build.product.model.enumerations.ATXType;
+import com.bdg.pc_build.product.model.enumerations.DDRType;
+import com.bdg.pc_build.product.model.enumerations.GPUInterface;
+import com.bdg.pc_build.product.model.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -17,11 +21,13 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class MotherboardDTO extends ProductDTO {
 
-    String socketCpu;
-    Boolean isATX;
+    SocketType socketCpu;
+    ATXType atxType;
     Integer memoryMax;
     Integer memorySlots;
-    String memoryType;
+    DDRType memoryType;
+    String internalConnections;
+    GPUInterface gpuInterface;
     Integer tdp;
 
     @Builder
@@ -30,19 +36,23 @@ public class MotherboardDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final String socketCpu,
-            final Boolean isATX,
+            final SocketType socketCpu,
+            final ATXType atxtype,
             final Integer memoryMax,
             final Integer memorySlots,
-            final String memoryType,
+            final DDRType memoryType,
+            final String internalConnections,
+            final GPUInterface gpuInterface,
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
         this.socketCpu = socketCpu;
-        this.isATX = isATX;
+        this.atxType = atxtype;
         this.memoryMax = memoryMax;
         this.memorySlots = memorySlots;
         this.memoryType = memoryType;
+        this.internalConnections = internalConnections;
+        this.gpuInterface = gpuInterface;
         this.tdp = tdp;
     }
 
@@ -52,10 +62,13 @@ public class MotherboardDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .socketCpu(String.valueOf(entity.getSocketTypeCpu()))
+                .socketCpu(entity.getSocketTypeCpu())
+                .atxtype(entity.getAtxType())
                 .memoryMax(entity.getMemoryMax())
                 .memorySlots(entity.getMemorySlots())
-                .memoryType(String.valueOf(entity.getMemoryType()))
+                .memoryType(entity.getMemoryType())
+                .internalConnections(String.valueOf(entity.getInternalConnections()))
+                .gpuInterface(entity.getGpuInterface())
                 .tdp(entity.getTdp())
                 .build();
     }
@@ -67,10 +80,12 @@ public class MotherboardDTO extends ProductDTO {
                 .purchasedPrice(request.purchasedPrice())
                 .count(request.count())
                 .socketCpu(request.socketCpu())
-                .isATX(request.isATX())
+                .atxtype(request.atxType())
                 .memoryMax(request.memoryMax())
                 .memorySlots(request.memorySlots())
                 .memoryType(request.memoryType())
+                .internalConnections(request.internalConnections())
+                .gpuInterface(request.gpuInterface())
                 .tdp(request.tdp())
                 .build();
     }

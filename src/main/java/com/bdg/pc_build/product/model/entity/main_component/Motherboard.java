@@ -1,9 +1,12 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 
+import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
 import com.bdg.pc_build.product.model.dto.main_component.MotherboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.product.model.enumerations.ATXType;
 import com.bdg.pc_build.product.model.enumerations.DDRType;
+import com.bdg.pc_build.product.model.enumerations.GPUInterface;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +18,7 @@ import java.util.Objects;
 
 /**
  * @author Arman Hakhverdyan
- * <p>
+ *
  * Entity for Motherboard
  */
 
@@ -32,7 +35,7 @@ public class Motherboard extends Product {
     SocketType socketTypeCpu;
 
     @Column(name = "is_ATX", nullable = false, updatable = false)
-    Boolean isATX;
+    ATXType atxType;
 
     @Column(name = "memory_max", nullable = false, updatable = false)
     Integer memoryMax;
@@ -43,16 +46,24 @@ public class Motherboard extends Product {
     @Column(name = "memory_type", nullable = false, updatable = false)
     DDRType memoryType;
 
+    @Column(name = "internal_connections", nullable = false, updatable = false)
+    String internalConnections;
+    
+    @Column(name= "gpu_interface", nullable = false, updatable = false)
+    GPUInterface gpuInterface;
+
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
 
     public Motherboard(final MotherboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
-        this.socketTypeCpu = SocketType.valueOf(dto.getSocketCpu());
-        this.isATX = dto.getIsATX();
+        this.socketTypeCpu = dto.getSocketCpu();
+        this.atxType = dto.getAtxType();
         this.memoryMax = dto.getMemoryMax();
         this.memorySlots = dto.getMemorySlots();
-        this.memoryType = DDRType.valueOf(dto.getMemoryType());
+        this.memoryType = dto.getMemoryType();
+        this.internalConnections = dto.getInternalConnections();
+        this.gpuInterface = dto.getGpuInterface();
         this.tdp = dto.getTdp();
     }
 
@@ -62,15 +73,17 @@ public class Motherboard extends Product {
         if (o == null || getClass() != o.getClass()) return false;
         Motherboard that = (Motherboard) o;
         return Objects.equals(socketTypeCpu, that.socketTypeCpu)
-                && Objects.equals(isATX, that.isATX)
+                && Objects.equals(atxType, that.atxType)
                 && Objects.equals(memoryMax, that.memoryMax)
                 && Objects.equals(memorySlots, that.memorySlots)
                 && Objects.equals(memoryType, that.memoryType)
+                && Objects.equals(internalConnections, that.internalConnections)
+                && Objects.equals(gpuInterface, that.gpuInterface)
                 && Objects.equals(tdp, that.tdp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(socketTypeCpu, isATX, memoryMax, memorySlots, memoryType, tdp);
+        return Objects.hash(socketTypeCpu, atxType, memoryMax, memorySlots, memoryType,internalConnections,gpuInterface ,tdp);
     }
 }

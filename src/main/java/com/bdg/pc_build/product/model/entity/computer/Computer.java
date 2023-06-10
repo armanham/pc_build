@@ -2,10 +2,7 @@ package com.bdg.pc_build.product.model.entity.computer;
 
 import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.*;
-import com.bdg.pc_build.product.model.entity.peripheral.Headset;
-import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
-import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
-import com.bdg.pc_build.product.model.entity.peripheral.Speaker;
+import com.bdg.pc_build.product.model.entity.peripheral.*;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

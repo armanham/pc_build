@@ -1,9 +1,8 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.GPU;
+import com.bdg.pc_build.product.model.enumerations.GPUInterface;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class GPUDTO extends ProductDTO {
 
-    String chipset;
+    GPUInterface gpuInterface;
     Integer memory;
     Double coreClock;
     Double boostClock;
@@ -27,7 +26,7 @@ public class GPUDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final String chipset,
+            final GPUInterface gpuInterface,
             final Integer memory,
             final Double coreClock,
             final Double boostClock,
@@ -35,7 +34,7 @@ public class GPUDTO extends ProductDTO {
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.chipset = chipset;
+        this.gpuInterface = gpuInterface;
         this.memory = memory;
         this.coreClock = coreClock;
         this.boostClock = boostClock;
@@ -49,7 +48,7 @@ public class GPUDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .chipset(entity.getChipset())
+                .gpuInterface(entity.getGpuInterface())
                 .memory(entity.getMemory())
                 .coreClock(entity.getCoreClock())
                 .boostClock(entity.getBoostClock())
@@ -64,7 +63,7 @@ public class GPUDTO extends ProductDTO {
                 .price(request.price())
                 .purchasedPrice(request.purchasedPrice())
                 .count(request.count())
-                .chipset(request.chipset())
+                .gpuInterface(request.gpuInterface())
                 .memory(request.memory())
                 .coreClock(request.coreClock())
                 .boostClock(request.boostClock())

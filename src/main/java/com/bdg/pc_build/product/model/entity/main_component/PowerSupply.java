@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -25,7 +26,7 @@ import java.util.Objects;
 public class PowerSupply extends Product {
 
     @Column(name = "efficiency_rating", nullable = false, updatable = false)
-    String efficiencyRating;
+    EfficiencyRating efficiencyRating;
 
     @Column(name = "wattage", nullable = false, updatable = false)
     Integer wattage;
@@ -38,7 +39,7 @@ public class PowerSupply extends Product {
 
     public PowerSupply(final PowerSupplyDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
-        this.efficiencyRating = dto.getEfficiencyRating();
+        this.efficiencyRating =dto.getEfficiencyRating();
         this.wattage = dto.getWattage();
         this.modular = dto.getModular();
         this.tdp = dto.getTdp();

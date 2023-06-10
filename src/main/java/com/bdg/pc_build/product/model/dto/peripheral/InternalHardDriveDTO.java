@@ -1,9 +1,7 @@
-package com.bdg.pc_build.product.model.dto.main_component;
+package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
-import com.bdg.pc_build.product.model.entity.main_component.InternalHardDrive;
+import com.bdg.pc_build.product.model.entity.peripheral.InternalHardDrive;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

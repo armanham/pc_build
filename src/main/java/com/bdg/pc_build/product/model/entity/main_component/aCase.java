@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.CaseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.product.model.enumerations.TowerType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -29,14 +30,14 @@ public class aCase extends Product {
     Integer preInstalledFans;
 
     @Column(name = "is_ATX", nullable = false, updatable = false)
-    Boolean isATX;
+    TowerType towerType;
 
     public aCase(final CaseDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.maxCPUCoolerHeight = dto.getMaxCPUCoolerHeight();
         this.maxGPULength = dto.getMaxGPULength();
         this.preInstalledFans = dto.getPreInstalledFans();
-        this.isATX = dto.getIsATX();
+        this.towerType = dto.getTowerType();
     }
 
     @Override
@@ -47,11 +48,11 @@ public class aCase extends Product {
         return Objects.equals(maxCPUCoolerHeight, aCase.maxCPUCoolerHeight)
                 && Objects.equals(maxGPULength, aCase.maxGPULength)
                 && Objects.equals(preInstalledFans, aCase.preInstalledFans)
-                && Objects.equals(isATX, aCase.isATX);
+                && Objects.equals(towerType, aCase.getTowerType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxCPUCoolerHeight, maxGPULength, preInstalledFans, isATX);
+        return Objects.hash(maxCPUCoolerHeight, maxGPULength, preInstalledFans, towerType);
     }
 }
