@@ -66,15 +66,15 @@ public class CPUDTO extends ProductDTO {
     public static CPUDTO initDTOFromRequest(final ProductRequest request){
         return CPUDTO.builder()
                 .name(request.name())
-                .price(request.price())
-                .purchasedPrice(request.purchasedPrice())
-                .count(request.count())
-                .coreCount(request.coreCount())
-                .coreClock(request.coreClock())
-                .boostClock(request.boostClock())
-                .tdp(request.tdp())
+                .price(Double.valueOf(request.price()))
+                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
+                .count(Integer.valueOf(request.count()))
+                .coreCount(Integer.valueOf(request.coreCount()))
+                .coreClock(Double.valueOf(request.coreClock()))
+                .boostClock(Double.valueOf(request.boostClock()))
+                .tdp(Integer.valueOf(request.tdp()))
                 .integratedGraphics(request.integratedGraphics())
-                .socket(request.socketType())
+                .socket(SocketType.valueOf(request.socketType()))
                 .build();
     }
 }

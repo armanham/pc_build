@@ -1,8 +1,7 @@
-package com.bdg.pc_build.filter.model.dto;
+package com.bdg.pc_build.filter.model.dto.main_component;
 
 import com.bdg.pc_build.filter.model.request.main_component.FilterRequestForPowerSupply;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

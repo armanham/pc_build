@@ -1,4 +1,4 @@
-package com.bdg.pc_build.filter.model.dto;
+package com.bdg.pc_build.filter.model.dto.main_component;
 
 import com.bdg.pc_build.filter.model.request.main_component.FilterRequestForRAM;
 import lombok.AccessLevel;

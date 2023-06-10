@@ -1,4 +1,4 @@
-package com.bdg.pc_build.filter.model.dto;
+package com.bdg.pc_build.filter.model.dto.peripheral;
 
 import com.bdg.pc_build.filter.model.request.peripheral.FilterRequestForSpeaker;
 import lombok.AccessLevel;
