@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
-import com.bdg.pc_build.filter.model.request.main_component.FilterRequestForPowerSupply;
+import com.bdg.pc_build.filter.model.request.main_component.PowerSupplyFilterRequest;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class FilterDTOForPowerSupply {
+public class PowerSupplyFilterDTO {
 
     Double minPrice;
     Double maxPrice;
@@ -19,7 +19,7 @@ public class FilterDTOForPowerSupply {
     Boolean modular;
     Integer tdp;
 
-    public FilterDTOForPowerSupply(final FilterRequestForPowerSupply request) {
+    public PowerSupplyFilterDTO(final PowerSupplyFilterRequest request) {
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

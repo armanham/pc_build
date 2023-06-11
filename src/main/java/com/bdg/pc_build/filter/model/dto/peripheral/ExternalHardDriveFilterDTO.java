@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto.peripheral;
 
-import com.bdg.pc_build.filter.model.request.peripheral.FilterRequestForExternalHardDrive;
+import com.bdg.pc_build.filter.model.request.peripheral.ExternalHardDriveFilterRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,14 +9,14 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class FilterDTOForExternalHardDrive {
+public class ExternalHardDriveFilterDTO {
 
     Double minPrice;
     Double maxPrice;
     Integer capacity;
     Integer tdp;
 
-    public FilterDTOForExternalHardDrive(final FilterRequestForExternalHardDrive request) {
+    public ExternalHardDriveFilterDTO(final ExternalHardDriveFilterRequest request) {
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

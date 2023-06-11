@@ -2,17 +2,20 @@ package com.bdg.pc_build.filter.model.request.peripheral;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record FilterRequestForExternalHardDrive(
+public record HeadsetFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
 
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "capacity")
-        String capacity,
+        @JsonProperty(value = "frequency")
+        String frequency,
 
-        @JsonProperty(value = "tdp")
-        String tdp
+        @JsonProperty(value = "connectivity")
+        String connectivity,
+
+        @JsonProperty(value = "cable_length")
+        String cableLength
 ) {
 }

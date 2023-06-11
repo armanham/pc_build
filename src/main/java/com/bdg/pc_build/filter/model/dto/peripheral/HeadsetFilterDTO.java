@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto.peripheral;
 
-import com.bdg.pc_build.filter.model.request.peripheral.FilterRequestForHeadset;
+import com.bdg.pc_build.filter.model.request.peripheral.HeadsetFilterRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class FilterDTOForHeadset {
+public class HeadsetFilterDTO {
 
     Double minPrice;
     Double maxPrice;
@@ -17,7 +17,7 @@ public class FilterDTOForHeadset {
     String connectivity;
     Double cableLength;
 
-    public FilterDTOForHeadset(final FilterRequestForHeadset request) {
+    public HeadsetFilterDTO(final HeadsetFilterRequest request) {
         this.connectivity = request.connectivity();
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());

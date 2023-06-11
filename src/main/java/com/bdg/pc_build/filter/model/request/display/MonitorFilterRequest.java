@@ -2,7 +2,7 @@ package com.bdg.pc_build.filter.model.request.display;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record FilterRequestForMonitor(
+public record MonitorFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
 

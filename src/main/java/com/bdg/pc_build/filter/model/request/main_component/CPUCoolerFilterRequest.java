@@ -2,21 +2,18 @@ package com.bdg.pc_build.filter.model.request.main_component;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record FilterRequestForPowerSupply(
+public record CPUCoolerFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
 
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "efficiency_rating")
-        String efficiencyRating,
+        @JsonProperty(value = "fan_RPM")
+        String fanRPM,
 
-        @JsonProperty(value = "wattage")
-        String wattage,
-
-        @JsonProperty(value = "modular")
-        String modular,
+        @JsonProperty(value = "socket_type")
+        String socketType,
 
         @JsonProperty(value = "tdp")
         String tdp

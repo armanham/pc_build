@@ -2,7 +2,7 @@ package com.bdg.pc_build.filter.model.request.peripheral;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record FilterRequestForKeyboard(
+public record KeyboardFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
 

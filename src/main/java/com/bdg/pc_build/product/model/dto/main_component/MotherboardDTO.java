@@ -89,5 +89,4 @@ public class MotherboardDTO extends ProductDTO {
                 .tdp(Integer.valueOf(request.tdp()))
                 .build();
     }
-
 }

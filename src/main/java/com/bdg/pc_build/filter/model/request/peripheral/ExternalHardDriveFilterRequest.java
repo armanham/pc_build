@@ -1,19 +1,16 @@
-package com.bdg.pc_build.filter.model.request.main_component;
+package com.bdg.pc_build.filter.model.request.peripheral;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record FilterRequestForCPUCooler(
+public record ExternalHardDriveFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
 
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "fan_RPM")
-        String fanRPM,
-
-        @JsonProperty(value = "socket_type")
-        String socketType,
+        @JsonProperty(value = "capacity")
+        String capacity,
 
         @JsonProperty(value = "tdp")
         String tdp

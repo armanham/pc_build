@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto.peripheral;
 
-import com.bdg.pc_build.filter.model.request.peripheral.FilterRequestForSpeaker;
+import com.bdg.pc_build.filter.model.request.peripheral.SpeakerFilterRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class FilterDTOForSpeaker {
+public class SpeakerFilterDTO {
 
     Double minPrice;
     Double maxPrice;
@@ -18,7 +18,7 @@ public class FilterDTOForSpeaker {
     Double cableLength;
     String dimension;
 
-    public FilterDTOForSpeaker(final FilterRequestForSpeaker request) {
+    public SpeakerFilterDTO(final SpeakerFilterRequest request) {
         this.powerSource = request.powerSource();
         this.dimension = request.dimension();
         if (request.minPrice() != null && !request.minPrice().isBlank()) {

@@ -2,21 +2,21 @@ package com.bdg.pc_build.filter.model.request.main_component;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record FilterRequestForRAM(
+public record PowerSupplyFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
 
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "speed")
-        String speed,
+        @JsonProperty(value = "efficiency_rating")
+        String efficiencyRating,
 
-        @JsonProperty(value = "count_of_RAM")
-        String countOfRAM,
+        @JsonProperty(value = "wattage")
+        String wattage,
 
-        @JsonProperty(value = "GB_of_RAM")
-        String GBOfRAM,
+        @JsonProperty(value = "modular")
+        String modular,
 
         @JsonProperty(value = "tdp")
         String tdp

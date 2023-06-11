@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto.display;
 
-import com.bdg.pc_build.filter.model.request.display.FilterRequestForMonitor;
+import com.bdg.pc_build.filter.model.request.display.MonitorFilterRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class FilterDTOForMonitor {
+public class MonitorFilterDTO {
 
     Double minPrice;
     Double maxPrice;
@@ -17,7 +17,7 @@ public class FilterDTOForMonitor {
     Integer refreshRate;
     String screenType;
 
-    public FilterDTOForMonitor(final FilterRequestForMonitor request) {
+    public MonitorFilterDTO(final MonitorFilterRequest request) {
         this.screenType = request.screenType();
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());

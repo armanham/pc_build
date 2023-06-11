@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto;
 
-import com.bdg.pc_build.filter.model.request.FilterRequestForProduct;
+import com.bdg.pc_build.filter.model.request.ProductFilterRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class FilterDTOForProduct {
+public class ProductFilterDTO {
 
     String name;
 
@@ -17,7 +17,7 @@ public class FilterDTOForProduct {
 
     Double maxPrice;
 
-    public FilterDTOForProduct(final FilterRequestForProduct request) {
+    public ProductFilterDTO(final ProductFilterRequest request) {
         this.name = request.name();
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());

@@ -1,7 +1,7 @@
 package com.bdg.pc_build.filter.controller;
 
-import com.bdg.pc_build.filter.model.dto.FilterDTOForProduct;
-import com.bdg.pc_build.filter.model.request.FilterRequestForProduct;
+import com.bdg.pc_build.filter.model.dto.ProductFilterDTO;
+import com.bdg.pc_build.filter.model.request.ProductFilterRequest;
 import com.bdg.pc_build.filter.service.FilterService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import lombok.AccessLevel;
@@ -24,10 +24,10 @@ public class FilterController {
 
     @GetMapping(value = "/byNameAndPrice")
     public List<ProductDTO> filterAllProductsByNameAndPrice(
-            @RequestBody FilterRequestForProduct request
+            @RequestBody ProductFilterRequest request
     ) {
         return filterService.filterByRequest(
-                new FilterDTOForProduct(request)
+                new ProductFilterDTO(request)
         );
     }
 

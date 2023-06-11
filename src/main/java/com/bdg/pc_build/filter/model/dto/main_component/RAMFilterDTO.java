@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
-import com.bdg.pc_build.filter.model.request.main_component.FilterRequestForRAM;
+import com.bdg.pc_build.filter.model.request.main_component.RAMFilterRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class FilterDTOForRAM {
+public class RAMFilterDTO {
 
     Double minPrice;
     Double maxPrice;
@@ -18,7 +18,7 @@ public class FilterDTOForRAM {
     Double GBOfRAM;
     Integer tdp;
 
-    public FilterDTOForRAM(final FilterRequestForRAM request) {
+    public RAMFilterDTO(final RAMFilterRequest request) {
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }
