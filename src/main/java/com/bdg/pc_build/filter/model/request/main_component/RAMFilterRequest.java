@@ -5,20 +5,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record RAMFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
-
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "speed")
-        String speed,
+        @JsonProperty(value = "min_speed")
+        String minSpeed,
+        @JsonProperty(value = "max_speed")
+        String maxSpeed,
 
-        @JsonProperty(value = "count_of_RAM")
-        String countOfRAM,
+        @JsonProperty(value = "min_count_of_ram")
+        String minCountOfRam,
+        @JsonProperty(value = "max_count_of_ram")
+        String maxCountOfRam,
 
-        @JsonProperty(value = "GB_of_RAM")
-        String GBOfRAM,
+        @JsonProperty(value = "min_gb_of_ram")
+        String minGbOfRam,
+        @JsonProperty(value = "max_gb_of_ram")
+        String maxGbOfRam,
 
-        @JsonProperty(value = "tdp")
-        String tdp
+        @JsonProperty(value = "min_tdp")
+        String minTdp,
+        @JsonProperty(value = "max_tdp")
+        String maxTdp
 ) {
 }

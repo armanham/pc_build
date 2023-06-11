@@ -5,20 +5,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record KeyboardFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
-
         @JsonProperty(value = "max_price")
         String maxPrice,
 
         @JsonProperty(value = "keyboard_class")
         String keyboardClass,
 
-        @JsonProperty(value = "cable_length")
-        String cableLength,
+        @JsonProperty(value = "min_cable_length")
+        String minCableLength,
+        @JsonProperty(value = "max_cable_length")
+        String maxCableLength,
 
-        @JsonProperty(value = "dimensino")
+        @JsonProperty(value = "dimension")
         String dimension,
 
-        @JsonProperty(value = "weight")
-        String weight
+        @JsonProperty(value = "min_weight")
+        String minWeight,
+        @JsonProperty(value = "max_weight")
+        String maxWeight
 ) {
 }

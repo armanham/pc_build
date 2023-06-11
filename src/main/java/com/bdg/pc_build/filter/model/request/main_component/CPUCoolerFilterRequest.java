@@ -5,17 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record CPUCoolerFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
-
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "fan_RPM")
-        String fanRPM,
+        @JsonProperty(value = "min_fan_rpm")
+        String minFanRpm,
+        @JsonProperty(value = "max_fan_rpm")
+        String maxFanRpm,
 
         @JsonProperty(value = "socket_type")
         String socketType,
 
-        @JsonProperty(value = "tdp")
-        String tdp
+        @JsonProperty(value = "min_tdp")
+        String minTdp,
+        @JsonProperty(value = "max_tdp")
+        String maxTdp
 ) {
 }

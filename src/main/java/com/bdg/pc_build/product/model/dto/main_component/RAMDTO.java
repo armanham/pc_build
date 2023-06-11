@@ -19,7 +19,7 @@ import lombok.experimental.FieldDefaults;
 public class RAMDTO extends ProductDTO {
 
     Integer speed;
-    Integer countOfRAM;
+    Integer countOfRam;
     Double gbOfRam;
     Integer tdp;
 
@@ -30,13 +30,13 @@ public class RAMDTO extends ProductDTO {
             final Double purchasedPrice,
             final Integer count,
             final Integer speed,
-            final Integer countOfRAM,
+            final Integer countOfRam,
             final Double gbOfRam,
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
         this.speed = speed;
-        this.countOfRAM = countOfRAM;
+        this.countOfRam = countOfRam;
         this.gbOfRam = gbOfRam;
         this.tdp = tdp;
     }
@@ -48,7 +48,7 @@ public class RAMDTO extends ProductDTO {
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
                 .speed(entity.getSpeed())
-                .countOfRAM(entity.getCountOfRAM())
+                .countOfRam(entity.getCountOfRAM())
                 .gbOfRam(entity.getGbOfRAM())
                 .tdp(entity.getTdp())
                 .build();
@@ -61,7 +61,7 @@ public class RAMDTO extends ProductDTO {
                 .purchasedPrice(Double.valueOf(request.purchasedPrice()))
                 .count(Integer.valueOf(request.count()))
                 .speed(Integer.valueOf(request.speed()))
-                .countOfRAM(Integer.valueOf(request.countOfRAM()))
+                .countOfRam(Integer.valueOf(request.countOfRAM()))
                 .gbOfRam(Double.valueOf(request.GBOfRAM()))
                 .tdp(Integer.valueOf(request.tdp()))
                 .build();

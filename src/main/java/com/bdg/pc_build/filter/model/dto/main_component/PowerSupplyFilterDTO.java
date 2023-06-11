@@ -14,10 +14,16 @@ public class PowerSupplyFilterDTO {
 
     Double minPrice;
     Double maxPrice;
+
     EfficiencyRating efficiencyRating;
-    Integer wattage;
+
+    Integer minWattage;
+    Integer maxWattage;
+
     Boolean modular;
-    Integer tdp;
+
+    Integer minTdp;
+    Integer maxTdp;
 
     public PowerSupplyFilterDTO(final PowerSupplyFilterRequest request) {
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
@@ -29,14 +35,14 @@ public class PowerSupplyFilterDTO {
         if (request.efficiencyRating() != null && !request.efficiencyRating().isBlank()) {
             this.efficiencyRating = EfficiencyRating.valueOf(request.efficiencyRating());
         }
-        if (request.wattage() != null && !request.wattage().isBlank()) {
-            this.wattage = Integer.valueOf(request.wattage());
-        }
+//        if (request.wattage() != null && !request.wattage().isBlank()) {
+//            this.wattage = Integer.valueOf(request.wattage());
+//        }
         if (request.modular() != null && !request.modular().isBlank()) {
             this.modular = Boolean.valueOf(request.modular());
         }
-        if (request.tdp() != null && !request.tdp().isBlank()) {
-            this.tdp = Integer.valueOf(request.tdp());
-        }
+//        if (request.tdp() != null && !request.tdp().isBlank()) {
+//            this.tdp = Integer.valueOf(request.tdp());
+//        }
     }
 }

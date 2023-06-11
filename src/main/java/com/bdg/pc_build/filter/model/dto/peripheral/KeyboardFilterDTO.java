@@ -13,10 +13,16 @@ public class KeyboardFilterDTO {
 
     Double minPrice;
     Double maxPrice;
+
     String keyboardClass;
-    Double cableLength;
+
+    Double minCableLength;
+    Double maxCableLength;
+
     String dimension;
-    Double weight;
+
+    Double minWeight;
+    Double maxWeight;
 
     public KeyboardFilterDTO(final KeyboardFilterRequest request) {
         this.keyboardClass = request.keyboardClass();
@@ -27,11 +33,11 @@ public class KeyboardFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-        if (request.cableLength() != null && !request.cableLength().isBlank()) {
-            this.cableLength = Double.valueOf(request.cableLength());
-        }
-        if (request.weight() != null && !request.weight().isBlank()) {
-            this.weight = Double.valueOf(request.weight());
-        }
+//        if (request.cableLength() != null && !request.cableLength().isBlank()) {
+//            this.cableLength = Double.valueOf(request.cableLength());
+//        }
+//        if (request.weight() != null && !request.weight().isBlank()) {
+//            this.weight = Double.valueOf(request.weight());
+//        }
     }
 }

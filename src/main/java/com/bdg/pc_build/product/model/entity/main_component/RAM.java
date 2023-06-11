@@ -40,7 +40,7 @@ public class RAM extends Product {
     public RAM(final RAMDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.speed = dto.getSpeed();
-        this.countOfRAM = dto.getCountOfRAM();
+        this.countOfRAM = dto.getCountOfRam();
         this.gbOfRAM = dto.getGbOfRam();
         this.tdp = dto.getTdp();
     }

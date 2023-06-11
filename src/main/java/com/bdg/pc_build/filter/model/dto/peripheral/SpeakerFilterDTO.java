@@ -13,9 +13,15 @@ public class SpeakerFilterDTO {
 
     Double minPrice;
     Double maxPrice;
-    Integer frequency;
+
+    Integer minFrequency;
+    Integer maxFrequency;
+
     String powerSource;
-    Double cableLength;
+
+    Double minCableLength;
+    Double maxCableLength;
+
     String dimension;
 
     public SpeakerFilterDTO(final SpeakerFilterRequest request) {
@@ -27,11 +33,11 @@ public class SpeakerFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-        if (request.frequency() != null && !request.frequency().isBlank()) {
-            this.frequency = Integer.valueOf(request.frequency());
-        }
-        if (request.cableLength() != null && !request.cableLength().isBlank()) {
-            this.cableLength = Double.valueOf(request.cableLength());
-        }
+//        if (request.frequency() != null && !request.frequency().isBlank()) {
+//            this.frequency = Integer.valueOf(request.frequency());
+//        }
+//        if (request.cableLength() != null && !request.cableLength().isBlank()) {
+//            this.cableLength = Double.valueOf(request.cableLength());
+//        }
     }
 }

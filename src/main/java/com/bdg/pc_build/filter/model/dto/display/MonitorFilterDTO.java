@@ -13,8 +13,13 @@ public class MonitorFilterDTO {
 
     Double minPrice;
     Double maxPrice;
-    Double screenSize;
-    Integer refreshRate;
+
+    Double minScreenSize;
+    Double maxScreenSize;
+
+    Integer minRefreshRate;
+    Integer maxRefreshRate;
+
     String screenType;
 
     public MonitorFilterDTO(final MonitorFilterRequest request) {
@@ -25,11 +30,11 @@ public class MonitorFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-        if (request.screenSize() != null && !request.screenSize().isBlank()) {
-            this.screenSize = Double.valueOf(request.screenSize());
-        }
-        if (request.refreshRate() != null && !request.refreshRate().isBlank()) {
-            this.refreshRate = Integer.valueOf(request.refreshRate());
-        }
+//        if (request.screenSize() != null && !request.screenSize().isBlank()) {
+//            this.screenSize = Double.valueOf(request.screenSize());
+//        }
+//        if (request.refreshRate() != null && !request.refreshRate().isBlank()) {
+//            this.refreshRate = Integer.valueOf(request.refreshRate());
+//        }
     }
 }

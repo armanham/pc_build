@@ -6,17 +6,20 @@ public record InternalHardDriveFilterRequest(
 
         @JsonProperty(value = "min_price")
         String minPrice,
-
         @JsonProperty(value = "max_price")
         String maxPrice,
 
         @JsonProperty(value = "type")
         String type,
 
-        @JsonProperty(value = "capacity")
-        String capacity,
+        @JsonProperty(value = "min_capacity")
+        String minCapacity,
+        @JsonProperty(value = "max_capacity")
+        String maxCapacity,
 
-        @JsonProperty(value = "tdp")
-        String tdp
+        @JsonProperty(value = "min_tdp")
+        String minTdp,
+        @JsonProperty(value = "max_tdp")
+        String maxTdp
 ) {
 }

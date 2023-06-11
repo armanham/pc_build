@@ -14,7 +14,6 @@ public class ProductFilterDTO {
     String name;
 
     Double minPrice;
-
     Double maxPrice;
 
     public ProductFilterDTO(final ProductFilterRequest request) {

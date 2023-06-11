@@ -5,11 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record CoolerFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
-
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "tdp")
-        String tdp
+        @JsonProperty(value = "min_tdp")
+        String minTdp,
+        @JsonProperty(value = "max_tdp")
+        String maxTdp
 ) {
 }

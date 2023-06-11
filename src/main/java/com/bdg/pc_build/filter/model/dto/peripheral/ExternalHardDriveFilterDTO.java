@@ -13,8 +13,12 @@ public class ExternalHardDriveFilterDTO {
 
     Double minPrice;
     Double maxPrice;
-    Integer capacity;
-    Integer tdp;
+
+    Integer minCapacity;
+    Integer maxCapacity;
+
+    Integer minTdp;
+    Integer maxTdp;
 
     public ExternalHardDriveFilterDTO(final ExternalHardDriveFilterRequest request) {
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
@@ -23,11 +27,11 @@ public class ExternalHardDriveFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-        if (request.capacity() != null && !request.capacity().isBlank()) {
-            this.capacity = Integer.valueOf(request.capacity());
-        }
-        if (request.tdp() != null && !request.tdp().isBlank()) {
-            this.tdp = Integer.valueOf(request.tdp());
-        }
+//        if (request.capacity() != null && !request.capacity().isBlank()) {
+//            this.capacity = Integer.valueOf(request.capacity());
+//        }
+//        if (request.tdp() != null && !request.tdp().isBlank()) {
+//            this.tdp = Integer.valueOf(request.tdp());
+//        }
     }
 }

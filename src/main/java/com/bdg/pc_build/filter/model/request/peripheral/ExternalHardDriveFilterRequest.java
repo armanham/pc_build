@@ -5,14 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record ExternalHardDriveFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
-
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "capacity")
-        String capacity,
+        @JsonProperty(value = "min_capacity")
+        String minCapacity,
+        @JsonProperty(value = "max_capacity")
+        String maxCapacity,
 
-        @JsonProperty(value = "tdp")
-        String tdp
+        @JsonProperty(value = "min_tdp")
+        String minTdp,
+        @JsonProperty(value = "max_tdp")
+        String maxTdp
 ) {
 }

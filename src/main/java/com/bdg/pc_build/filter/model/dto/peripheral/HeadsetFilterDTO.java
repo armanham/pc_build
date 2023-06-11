@@ -13,9 +13,14 @@ public class HeadsetFilterDTO {
 
     Double minPrice;
     Double maxPrice;
-    Integer frequency;
+
+    Integer minFrequency;
+    Integer maxFrequency;
+
     String connectivity;
-    Double cableLength;
+
+    Double minCableLength;
+    Double maxCableLength;
 
     public HeadsetFilterDTO(final HeadsetFilterRequest request) {
         this.connectivity = request.connectivity();
@@ -25,11 +30,11 @@ public class HeadsetFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-        if (request.frequency() != null && !request.frequency().isBlank()) {
-            this.frequency = Integer.valueOf(request.frequency());
-        }
-        if (request.cableLength() != null && !request.cableLength().isBlank()) {
-            this.cableLength = Double.valueOf(request.cableLength());
-        }
+//        if (request.frequency() != null && !request.frequency().isBlank()) {
+//            this.frequency = Integer.valueOf(request.frequency());
+//        }
+//        if (request.cableLength() != null && !request.cableLength().isBlank()) {
+//            this.cableLength = Double.valueOf(request.cableLength());
+//        }
     }
 }

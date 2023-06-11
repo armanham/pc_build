@@ -13,10 +13,18 @@ public class RAMFilterDTO {
 
     Double minPrice;
     Double maxPrice;
-    Integer speed;
-    Integer countOfRAM;
-    Double GBOfRAM;
-    Integer tdp;
+
+    Integer minSpeed;
+    Integer maxSpeed;
+
+    Integer minCountOfRam;
+    Integer maxCountOfRam;
+
+    Double minGbOfRam;
+    Double maxGbOfRam;
+
+    Integer minTdp;
+    Integer maxTdp;
 
     public RAMFilterDTO(final RAMFilterRequest request) {
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
@@ -25,17 +33,17 @@ public class RAMFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-        if (request.speed() != null && !request.speed().isBlank()) {
-            this.speed = Integer.valueOf(request.speed());
-        }
-        if (request.GBOfRAM() != null && !request.GBOfRAM().isBlank()) {
-            this.GBOfRAM = Double.valueOf(request.GBOfRAM());
-        }
-        if (request.countOfRAM() != null && !request.countOfRAM().isBlank()) {
-            this.countOfRAM = Integer.valueOf(request.countOfRAM());
-        }
-        if (request.tdp() != null && !request.tdp().isBlank()) {
-            this.tdp = Integer.valueOf(request.tdp());
-        }
+//        if (request.speed() != null && !request.speed().isBlank()) {
+//            this.speed = Integer.valueOf(request.speed());
+//        }
+//        if (request.gbOfRam() != null && !request.gbOfRam().isBlank()) {
+//            this.GBOfRAM = Double.valueOf(request.gbOfRam());
+//        }
+//        if (request.countOfRAM() != null && !request.countOfRAM().isBlank()) {
+//            this.countOfRAM = Integer.valueOf(request.countOfRAM());
+//        }
+//        if (request.tdp() != null && !request.tdp().isBlank()) {
+//            this.tdp = Integer.valueOf(request.tdp());
+//        }
     }
 }

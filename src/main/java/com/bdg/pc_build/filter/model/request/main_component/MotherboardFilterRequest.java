@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record MotherboardFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
-
         @JsonProperty(value = "max_price")
         String maxPrice,
 
@@ -15,11 +14,15 @@ public record MotherboardFilterRequest(
         @JsonProperty(value = "atx_type")
         String atxType,
 
-        @JsonProperty(value = "memory_max")
-        String memoryMax,
+        @JsonProperty(value = "min_memory")
+        String minMemory,
+        @JsonProperty(value = "max_memory")
+        String maxMemory,
 
-        @JsonProperty(value = "memory_slots")
-        String memorySlots,
+        @JsonProperty(value = "min_memory_slots")
+        String minMemorySlots,
+        @JsonProperty(value = "max_memory_slots")
+        String maxMemorySlots,
 
         @JsonProperty(value = "memory_type")
         String memoryType,
@@ -30,7 +33,9 @@ public record MotherboardFilterRequest(
         @JsonProperty(value = "gpu_interface_type")
         String gpuInterfaceType,
 
-        @JsonProperty(value = "tdp")
-        String tdp
+        @JsonProperty(value = "min_tdp")
+        String minTdp,
+        @JsonProperty(value = "max_tdp")
+        String maxTdp
 ) {
 }

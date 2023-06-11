@@ -5,20 +5,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record PowerSupplyFilterRequest(
         @JsonProperty(value = "min_price")
         String minPrice,
-
         @JsonProperty(value = "max_price")
         String maxPrice,
 
         @JsonProperty(value = "efficiency_rating")
         String efficiencyRating,
 
-        @JsonProperty(value = "wattage")
-        String wattage,
+        @JsonProperty(value = "min_wattage")
+        String minWattage,
+        @JsonProperty(value = "max_wattage")
+        String maxWattage,
 
         @JsonProperty(value = "modular")
         String modular,
 
-        @JsonProperty(value = "tdp")
-        String tdp
+        @JsonProperty(value = "min_tdp")
+        String minTdp,
+        @JsonProperty(value = "max_tdp")
+        String maxTdp
 ) {
 }
