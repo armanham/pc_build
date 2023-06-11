@@ -27,11 +27,17 @@ public class ExternalHardDriveFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-//        if (request.capacity() != null && !request.capacity().isBlank()) {
-//            this.capacity = Integer.valueOf(request.capacity());
-//        }
-//        if (request.tdp() != null && !request.tdp().isBlank()) {
-//            this.tdp = Integer.valueOf(request.tdp());
-//        }
+        if (request.minCapacity() != null && !request.minCapacity().isBlank()) {
+            this.minCapacity = Integer.valueOf(request.minCapacity());
+        }
+        if (request.maxCapacity() != null && !request.maxCapacity().isBlank()) {
+            this.maxCapacity = Integer.valueOf(request.maxCapacity());
+        }
+        if (request.minTdp() != null && !request.minTdp().isBlank()) {
+            this.minTdp = Integer.valueOf(request.minTdp());
+        }
+        if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
+            this.maxTdp = Integer.valueOf(request.maxTdp());
+        }
     }
 }

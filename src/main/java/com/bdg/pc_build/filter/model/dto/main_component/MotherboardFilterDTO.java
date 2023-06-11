@@ -18,24 +18,24 @@ public class MotherboardFilterDTO {
     Double minPrice;
     Double maxPrice;
 
-    SocketType socketType;
-
-    ATXType atxType;
-
     Integer minMemory;
     Integer maxMemory;
 
     Integer minMemorySlots;
     Integer maxMemorySlots;
 
-    DDRType memoryType;
+    Integer minTdp;
+    Integer maxTdp;
 
     String internalConnections;
 
+    DDRType memoryType;
+
     GPUInterfaceType gpuInterfaceType;
 
-    Integer minTdp;
-    Integer maxTdp;
+    SocketType socketType;
+
+    ATXType atxType;
 
     public MotherboardFilterDTO(final MotherboardFilterRequest request) {
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
@@ -44,5 +44,28 @@ public class MotherboardFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
+        if (request.minMemory() != null && !request.minMemory().isBlank()) {
+            this.minMemory = Integer.valueOf(request.minMemory());
+        }
+        if (request.maxMemory() != null && !request.maxMemory().isBlank()) {
+            this.maxMemory = Integer.valueOf(request.maxMemory());
+        }
+        if (request.minMemorySlots() != null && !request.minMemorySlots().isBlank()) {
+            this.minMemorySlots = Integer.valueOf(request.minMemorySlots());
+        }
+        if (request.maxMemorySlots() != null && !request.maxMemorySlots().isBlank()) {
+            this.maxMemorySlots = Integer.valueOf(request.maxMemorySlots());
+        }
+        if (request.minTdp() != null && !request.minTdp().isBlank()) {
+            this.minTdp = Integer.valueOf(request.minTdp());
+        }
+        if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
+            this.maxTdp = Integer.valueOf(request.maxTdp());
+        }
+        this.internalConnections = request.internalConnections();
+        //TODO DDRType memoryType;
+        //TODO GPUInterfaceType gpuInterfaceType;
+        //TODO SocketType socketType;
+        //TODO ATXType atxType;
     }
 }

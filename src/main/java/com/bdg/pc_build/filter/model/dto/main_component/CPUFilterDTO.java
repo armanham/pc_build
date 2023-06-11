@@ -38,5 +38,25 @@ public class CPUFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
+        if (request.minCoreClock() != null && !request.minCoreClock().isBlank()) {
+            this.minCoreClock = Double.valueOf(request.minCoreClock());
+        }
+        if (request.maxCoreClock() != null && !request.maxCoreClock().isBlank()) {
+            this.maxCoreClock = Double.valueOf(request.maxCoreClock());
+        }
+        if (request.minBoostClock() != null && !request.minBoostClock().isBlank()) {
+            this.minBoostClock = Double.valueOf(request.minBoostClock());
+        }
+        if (request.maxBoostClock() != null && !request.maxBoostClock().isBlank()) {
+            this.maxBoostClock = Double.valueOf(request.maxBoostClock());
+        }
+        if (request.minTdp() != null && !request.minTdp().isBlank()) {
+            this.minTdp = Integer.valueOf(request.minTdp());
+        }
+        if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
+            this.maxTdp = Integer.valueOf(request.maxTdp());
+        }
+        this.integratedGraphics = request.integratedGraphics();
+        //TODO SOCKETTYPE
     }
 }

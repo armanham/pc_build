@@ -33,17 +33,29 @@ public class RAMFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-//        if (request.speed() != null && !request.speed().isBlank()) {
-//            this.speed = Integer.valueOf(request.speed());
-//        }
-//        if (request.gbOfRam() != null && !request.gbOfRam().isBlank()) {
-//            this.GBOfRAM = Double.valueOf(request.gbOfRam());
-//        }
-//        if (request.countOfRAM() != null && !request.countOfRAM().isBlank()) {
-//            this.countOfRAM = Integer.valueOf(request.countOfRAM());
-//        }
-//        if (request.tdp() != null && !request.tdp().isBlank()) {
-//            this.tdp = Integer.valueOf(request.tdp());
-//        }
+        if (request.minSpeed() != null && !request.minSpeed().isBlank()) {
+            this.minSpeed = Integer.valueOf(request.minSpeed());
+        }
+        if (request.maxSpeed() != null && !request.maxSpeed().isBlank()) {
+            this.maxSpeed = Integer.valueOf(request.maxSpeed());
+        }
+        if (request.minCountOfRam() != null && !request.minCountOfRam().isBlank()) {
+            this.minCountOfRam = Integer.valueOf(request.minCountOfRam());
+        }
+        if (request.maxCountOfRam() != null && !request.maxCountOfRam().isBlank()) {
+            this.maxCountOfRam = Integer.valueOf(request.maxCountOfRam());
+        }
+        if (request.minGbOfRam() != null && !request.minGbOfRam().isBlank()) {
+            this.minGbOfRam = Double.valueOf(request.minGbOfRam());
+        }
+        if (request.maxGbOfRam() != null && !request.maxGbOfRam().isBlank()) {
+            this.maxGbOfRam = Double.valueOf(request.maxGbOfRam());
+        }
+        if (request.minTdp() != null && !request.minTdp().isBlank()) {
+            this.minTdp = Integer.valueOf(request.minTdp());
+        }
+        if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
+            this.maxTdp = Integer.valueOf(request.maxTdp());
+        }
     }
 }

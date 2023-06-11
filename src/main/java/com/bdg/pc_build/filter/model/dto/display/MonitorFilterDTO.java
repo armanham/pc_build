@@ -23,18 +23,24 @@ public class MonitorFilterDTO {
     String screenType;
 
     public MonitorFilterDTO(final MonitorFilterRequest request) {
-        this.screenType = request.screenType();
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
-//        if (request.screenSize() != null && !request.screenSize().isBlank()) {
-//            this.screenSize = Double.valueOf(request.screenSize());
-//        }
-//        if (request.refreshRate() != null && !request.refreshRate().isBlank()) {
-//            this.refreshRate = Integer.valueOf(request.refreshRate());
-//        }
+        if (request.minScreenSize() != null && !request.minScreenSize().isBlank()) {
+            this.minScreenSize = Double.valueOf(request.minScreenSize());
+        }
+        if (request.maxScreenSize() != null && !request.maxScreenSize().isBlank()) {
+            this.maxScreenSize = Double.valueOf(request.maxScreenSize());
+        }
+        if (request.minRefreshRate() != null && !request.minRefreshRate().isBlank()) {
+            this.minRefreshRate = Integer.valueOf(request.minRefreshRate());
+        }
+        if (request.maxRefreshRate() != null && !request.maxRefreshRate().isBlank()) {
+            this.maxRefreshRate = Integer.valueOf(request.maxRefreshRate());
+        }
+        this.screenType = request.screenType();
     }
 }

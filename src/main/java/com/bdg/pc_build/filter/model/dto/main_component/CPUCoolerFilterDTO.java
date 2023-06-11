@@ -18,10 +18,10 @@ public class CPUCoolerFilterDTO {
     Integer minFanRpm;
     Integer maxFanRpm;
 
-    SocketType socketType;
-
     Integer minTdp;
     Integer maxTdp;
+
+    SocketType socketType;
 
     public CPUCoolerFilterDTO(final CPUCoolerFilterRequest request) {
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
@@ -30,5 +30,18 @@ public class CPUCoolerFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
+        if (request.minFanRpm() != null && !request.minFanRpm().isBlank()) {
+            this.minFanRpm = Integer.valueOf(request.maxFanRpm());
+        }
+        if (request.maxFanRpm() != null && !request.maxFanRpm().isBlank()) {
+            this.maxFanRpm = Integer.valueOf(request.maxFanRpm());
+        }
+        if (request.minTdp() != null && !request.minTdp().isBlank()) {
+            this.minTdp = Integer.valueOf(request.minTdp());
+        }
+        if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
+            this.maxTdp = Integer.valueOf(request.maxTdp());
+        }
+        //TODO SOCKETTYPE
     }
 }

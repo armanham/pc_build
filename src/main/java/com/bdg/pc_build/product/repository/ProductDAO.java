@@ -14,17 +14,21 @@ public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY
 
     Optional<ENTITY> findByName(String name);
 
-    @Query("SELECT p FROM #{#entityName} p WHERE lower(p.name) LIKE lower(concat('%', :name, '%'))")
+    @Query(
+            "SELECT p FROM #{#entityName} p WHERE lower(p.name) LIKE lower(concat('%', :name, '%'))"
+    )
     List<ENTITY> findAllProductsByNameIgnoreCaseLikeTerm(@Param("name") String name);
 
     List<ENTITY> findAllProductsByPriceBetween(Double minPrice, Double maxPrice);
 
     List<ENTITY> findAllProductsByPurchasedPriceBetween(Double minPrice, Double maxPrice);
 
-    @Query("SELECT p FROM #{#entityName} p WHERE " +
-            "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-            "AND ((:minPrice IS NULL AND :maxPrice IS NULL) " +
-            "OR (p.price BETWEEN COALESCE(:minPrice, 0) AND COALESCE(:maxPrice, 10000)))")
+    @Query(
+            "SELECT p FROM #{#entityName} p WHERE " +
+                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
+                    "AND ((:minPrice IS NULL AND :maxPrice IS NULL) " +
+                    "OR (p.price BETWEEN COALESCE(:minPrice, 0) AND COALESCE(:maxPrice, 10000)))"
+    )
     List<ENTITY> filterAllProductsBasedOnSpecification(
             @Param("name") String name,
             @Param("minPrice") Double minPrice,

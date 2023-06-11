@@ -37,22 +37,22 @@ public record ProductRequest(
 //Main Components
 
         //Case
-        @JsonProperty(value = "max_CPU_cooler_height")
+        @JsonProperty(value = "max_cpu_cooler_height")
         String maxCPUCoolerHeight,
 
-        @JsonProperty(value = "max_GPU_length")
+        @JsonProperty(value = "max_gpu_length")
         String maxGPULength,
 
         @JsonProperty(value = "pre_installed_fans")
         String preInstalledFans,
 
-        @JsonProperty(value = "is_ATX")
+        @JsonProperty(value = "is_atx")
         String towerType,
 
 
         //CPUCooler
-        @JsonProperty(value = "fan_RPM")
-        String fanRPM,
+        @JsonProperty(value = "fan_rpm")
+        String fanRpm,
 
         //CPU
         @JsonProperty(value = "core_count")
@@ -143,8 +143,8 @@ public record ProductRequest(
         ValidationUtil.nullCheck(purchasedPrice);
         ValidationUtil.nullCheck(price);
         ValidationUtil.nullCheck(count);
-        ValidationUtil.validateCount(Integer.valueOf(count));
-        ValidationUtil.validatePrice(Double.valueOf(purchasedPrice));
-        ValidationUtil.validatePrice(Double.valueOf(price));
+        ValidationUtil.validatePositivityOfNumber(ProductRequest.class, "purchasedPrice", Double.valueOf(purchasedPrice));
+        ValidationUtil.validatePositivityOfNumber(ProductRequest.class, "price", Double.valueOf(price));
+        ValidationUtil.validatePositivityOfNumber(ProductRequest.class, "count", Double.valueOf(count));
     }
 }

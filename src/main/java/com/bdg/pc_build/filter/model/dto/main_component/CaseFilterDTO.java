@@ -33,5 +33,24 @@ public class CaseFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
+        if (request.minCPUCoolerHeight() != null && !request.minCPUCoolerHeight().isBlank()) {
+            this.minCPUCoolerHeight = Double.valueOf(request.minCPUCoolerHeight());
+        }
+        if (request.maxCPUCoolerHeight() != null && !request.maxCPUCoolerHeight().isBlank()) {
+            this.maxCPUCoolerHeight = Double.valueOf(request.maxCPUCoolerHeight());
+        }
+        if (request.minGPULength() != null && !request.minGPULength().isBlank()) {
+            this.minGPULength = Double.valueOf(request.minGPULength());
+        }
+        if (request.maxGPULength() != null && !request.maxGPULength().isBlank()) {
+            this.maxGPULength = Double.valueOf(request.maxGPULength());
+        }
+        if (request.minPreInstalledFans() != null && !request.minPreInstalledFans().isBlank()) {
+            this.minPreInstalledFans = Integer.valueOf(request.minPreInstalledFans());
+        }
+        if (request.maxPreInstalledFans() != null && !request.maxPreInstalledFans().isBlank()) {
+            this.maxPreInstalledFans = Integer.valueOf(request.maxPreInstalledFans());
+        }
+        //TODO TowerType
     }
 }
