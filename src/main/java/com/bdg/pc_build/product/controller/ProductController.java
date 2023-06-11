@@ -124,7 +124,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/getAllByName/{name}")
-    public List<ProductDTO> getAllByPrice(
+    public List<ProductDTO> getAllByName(
             @PathVariable("name") String name
     ) {
         return productService.findAllProductsByNameIgnoreCaseAndLikeTerm(name);

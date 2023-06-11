@@ -12,6 +12,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class GPUFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -34,6 +36,8 @@ public class GPUFilterDTO {
 
 
     public GPUFilterDTO(final GPUFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

@@ -29,7 +29,7 @@ public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY
                     "AND ((:minPrice IS NULL AND :maxPrice IS NULL) " +
                     "OR (p.price BETWEEN COALESCE(:minPrice, 0) AND COALESCE(:maxPrice, 10000)))"
     )
-    List<ENTITY> filterAllProductsBasedOnSpecification(
+    List<ENTITY> filterAllProductsBasedOnNameAndPrice(
             @Param("name") String name,
             @Param("minPrice") Double minPrice,
             @Param("maxPrice") Double maxPrice

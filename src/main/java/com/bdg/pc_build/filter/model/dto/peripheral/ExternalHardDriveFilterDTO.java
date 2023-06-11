@@ -11,6 +11,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class ExternalHardDriveFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -21,6 +23,8 @@ public class ExternalHardDriveFilterDTO {
     Integer maxTdp;
 
     public ExternalHardDriveFilterDTO(final ExternalHardDriveFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

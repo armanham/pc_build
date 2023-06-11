@@ -11,6 +11,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class MouseFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -26,6 +28,8 @@ public class MouseFilterDTO {
     String type;
 
     public MouseFilterDTO(final MouseFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

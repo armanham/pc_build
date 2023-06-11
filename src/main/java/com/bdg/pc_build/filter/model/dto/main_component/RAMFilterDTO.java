@@ -11,6 +11,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class RAMFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -27,6 +29,8 @@ public class RAMFilterDTO {
     Integer maxTdp;
 
     public RAMFilterDTO(final RAMFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

@@ -12,6 +12,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class CPUCoolerFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -24,6 +26,8 @@ public class CPUCoolerFilterDTO {
     SocketType socketType;
 
     public CPUCoolerFilterDTO(final CPUCoolerFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

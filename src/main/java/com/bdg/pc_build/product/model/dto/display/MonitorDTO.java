@@ -1,13 +1,12 @@
 package com.bdg.pc_build.product.model.dto.display;
 
+import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
+import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.model.request.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.logging.Level;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -30,13 +29,16 @@ public class MonitorDTO extends ProductDTO {
             final String screenType
     ) {
         super(name, price, purchasedPrice, count);
+        ValidationUtil.validatePositivityOfNumber(MonitorDTO.class, "screenSize", screenSize);
+        ValidationUtil.validatePositivityOfNumber(MonitorDTO.class, "refreshRate", refreshRate);
+        // ValidationUtil.validateNonBlankAndNonNullString(MonitorDTO.class, "screenType", screenType);
         this.screenSize = screenSize;
         this.refreshRate = refreshRate;
         this.screenType = screenType;
     }
 
     public static MonitorDTO initDTOFromEntity(final Monitor entity) {
-       return MonitorDTO.builder()
+        return MonitorDTO.builder()
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
@@ -47,7 +49,7 @@ public class MonitorDTO extends ProductDTO {
                 .build();
     }
 
-    public static MonitorDTO initDTOFromRequest(final ProductRequest request){
+    public static MonitorDTO initDTOFromRequest(final ProductRequest request) {
         return MonitorDTO.builder()
                 .name(request.name())
                 .price(Double.valueOf(request.price()))

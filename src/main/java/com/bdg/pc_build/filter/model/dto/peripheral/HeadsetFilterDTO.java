@@ -11,6 +11,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class HeadsetFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -24,6 +26,8 @@ public class HeadsetFilterDTO {
 
 
     public HeadsetFilterDTO(final HeadsetFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

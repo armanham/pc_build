@@ -6,10 +6,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
 public class MonitorFilterDTO {
+
+    String name;
 
     Double minPrice;
     Double maxPrice;
@@ -20,9 +26,11 @@ public class MonitorFilterDTO {
     Integer minRefreshRate;
     Integer maxRefreshRate;
 
-    String screenType;
+    String screenTypes;
 
     public MonitorFilterDTO(final MonitorFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }
@@ -41,6 +49,17 @@ public class MonitorFilterDTO {
         if (request.maxRefreshRate() != null && !request.maxRefreshRate().isBlank()) {
             this.maxRefreshRate = Integer.valueOf(request.maxRefreshRate());
         }
-        this.screenType = request.screenType();
+        if (request.screenTypes() != null && !request.screenTypes().isEmpty()) {
+            this.screenTypes = new String("IPS, VA");
+//                    request.screenTypes()
+//                    .stream()
+//                    .map(s -> "'" + s + "'")
+//                    .collect(Collectors.joining(", "))
+//                    .toLowerCase()
+            ;
+            System.out.println(screenTypes);
+        } else {
+            this.screenTypes = null;
+        }
     }
 }

@@ -1,8 +1,15 @@
 package com.bdg.pc_build.filter.model.request.display;
 
+import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public record MonitorFilterRequest(
+        @JsonProperty("name")
+        String name,
+
         @JsonProperty(value = "min_price")
         String minPrice,
         @JsonProperty(value = "max_price")
@@ -18,7 +25,7 @@ public record MonitorFilterRequest(
         @JsonProperty(value = "max_refresh_rate")
         String maxRefreshRate,
 
-        @JsonProperty(value = "screen_rate")
-        String screenType
+        @JsonProperty(value = "screen_types")
+        ArrayList<String> screenTypes
 ) {
 }

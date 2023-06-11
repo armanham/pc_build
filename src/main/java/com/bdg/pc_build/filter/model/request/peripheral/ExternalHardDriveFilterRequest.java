@@ -3,6 +3,9 @@ package com.bdg.pc_build.filter.model.request.peripheral;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record ExternalHardDriveFilterRequest(
+        @JsonProperty("name")
+        String name,
+
         @JsonProperty(value = "min_price")
         String minPrice,
         @JsonProperty(value = "max_price")

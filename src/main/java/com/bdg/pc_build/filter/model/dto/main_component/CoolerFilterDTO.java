@@ -11,6 +11,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class CoolerFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -18,6 +20,8 @@ public class CoolerFilterDTO {
     Integer maxTdp;
 
     public CoolerFilterDTO(final CoolerFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

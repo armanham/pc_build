@@ -3,6 +3,8 @@ package com.bdg.pc_build.filter.model.request.main_component;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record InternalHardDriveFilterRequest(
+        @JsonProperty("name")
+        String name,
 
         @JsonProperty(value = "min_price")
         String minPrice,

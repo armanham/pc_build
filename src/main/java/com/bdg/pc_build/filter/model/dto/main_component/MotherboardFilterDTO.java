@@ -15,6 +15,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class MotherboardFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -38,6 +40,8 @@ public class MotherboardFilterDTO {
     ATXType atxType;
 
     public MotherboardFilterDTO(final MotherboardFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

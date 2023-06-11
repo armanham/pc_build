@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public abstract class ProductDTO {
 
+
     String name;
     Double price;
     Double purchasedPrice;

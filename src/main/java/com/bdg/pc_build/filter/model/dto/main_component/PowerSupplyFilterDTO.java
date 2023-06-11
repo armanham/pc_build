@@ -12,6 +12,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class PowerSupplyFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -26,6 +28,8 @@ public class PowerSupplyFilterDTO {
     EfficiencyRating efficiencyRating;
 
     public PowerSupplyFilterDTO(final PowerSupplyFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

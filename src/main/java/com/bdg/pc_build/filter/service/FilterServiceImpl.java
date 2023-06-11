@@ -1,6 +1,7 @@
 package com.bdg.pc_build.filter.service;
 
 import com.bdg.pc_build.filter.model.dto.ProductFilterDTO;
+import com.bdg.pc_build.filter.model.dto.display.MonitorFilterDTO;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
@@ -15,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.StreamSupport.stream;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
@@ -42,56 +46,76 @@ public class FilterServiceImpl implements FilterService {
     MouseDAO mouseDAO;
     SpeakerDAO speakerDAO;
 
+    String[] strings = {"IPS", "Nano IPS", "VA"};
+    String joinedStrings = String.join(", ", strings);
+
 
     @Override
-    public List<ProductDTO> filterByRequest(final ProductFilterDTO dto) {
+    public List<ProductDTO> filterAllProductsByNameAndPrice(final ProductFilterDTO filterDTO) {
         List<ProductDTO> productDTOList = new ArrayList<>();
 
-        productDTOList.addAll(monitorDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(monitorDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(MonitorDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(caseDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(caseDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(CaseDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(coolerDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(coolerDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(CoolerDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(cpuDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(cpuDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(CPUDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(cpuCoolerDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(cpuCoolerDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(CPUCoolerDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(gpuDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(gpuDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(GPUDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(internalHardDriveDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(internalHardDriveDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(InternalHardDriveDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(motherboardDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(motherboardDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(MotherboardDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(powerSupplyDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(powerSupplyDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(PowerSupplyDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(ramDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(ramDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(RAMDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(externalHardDriveDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(externalHardDriveDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(ExternalHardDriveDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(headsetDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(headsetDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(HeadsetDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(keyboardDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(keyboardDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(KeyboardDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(mouseDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(mouseDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(MouseDTO::initDTOFromEntity).toList());
 
-        productDTOList.addAll(speakerDAO.filterAllProductsBasedOnSpecification(dto.getName(), dto.getMinPrice(), dto.getMaxPrice())
+        productDTOList.addAll(speakerDAO.filterAllProductsBasedOnNameAndPrice(filterDTO.getName(), filterDTO.getMinPrice(), filterDTO.getMaxPrice())
                 .stream().map(SpeakerDTO::initDTOFromEntity).toList());
 
         return productDTOList;
+    }
+
+    @Override
+    public List<MonitorDTO> filterAllMonitorsBasedOnSpecification(final MonitorFilterDTO filterDTO) {
+        return monitorDAO.filterAllMonitorsBasedOnSpecification(
+                        filterDTO.getName(),
+                        filterDTO.getMinPrice(),
+                        filterDTO.getMaxPrice(),
+                        filterDTO.getMinScreenSize(),
+                        filterDTO.getMaxPrice(),
+                        filterDTO.getMinRefreshRate(),
+                        filterDTO.getMaxRefreshRate(),
+                        filterDTO.getScreenTypes()
+                )
+                .stream()
+                .map(MonitorDTO::initDTOFromEntity)
+                .toList();
     }
 }

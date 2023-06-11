@@ -2,9 +2,8 @@ package com.bdg.pc_build.product.model.entity.display;
 
 import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -26,6 +25,7 @@ public class Monitor extends Product {
     @Column(name = "refresh_rate", nullable = false, updatable = false)
     Integer refreshRate;
 
+//    @Enumerated(EnumType.STRING)
     @Column(name = "screen_type", nullable = false, updatable = false)
     String screenType;
 

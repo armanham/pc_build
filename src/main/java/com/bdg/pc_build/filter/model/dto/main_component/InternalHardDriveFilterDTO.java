@@ -12,6 +12,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class InternalHardDriveFilterDTO {
 
+    String name;
+
     Double minPrice;
     Double maxPrice;
 
@@ -24,6 +26,8 @@ public class InternalHardDriveFilterDTO {
     InternalHardDriveInterfaceType type;
 
     public InternalHardDriveFilterDTO(final InternalHardDriveFilterRequest request) {
+        this.name = request.name();
+
         if (request.minPrice() != null && !request.minPrice().isBlank()) {
             this.minPrice = Double.valueOf(request.minPrice());
         }

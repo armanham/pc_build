@@ -1,9 +1,12 @@
 package com.bdg.pc_build.filter.controller;
 
 import com.bdg.pc_build.filter.model.dto.ProductFilterDTO;
+import com.bdg.pc_build.filter.model.dto.display.MonitorFilterDTO;
 import com.bdg.pc_build.filter.model.request.ProductFilterRequest;
+import com.bdg.pc_build.filter.model.request.display.MonitorFilterRequest;
 import com.bdg.pc_build.filter.service.FilterService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -26,8 +29,17 @@ public class FilterController {
     public List<ProductDTO> filterAllProductsByNameAndPrice(
             @RequestBody ProductFilterRequest request
     ) {
-        return filterService.filterByRequest(
+        return filterService.filterAllProductsByNameAndPrice(
                 new ProductFilterDTO(request)
+        );
+    }
+
+    @GetMapping(value = "/monitor")
+    public List<MonitorDTO> filterMonitorsBasedOnSpecification(
+            @RequestBody MonitorFilterRequest request
+    ) {
+        return filterService.filterAllMonitorsBasedOnSpecification(
+                new MonitorFilterDTO(request)
         );
     }
 

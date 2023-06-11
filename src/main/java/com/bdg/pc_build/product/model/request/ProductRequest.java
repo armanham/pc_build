@@ -139,10 +139,8 @@ public record ProductRequest(
         String dimension
 ) {
     public ProductRequest {
-        ValidationUtil.nullCheck(name);
-        ValidationUtil.nullCheck(purchasedPrice);
-        ValidationUtil.nullCheck(price);
-        ValidationUtil.nullCheck(count);
+            //TODO
+        ValidationUtil.validateNonBlankAndNonNullString(ProductRequest.class, "name", name);
         ValidationUtil.validatePositivityOfNumber(ProductRequest.class, "purchasedPrice", Double.valueOf(purchasedPrice));
         ValidationUtil.validatePositivityOfNumber(ProductRequest.class, "price", Double.valueOf(price));
         ValidationUtil.validatePositivityOfNumber(ProductRequest.class, "count", Double.valueOf(count));
