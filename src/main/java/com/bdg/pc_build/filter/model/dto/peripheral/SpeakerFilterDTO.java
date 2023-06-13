@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 public class SpeakerFilterDTO {
 
-    String name;
+    final String name;
 
     Double minPrice;
     Double maxPrice;
@@ -21,9 +21,9 @@ public class SpeakerFilterDTO {
     Double minCableLength;
     Double maxCableLength;
 
-    String dimension;
+    final String dimension;
 
-    String powerSource;
+    final String powerSource;
 
     public SpeakerFilterDTO(final SpeakerFilterRequest request) {
         this.name = request.name();
@@ -44,12 +44,20 @@ public class SpeakerFilterDTO {
         if (request.maxFrequency() != null && !request.maxFrequency().isBlank()) {
             this.maxFrequency = Integer.valueOf(request.maxFrequency());
         }
+        if (this.minFrequency != null && this.maxFrequency != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minFrequency, maxFrequency);
+        }
+
         if (request.minCableLength() != null && !request.minCableLength().isBlank()) {
             this.minCableLength = Double.valueOf(request.minCableLength());
         }
         if (request.maxCableLength() != null && !request.maxCableLength().isBlank()) {
             this.maxCableLength = Double.valueOf(request.maxCableLength());
         }
+        if (this.minCableLength != null && this.maxCableLength != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minCableLength, maxCableLength);
+        }
+
         this.dimension = request.dimension();
         this.powerSource = request.powerSource();
     }

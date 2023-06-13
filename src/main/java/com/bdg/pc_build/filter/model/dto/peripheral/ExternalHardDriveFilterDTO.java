@@ -40,11 +40,18 @@ public class ExternalHardDriveFilterDTO {
         if (request.maxCapacity() != null && !request.maxCapacity().isBlank()) {
             this.maxCapacity = Integer.valueOf(request.maxCapacity());
         }
+        if (this.minCapacity != null && this.maxCapacity != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minCapacity, maxCapacity);
+        }
+
         if (request.minTdp() != null && !request.minTdp().isBlank()) {
             this.minTdp = Integer.valueOf(request.minTdp());
         }
         if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
             this.maxTdp = Integer.valueOf(request.maxTdp());
+        }
+        if (this.minTdp != null && this.maxTdp != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }
     }
 }

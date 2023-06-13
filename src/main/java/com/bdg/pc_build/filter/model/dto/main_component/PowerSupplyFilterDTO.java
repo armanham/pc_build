@@ -45,12 +45,20 @@ public class PowerSupplyFilterDTO {
         if (request.maxWattage() != null && !request.maxWattage().isBlank()) {
             this.maxWattage = Integer.valueOf(request.maxWattage());
         }
+        if (this.minWattage != null && this.maxWattage != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minWattage, maxWattage);
+        }
+
         if (request.minTdp() != null && !request.minTdp().isBlank()) {
             this.minTdp = Integer.valueOf(request.minTdp());
         }
         if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
             this.maxTdp = Integer.valueOf(request.maxTdp());
         }
+        if (this.minTdp != null && this.maxTdp != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
+        }
+
         if (request.modular() != null && !request.modular().isBlank()) {
             this.modular = Boolean.valueOf(request.modular());
         }

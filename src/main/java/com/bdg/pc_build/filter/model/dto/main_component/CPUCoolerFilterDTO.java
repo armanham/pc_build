@@ -53,6 +53,9 @@ public class CPUCoolerFilterDTO {
         if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
             this.maxTdp = Integer.valueOf(request.maxTdp());
         }
+        if (this.minTdp != null && this.maxTdp != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
+        }
         //TODO SOCKETTYPE
     }
 }

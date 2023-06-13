@@ -207,5 +207,4 @@ public interface ProductService {
     MouseDTO reduceMouseCountByName(String name, Integer count);
 
     SpeakerDTO reduceSpeakerCountByName(String name, Integer count);
-
 }

@@ -520,6 +520,7 @@ public class ProductServiceImpl implements ProductService {
                 .toList();
     }
 
+
     @Override
     public MonitorDTO updateMonitorPriceByName(final String name, final Double newPrice) {
         return MonitorDTO.initDTOFromEntity(updatePriceByName(name, newPrice, monitorDAO));

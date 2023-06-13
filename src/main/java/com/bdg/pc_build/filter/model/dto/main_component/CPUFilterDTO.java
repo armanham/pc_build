@@ -81,6 +81,9 @@ public class CPUFilterDTO {
         if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
             this.maxTdp = Integer.valueOf(request.maxTdp());
         }
+        if (this.minTdp != null && this.maxTdp != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
+        }
         this.integratedGraphics = request.integratedGraphics();
         //TODO SOCKETTYPE
     }

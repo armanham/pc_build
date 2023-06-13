@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 public class MouseFilterDTO {
 
-    String name;
+    final String name;
 
     Double minPrice;
     Double maxPrice;
@@ -24,7 +24,7 @@ public class MouseFilterDTO {
     Double minWeight;
     Double maxWeight;
 
-    String type;
+    final String type;
 
     public MouseFilterDTO(final MouseFilterRequest request) {
         this.name = request.name();
@@ -45,18 +45,30 @@ public class MouseFilterDTO {
         if (request.maxResolution() != null && !request.maxResolution().isBlank()) {
             this.maxResolution = Integer.valueOf(request.maxResolution());
         }
+        if (this.minResolution != null && this.maxResolution != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minResolution, maxResolution);
+        }
+
         if (request.minCableLength() != null && !request.minCableLength().isBlank()) {
             this.minCableLength = Double.valueOf(request.minCableLength());
         }
         if (request.maxCableLength() != null && !request.maxCableLength().isBlank()) {
             this.maxCableLength = Double.valueOf(request.maxCableLength());
         }
+        if (this.minCableLength != null && this.maxCableLength != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minCableLength, maxCableLength);
+        }
+
         if (request.minWeight() != null && !request.minWeight().isBlank()) {
             this.minWeight = Double.valueOf(request.minWeight());
         }
         if (request.maxWeight() != null && !request.maxWeight().isBlank()) {
             this.maxWeight = Double.valueOf(request.maxWeight());
         }
+        if (this.minWeight != null && this.maxWeight != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minWeight, maxWeight);
+        }
+
         this.type = request.type();
     }
 }

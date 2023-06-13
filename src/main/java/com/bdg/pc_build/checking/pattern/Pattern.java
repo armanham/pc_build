@@ -16,4 +16,8 @@ public final class Pattern {
 
     public static final String WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE =
             "field must be a non negative integer number: ";
+
+    public static final String BOOLEAN_PATTERN = "\\s*true|false\\s*";
+
+    public static final String WRONG_BOOLEAN_PATTERN = "field must be either 'true' or 'false'";
 }

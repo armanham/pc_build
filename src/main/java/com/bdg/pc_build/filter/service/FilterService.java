@@ -12,4 +12,6 @@ public interface FilterService {
     List<ProductDTO> filterAllProductsByNameAndPrice(ProductFilterDTO filterDTO);
 
     List<MonitorDTO> filterAllMonitorsBasedOnSpecification(MonitorFilterDTO filterDTO);
+
+    List<ProductDTO> findAllBasedOnTerm(String term);
 }

@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 public class KeyboardFilterDTO {
 
-    String name;
+    final String name;
 
     Double minPrice;
     Double maxPrice;
@@ -44,12 +44,20 @@ public class KeyboardFilterDTO {
         if (request.maxCableLength() != null && !request.maxCableLength().isBlank()) {
             this.maxCableLength = Double.valueOf(request.maxCableLength());
         }
+        if (this.minCableLength != null && this.maxCableLength != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minCableLength, maxCableLength);
+        }
+
         if (request.minWeight() != null && !request.minWeight().isBlank()) {
             this.minWeight = Double.valueOf(request.minWeight());
         }
         if (request.maxWeight() != null && !request.maxWeight().isBlank()) {
             this.maxWeight = Double.valueOf(request.maxWeight());
         }
+        if (this.minWeight != null && this.maxWeight != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minWeight, maxWeight);
+        }
+
         this.keyboardClass = request.keyboardClass();
         this.dimension = request.dimension();
     }

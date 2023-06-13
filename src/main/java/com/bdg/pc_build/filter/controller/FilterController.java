@@ -40,6 +40,13 @@ public class FilterController {
         );
     }
 
+    @GetMapping(value = "/{term}")
+    public List<ProductDTO> filterAllByTerm(
+            @PathVariable("term") String term
+    ) {
+        return filterService.findAllBasedOnTerm(term);
+    }
+
 //    @GetMapping(value = "/bytdp")
 //    public List<ProductDTO> filterAllProductsByTdp(
 //            @RequestBody FilterRequestForProduct filterRequestForProduct

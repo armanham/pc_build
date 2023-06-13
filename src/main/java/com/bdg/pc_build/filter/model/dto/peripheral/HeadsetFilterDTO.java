@@ -43,12 +43,20 @@ public class HeadsetFilterDTO {
         if (request.maxFrequency() != null && !request.maxFrequency().isBlank()) {
             this.maxFrequency = Integer.valueOf(request.maxFrequency());
         }
+        if (this.minFrequency != null && this.maxFrequency != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minFrequency, maxFrequency);
+        }
+
         if (request.minCableLength() != null && !request.minCableLength().isBlank()) {
             this.minCableLength = Double.valueOf(request.minCableLength());
         }
         if (request.maxCableLength() != null && !request.maxCableLength().isBlank()) {
             this.maxCableLength = Double.valueOf(request.maxCableLength());
         }
+        if (this.minCableLength != null && this.maxCableLength != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minCableLength, maxCableLength);
+        }
+
         this.connectivity = request.connectivity();
     }
 }

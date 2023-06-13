@@ -57,18 +57,30 @@ public class MotherboardFilterDTO {
         if (request.maxMemory() != null && !request.maxMemory().isBlank()) {
             this.maxMemory = Integer.valueOf(request.maxMemory());
         }
+        if (this.minMemory != null && this.maxMemory != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(maxMemory, maxMemory);
+        }
+
         if (request.minMemorySlots() != null && !request.minMemorySlots().isBlank()) {
             this.minMemorySlots = Integer.valueOf(request.minMemorySlots());
         }
         if (request.maxMemorySlots() != null && !request.maxMemorySlots().isBlank()) {
             this.maxMemorySlots = Integer.valueOf(request.maxMemorySlots());
         }
+        if (this.minMemorySlots != null && this.maxMemorySlots != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minMemorySlots, maxMemorySlots);
+        }
+
         if (request.minTdp() != null && !request.minTdp().isBlank()) {
             this.minTdp = Integer.valueOf(request.minTdp());
         }
         if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
             this.maxTdp = Integer.valueOf(request.maxTdp());
         }
+        if (this.minTdp != null && this.maxTdp != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
+        }
+
         this.internalConnections = request.internalConnections();
         //TODO DDRType memoryType;
         //TODO GPUInterfaceType gpuInterfaceType;
