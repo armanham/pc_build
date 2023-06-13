@@ -50,12 +50,12 @@ public class MonitorFilterDTO {
             this.maxRefreshRate = Integer.valueOf(request.maxRefreshRate());
         }
         if (request.screenTypes() != null && !request.screenTypes().isEmpty()) {
-            this.screenTypes = new String("IPS, VA");
-//                    request.screenTypes()
-//                    .stream()
-//                    .map(s -> "'" + s + "'")
-//                    .collect(Collectors.joining(", "))
-//                    .toLowerCase()
+            this.screenTypes =
+                    request.screenTypes()
+                    .stream()
+                    .map(s -> "'" + s + "'")
+                    .collect(Collectors.joining(","))
+                    .toLowerCase()
             ;
             System.out.println(screenTypes);
         } else {

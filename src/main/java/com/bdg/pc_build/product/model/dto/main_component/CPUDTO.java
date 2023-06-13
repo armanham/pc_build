@@ -3,7 +3,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPU;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
-import com.bdg.pc_build.product.model.request.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -23,7 +23,7 @@ public class CPUDTO extends ProductDTO {
     Double boostClock;
     Integer tdp;
     String integratedGraphics;
-    SocketType socket;
+    SocketType socketType;
 
     @Builder
 
@@ -37,7 +37,7 @@ public class CPUDTO extends ProductDTO {
             final Double boostClock,
             final Integer tdp,
             final String integratedGraphics,
-            final SocketType socket
+            final SocketType socketType
     ) {
         super(name, price, purchasedPrice, count);
         this.coreCount = coreCount;
@@ -45,7 +45,7 @@ public class CPUDTO extends ProductDTO {
         this.boostClock = boostClock;
         this.tdp = tdp;
         this.integratedGraphics = integratedGraphics;
-        this.socket = socket;
+        this.socketType = socketType;
     }
 
     public static CPUDTO initDTOFromEntity(final CPU entity) {
@@ -59,7 +59,7 @@ public class CPUDTO extends ProductDTO {
                 .boostClock(entity.getBoostClock())
                 .tdp(entity.getTdp())
                 .integratedGraphics(entity.getIntegratedGraphics())
-                .socket(entity.getSocketType())
+                .socketType(entity.getSocketType())
                 .build();
     }
 
@@ -74,7 +74,7 @@ public class CPUDTO extends ProductDTO {
                 .boostClock(Double.valueOf(request.boostClock()))
                 .tdp(Integer.valueOf(request.tdp()))
                 .integratedGraphics(request.integratedGraphics())
-                .socket(SocketType.valueOf(request.socketType()))
+                .socketType(SocketType.valueOf(request.socketType()))
                 .build();
     }
 }

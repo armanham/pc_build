@@ -4,7 +4,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPUCooler;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
-import com.bdg.pc_build.product.model.request.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -53,7 +53,7 @@ public class CPUCoolerDTO extends ProductDTO {
                 .purchasedPrice(Double.valueOf(request.purchasedPrice()))
                 .count(Integer.valueOf(request.purchasedPrice()))
                 .fanRPM(Integer.valueOf(request.fanRpm()))
-                .socketType(SocketType.valueOf(request.socket()))
+                .socketType(SocketType.valueOf(request.socketType()))
                 .tdp(Integer.valueOf(request.tdp()))
                 .build();
     }

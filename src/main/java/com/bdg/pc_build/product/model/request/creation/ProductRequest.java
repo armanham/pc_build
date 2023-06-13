@@ -1,26 +1,48 @@
-package com.bdg.pc_build.product.model.request;
+package com.bdg.pc_build.product.model.request.creation;
 
-import com.bdg.pc_build.checking.ValidationUtil;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import org.springframework.validation.annotation.Validated;
 
+import static com.bdg.pc_build.checking.pattern.Pattern.*;
+
+//@Valid
 public record ProductRequest(
 
-        @JsonProperty(value = "name")
+        @NotBlank(message = "'name' field can not be blank")
+        @JsonProperty(value = "name", required = true)
         String name,
 
-        @JsonProperty(value = "price")
+        @NotBlank(message = "'price' field can not be blank")
+        @Pattern(
+                regexp = FLOATING_POINT_NUMBER_PATTERN,
+                message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
+        )
+        @JsonProperty(value = "price", required = true)
         String price,
 
-        @JsonProperty(value = "purchased_price")
+        @NotBlank(message = "'purchased_price' field can not be blank")
+        @Pattern(
+                regexp = FLOATING_POINT_NUMBER_PATTERN,
+                message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
+        )
+        @JsonProperty(value = "purchased_price", required = true)
         String purchasedPrice,
 
-        @JsonProperty(value = "count")
+        @NotBlank(message = "'count' field can not be blank")
+        @Pattern(
+                regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
+                message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
+        )
+        @JsonProperty(value = "count", required = true)
         String count,
 
         @JsonProperty(value = "tdp")
         String tdp,
-        @JsonProperty(value = "socket")
-        String socket,
+        @JsonProperty(value = "socket_type")
+        String socketType,
 
 //Display
 
@@ -46,7 +68,7 @@ public record ProductRequest(
         @JsonProperty(value = "pre_installed_fans")
         String preInstalledFans,
 
-        @JsonProperty(value = "is_atx")
+        @JsonProperty(value = "tower_type")
         String towerType,
 
 
@@ -64,18 +86,16 @@ public record ProductRequest(
         @JsonProperty(value = "integrated_graphics")
         String integratedGraphics,
 
-        @JsonProperty(value = "socket_type")
-        String socketType,
 
-        //External Hard Drive
-        @JsonProperty(value = "type")
-        String type,
+        //Internal Hard Drive
+        @JsonProperty(value = "internal_hard_drive_type")
+        String internalHardDriveInterfaceType,
         @JsonProperty(value = "capacity")
         String capacity,
 
 
         //GPU
-        @JsonProperty(value = "gpu_interface")
+        @JsonProperty(value = "gpu_interface_type")
         String gpuInterfaceType,
         @JsonProperty(value = "memory")
         String memory,
@@ -105,10 +125,10 @@ public record ProductRequest(
         //RAM
         @JsonProperty(value = "speed")
         String speed,
-        @JsonProperty(value = "count_of_RAM")
-        String countOfRAM,
-        @JsonProperty(value = "GB_of_RAM")
-        String GBOfRAM,
+        @JsonProperty(value = "count_of_ram")
+        String countOfRam,
+        @JsonProperty(value = "gb_of_ram")
+        String gbOfRam,
 
 
 //peripheral
@@ -123,6 +143,8 @@ public record ProductRequest(
         String connectivity,
 
         //Mouse
+        @JsonProperty(value = "mouse_type")
+        String mouseType,
         @JsonProperty(value = "max_resolution")
         String maxResolution,
         @JsonProperty(value = "weight")
@@ -138,11 +160,4 @@ public record ProductRequest(
         @JsonProperty(value = "dimension")
         String dimension
 ) {
-    public ProductRequest {
-            //TODO
-        ValidationUtil.validateNonBlankAndNonNullString(ProductRequest.class, "name", name);
-        ValidationUtil.validatePositivityOfNumber(ProductRequest.class, "purchasedPrice", Double.valueOf(purchasedPrice));
-        ValidationUtil.validatePositivityOfNumber(ProductRequest.class, "price", Double.valueOf(price));
-        ValidationUtil.validatePositivityOfNumber(ProductRequest.class, "count", Double.valueOf(count));
-    }
 }

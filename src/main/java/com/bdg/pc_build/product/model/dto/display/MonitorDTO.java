@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.dto.display;
 
-import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
 import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
@@ -29,9 +28,6 @@ public class MonitorDTO extends ProductDTO {
             final String screenType
     ) {
         super(name, price, purchasedPrice, count);
-        ValidationUtil.validatePositivityOfNumber(MonitorDTO.class, "screenSize", screenSize);
-        ValidationUtil.validatePositivityOfNumber(MonitorDTO.class, "refreshRate", refreshRate);
-        // ValidationUtil.validateNonBlankAndNonNullString(MonitorDTO.class, "screenType", screenType);
         this.screenSize = screenSize;
         this.refreshRate = refreshRate;
         this.screenType = screenType;

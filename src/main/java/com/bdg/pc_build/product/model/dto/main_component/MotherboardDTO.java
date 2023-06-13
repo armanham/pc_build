@@ -6,7 +6,7 @@ import com.bdg.pc_build.product.model.enumerations.ATXType;
 import com.bdg.pc_build.product.model.enumerations.DDRType;
 import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
-import com.bdg.pc_build.product.model.request.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

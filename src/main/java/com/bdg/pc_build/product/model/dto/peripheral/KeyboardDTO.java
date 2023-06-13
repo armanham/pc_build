@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
-import com.bdg.pc_build.product.model.request.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.ProductRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
