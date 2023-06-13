@@ -36,8 +36,8 @@ public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY
     );
 
     @Query("select min(p.price) from #{#entityName} p")
-    Double getMinPriceFromAllProduct();
+    Double getMinPriceFromAllProducts();
 
     @Query("select max(p.price) from #{#entityName} p")
-    Double getMaxPriceFromAllProduct();
+    Double getMaxPriceFromAllProducts();
 }

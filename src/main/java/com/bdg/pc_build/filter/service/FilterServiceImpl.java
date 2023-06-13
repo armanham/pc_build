@@ -3,10 +3,8 @@ package com.bdg.pc_build.filter.service;
 import com.bdg.pc_build.filter.model.dto.ProductFilterDTO;
 import com.bdg.pc_build.filter.model.dto.peripheral.MonitorFilterDTO;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
-import com.bdg.pc_build.product.repository.peripheral.MonitorDAO;
 import com.bdg.pc_build.product.repository.main_component.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import lombok.AccessLevel;
@@ -22,9 +20,6 @@ import java.util.List;
 @Service
 public class FilterServiceImpl implements FilterService {
 
-    //Display repositories
-    MonitorDAO monitorDAO;
-
     //Main component repositories
     CaseDAO caseDAO;
     CoolerDAO coolerDAO;
@@ -38,6 +33,7 @@ public class FilterServiceImpl implements FilterService {
 
     //Peripheral repositories
     ExternalHardDriveDAO externalHardDriveDAO;
+    MonitorDAO monitorDAO;
     HeadsetDAO headsetDAO;
     KeyboardDAO keyboardDAO;
     MouseDAO mouseDAO;
@@ -68,14 +64,52 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<MonitorDTO> filterAllMonitorsBasedOnSpecification(final MonitorFilterDTO filterDTO) {
+        //!DO IT FOR ALL ENTITIES
+        //*MIANGAMIC null-i depq qnnarkel
+        Double minPrice;
+        Double maxPrice;
+        if (filterDTO.getMinPrice() != null) {
+            minPrice = filterDTO.getMinPrice();
+        } else {
+            minPrice = monitorDAO.getMinPriceFromAllProducts();
+        }
+        if (filterDTO.getMaxPrice() != null) {
+            maxPrice = filterDTO.getMaxPrice();
+        } else {
+            maxPrice = monitorDAO.getMaxPriceFromAllProducts();
+        }
+
+        Double minScreenSize;
+        Double maxScreenSize;
+        if (filterDTO.getMinScreenSize() != null) {
+            minScreenSize = filterDTO.getMinScreenSize();
+        } else {
+            minScreenSize = monitorDAO.getMinScreenSizeOfMonitors();
+        }
+        if (filterDTO.getMaxScreenSize() != null) {
+            maxScreenSize = filterDTO.getMaxScreenSize();
+        } else {
+            maxScreenSize = monitorDAO.getMaxScreenSizeOfMonitors();
+        }
+
+        Integer minRefreshRate;
+        Integer maxRefreshRate;
+        if (filterDTO.getMinRefreshRate() != null) {
+            minRefreshRate = filterDTO.getMinRefreshRate();
+        } else {
+            minRefreshRate = monitorDAO.getMinRefreshRateOfMonitors();
+        }
+        if (filterDTO.getMaxRefreshRate() != null) {
+            maxRefreshRate = filterDTO.getMaxRefreshRate();
+        } else {
+            maxRefreshRate = monitorDAO.getMaxRefreshRateOfMonitors();
+        }
+
         return monitorDAO.filterAllMonitorsBasedOnSpecification(
                         filterDTO.getName(),
-                        filterDTO.getMinPrice(),
-                        filterDTO.getMaxPrice(),
-                        filterDTO.getMinScreenSize(),
-                        filterDTO.getMaxPrice(),
-                        filterDTO.getMinRefreshRate(),
-                        filterDTO.getMaxRefreshRate(),
+                        minPrice, maxPrice,
+                        minScreenSize, maxScreenSize,
+                        minRefreshRate, maxRefreshRate,
                         filterDTO.getScreenTypes()
                 )
                 .stream()
@@ -213,10 +247,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<MonitorDTO> findAllMonitorsByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = monitorDAO.getMinPriceFromAllProduct();
+            minPrice = monitorDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = monitorDAO.getMaxPriceFromAllProduct();
+            maxPrice = monitorDAO.getMaxPriceFromAllProducts();
         }
         return monitorDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -226,10 +260,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<CaseDTO> findAllCasesByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = caseDAO.getMinPriceFromAllProduct();
+            minPrice = caseDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = caseDAO.getMaxPriceFromAllProduct();
+            maxPrice = caseDAO.getMaxPriceFromAllProducts();
         }
         return caseDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -239,10 +273,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<CoolerDTO> findAllCoolersByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = coolerDAO.getMinPriceFromAllProduct();
+            minPrice = coolerDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = coolerDAO.getMaxPriceFromAllProduct();
+            maxPrice = coolerDAO.getMaxPriceFromAllProducts();
         }
         return coolerDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -252,10 +286,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<CPUDTO> findAllCPUsByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = cpuDAO.getMinPriceFromAllProduct();
+            minPrice = cpuDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = cpuDAO.getMaxPriceFromAllProduct();
+            maxPrice = cpuDAO.getMaxPriceFromAllProducts();
         }
         return cpuDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -265,10 +299,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<CPUCoolerDTO> findAllCPUCoolersByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = cpuCoolerDAO.getMinPriceFromAllProduct();
+            minPrice = cpuCoolerDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = cpuCoolerDAO.getMaxPriceFromAllProduct();
+            maxPrice = cpuCoolerDAO.getMaxPriceFromAllProducts();
         }
         return cpuCoolerDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -278,10 +312,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<GPUDTO> findAllGPUsByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = gpuDAO.getMinPriceFromAllProduct();
+            minPrice = gpuDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = gpuDAO.getMaxPriceFromAllProduct();
+            maxPrice = gpuDAO.getMaxPriceFromAllProducts();
         }
         return gpuDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -291,10 +325,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<InternalHardDriveDTO> findAllInternalHardDrivesByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = internalHardDriveDAO.getMinPriceFromAllProduct();
+            minPrice = internalHardDriveDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = internalHardDriveDAO.getMaxPriceFromAllProduct();
+            maxPrice = internalHardDriveDAO.getMaxPriceFromAllProducts();
         }
         return internalHardDriveDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -304,10 +338,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<MotherboardDTO> findAllMotherboardsByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = motherboardDAO.getMinPriceFromAllProduct();
+            minPrice = motherboardDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = motherboardDAO.getMaxPriceFromAllProduct();
+            maxPrice = motherboardDAO.getMaxPriceFromAllProducts();
         }
         return motherboardDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -317,10 +351,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<PowerSupplyDTO> findAllPowerSuppliesByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = powerSupplyDAO.getMinPriceFromAllProduct();
+            minPrice = powerSupplyDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = powerSupplyDAO.getMaxPriceFromAllProduct();
+            maxPrice = powerSupplyDAO.getMaxPriceFromAllProducts();
         }
         return powerSupplyDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -330,10 +364,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<RAMDTO> findAllRamsByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = ramDAO.getMinPriceFromAllProduct();
+            minPrice = ramDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = ramDAO.getMaxPriceFromAllProduct();
+            maxPrice = ramDAO.getMaxPriceFromAllProducts();
         }
         return ramDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -343,10 +377,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<ExternalHardDriveDTO> findAllExternalHardDrivesByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = externalHardDriveDAO.getMinPriceFromAllProduct();
+            minPrice = externalHardDriveDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = externalHardDriveDAO.getMaxPriceFromAllProduct();
+            maxPrice = externalHardDriveDAO.getMaxPriceFromAllProducts();
         }
         return externalHardDriveDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -356,10 +390,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<HeadsetDTO> findAllHeadsetsByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = headsetDAO.getMinPriceFromAllProduct();
+            minPrice = headsetDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = headsetDAO.getMaxPriceFromAllProduct();
+            maxPrice = headsetDAO.getMaxPriceFromAllProducts();
         }
         return headsetDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -369,10 +403,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<KeyboardDTO> findAllKeyboardsByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = keyboardDAO.getMinPriceFromAllProduct();
+            minPrice = keyboardDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = keyboardDAO.getMaxPriceFromAllProduct();
+            maxPrice = keyboardDAO.getMaxPriceFromAllProducts();
         }
         return keyboardDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -382,10 +416,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<MouseDTO> findAllMousesByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = mouseDAO.getMinPriceFromAllProduct();
+            minPrice = mouseDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = mouseDAO.getMaxPriceFromAllProduct();
+            maxPrice = mouseDAO.getMaxPriceFromAllProducts();
         }
         return mouseDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
@@ -395,10 +429,10 @@ public class FilterServiceImpl implements FilterService {
 
     private List<SpeakerDTO> findAllSpeakersByNameAndPrice(String name, Double minPrice, Double maxPrice) {
         if (minPrice == null) {
-            minPrice = speakerDAO.getMinPriceFromAllProduct();
+            minPrice = speakerDAO.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            maxPrice = speakerDAO.getMaxPriceFromAllProduct();
+            maxPrice = speakerDAO.getMaxPriceFromAllProducts();
         }
         return speakerDAO.filterAllProductsBasedOnNameAndPrice(name, minPrice, maxPrice)
                 .stream()
