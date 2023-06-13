@@ -18,9 +18,9 @@ import java.util.Objects;
 @Table(name = "internal_hard_drive")
 public class InternalHardDrive extends Product {
 
-    @Column(name = "type", nullable = false, updatable = false)
+    @Column(name = "internal_hard _drive_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    InternalHardDriveInterfaceType type;
+    InternalHardDriveInterfaceType internalHardDriveInterfaceType;
 
     @Column(name = "capacity", nullable = false, updatable = false)
     Integer capacity;
@@ -30,7 +30,7 @@ public class InternalHardDrive extends Product {
 
     public InternalHardDrive(final InternalHardDriveDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
-        this.type = dto.getType();
+        this.internalHardDriveInterfaceType = dto.getInternalHardDriveInterfaceType();
         this.capacity = dto.getCapacity();
         this.tdp = dto.getTdp();
     }
@@ -40,13 +40,13 @@ public class InternalHardDrive extends Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InternalHardDrive that = (InternalHardDrive) o;
-        return Objects.equals(type, that.type)
+        return Objects.equals(internalHardDriveInterfaceType, that.internalHardDriveInterfaceType)
                 && Objects.equals(capacity, that.capacity)
                 && Objects.equals(tdp, that.tdp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, capacity, tdp);
+        return Objects.hash(internalHardDriveInterfaceType, capacity, tdp);
     }
 }

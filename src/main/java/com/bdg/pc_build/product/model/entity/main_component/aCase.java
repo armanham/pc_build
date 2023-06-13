@@ -27,7 +27,7 @@ public class aCase extends Product {
     @Column(name = "pre_installed_fans", nullable = false, updatable = false)
     Integer preInstalledFans;
 
-    @Column(name = "is_ATX", nullable = false, updatable = false)
+    @Column(name = "tower_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     TowerType towerType;
 

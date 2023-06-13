@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class InternalHardDriveDTO extends ProductDTO {
 
-    InternalHardDriveInterfaceType type;
+    InternalHardDriveInterfaceType internalHardDriveInterfaceType;
     Integer capacity;
     Integer tdp;
 
@@ -23,12 +23,12 @@ public class InternalHardDriveDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final InternalHardDriveInterfaceType type,
+            final InternalHardDriveInterfaceType internalHardDriveInterfaceType,
             final Integer capacity,
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.type = type;
+        this.internalHardDriveInterfaceType = internalHardDriveInterfaceType;
         this.capacity = capacity;
         this.tdp = tdp;
     }
@@ -39,7 +39,7 @@ public class InternalHardDriveDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .type(entity.getType())
+                .internalHardDriveInterfaceType(entity.getInternalHardDriveInterfaceType())
                 .capacity(entity.getCapacity())
                 .tdp(entity.getTdp())
                 .build();
@@ -51,7 +51,7 @@ public class InternalHardDriveDTO extends ProductDTO {
                 .price(Double.valueOf(request.price()))
                 .purchasedPrice(Double.valueOf(request.purchasedPrice()))
                 .count(Integer.valueOf(request.count()))
-                .type(InternalHardDriveInterfaceType.valueOf(request.type()))
+                .internalHardDriveInterfaceType(InternalHardDriveInterfaceType.valueOf(request.internalHardDriveInterfaceType()))
                 .capacity(Integer.valueOf(request.capacity()))
                 .tdp(Integer.valueOf(request.tdp()))
                 .build();

@@ -21,7 +21,7 @@ public class CPUCooler extends Product {
     @Column(name = "fan_RPM", nullable = false, updatable = false)
     Integer fanRPM;
 
-    @Column(name = "socket", nullable = false, updatable = false)
+    @Column(name = "socket_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     SocketType socketType;
 

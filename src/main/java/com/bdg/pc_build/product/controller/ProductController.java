@@ -8,6 +8,7 @@ import com.bdg.pc_build.product.model.request.BetweenPricesRequest;
 import com.bdg.pc_build.product.model.request.EditPriceRequest;
 import com.bdg.pc_build.product.model.request.creation.ProductRequest;
 import com.bdg.pc_build.product.model.request.ReduceCountRequest;
+import com.bdg.pc_build.product.model.request.creation.MonitorCreationRequest;
 import com.bdg.pc_build.product.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;

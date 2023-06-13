@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class MouseDTO extends ProductDTO {
 
-    String type;
+    String mouseType;
     Integer maxResolution;
     Double cableLength;
     Double weight;
@@ -23,13 +23,13 @@ public class MouseDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final String type,
+            final String mouseType,
             final Integer maxResolution,
             final Double cableLength,
             final Double weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.type = type;
+        this.mouseType = mouseType;
         this.maxResolution = maxResolution;
         this.cableLength = cableLength;
         this.weight = weight;
@@ -41,7 +41,7 @@ public class MouseDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .type(entity.getType())
+                .mouseType(entity.getMouseType())
                 .maxResolution(entity.getMaxResolution())
                 .cableLength(entity.getCableLength())
                 .weight(entity.getWeight())
@@ -54,7 +54,7 @@ public class MouseDTO extends ProductDTO {
                 .price(Double.valueOf(request.price()))
                 .purchasedPrice(Double.valueOf(request.purchasedPrice()))
                 .count(Integer.valueOf(request.count()))
-                .type(request.type())
+                .mouseType(request.mouseType())
                 .maxResolution(Integer.valueOf(request.maxResolution()))
                 .cableLength(Double.valueOf(request.cableLength()))
                 .weight(Double.valueOf(request.weight()))

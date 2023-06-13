@@ -28,10 +28,10 @@ public class RAM extends Product {
     @Column(name = "speed", nullable = false, updatable = false)
     Integer speed;
 
-    @Column(name = "count_of_RAMs", nullable = false, updatable = false)
+    @Column(name = "count_of_ram", nullable = false, updatable = false)
     Integer countOfRAM;
 
-    @Column(name = "GB_of_RAM", nullable = false, updatable = false)
+    @Column(name = "gb_of_ram", nullable = false, updatable = false)
     Double gbOfRAM;
 
     @Column(name = "tdp", nullable = false, updatable = false)

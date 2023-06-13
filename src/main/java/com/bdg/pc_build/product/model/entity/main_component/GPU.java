@@ -18,7 +18,7 @@ import java.util.Objects;
 @Table(name = "gpu")
 public class GPU extends Product {
 
-    @Column(name = "chipset", nullable = false, updatable = false)
+    @Column(name = "gpu_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     GPUInterfaceType gpuInterfaceType;
 

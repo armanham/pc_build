@@ -61,8 +61,8 @@ public class RAMDTO extends ProductDTO {
                 .purchasedPrice(Double.valueOf(request.purchasedPrice()))
                 .count(Integer.valueOf(request.count()))
                 .speed(Integer.valueOf(request.speed()))
-                .countOfRam(Integer.valueOf(request.countOfRAM()))
-                .gbOfRam(Double.valueOf(request.GBOfRAM()))
+                .countOfRam(Integer.valueOf(request.countOfRam()))
+                .gbOfRam(Double.valueOf(request.gbOfRam()))
                 .tdp(Integer.valueOf(request.tdp()))
                 .build();
     }

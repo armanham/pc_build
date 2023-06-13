@@ -2,8 +2,7 @@ package com.bdg.pc_build.product.model.dto.display;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.display.Monitor;
-import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
-import com.bdg.pc_build.product.model.request.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.MonitorCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -45,15 +44,15 @@ public class MonitorDTO extends ProductDTO {
                 .build();
     }
 
-    public static MonitorDTO initDTOFromRequest(final ProductRequest request) {
+    public static MonitorDTO initDTOFromRequest(final MonitorCreationRequest request) {
         return MonitorDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .screenType(request.screenType())
-                .refreshRate(Integer.valueOf(request.refreshRate()))
-                .screenSize(Double.valueOf(request.screenSize()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .screenType(request.getScreenType())
+                .refreshRate(Integer.valueOf(request.getRefreshRate()))
+                .screenSize(Double.valueOf(request.getScreenSize()))
                 .build();
     }
 }

@@ -38,7 +38,7 @@ public class CPU extends Product {
     @Column(name = "integrated_graphics", updatable = false)
     String integratedGraphics;
 
-    @Column(name = "socket", nullable = false, updatable = false)
+    @Column(name = "socket_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     SocketType socketType;
 

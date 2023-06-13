@@ -19,8 +19,8 @@ import java.util.Objects;
 @Table(name = "mouse")
 public class Mouse extends Product {
 
-    @Column(name = "type", nullable = false, updatable = false)
-    String type;
+    @Column(name = "mouse_type", nullable = false, updatable = false)
+    String mouseType;
 
     @Column(name = "max_resolution", nullable = false, updatable = false)
     Integer maxResolution;
@@ -33,7 +33,7 @@ public class Mouse extends Product {
 
     public Mouse(final MouseDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
-        this.type = dto.getType();
+        this.mouseType = dto.getMouseType();
         this.maxResolution = dto.getMaxResolution();
         this.cableLength = dto.getCableLength();
         this.weight = dto.getWeight();
@@ -44,7 +44,7 @@ public class Mouse extends Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mouse mouse = (Mouse) o;
-        return Objects.equals(type, mouse.type)
+        return Objects.equals(mouseType, mouse.mouseType)
                 && Objects.equals(maxResolution, mouse.maxResolution)
                 && Objects.equals(cableLength, mouse.cableLength)
                 && Objects.equals(weight, mouse.weight);
@@ -52,6 +52,6 @@ public class Mouse extends Product {
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, maxResolution, cableLength, weight);
+        return Objects.hash(mouseType, maxResolution, cableLength, weight);
     }
 }

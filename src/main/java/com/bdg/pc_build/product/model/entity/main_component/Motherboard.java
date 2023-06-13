@@ -32,7 +32,7 @@ public class Motherboard extends Product {
     @Enumerated(EnumType.STRING)
     SocketType socketType;
 
-    @Column(name = "is_ATX", nullable = false, updatable = false)
+    @Column(name = "atx_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     ATXType atxType;
 
@@ -49,7 +49,7 @@ public class Motherboard extends Product {
     @Column(name = "internal_connections", nullable = false, updatable = false)
     String internalConnections;
     
-    @Column(name= "gpu_interface", nullable = false, updatable = false)
+    @Column(name= "gpu_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     GPUInterfaceType gpuInterfaceType;
 
