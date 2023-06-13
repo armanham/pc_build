@@ -3,7 +3,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPU;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.main_component.CPUCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,7 +15,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class CPUDTO extends ProductDTO {
 
     Integer coreCount;
@@ -63,18 +62,18 @@ public class CPUDTO extends ProductDTO {
                 .build();
     }
 
-    public static CPUDTO initDTOFromRequest(final ProductRequest request) {
+    public static CPUDTO initDTOFromRequest(final CPUCreationRequest request) {
         return CPUDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .coreCount(Integer.valueOf(request.coreCount()))
-                .coreClock(Double.valueOf(request.coreClock()))
-                .boostClock(Double.valueOf(request.boostClock()))
-                .tdp(Integer.valueOf(request.tdp()))
-                .integratedGraphics(request.integratedGraphics())
-                .socketType(SocketType.valueOf(request.socketType()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .coreCount(Integer.valueOf(request.getCoreCount()))
+                .coreClock(Double.valueOf(request.getCoreClock()))
+                .boostClock(Double.valueOf(request.getBoostClock()))
+                .tdp(Integer.valueOf(request.getTdp()))
+                .integratedGraphics(request.getIntegratedGraphics())
+                .socketType(SocketType.valueOf(request.getSocketType()))
                 .build();
     }
 }

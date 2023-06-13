@@ -1,14 +1,12 @@
-package com.bdg.pc_build.product.repository.display;
+package com.bdg.pc_build.product.repository.peripheral;
 
-import com.bdg.pc_build.product.model.entity.display.Monitor;
+import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
 import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,7 +22,7 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
                     "OR (p.screenSize BETWEEN COALESCE(:minScreenSize, 0) AND COALESCE(:maxScreenSize, 100))) " +
                     "AND ((:minRefreshRate IS NULL AND :maxRefreshRate IS NULL) " +
                     "OR (p.refreshRate BETWEEN COALESCE(:minRefreshRate, 0) AND COALESCE(:maxRefreshRate, 240))) " +
-                    "AND (:screenTypes IS NULL OR lower(p.screenType) in (:screenTypes))"
+                    "AND ((:screenTypes) IS NULL OR p.screenType IN (:screenTypes))"
     )
     List<Monitor> filterAllMonitorsBasedOnSpecification(
             @Param("name") String name,
@@ -34,6 +32,28 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
             @Param("maxScreenSize") Double maxScreenSize,
             @Param("minRefreshRate") Integer minRefreshRate,
             @Param("maxRefreshRate") Integer maxRefreshRate,
-            @Param("screenTypes") String screenTypes
+            @Param("screenTypes") Collection<MonitorScreenType> screenTypes
     );
+
+    @Query(
+            "SELECT p FROM Monitor p " +
+                    "WHERE :term IS NULL " +
+                    "OR CONCAT(p.name, ' ', p.screenSize, ' ', p.refreshRate, ' ', p.screenType) " +
+                    "LIKE CONCAT('%', :term, '%') "
+    )
+    List<Monitor> findAllMonitorsBasedOnTerm(
+            @Param("term") String term
+    );
+
+    @Query("select min(p.screenSize) from Monitor p ")
+    Double getMinScreenSizeOfMonitors();
+
+    @Query("select max(p.screenSize) from Monitor p ")
+    Double getMaxScreenSizeOfMonitors();
+
+    @Query("select min(p.refreshRate) from Monitor p ")
+    Integer getMinRefreshRateOfMonitors();
+
+    @Query("select max(p.refreshRate) from Monitor p ")
+    Integer getMaxRefreshRateOfMonitors();
 }

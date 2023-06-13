@@ -1,17 +1,16 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
+import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.RAMFilterRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class RAMFilterDTO {
 
-    String name;
+    final String name;
 
     Double minPrice;
     Double maxPrice;
@@ -37,6 +36,10 @@ public class RAMFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
+        if (this.minPrice != null && this.maxPrice != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
+        }
+
         if (request.minSpeed() != null && !request.minSpeed().isBlank()) {
             this.minSpeed = Integer.valueOf(request.minSpeed());
         }

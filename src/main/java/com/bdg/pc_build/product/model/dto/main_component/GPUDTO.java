@@ -3,14 +3,13 @@ package com.bdg.pc_build.product.model.dto.main_component;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.GPU;
 import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.main_component.GPUCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class GPUDTO extends ProductDTO {
 
     GPUInterfaceType gpuInterfaceType;
@@ -57,18 +56,18 @@ public class GPUDTO extends ProductDTO {
                 .build();
     }
 
-    public static GPUDTO initDTOFromRequest(final ProductRequest request) {
+    public static GPUDTO initDTOFromRequest(final GPUCreationRequest request) {
         return GPUDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .gpuInterfaceType(GPUInterfaceType.valueOf(request.gpuInterfaceType()))
-                .memory(Integer.valueOf(request.memory()))
-                .coreClock(Double.valueOf(request.coreClock()))
-                .boostClock(Double.valueOf(request.boostClock()))
-                .length(Double.valueOf(request.length()))
-                .tdp(Integer.valueOf(request.tdp()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .gpuInterfaceType(GPUInterfaceType.valueOf(request.getGpuInterfaceType()))
+                .memory(Integer.valueOf(request.getMemory()))
+                .coreClock(Double.valueOf(request.getCoreClock()))
+                .boostClock(Double.valueOf(request.getBoostClock()))
+                .length(Double.valueOf(request.getLength()))
+                .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }
 }

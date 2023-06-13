@@ -14,10 +14,10 @@ public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY
 
     Optional<ENTITY> findByName(String name);
 
-    @Query(
-            "SELECT p FROM #{#entityName} p WHERE lower(p.name) LIKE lower(concat('%', :name, '%'))"
-    )
-    List<ENTITY> findAllProductsByNameIgnoreCaseLikeTerm(@Param("name") String name);
+//    @Query(
+//            "SELECT p FROM #{#entityName} p WHERE lower(p.name) LIKE lower(concat('%', :name, '%'))"
+//    )
+//    List<ENTITY> findAllProductsByNameIgnoreCaseLikeTerm(@Param("name") String name);
 
     List<ENTITY> findAllProductsByPriceBetween(Double minPrice, Double maxPrice);
 
@@ -27,11 +27,17 @@ public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY
             "SELECT p FROM #{#entityName} p WHERE " +
                     "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
                     "AND ((:minPrice IS NULL AND :maxPrice IS NULL) " +
-                    "OR (p.price BETWEEN COALESCE(:minPrice, 0) AND COALESCE(:maxPrice, 10000)))"
+                    "OR (p.price BETWEEN :minPrice AND :maxPrice ))"
     )
     List<ENTITY> filterAllProductsBasedOnNameAndPrice(
             @Param("name") String name,
             @Param("minPrice") Double minPrice,
             @Param("maxPrice") Double maxPrice
     );
+
+    @Query("select min(p.price) from #{#entityName} p")
+    Double getMinPriceFromAllProduct();
+
+    @Query("select max(p.price) from #{#entityName} p")
+    Double getMaxPriceFromAllProduct();
 }

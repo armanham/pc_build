@@ -1,14 +1,27 @@
 package com.bdg.pc_build.product.model.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Pattern;
+
+import static com.bdg.pc_build.checking.pattern.Pattern.FLOATING_POINT_NUMBER_PATTERN;
+import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
 
 public record BetweenPricesRequest(
-        @JsonProperty(value = "min_price", defaultValue = "0")
+
+        @Pattern(
+                regexp = FLOATING_POINT_NUMBER_PATTERN,
+                message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
+        )
+        @JsonProperty(value = "min_price")
         String minPrice,
-        @JsonProperty(value = "max_price", defaultValue = "1000000")
+
+        @Pattern(
+                regexp = FLOATING_POINT_NUMBER_PATTERN,
+                message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
+        )
+        @JsonProperty(value = "max_price")
         String maxPrice
 ) {
     public BetweenPricesRequest {
-//TODO VALIDATIONS
     }
 }

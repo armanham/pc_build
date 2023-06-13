@@ -1,14 +1,13 @@
 package com.bdg.pc_build.filter.model.dto.peripheral;
 
+import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.KeyboardFilterRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class KeyboardFilterDTO {
 
     String name;
@@ -22,9 +21,9 @@ public class KeyboardFilterDTO {
     Double minWeight;
     Double maxWeight;
 
-    String keyboardClass;
+    final String keyboardClass;
 
-    String dimension;
+    final String dimension;
 
     public KeyboardFilterDTO(final KeyboardFilterRequest request) {
         this.name = request.name();
@@ -35,6 +34,10 @@ public class KeyboardFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
+        if (this.minPrice != null && this.maxPrice != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
+        }
+
         if (request.minCableLength() != null && !request.minCableLength().isBlank()) {
             this.minCableLength = Double.valueOf(request.minCableLength());
         }

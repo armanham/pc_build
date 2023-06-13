@@ -1,6 +1,6 @@
-package com.bdg.pc_build.product.model.entity.display;
+package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
+import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
 import jakarta.persistence.*;
@@ -25,9 +25,9 @@ public class Monitor extends Product {
     @Column(name = "refresh_rate", nullable = false, updatable = false)
     Integer refreshRate;
 
-//    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name = "screen_type", nullable = false, updatable = false)
-    String screenType;
+    MonitorScreenType screenType;
 
     public Monitor(final MonitorDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

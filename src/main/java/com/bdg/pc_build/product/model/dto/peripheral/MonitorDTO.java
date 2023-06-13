@@ -1,20 +1,21 @@
-package com.bdg.pc_build.product.model.dto.display;
+package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
-import com.bdg.pc_build.product.model.request.creation.MonitorCreationRequest;
-import lombok.*;
+import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
+import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
+import com.bdg.pc_build.product.model.request.creation.peripheral.MonitorCreationRequest;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
-@Setter
 public class MonitorDTO extends ProductDTO {
 
     Double screenSize;
     Integer refreshRate;
-    String screenType;
+    MonitorScreenType screenType;
 
     @Builder
     public MonitorDTO(
@@ -24,7 +25,7 @@ public class MonitorDTO extends ProductDTO {
             final Integer count,
             final Double screenSize,
             final Integer refreshRate,
-            final String screenType
+            final MonitorScreenType screenType
     ) {
         super(name, price, purchasedPrice, count);
         this.screenSize = screenSize;
@@ -50,7 +51,7 @@ public class MonitorDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .screenType(request.getScreenType())
+                .screenType(MonitorScreenType.valueOf(request.getScreenType()))
                 .refreshRate(Integer.valueOf(request.getRefreshRate()))
                 .screenSize(Double.valueOf(request.getScreenSize()))
                 .build();

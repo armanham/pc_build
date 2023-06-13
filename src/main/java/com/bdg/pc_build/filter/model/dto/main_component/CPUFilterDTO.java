@@ -1,18 +1,17 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
+import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.CPUFilterRequest;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class CPUFilterDTO {
 
-    String name;
+    final String name;
 
     Double minPrice;
     Double maxPrice;
@@ -29,7 +28,7 @@ public class CPUFilterDTO {
     Integer minTdp;
     Integer maxTdp;
 
-    String integratedGraphics;
+    final String integratedGraphics;
 
     SocketType socket;
 
@@ -42,18 +41,40 @@ public class CPUFilterDTO {
         if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
             this.maxPrice = Double.valueOf(request.maxPrice());
         }
+        if (this.minPrice != null && this.maxPrice != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
+        }
+
+        if (request.minCoreCount() != null && !request.minCoreCount().isBlank()) {
+            this.minCoreCount = Integer.valueOf(request.minCoreCount());
+        }
+        if (request.maxCoreCount() != null && !request.maxCoreCount().isBlank()) {
+            this.maxCoreCount = Integer.valueOf(request.maxCoreCount());
+        }
+        if (this.minCoreCount != null && this.maxCoreCount != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minCoreCount, maxCoreCount);
+        }
+
         if (request.minCoreClock() != null && !request.minCoreClock().isBlank()) {
             this.minCoreClock = Double.valueOf(request.minCoreClock());
         }
         if (request.maxCoreClock() != null && !request.maxCoreClock().isBlank()) {
             this.maxCoreClock = Double.valueOf(request.maxCoreClock());
         }
+        if (this.minCoreClock != null && this.maxCoreClock != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minCoreClock, maxCoreClock);
+        }
+
         if (request.minBoostClock() != null && !request.minBoostClock().isBlank()) {
             this.minBoostClock = Double.valueOf(request.minBoostClock());
         }
         if (request.maxBoostClock() != null && !request.maxBoostClock().isBlank()) {
             this.maxBoostClock = Double.valueOf(request.maxBoostClock());
         }
+        if (this.minBoostClock != null && this.maxBoostClock != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minBoostClock, maxBoostClock);
+        }
+
         if (request.minTdp() != null && !request.minTdp().isBlank()) {
             this.minTdp = Integer.valueOf(request.minTdp());
         }

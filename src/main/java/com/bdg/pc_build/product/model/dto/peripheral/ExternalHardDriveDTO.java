@@ -2,14 +2,13 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.ExternalHardDrive;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.peripheral.ExternalHardDriveCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class ExternalHardDriveDTO extends ProductDTO {
 
     Integer capacity;
@@ -40,14 +39,14 @@ public class ExternalHardDriveDTO extends ProductDTO {
                 .build();
     }
 
-    public static ExternalHardDriveDTO initDTOFromRequest(final ProductRequest request) {
+    public static ExternalHardDriveDTO initDTOFromRequest(final ExternalHardDriveCreationRequest request) {
         return ExternalHardDriveDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .capacity(Integer.valueOf(request.capacity()))
-                .tdp(Integer.valueOf(request.tdp()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .capacity(Integer.valueOf(request.getCapacity()))
+                .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }
 }

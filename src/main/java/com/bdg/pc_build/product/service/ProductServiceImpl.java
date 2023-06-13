@@ -3,16 +3,15 @@ package com.bdg.pc_build.product.service;
 import com.bdg.pc_build.checking.exception.ApranqyQichAException;
 import com.bdg.pc_build.checking.exception.ProductNotFoundException;
 import com.bdg.pc_build.checking.exception.SameNameDifferentDescriptionException;
-import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
+import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.model.entity.display.Monitor;
+import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.product.repository.ProductDAO;
-import com.bdg.pc_build.product.repository.display.MonitorDAO;
+import com.bdg.pc_build.product.repository.peripheral.MonitorDAO;
 import com.bdg.pc_build.product.repository.main_component.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import lombok.AccessLevel;
@@ -20,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -173,7 +171,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public MotherboardDTO saveMotherBoard(final MotherboardDTO dto) {
+    public MotherboardDTO saveMotherboard(final MotherboardDTO dto) {
         return MotherboardDTO.initDTOFromEntity(save(new Motherboard(dto), motherboardDAO));
     }
 
@@ -188,7 +186,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public HeadsetDTO saveHeadSet(final HeadsetDTO dto) {
+    public HeadsetDTO saveHeadset(final HeadsetDTO dto) {
         return HeadsetDTO.initDTOFromEntity(save(new Headset(dto), headsetDAO));
     }
 
@@ -671,124 +669,4 @@ public class ProductServiceImpl implements ProductService {
     public SpeakerDTO reduceSpeakerCountByName(final String name, final Integer countToBeReduced) {
         return SpeakerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, speakerDAO));
     }
-
-    @Override
-    public List<ProductDTO> findAllProductsByPrice(Double minPrice, Double maxPrice) {
-        List<ProductDTO> productDTOs = new ArrayList<>();
-
-        productDTOs.addAll(findMonitorByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findCaseByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findCoolerByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findCPUByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findCPUCoolerByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findInternalHardDriveByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findGPUByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findExternalHardDriveByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findMotherboardByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findPowerSupplyByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findRAMByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findHeadsetByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findKeyboardByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findMouseByPrice(minPrice, maxPrice));
-        productDTOs.addAll(findSpeakerByPrice(minPrice, maxPrice));
-
-        return productDTOs;
-    }
-
-
-    @Override
-    public List<ProductDTO> findAllProductsByNameIgnoreCaseAndLikeTerm(String name) {
-        List<ProductDTO> productDTOs = new ArrayList<>();
-
-        productDTOs.addAll(monitorDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(MonitorDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(caseDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(CaseDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(coolerDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(CoolerDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(cpuDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(CPUDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(cpuCoolerDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(CPUCoolerDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(internalHardDriveDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(InternalHardDriveDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(gpuDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(GPUDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(externalHardDriveDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(ExternalHardDriveDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(motherboardDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(MotherboardDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(powerSupplyDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(PowerSupplyDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(ramDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(RAMDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(headsetDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(HeadsetDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(keyboardDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(KeyboardDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(mouseDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(MouseDTO::initDTOFromEntity)
-                .toList());
-
-        productDTOs.addAll(speakerDAO.findAllProductsByNameIgnoreCaseLikeTerm(name)
-                .stream()
-                .map(SpeakerDTO::initDTOFromEntity)
-                .toList());
-
-        return productDTOs;
-    }
-
-
-//    List<ProductDTO> filterByPriceAndName(Double minPrice, Double maxPrice, String name) {
-//        List<ProductDTO> allByNameIgnoreCaseAndLikeTerm = new ArrayList<>();
-//        if (name != null) {
-//            allByNameIgnoreCaseAndLikeTerm = findAllProductsByNameIgnoreCaseAndLikeTerm(name);
-//        }
-//        List<ProductDTO> allProductsByPrice = findAllProductsByPrice(minPrice, maxPrice);
-//
-//        return allByNameIgnoreCaseAndLikeTerm
-//                .stream()
-//                .filter(allProductsByPrice::contains)
-//                .toList();
-//    }
 }

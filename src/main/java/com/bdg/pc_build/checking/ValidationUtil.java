@@ -31,4 +31,10 @@ public final class ValidationUtil {
             throw new NullPointerException(clazz.getSimpleName() + " " + propertyName + " cannot be null. Passed: ");
         }
     }
+
+    public static void validateNonNegativeMinMaxValues(double minValue, double maxValue) {
+        if (minValue < 0 || maxValue < 0 || minValue > maxValue) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -9,7 +9,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public abstract class ProductDTO {
 
 
@@ -22,7 +21,8 @@ public abstract class ProductDTO {
             final String name,
             final Double price,
             final Double purchasedPrice,
-            final Integer count) {
+            final Integer count
+    ) {
         this.name = name;
         this.price = price;
         this.purchasedPrice = purchasedPrice;

@@ -3,7 +3,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.main_component.PowerSupplyCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,7 +15,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class PowerSupplyDTO extends ProductDTO {
 
     EfficiencyRating efficiencyRating;
@@ -32,7 +31,8 @@ public class PowerSupplyDTO extends ProductDTO {
             final EfficiencyRating efficiencyRating,
             final Integer wattage,
             final Boolean modular,
-            final Integer tdp) {
+            final Integer tdp)
+    {
         super(name, price, purchasedPrice, count);
         this.efficiencyRating = efficiencyRating;
         this.wattage = wattage;
@@ -53,16 +53,16 @@ public class PowerSupplyDTO extends ProductDTO {
                 .build();
     }
 
-    public static PowerSupplyDTO initDTOFromRequest(final ProductRequest request) {
+    public static PowerSupplyDTO initDTOFromRequest(final PowerSupplyCreationRequest request) {
         return PowerSupplyDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .efficiencyRating(EfficiencyRating.valueOf(request.efficiencyRating()))
-                .wattage(Integer.valueOf(request.wattage()))
-                .modular(Boolean.valueOf(request.modular()))
-                .tdp(Integer.valueOf(request.tdp()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .efficiencyRating(EfficiencyRating.valueOf(request.getEfficiencyRating()))
+                .wattage(Integer.valueOf(request.getWattage()))
+                .modular(Boolean.valueOf(request.getModular()))
+                .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }
 }

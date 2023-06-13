@@ -2,14 +2,13 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Headset;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.peripheral.HeadsetCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class HeadsetDTO extends ProductDTO {
 
     Integer frequency;
@@ -44,15 +43,15 @@ public class HeadsetDTO extends ProductDTO {
                 .build();
     }
 
-    public static HeadsetDTO initDTOFromRequest(final ProductRequest request) {
+    public static HeadsetDTO initDTOFromRequest(final HeadsetCreationRequest request) {
         return HeadsetDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .frequency(Integer.valueOf(request.frequency()))
-                .connectivity(request.connectivity())
-                .cableLength(Double.valueOf(request.cableLength()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .frequency(Integer.valueOf(request.getFrequency()))
+                .connectivity(request.getConnectivity())
+                .cableLength(Double.valueOf(request.getCableLength()))
                 .build();
     }
 }

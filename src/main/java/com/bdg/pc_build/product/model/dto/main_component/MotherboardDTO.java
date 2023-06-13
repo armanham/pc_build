@@ -6,7 +6,7 @@ import com.bdg.pc_build.product.model.enumerations.ATXType;
 import com.bdg.pc_build.product.model.enumerations.DDRType;
 import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.main_component.MotherboardCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -18,7 +18,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class MotherboardDTO extends ProductDTO {
 
     SocketType socketType;
@@ -73,20 +72,20 @@ public class MotherboardDTO extends ProductDTO {
                 .build();
     }
 
-    public static MotherboardDTO initDTOFromRequest(final ProductRequest request) {
+    public static MotherboardDTO initDTOFromRequest(final MotherboardCreationRequest request) {
         return MotherboardDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .socketType(SocketType.valueOf(request.socketType()))
-                .atxtype(ATXType.valueOf(request.atxType()))
-                .memoryMax(Integer.valueOf(request.memoryMax()))
-                .memorySlots(Integer.valueOf(request.memorySlots()))
-                .memoryType(DDRType.valueOf(request.memoryType()))
-                .internalConnections(request.internalConnections())
-                .gpuInterfaceType(GPUInterfaceType.valueOf(request.gpuInterfaceType()))
-                .tdp(Integer.valueOf(request.tdp()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .socketType(SocketType.valueOf(request.getSocketType()))
+                .atxtype(ATXType.valueOf(request.getAtxType()))
+                .memoryMax(Integer.valueOf(request.getMemoryMax()))
+                .memorySlots(Integer.valueOf(request.getMemorySlots()))
+                .memoryType(DDRType.valueOf(request.getMemoryType()))
+                .internalConnections(request.getInternalConnections())
+                .gpuInterfaceType(GPUInterfaceType.valueOf(request.getGpuInterfaceType()))
+                .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }
 }

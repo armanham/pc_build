@@ -3,14 +3,13 @@ package com.bdg.pc_build.product.model.dto.main_component;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.aCase;
 import com.bdg.pc_build.product.model.enumerations.TowerType;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.main_component.CaseCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class CaseDTO extends ProductDTO {
 
     Double maxCPUCoolerHeight;
@@ -49,16 +48,16 @@ public class CaseDTO extends ProductDTO {
                 .build();
     }
 
-    public static CaseDTO initDTOFromRequest(final ProductRequest request) {
+    public static CaseDTO initDTOFromRequest(final CaseCreationRequest request) {
         return CaseDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .maxCPUCoolerHeight(Double.valueOf(request.maxCPUCoolerHeight()))
-                .maxGPULength(Double.valueOf(request.maxGPULength()))
-                .preInstalledFans(Integer.valueOf(request.preInstalledFans()))
-                .towerType(TowerType.valueOf(request.towerType()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .maxCPUCoolerHeight(Double.valueOf(request.getMaxCPUCoolerHeight()))
+                .maxGPULength(Double.valueOf(request.getMaxGPULength()))
+                .preInstalledFans(Integer.valueOf(request.getPreInstalledFans()))
+                .towerType(TowerType.valueOf(request.getTowerType()))
                 .build();
     }
 }

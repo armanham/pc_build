@@ -3,14 +3,13 @@ package com.bdg.pc_build.product.model.dto.main_component;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.InternalHardDrive;
 import com.bdg.pc_build.product.model.enumerations.InternalHardDriveInterfaceType;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.main_component.InternalHardDriveCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class InternalHardDriveDTO extends ProductDTO {
 
     InternalHardDriveInterfaceType internalHardDriveInterfaceType;
@@ -45,15 +44,15 @@ public class InternalHardDriveDTO extends ProductDTO {
                 .build();
     }
 
-    public static InternalHardDriveDTO initDTOFromRequest(final ProductRequest request) {
+    public static InternalHardDriveDTO initDTOFromRequest(final InternalHardDriveCreationRequest request) {
         return InternalHardDriveDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .internalHardDriveInterfaceType(InternalHardDriveInterfaceType.valueOf(request.internalHardDriveInterfaceType()))
-                .capacity(Integer.valueOf(request.capacity()))
-                .tdp(Integer.valueOf(request.tdp()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .internalHardDriveInterfaceType(InternalHardDriveInterfaceType.valueOf(request.getInternalHardDriveInterfaceType()))
+                .capacity(Integer.valueOf(request.getCapacity()))
+                .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }
 }

@@ -18,8 +18,8 @@ import java.util.Objects;
 @Table(name = "cpu_cooler")
 public class CPUCooler extends Product {
 
-    @Column(name = "fan_RPM", nullable = false, updatable = false)
-    Integer fanRPM;
+    @Column(name = "fan_rpm", nullable = false, updatable = false)
+    Integer fanRpm;
 
     @Column(name = "socket_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
@@ -30,7 +30,7 @@ public class CPUCooler extends Product {
 
     public CPUCooler(final CPUCoolerDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
-        this.fanRPM = dto.getFanRPM();
+        this.fanRpm = dto.getFanRpm();
         this.socketType = dto.getSocketType();
         this.tdp = dto.getTdp();
     }
@@ -40,13 +40,13 @@ public class CPUCooler extends Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CPUCooler cpuCooler = (CPUCooler) o;
-        return Objects.equals(fanRPM, cpuCooler.fanRPM)
+        return Objects.equals(fanRpm, cpuCooler.fanRpm)
                 && Objects.equals(socketType, cpuCooler.socketType)
                 && Objects.equals(tdp, cpuCooler.tdp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fanRPM, socketType, tdp);
+        return Objects.hash(fanRpm, socketType, tdp);
     }
 }

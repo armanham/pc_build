@@ -2,14 +2,13 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Speaker;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.peripheral.SpeakerCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class SpeakerDTO extends ProductDTO {
 
     Integer frequency;
@@ -48,16 +47,16 @@ public class SpeakerDTO extends ProductDTO {
                 .build();
     }
 
-    public static SpeakerDTO initDTOFromRequest(final ProductRequest request) {
+    public static SpeakerDTO initDTOFromRequest(final SpeakerCreationRequest request) {
         return SpeakerDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .frequency(Integer.valueOf(request.frequency()))
-                .powerSource(request.powerSource())
-                .cableLength(Double.valueOf(request.cableLength()))
-                .dimension(request.dimension())
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .frequency(Integer.valueOf(request.getFrequency()))
+                .powerSource(request.getPowerSource())
+                .cableLength(Double.valueOf(request.getCableLength()))
+                .dimension(request.getDimension())
                 .build();
     }
 }

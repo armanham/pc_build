@@ -1,9 +1,7 @@
 package com.bdg.pc_build.product.service;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.display.MonitorDTO;
+import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
-import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 
 import java.util.List;
@@ -28,7 +26,7 @@ public interface ProductService {
 
     ExternalHardDriveDTO saveExternalHardDrive(ExternalHardDriveDTO dto);
 
-    MotherboardDTO saveMotherBoard(MotherboardDTO dto);
+    MotherboardDTO saveMotherboard(MotherboardDTO dto);
 
     PowerSupplyDTO savePowerSupply(PowerSupplyDTO dto);
 
@@ -36,19 +34,13 @@ public interface ProductService {
 
 
     //save methods for peripheral components
-    HeadsetDTO saveHeadSet(HeadsetDTO dto);
+    HeadsetDTO saveHeadset(HeadsetDTO dto);
 
     KeyboardDTO saveKeyboard(KeyboardDTO dto);
 
     MouseDTO saveMouse(MouseDTO dto);
 
     SpeakerDTO saveSpeaker(SpeakerDTO dto);
-
-
-    //general find method
-    List<ProductDTO> findAllProductsByPrice(Double minPrice, Double maxPrice);
-
-    List<ProductDTO> findAllProductsByNameIgnoreCaseAndLikeTerm(String name);
 
 
     //find methods for display components

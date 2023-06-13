@@ -29,10 +29,10 @@ public class RAM extends Product {
     Integer speed;
 
     @Column(name = "count_of_ram", nullable = false, updatable = false)
-    Integer countOfRAM;
+    Integer countOfRam;
 
     @Column(name = "gb_of_ram", nullable = false, updatable = false)
-    Double gbOfRAM;
+    Double gbOfRam;
 
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
@@ -40,8 +40,8 @@ public class RAM extends Product {
     public RAM(final RAMDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.speed = dto.getSpeed();
-        this.countOfRAM = dto.getCountOfRam();
-        this.gbOfRAM = dto.getGbOfRam();
+        this.countOfRam = dto.getCountOfRam();
+        this.gbOfRam = dto.getGbOfRam();
         this.tdp = dto.getTdp();
     }
 
@@ -51,13 +51,13 @@ public class RAM extends Product {
         if (o == null || getClass() != o.getClass()) return false;
         RAM ram = (RAM) o;
         return Objects.equals(speed, ram.speed)
-                && Objects.equals(countOfRAM, ram.countOfRAM)
-                && Objects.equals(gbOfRAM, ram.gbOfRAM)
+                && Objects.equals(countOfRam, ram.countOfRam)
+                && Objects.equals(gbOfRam, ram.gbOfRam)
                 && Objects.equals(tdp, ram.tdp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(speed, countOfRAM, gbOfRAM, tdp);
+        return Objects.hash(speed, countOfRam, gbOfRam, tdp);
     }
 }

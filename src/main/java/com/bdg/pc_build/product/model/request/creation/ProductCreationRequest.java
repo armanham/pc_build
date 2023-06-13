@@ -3,17 +3,17 @@ package com.bdg.pc_build.product.model.request.creation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.checking.pattern.Pattern.*;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE;
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
-public class PR {
+public class ProductCreationRequest {
 
     @NotBlank(message = "'name' field can not be blank")
     @JsonProperty(value = "name", required = true)
@@ -43,8 +43,13 @@ public class PR {
     @JsonProperty(value = "count", required = true)
     String count;
 
-    public PR(String name, String price, String purchasedPrice, String count) {
-        this.name = name;
+    public ProductCreationRequest(
+            final String name,
+            final String price,
+            final String purchasedPrice,
+            final String count
+    ) {
+        this.name = name.trim();
         this.price = price;
         this.purchasedPrice = purchasedPrice;
         this.count = count;

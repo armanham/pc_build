@@ -3,7 +3,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.RAM;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.main_component.RAMCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,7 +15,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class RAMDTO extends ProductDTO {
 
     Integer speed;
@@ -48,22 +47,22 @@ public class RAMDTO extends ProductDTO {
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
                 .speed(entity.getSpeed())
-                .countOfRam(entity.getCountOfRAM())
-                .gbOfRam(entity.getGbOfRAM())
+                .countOfRam(entity.getCountOfRam())
+                .gbOfRam(entity.getGbOfRam())
                 .tdp(entity.getTdp())
                 .build();
     }
 
-    public static RAMDTO initDTOFromRequest(final ProductRequest request) {
+    public static RAMDTO initDTOFromRequest(final RAMCreationRequest request) {
         return RAMDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .speed(Integer.valueOf(request.speed()))
-                .countOfRam(Integer.valueOf(request.countOfRam()))
-                .gbOfRam(Double.valueOf(request.gbOfRam()))
-                .tdp(Integer.valueOf(request.tdp()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .speed(Integer.valueOf(request.getSpeed()))
+                .countOfRam(Integer.valueOf(request.getCountOfRam()))
+                .gbOfRam(Double.valueOf(request.getGbOfRam()))
+                .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }
 }

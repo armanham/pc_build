@@ -1,9 +1,9 @@
-package com.bdg.pc_build.filter.model.request.display;
+package com.bdg.pc_build.filter.model.request.peripheral;
 
-import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public record MonitorFilterRequest(
@@ -26,6 +26,6 @@ public record MonitorFilterRequest(
         String maxRefreshRate,
 
         @JsonProperty(value = "screen_types")
-        ArrayList<String> screenTypes
+        Collection<String> screenTypes
 ) {
 }

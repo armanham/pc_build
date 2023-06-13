@@ -2,14 +2,13 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
-import com.bdg.pc_build.product.model.request.creation.ProductRequest;
+import com.bdg.pc_build.product.model.request.creation.peripheral.KeyboardCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
-@Setter
 public class KeyboardDTO extends ProductDTO {
 
     String keyboardClass;
@@ -19,14 +18,14 @@ public class KeyboardDTO extends ProductDTO {
 
     @Builder
     public KeyboardDTO(
-            String name,
-            Double price,
-            Double purchasedPrice,
-            Integer count,
-            String keyboardClass,
-            Double cableLength,
-            String dimension,
-            Double weight
+            final String name,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count,
+            final String keyboardClass,
+            final Double cableLength,
+            final String dimension,
+            final Double weight
     ) {
         super(name, price, purchasedPrice, count);
         this.keyboardClass = keyboardClass;
@@ -48,16 +47,16 @@ public class KeyboardDTO extends ProductDTO {
                 .build();
     }
 
-    public static KeyboardDTO initDTOFromRequest(final ProductRequest request) {
+    public static KeyboardDTO initDTOFromRequest(final KeyboardCreationRequest request) {
         return KeyboardDTO.builder()
-                .name(request.name())
-                .price(Double.valueOf(request.price()))
-                .purchasedPrice(Double.valueOf(request.purchasedPrice()))
-                .count(Integer.valueOf(request.count()))
-                .keyboardClass(request.keyboardClass())
-                .cableLength(Double.valueOf(request.cableLength()))
-                .dimension(request.dimension())
-                .weight(Double.valueOf(request.weight()))
+                .name(request.getName())
+                .price(Double.valueOf(request.getPrice()))
+                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
+                .count(Integer.valueOf(request.getCount()))
+                .keyboardClass(request.getKeyboardClass())
+                .cableLength(Double.valueOf(request.getCableLength()))
+                .dimension(request.getDimension())
+                .weight(Double.valueOf(request.getWeight()))
                 .build();
     }
 }
