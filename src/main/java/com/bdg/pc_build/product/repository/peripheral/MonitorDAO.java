@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -22,7 +21,7 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
                     "OR (p.screenSize BETWEEN COALESCE(:minScreenSize, 0) AND COALESCE(:maxScreenSize, 100))) " +
                     "AND ((:minRefreshRate IS NULL AND :maxRefreshRate IS NULL) " +
                     "OR (p.refreshRate BETWEEN COALESCE(:minRefreshRate, 0) AND COALESCE(:maxRefreshRate, 240))) " +
-                    "AND (:screenTypes IS NULL OR p.screenType IN (:screenTypes))"
+                    "AND ((:screenTypes) IS NULL OR p.screenType IN (:screenTypes))"
     )
     List<Monitor> filterAllMonitorsBasedOnSpecification(
             @Param("name") String name,
