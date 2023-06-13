@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -25,7 +26,7 @@ public class MonitorFilterDTO {
     Integer minRefreshRate;
     Integer maxRefreshRate;
 
-    Collection<MonitorScreenType> screenTypes;
+    List<MonitorScreenType> screenTypes;
 
     public MonitorFilterDTO(final MonitorFilterRequest request) {
         this.name = request.name();
@@ -60,12 +61,13 @@ public class MonitorFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minRefreshRate, maxRefreshRate);
         }
 
-        //TODOOOOOOOOOOOOOOOOO
         if (request.screenTypes() != null && !request.screenTypes().isEmpty()) {
             this.screenTypes = request.screenTypes()
                     .stream()
+                    .filter(s -> MonitorScreenType.toListOfStrings().contains(s))
                     .map(MonitorScreenType::valueOf)
-                    .toList();
+                    .collect(Collectors.toList());
+            System.out.println(screenTypes);
         } else {
             this.screenTypes = null;
         }

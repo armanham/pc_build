@@ -8,12 +8,13 @@ import com.bdg.pc_build.product.model.request.ReduceCountRequest;
 import com.bdg.pc_build.product.model.request.creation.main_component.*;
 import com.bdg.pc_build.product.model.request.creation.peripheral.*;
 import com.bdg.pc_build.product.service.ProductService;
-import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/product")

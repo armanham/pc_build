@@ -1,16 +1,18 @@
 package com.bdg.pc_build.product.model.request.creation.main_component;
 
-import com.bdg.pc_build.product.model.enumerations.TowerType;
+
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 import static com.bdg.pc_build.checking.pattern.Pattern.*;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE;
+
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter

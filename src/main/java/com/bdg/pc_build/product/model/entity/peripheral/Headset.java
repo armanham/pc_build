@@ -2,9 +2,7 @@ package com.bdg.pc_build.product.model.entity.peripheral;
 
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import javax.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

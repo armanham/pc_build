@@ -3,11 +3,11 @@ package com.bdg.pc_build.product.model.entity.computer;
 import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity

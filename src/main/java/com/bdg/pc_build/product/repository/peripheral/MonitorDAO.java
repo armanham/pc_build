@@ -22,7 +22,7 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
                     "OR (p.screenSize BETWEEN COALESCE(:minScreenSize, 0) AND COALESCE(:maxScreenSize, 100))) " +
                     "AND ((:minRefreshRate IS NULL AND :maxRefreshRate IS NULL) " +
                     "OR (p.refreshRate BETWEEN COALESCE(:minRefreshRate, 0) AND COALESCE(:maxRefreshRate, 240))) " +
-                    "AND ((:screenTypes) IS NULL OR p.screenType IN (:screenTypes))"
+                    "AND (:screenTypes IS NULL OR p.screenType IN (:screenTypes))"
     )
     List<Monitor> filterAllMonitorsBasedOnSpecification(
             @Param("name") String name,
@@ -32,7 +32,7 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
             @Param("maxScreenSize") Double maxScreenSize,
             @Param("minRefreshRate") Integer minRefreshRate,
             @Param("maxRefreshRate") Integer maxRefreshRate,
-            @Param("screenTypes") Collection<MonitorScreenType> screenTypes
+            @Param("screenTypes") List<MonitorScreenType> screenTypes
     );
 
     @Query(
