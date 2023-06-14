@@ -1,6 +1,7 @@
 package com.bdg.pc_build.filter.service;
 
 import com.bdg.pc_build.filter.model.dto.ProductFilterDTO;
+import com.bdg.pc_build.filter.model.dto.main_component.CaseFilterDTO;
 import com.bdg.pc_build.filter.model.dto.peripheral.MonitorFilterDTO;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
@@ -116,6 +117,73 @@ public class FilterServiceImpl implements FilterService {
                 .map(MonitorDTO::initDTOFromEntity)
                 .toList();
     }
+
+    public List<CaseDTO> filterAllCasesBasedOnSpecification(final CaseFilterDTO filterDTO){
+        Double minPrice;
+        Double maxPrice;
+        if (filterDTO.getMinPrice() != null) {
+            minPrice = filterDTO.getMinPrice();
+        } else {
+            minPrice = caseDAO.getMinPriceFromAllProducts();
+        }
+        if (filterDTO.getMaxPrice() != null) {
+            maxPrice = filterDTO.getMaxPrice();
+        } else {
+            maxPrice = caseDAO.getMaxPriceFromAllProducts();
+        }
+
+        Double minCPUCoolerHeight;
+        Double maxCPUCoolerHeight;
+        if (filterDTO.getMinCPUCoolerHeight() != null){
+            minCPUCoolerHeight = filterDTO.getMinCPUCoolerHeight();
+        }else {
+            minCPUCoolerHeight = caseDAO.getMinCpuCoolerHeightOfCases();
+        }
+        if(filterDTO.getMaxCPUCoolerHeight() != null){
+            maxCPUCoolerHeight = filterDTO.getMaxCPUCoolerHeight();
+        }else{
+            maxCPUCoolerHeight = caseDAO.getMaxCpuCoolerHeightOfCases();
+        }
+
+        Double minGPULength;
+        Double maxGPULength;
+        if (filterDTO.getMinGPULength() != null){
+            minGPULength = filterDTO.getMinGPULength();
+        }else{
+            minGPULength = caseDAO.getMinGpuLengthOfCases();
+        }
+        if (filterDTO.getMaxGPULength() != null){
+            maxGPULength = filterDTO.getMaxGPULength();
+        }else{
+            maxGPULength = caseDAO.getMaxGpuLengthOfCases();
+        }
+
+        Integer minPreInstalledFans;
+        Integer maxPreInstalledFans;
+        if (filterDTO.getMinPreInstalledFans() != null){
+            minPreInstalledFans = filterDTO.getMinPreInstalledFans();
+        }else{
+            minPreInstalledFans = caseDAO.getMinPreInstalledFansOfCases();
+        }
+        if (filterDTO.getMaxPreInstalledFans() != null){
+            maxPreInstalledFans = filterDTO.getMaxPreInstalledFans();
+        }else{
+            maxPreInstalledFans = caseDAO.getMaxPreInstalledFansOfCases();
+        }
+
+        return caseDAO.filterAllCasesBasedOnSpecification(
+                        filterDTO.getName(),
+                        minPrice, maxPrice,
+                        minCPUCoolerHeight, maxCPUCoolerHeight,
+                        minGPULength, maxGPULength,
+                        minPreInstalledFans, maxPreInstalledFans,
+                filterDTO.getTowerTypes()
+                )
+                .stream()
+                .map(CaseDTO::initDTOFromEntity)
+                .toList();
+    }
+
 
     @Override
     public List<ProductDTO> findAllBasedOnTerm(final String term) {

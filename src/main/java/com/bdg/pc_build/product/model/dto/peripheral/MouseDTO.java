@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 public class MouseDTO extends ProductDTO {
 
-    Connectivity connectivityMouse;
+    Connectivity connectivityType;
     Integer maxResolution;
     Double cableLength;
     Double weight;
@@ -23,13 +23,13 @@ public class MouseDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final Connectivity connectivityMouse,
+            final Connectivity connectivityType,
             final Integer maxResolution,
             final Double cableLength,
             final Double weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.connectivityMouse = connectivityMouse;
+        this.connectivityType = connectivityType;
         this.maxResolution = maxResolution;
         this.cableLength = cableLength;
         this.weight = weight;
@@ -41,7 +41,7 @@ public class MouseDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .connectivityMouse(entity.getConnectivityMouse())
+                .connectivityType(entity.getConnectivityType())
                 .maxResolution(entity.getMaxResolution())
                 .cableLength(entity.getCableLength())
                 .weight(entity.getWeight())
@@ -54,7 +54,7 @@ public class MouseDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .connectivityMouse(Connectivity.valueOf(request.getConnectivityMouse()))
+                .connectivityType(Connectivity.valueOf(request.getConnectivityType()))
                 .maxResolution(Integer.valueOf(request.getMaxResolution()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .weight(Double.valueOf(request.getWeight()))

@@ -46,8 +46,8 @@ public class Motherboard extends Product {
     @Enumerated(EnumType.STRING)
     DDRType memoryType;
 
-    @Column(name = "internal_connections", nullable = false, updatable = false)
-    String internalConnections;
+    @Column(name = "m2", nullable = false, updatable = false)
+    Boolean m2;
     
     @Column(name= "gpu_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
@@ -63,7 +63,7 @@ public class Motherboard extends Product {
         this.memoryMax = dto.getMemoryMax();
         this.memorySlots = dto.getMemorySlots();
         this.memoryType = dto.getMemoryType();
-        this.internalConnections = dto.getInternalConnections();
+        this.m2 = dto.getM2();
         this.gpuInterfaceType = dto.getGpuInterfaceType();
         this.tdp = dto.getTdp();
     }
@@ -78,13 +78,13 @@ public class Motherboard extends Product {
                 && Objects.equals(memoryMax, that.memoryMax)
                 && Objects.equals(memorySlots, that.memorySlots)
                 && Objects.equals(memoryType, that.memoryType)
-                && Objects.equals(internalConnections, that.internalConnections)
+                && Objects.equals(m2, that.m2)
                 && Objects.equals(gpuInterfaceType, that.gpuInterfaceType)
                 && Objects.equals(tdp, that.tdp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(socketType, atxType, memoryMax, memorySlots, memoryType,internalConnections, gpuInterfaceType,tdp);
+        return Objects.hash(socketType, atxType, memoryMax, memorySlots, memoryType, m2, gpuInterfaceType,tdp);
     }
 }

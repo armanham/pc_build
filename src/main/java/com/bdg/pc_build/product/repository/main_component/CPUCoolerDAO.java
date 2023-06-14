@@ -1,6 +1,7 @@
 package com.bdg.pc_build.product.repository.main_component;
 
 import com.bdg.pc_build.product.model.entity.main_component.CPUCooler;
+import com.bdg.pc_build.product.model.entity.main_component.aCase;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,6 +11,20 @@ import java.util.List;
 
 @Repository
 public interface CPUCoolerDAO extends ProductDAO<CPUCooler> {
+
+    @Query(
+            "SELECT p FROM CPUCooler p WHERE " +
+                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
+                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
+                    "AND (p.tdp BETWEEN :minTdp AND :maxTdp) "
+    )
+    List<aCase> filterAllCoolersBasedOnSpecification(
+            @Param("name") String name,
+            @Param("minPrice") Double minPrice,
+            @Param("maxPrice") Double maxPrice,
+            @Param("minTdp") Double minTdp,
+            @Param("maxTdp") Double maxTdp
+    );
 
     @Query(
             "SELECT p FROM CPUCooler p " +

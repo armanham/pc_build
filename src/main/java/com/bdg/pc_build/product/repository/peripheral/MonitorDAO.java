@@ -15,13 +15,10 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
     @Query(
             "SELECT p FROM Monitor p WHERE " +
                     "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND ((:minPrice IS NULL AND :maxPrice IS NULL) " +
-                    "OR (p.price BETWEEN COALESCE(:minPrice, 0) AND COALESCE(:maxPrice, 10000))) " +
-                    "AND ((:minScreenSize IS NULL AND :maxScreenSize IS NULL) " +
-                    "OR (p.screenSize BETWEEN COALESCE(:minScreenSize, 0) AND COALESCE(:maxScreenSize, 100))) " +
-                    "AND ((:minRefreshRate IS NULL AND :maxRefreshRate IS NULL) " +
-                    "OR (p.refreshRate BETWEEN COALESCE(:minRefreshRate, 0) AND COALESCE(:maxRefreshRate, 240))) " +
-                    "AND ((:screenTypes) IS NULL OR p.screenType IN (:screenTypes))"
+                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
+                    "AND (p.screenSize BETWEEN :minScreenSize AND :maxScreenSize) " +
+                    "AND (p.refreshRate BETWEEN :minRefreshRate AND :maxRefreshRate) " +
+                    "AND ((:screenTypes) IS NULL OR lower(p.screenType) IN lower((:screenTypes)) )"
     )
     List<Monitor> filterAllMonitorsBasedOnSpecification(
             @Param("name") String name,

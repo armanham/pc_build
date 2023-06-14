@@ -25,7 +25,7 @@ public class MotherboardDTO extends ProductDTO {
     Integer memoryMax;
     Integer memorySlots;
     DDRType memoryType;
-    String internalConnections;
+    Boolean m2;
     GPUInterfaceType gpuInterfaceType;
     Integer tdp;
 
@@ -40,7 +40,7 @@ public class MotherboardDTO extends ProductDTO {
             final Integer memoryMax,
             final Integer memorySlots,
             final DDRType memoryType,
-            final String internalConnections,
+            final Boolean m2,
             final GPUInterfaceType gpuInterfaceType,
             final Integer tdp
     ) {
@@ -50,7 +50,7 @@ public class MotherboardDTO extends ProductDTO {
         this.memoryMax = memoryMax;
         this.memorySlots = memorySlots;
         this.memoryType = memoryType;
-        this.internalConnections = internalConnections;
+        this.m2 = m2;
         this.gpuInterfaceType = gpuInterfaceType;
         this.tdp = tdp;
     }
@@ -66,7 +66,7 @@ public class MotherboardDTO extends ProductDTO {
                 .memoryMax(entity.getMemoryMax())
                 .memorySlots(entity.getMemorySlots())
                 .memoryType(entity.getMemoryType())
-                .internalConnections(String.valueOf(entity.getInternalConnections()))
+                .m2(entity.getM2())
                 .gpuInterfaceType(entity.getGpuInterfaceType())
                 .tdp(entity.getTdp())
                 .build();
@@ -83,7 +83,7 @@ public class MotherboardDTO extends ProductDTO {
                 .memoryMax(Integer.valueOf(request.getMemoryMax()))
                 .memorySlots(Integer.valueOf(request.getMemorySlots()))
                 .memoryType(DDRType.valueOf(request.getMemoryType()))
-                .internalConnections(request.getInternalConnections())
+                .m2(Boolean.valueOf(request.getM2()))
                 .gpuInterfaceType(GPUInterfaceType.valueOf(request.getGpuInterfaceType()))
                 .tdp(Integer.valueOf(request.getTdp()))
                 .build();

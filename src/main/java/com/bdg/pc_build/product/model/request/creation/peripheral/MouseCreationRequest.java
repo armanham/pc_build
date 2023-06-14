@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.request.creation.peripheral;
 
-import com.bdg.pc_build.product.model.enumerations.Connectivity;
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotBlank;
@@ -16,9 +15,9 @@ import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUM
 @Getter
 public class MouseCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'connectivityMouse' field can not be blank")
-    @JsonProperty(value = "connectivityMouse", required = true)
-    String connectivityMouse;
+    @NotBlank(message = "'connectivityType' field can not be blank")
+    @JsonProperty(value = "connectivityType", required = true)
+    String connectivityType;
 
     @NotBlank(message = "'max_resolution' field can not be blank")
     @Pattern(
@@ -49,13 +48,13 @@ public class MouseCreationRequest extends ProductCreationRequest {
             final String price,
             final String purchasedPrice,
             final String count,
-            final String connectivityMouse,
+            final String connectivityType,
             final String maxResolution,
             final String cableLength,
             final String weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.connectivityMouse = connectivityMouse.trim();
+        this.connectivityType = connectivityType.trim();
         this.maxResolution = maxResolution;
         this.cableLength = cableLength;
         this.weight = weight;

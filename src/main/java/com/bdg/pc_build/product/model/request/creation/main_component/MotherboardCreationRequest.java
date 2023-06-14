@@ -8,8 +8,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.POSITIVE_INTEGER_NUMBER_PATTERN;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE;
+import static com.bdg.pc_build.checking.pattern.Pattern.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -43,9 +42,13 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "memory_type", required = true)
     String memoryType;
 
-    @NotBlank(message = "'internal_connections' field can not be blank")
+    @NotBlank(message = "'m2' field can not be blank")
+    @Pattern(
+            regexp = BOOLEAN_PATTERN,
+            message = WRONG_BOOLEAN_PATTERN
+    )
     @JsonProperty(value = "internal_connections", required = true)
-    String internalConnections;
+    String m2;
 
     @NotBlank(message = "'gpu_interface_type' field can not be blank")
     @JsonProperty(value = "gpu_interface_type", required = true)
@@ -79,7 +82,7 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
         this.memoryMax = memoryMax;
         this.memorySlots = memorySlots;
         this.memoryType = memoryType;
-        this.internalConnections = internalConnections.trim();
+        this.m2 = m2.trim();
         this.gpuInterfaceType = gpuInterfaceType.trim();
         this.tdp = tdp;
     }

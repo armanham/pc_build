@@ -1,6 +1,8 @@
 package com.bdg.pc_build.product.repository.peripheral;
 
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
+import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
+import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,10 +12,29 @@ import java.util.List;
 
 @Repository
 public interface KeyboardDAO extends ProductDAO<Keyboard> {
+
+    //todo
+    @Query(
+            "SELECT p FROM Keyboard p WHERE " +
+                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
+             //       "AND (:keyboardClass IS NULL OR lower(p.keyboardClass) LIKE lower(concat('%', :keyboardClass, '%')))" +
+                    "AND (p.cableLength BETWEEN :minCableLength AND :maxCableLength) " +
+                    "AND (:dimension IS NULL OR lower(p.dimension) LIKE lower(concat('%', :dimension, '%')))" +
+                    "AND (p.weight BETWEEN :minWeight AND :maxWeight)"
+    )
+    List<Monitor> filterAllMonitorsBasedOnSpecification(
+            @Param("name") String name,
+            @Param("keyboardClass") String keyboardClass,
+            @Param("minCableLength") Double minCableLength,
+            @Param("maxCableLength") Double maxCableLength,
+            @Param("dimension") String dimension,
+            @Param("minWeight") Double minWeight,
+            @Param("maxWeight") Double maxWeight
+    );
     @Query(
             "SELECT p FROM Keyboard p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.keyboardClass, ' ', " +
+                    "OR CONCAT(p.name, ' ', p.connectivityKeyboard, ' ', " +
                     "p.cableLength, ' ', p.dimension, ' ', p.weight) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
