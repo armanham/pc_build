@@ -3,6 +3,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.RAM;
+import com.bdg.pc_build.product.model.enumerations.DDRType;
 import com.bdg.pc_build.product.model.request.creation.main_component.RAMCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -17,7 +18,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 public class RAMDTO extends ProductDTO {
 
-    Integer speed;
+    DDRType ddrType;
     Integer countOfRam;
     Double gbOfRam;
     Integer tdp;
@@ -28,13 +29,13 @@ public class RAMDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final Integer speed,
+            final DDRType ddrType,
             final Integer countOfRam,
             final Double gbOfRam,
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.speed = speed;
+        this.ddrType = ddrType;
         this.countOfRam = countOfRam;
         this.gbOfRam = gbOfRam;
         this.tdp = tdp;
@@ -46,7 +47,7 @@ public class RAMDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .speed(entity.getSpeed())
+                .ddrType(entity.getDdrType())
                 .countOfRam(entity.getCountOfRam())
                 .gbOfRam(entity.getGbOfRam())
                 .tdp(entity.getTdp())
@@ -59,7 +60,7 @@ public class RAMDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .speed(Integer.valueOf(request.getSpeed()))
+                .ddrType(DDRType.valueOf(request.getDdrType()))
                 .countOfRam(Integer.valueOf(request.getCountOfRam()))
                 .gbOfRam(Double.valueOf(request.getGbOfRam()))
                 .tdp(Integer.valueOf(request.getTdp()))

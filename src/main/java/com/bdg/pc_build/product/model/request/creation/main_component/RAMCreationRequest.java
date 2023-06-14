@@ -20,8 +20,8 @@ public class RAMCreationRequest extends ProductCreationRequest {
             regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
             message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
     )
-    @JsonProperty(value = "speed", required = true)
-    String speed;
+    @JsonProperty(value = "ddr_type", required = true)
+    String ddrType;
 
     @NotBlank(message = "'count_of_ram' field can not be blank")
     @Pattern(
@@ -52,13 +52,13 @@ public class RAMCreationRequest extends ProductCreationRequest {
             final String price,
             final String purchasedPrice,
             final String count,
-            final String speed,
+            final String ddrType,
             final String countOfRam,
             final String gbOfRam,
             final String tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.speed = speed;
+        this.ddrType = ddrType;
         this.countOfRam = countOfRam;
         this.gbOfRam = gbOfRam;
         this.tdp = tdp;
