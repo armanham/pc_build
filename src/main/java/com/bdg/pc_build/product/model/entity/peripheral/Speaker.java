@@ -3,6 +3,8 @@ package com.bdg.pc_build.product.model.entity.peripheral;
 import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import javax.persistence.*;
+
+import com.bdg.pc_build.product.model.enumerations.PowerSource;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -21,7 +23,7 @@ public class Speaker extends Product {
     Integer frequency;
 
     @Column(name = "power_source", nullable = false, updatable = false)
-    String powerSource;
+    PowerSource powerSource;
 
     @Column(name = "cable_length", nullable = false, updatable = false)
     Double cableLength;

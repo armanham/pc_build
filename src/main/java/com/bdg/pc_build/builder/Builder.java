@@ -20,6 +20,8 @@ public class Builder {
         if (!computer.getMotherboard().getSocketType().equals(computer.getCpu().getSocketType())){
             //todo notCompEx
             throw new IllegalArgumentException();
+
         }
+
     }
 }

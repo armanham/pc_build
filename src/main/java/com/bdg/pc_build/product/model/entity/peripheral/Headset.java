@@ -3,6 +3,8 @@ package com.bdg.pc_build.product.model.entity.peripheral;
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import javax.persistence.*;
+
+import com.bdg.pc_build.product.model.enumerations.Connectivity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -21,7 +23,7 @@ public class Headset extends Product {
     Integer frequency;
 
     @Column(name = "connectivity", nullable = false, updatable = false)
-    String connectivity;
+    Connectivity connectivityHeadset;
 
     @Column(name = "cable_length", nullable = false, updatable = false)
     Double cableLength;
@@ -29,7 +31,7 @@ public class Headset extends Product {
     public Headset(final HeadsetDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.frequency = dto.getFrequency();
-        this.connectivity = dto.getConnectivity();
+        this.connectivityHeadset = dto.getConnectivityHeadset();
         this.cableLength = dto.getCableLength();
     }
 
@@ -39,12 +41,12 @@ public class Headset extends Product {
         if (o == null || getClass() != o.getClass()) return false;
         Headset headset = (Headset) o;
         return Objects.equals(frequency, headset.frequency)
-                && Objects.equals(connectivity, headset.connectivity)
+                && Objects.equals(connectivityHeadset, headset.connectivityHeadset)
                 && Objects.equals(cableLength, headset.cableLength);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(frequency, connectivity, cableLength);
+        return Objects.hash(frequency, connectivityHeadset, cableLength);
     }
 }

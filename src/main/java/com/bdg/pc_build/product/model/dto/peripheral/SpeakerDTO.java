@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Speaker;
+import com.bdg.pc_build.product.model.enumerations.PowerSource;
 import com.bdg.pc_build.product.model.request.creation.peripheral.SpeakerCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -12,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 public class SpeakerDTO extends ProductDTO {
 
     Integer frequency;
-    String powerSource;
+    PowerSource powerSource;
     Double cableLength;
     String dimension;
 
@@ -23,7 +24,7 @@ public class SpeakerDTO extends ProductDTO {
             final Double purchasedPrice,
             final Integer count,
             final Integer frequency,
-            final String powerSource,
+            final PowerSource powerSource,
             final Double cableLength,
             final String dimension
     ) {
@@ -54,7 +55,7 @@ public class SpeakerDTO extends ProductDTO {
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
                 .frequency(Integer.valueOf(request.getFrequency()))
-                .powerSource(request.getPowerSource())
+                .powerSource(PowerSource.valueOf(request.getPowerSource()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .dimension(request.getDimension())
                 .build();

@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
+import com.bdg.pc_build.product.model.enumerations.Connectivity;
 import com.bdg.pc_build.product.model.request.creation.peripheral.KeyboardCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -11,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 public class KeyboardDTO extends ProductDTO {
 
-    String keyboardClass;
+    Connectivity connectivityKeyboard;
     Double cableLength;
     String dimension;
     Double weight;
@@ -22,13 +23,13 @@ public class KeyboardDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final String keyboardClass,
+            final Connectivity connectivityKeyboard,
             final Double cableLength,
             final String dimension,
             final Double weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.keyboardClass = keyboardClass;
+        this.connectivityKeyboard = connectivityKeyboard;
         this.cableLength = cableLength;
         this.dimension = dimension;
         this.weight = weight;
@@ -40,7 +41,7 @@ public class KeyboardDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .keyboardClass(entity.getKeyboardClass())
+                .connectivityKeyboard(entity.getConnectivityKeyboard())
                 .cableLength(entity.getCableLength())
                 .dimension(entity.getDimension())
                 .weight(entity.getWeight())
@@ -53,7 +54,7 @@ public class KeyboardDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .keyboardClass(request.getKeyboardClass())
+                .connectivityKeyboard(Connectivity.valueOf(request.getConnectivityKeyboard()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .dimension(request.getDimension())
                 .weight(Double.valueOf(request.getWeight()))

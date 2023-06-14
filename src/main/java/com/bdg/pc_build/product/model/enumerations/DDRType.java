@@ -6,7 +6,10 @@ import java.util.stream.Collectors;
 
 public enum DDRType {
 
-    DDR2, DDR3, DDR4, DDR5;
+    DDR2,
+    DDR3,
+    DDR4,
+    DDR5;
 
     public static List<String> toListOfStrings() {
         return Arrays.stream(DDRType.values())

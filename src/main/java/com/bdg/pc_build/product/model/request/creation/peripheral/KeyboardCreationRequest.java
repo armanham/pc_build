@@ -15,9 +15,9 @@ import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUM
 @Getter
 public class KeyboardCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'keyboard_class' field can not be blank")
-    @JsonProperty(value = "keyboard_class", required = true)
-    String keyboardClass;
+    @NotBlank(message = "'connectivityKeyboard' field can not be blank")
+    @JsonProperty(value = "c", required = true)
+    String connectivityKeyboard;
 
     @NotBlank(message = "'cable_length' field can not be blank")
     @Pattern(
@@ -44,13 +44,13 @@ public class KeyboardCreationRequest extends ProductCreationRequest {
             final String price,
             final String purchasedPrice,
             final String count,
-            final String keyboardClass,
+            final String connectivityKeyboard,
             final String cableLength,
             final String dimension,
             final String weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.keyboardClass = keyboardClass.trim();
+        this.connectivityKeyboard = connectivityKeyboard.trim();
         this.cableLength = cableLength;
         this.dimension = dimension.trim();
         this.weight = weight;

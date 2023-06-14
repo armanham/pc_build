@@ -23,9 +23,9 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "frequency", required = true)
     String frequency;
 
-    @NotBlank(message = "'connectivity' field can not be blank")
-    @JsonProperty(value = "connectivity", required = true)
-    String connectivity;
+    @NotBlank(message = "'connectivityHeadset' field can not be blank")
+    @JsonProperty(value = "connectivityHeadset", required = true)
+    String connectivityHeadset;
 
     @NotBlank(message = "'cable_length' field can not be blank")
     @Pattern(
@@ -41,12 +41,12 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
             final String purchasedPrice,
             final String count,
             final String frequency,
-            final String connectivity,
+            final String connectivityHeadset,
             final String cableLength
     ) {
         super(name, price, purchasedPrice, count);
         this.frequency = frequency;
-        this.connectivity = connectivity.trim();
+        this.connectivityHeadset = connectivityHeadset.trim();
         this.cableLength = cableLength;
     }
 }
