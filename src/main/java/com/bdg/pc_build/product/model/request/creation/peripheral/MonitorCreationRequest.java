@@ -51,6 +51,6 @@ public class MonitorCreationRequest extends ProductCreationRequest {
         super(name, price, purchasedPrice, count);
         this.screenSize = screenSize;
         this.refreshRate = refreshRate;
-        this.screenType = screenType.trim().toUpperCase(Locale.ROOT);
+        this.screenType = screenType;
     }
 }

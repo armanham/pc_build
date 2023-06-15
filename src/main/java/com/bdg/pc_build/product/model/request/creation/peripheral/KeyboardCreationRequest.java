@@ -54,9 +54,9 @@ public class KeyboardCreationRequest extends ProductCreationRequest {
             final String weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.connectivityType = connectivityType.toUpperCase().trim();
+        this.connectivityType = connectivityType;
         this.cableLength = cableLength;
-        this.dimension = dimension.trim();
+        this.dimension = dimension;
         this.weight = weight;
     }
 }

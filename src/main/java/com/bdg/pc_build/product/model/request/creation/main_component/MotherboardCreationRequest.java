@@ -94,13 +94,13 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
             final String tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.socketType = socketType.toUpperCase().trim();
-        this.atxType = atxType.toUpperCase().trim();
+        this.socketType = socketType;
+        this.atxType = atxType;
         this.memoryMax = memoryMax;
         this.memorySlots = memorySlots;
-        this.ddrType = ddrType.toUpperCase().trim();
-        this.isM2 = isM2.trim();
-        this.gpuInterfaceType = gpuInterfaceType.toUpperCase().trim();
+        this.ddrType = ddrType;
+        this.isM2 = isM2;
+        this.gpuInterfaceType = gpuInterfaceType;
         this.tdp = tdp;
     }
 }

@@ -49,7 +49,7 @@ public class InternalHardDriveCreationRequest extends ProductCreationRequest {
             final String tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.internalHardDriveInterfaceType = internalHardDriveInterfaceType.toUpperCase().trim();
+        this.internalHardDriveInterfaceType = internalHardDriveInterfaceType;
         this.capacity = capacity;
         this.tdp = tdp;
     }

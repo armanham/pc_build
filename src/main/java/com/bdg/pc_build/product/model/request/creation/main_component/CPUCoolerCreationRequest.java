@@ -50,7 +50,7 @@ public class CPUCoolerCreationRequest extends ProductCreationRequest {
     ) {
         super(name, price, purchasedPrice, count);
         this.fanRpm = fanRpm;
-        this.socketType = socketType.toUpperCase().trim();
+        this.socketType = socketType;
         this.tdp = tdp;
     }
 }

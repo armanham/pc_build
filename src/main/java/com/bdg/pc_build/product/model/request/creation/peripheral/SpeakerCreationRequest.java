@@ -57,7 +57,7 @@ public class SpeakerCreationRequest extends ProductCreationRequest {
     ) {
         super(name, price, purchasedPrice, count);
         this.frequency = frequency;
-        this.powerSourceType = powerSource.trim().toUpperCase(Locale.ROOT);
+        this.powerSourceType = powerSource;
         this.cableLength = cableLength;
         this.dimension = dimension.trim();
     }

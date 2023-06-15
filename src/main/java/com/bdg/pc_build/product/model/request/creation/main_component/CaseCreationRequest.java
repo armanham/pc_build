@@ -63,6 +63,6 @@ public class CaseCreationRequest extends ProductCreationRequest {
         this.maxCpuCoolerHeight = maxCpuCoolerHeight;
         this.maxGpuLength = maxGpuLength;
         this.preInstalledFans = preInstalledFans;
-        this.towerType = towerType.toUpperCase().trim();
+        this.towerType = towerType;
     }
 }
