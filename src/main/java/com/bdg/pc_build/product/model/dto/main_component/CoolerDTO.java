@@ -15,7 +15,7 @@ public class CoolerDTO extends ProductDTO {
 
     @Builder
     public CoolerDTO(
-            final String name,
+            final  String name,
             final Double price,
             final Double purchasedPrice,
             final Integer count,

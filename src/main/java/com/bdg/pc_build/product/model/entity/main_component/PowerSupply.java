@@ -4,6 +4,8 @@ import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
 import javax.persistence.*;
+
+import com.bdg.pc_build.product.model.enumerations.Modular;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -31,7 +33,7 @@ public class PowerSupply extends Product {
     Integer wattage;
 
     @Column(name = "modular", nullable = false, updatable = false)
-    Boolean modular;
+    Modular modular;
 
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
