@@ -72,8 +72,8 @@ public class CPUDTO extends ProductDTO {
                 .coreClock(Double.valueOf(request.getCoreClock()))
                 .boostClock(Double.valueOf(request.getBoostClock()))
                 .tdp(Integer.valueOf(request.getTdp()))
-                .integratedGraphics(request.getIntegratedGraphics())
-                .socketType(SocketType.valueOf(request.getSocketType()))
+                .integratedGraphics(request.getIntegratedGraphics().trim())
+                .socketType(SocketType.valueOf(request.getSocketType().trim().toUpperCase()))
                 .build();
     }
 }

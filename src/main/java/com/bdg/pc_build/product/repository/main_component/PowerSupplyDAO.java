@@ -1,8 +1,6 @@
 package com.bdg.pc_build.product.repository.main_component;
 
 import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
-import com.bdg.pc_build.product.model.entity.main_component.RAM;
-import com.bdg.pc_build.product.model.enumerations.DDRType;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
@@ -24,7 +22,7 @@ public interface PowerSupplyDAO extends ProductDAO<PowerSupply> {
                     "AND ((:isModular) is null or p.isModular in (:isModular)) " +
                     "AND ((:efficiencyRating) IS NULL OR p.efficiencyRating IN (:efficiencyRating))"
     )
-    List<PowerSupply> filterAllRPowerSuppliesBasedOnSpecification(
+    List<PowerSupply> filterAllPowerSuppliesBasedOnSpecification(
             @Param("name") String name,
             @Param("minPrice") Double minPrice,
             @Param("maxPrice") Double maxPrice,

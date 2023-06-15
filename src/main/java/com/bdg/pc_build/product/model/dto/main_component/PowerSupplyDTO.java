@@ -59,9 +59,9 @@ public class PowerSupplyDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .efficiencyRating(EfficiencyRating.valueOf(request.getEfficiencyRating()))
+                .efficiencyRating(EfficiencyRating.valueOf(request.getEfficiencyRating().trim().toUpperCase()))
                 .wattage(Integer.valueOf(request.getWattage()))
-                .isModular(Boolean.valueOf(request.getIsModular()))
+                .isModular(Boolean.valueOf(request.getIsModular().trim()))
                 .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }

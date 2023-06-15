@@ -54,7 +54,7 @@ public class KeyboardDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType()))
+                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType().trim().toUpperCase()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .dimension(request.getDimension())
                 .weight(Double.valueOf(request.getWeight()))

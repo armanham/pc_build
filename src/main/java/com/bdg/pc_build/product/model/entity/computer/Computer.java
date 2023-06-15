@@ -54,7 +54,7 @@ public class Computer {
     CPUCooler cpuCooler;
 
     @OneToOne
-    @JoinColumn(name = "external_hard_drive", referencedColumnName = "name")
+    @JoinColumn(name = "internal_hard_drive", referencedColumnName = "name")
     InternalHardDrive internalHardDrive;
 
     @OneToOne
@@ -62,7 +62,7 @@ public class Computer {
     GPU gpu;
 
     @OneToOne
-    @JoinColumn(name = "internal_hard_drive", referencedColumnName = "name")
+    @JoinColumn(name = "external_hard_drive", referencedColumnName = "name")
     ExternalHardDrive externalHardDrive;
 
     @OneToOne

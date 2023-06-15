@@ -51,7 +51,7 @@ public class MonitorDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .screenType(MonitorScreenType.valueOf(request.getScreenType()))
+                .screenType(MonitorScreenType.valueOf(request.getScreenType().trim().toUpperCase()))
                 .refreshRate(Integer.valueOf(request.getRefreshRate()))
                 .screenSize(Double.valueOf(request.getScreenSize()))
                 .build();

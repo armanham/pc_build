@@ -60,7 +60,7 @@ public class CaseDTO extends ProductDTO {
                 .maxCpuCoolerHeight(Double.valueOf(request.getMaxCpuCoolerHeight()))
                 .maxGpuLength(Double.valueOf(request.getMaxGpuLength()))
                 .preInstalledFans(Integer.valueOf(request.getPreInstalledFans()))
-                .towerType(TowerType.valueOf(request.getTowerType()))
+                .towerType(TowerType.valueOf(request.getTowerType().trim().toUpperCase()))
                 .build();
     }
 }

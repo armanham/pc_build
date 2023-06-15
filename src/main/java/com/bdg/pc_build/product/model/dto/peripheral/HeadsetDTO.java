@@ -51,7 +51,7 @@ public class HeadsetDTO extends ProductDTO {
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
                 .frequency(Integer.valueOf(request.getFrequency()))
-                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType()))
+                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType().trim().toUpperCase()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .build();
     }

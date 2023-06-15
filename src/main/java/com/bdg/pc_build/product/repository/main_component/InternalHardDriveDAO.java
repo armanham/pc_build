@@ -50,8 +50,8 @@ public interface InternalHardDriveDAO extends ProductDAO<InternalHardDrive> {
     Integer getMinTdpOfInternalHardDrives();
 
     @Query("select min(p.capacity) from InternalHardDrive p")
-    Double getMinCapacityOfInternalHardDrives();
+    Integer getMinCapacityOfInternalHardDrives();
 
     @Query("select max(p.capacity) from InternalHardDrive p")
-    Double getMaxCapacityOfInternalHardDrives();
+    Integer getMaxCapacityOfInternalHardDrives();
 }
