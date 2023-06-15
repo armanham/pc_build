@@ -1,6 +1,7 @@
 package com.bdg.pc_build.filter.model.request.peripheral;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 public record KeyboardFilterRequest(
         @JsonProperty("name")
@@ -11,16 +12,10 @@ public record KeyboardFilterRequest(
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "keyboard_class")
-        String keyboardClass,
-
         @JsonProperty(value = "min_cable_length")
         String minCableLength,
         @JsonProperty(value = "max_cable_length")
         String maxCableLength,
-
-        @JsonProperty(value = "dimension")
-        String dimension,
 
         @JsonProperty(value = "min_weight")
         String minWeight,

@@ -9,11 +9,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface MouseDAO extends ProductDAO<Mouse> {
-
-    //todo add connectivityType
 
     @Query(
             "SELECT p FROM Mouse p WHERE " +
@@ -21,7 +20,8 @@ public interface MouseDAO extends ProductDAO<Mouse> {
                     "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
                     "AND (p.maxResolution BETWEEN :minResolution AND :maxResolution) " +
                     "AND (p.cableLength BETWEEN :minCableLength AND :maxCableLength) " +
-                    "AND (p.weight BETWEEN :minWeight AND :maxWeight)"
+                    "AND (p.weight BETWEEN :minWeight AND :maxWeight)" +
+                    "AND ((:connectivityTypes) IS NULL OR p.connectivityType IN (:connectivityTypes))"
     )
     List<Mouse> filterAllMiceBasedOnSpecification(
             @Param("name") String name,
@@ -32,7 +32,8 @@ public interface MouseDAO extends ProductDAO<Mouse> {
             @Param("minCableLength") Double minCableLength,
             @Param("maxCableLength") Double maxCableLength,
             @Param("minWeight") Double minWeight,
-            @Param("maxWeight") Double maxWeight
+            @Param("maxWeight") Double maxWeight,
+            @Param("connectivityTypes") Set<ConnectivityType> connectivityTypes
     );
 
     @Query(

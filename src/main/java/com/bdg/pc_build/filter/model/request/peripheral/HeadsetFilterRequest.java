@@ -1,6 +1,7 @@
 package com.bdg.pc_build.filter.model.request.peripheral;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 public record HeadsetFilterRequest(
         @JsonProperty("name")

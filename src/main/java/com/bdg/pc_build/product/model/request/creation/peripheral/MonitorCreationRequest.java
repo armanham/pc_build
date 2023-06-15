@@ -7,6 +7,8 @@ import javax.validation.constraints.Pattern;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Locale;
+
 import static com.bdg.pc_build.checking.pattern.Pattern.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -30,6 +32,10 @@ public class MonitorCreationRequest extends ProductCreationRequest {
     String refreshRate;
 
     @NotBlank(message = "'screen_type' field can not be blank")
+    @Pattern(
+            regexp = MONITOR_SCREEN_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
     @JsonProperty(value = "screen_type", required = true)
     String screenType;
 
@@ -45,6 +51,6 @@ public class MonitorCreationRequest extends ProductCreationRequest {
         super(name, price, purchasedPrice, count);
         this.screenSize = screenSize;
         this.refreshRate = refreshRate;
-        this.screenType = screenType;
+        this.screenType = screenType.trim().toUpperCase(Locale.ROOT);
     }
 }

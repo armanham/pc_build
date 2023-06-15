@@ -2,6 +2,8 @@ package com.bdg.pc_build.filter.model.request.peripheral;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public record MouseFilterRequest(
         @JsonProperty("name")
         String name,
@@ -11,13 +13,10 @@ public record MouseFilterRequest(
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "type")
-        String type,
-
-        @JsonProperty(value = "min_resolution")
-        String minResolution,
-        @JsonProperty(value = "max_resolution")
-        String maxResolution,
+        @JsonProperty(value = "min_max_resolution")
+        String minMaxResolution,
+        @JsonProperty(value = "max_max_resolution")
+        String maxMaxResolution,
 
         @JsonProperty(value = "min_cable_length")
         String minCableLength,
@@ -27,6 +26,9 @@ public record MouseFilterRequest(
         @JsonProperty(value = "min_weight")
         String minWeight,
         @JsonProperty(value = "max_weight")
-        String maxWeight
+        String maxWeight,
+
+        @JsonProperty(value = "connectivity_types")
+        List<String> connectivityTypes
 ) {
 }

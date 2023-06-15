@@ -2,6 +2,8 @@ package com.bdg.pc_build.filter.model.request.peripheral;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public record SpeakerFilterRequest(
         @JsonProperty("name")
         String name,
@@ -16,15 +18,15 @@ public record SpeakerFilterRequest(
         @JsonProperty(value = "max_frequency")
         String maxFrequency,
 
-        @JsonProperty(value = "power_source")
-        String powerSource,
-
         @JsonProperty(value = "min_cable_length")
         String minCableLength,
         @JsonProperty(value = "max_cable_length")
         String maxCableLength,
 
-        @JsonProperty(value = "dimension")
-        String dimension
+        @JsonProperty(value = "dimensions")
+        List<String> dimensions,
+
+        @JsonProperty(value = "power_source_types")
+        List<String> powerSourceTypes
 ) {
 }

@@ -2,9 +2,13 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 
 import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.KeyboardFilterRequest;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter

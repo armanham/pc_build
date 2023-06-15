@@ -7,6 +7,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class PowerSupplyFilterDTO {
@@ -24,7 +27,7 @@ public class PowerSupplyFilterDTO {
 
     final Set<Boolean> isModular;
 
-    EfficiencyRating efficiencyRating;
+    final Set<EfficiencyRating> efficiencyRatings;
 
     public PowerSupplyFilterDTO(final PowerSupplyFilterRequest request) {
         this.name = request.name();

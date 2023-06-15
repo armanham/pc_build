@@ -2,9 +2,13 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 
 import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.MouseFilterRequest;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -24,7 +28,7 @@ public class MouseFilterDTO {
     Double minWeight;
     Double maxWeight;
 
-    final String type;
+    final Set<ConnectivityType> connectivityTypes;
 
     public MouseFilterDTO(final MouseFilterRequest request) {
         this.name = request.name();
@@ -39,11 +43,11 @@ public class MouseFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
         }
 
-        if (request.minResolution() != null && !request.minResolution().isBlank()) {
-            this.minResolution = Integer.valueOf(request.minResolution());
+        if (request.minMaxResolution() != null && !request.minMaxResolution().isBlank()) {
+            this.minResolution = Integer.valueOf(request.minMaxResolution());
         }
-        if (request.maxResolution() != null && !request.maxResolution().isBlank()) {
-            this.maxResolution = Integer.valueOf(request.maxResolution());
+        if (request.maxMaxResolution() != null && !request.maxMaxResolution().isBlank()) {
+            this.maxResolution = Integer.valueOf(request.maxMaxResolution());
         }
         if (this.minResolution != null && this.maxResolution != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minResolution, maxResolution);
@@ -69,6 +73,17 @@ public class MouseFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minWeight, maxWeight);
         }
 
-        this.type = request.type();
+        if (request.connectivityTypes() != null && !request.connectivityTypes().isEmpty()) {
+            this.connectivityTypes = request.connectivityTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> ConnectivityType.toListOfStrings().contains(s))
+                    .map(ConnectivityType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.connectivityTypes = null;
+        }
+
+//        this.connectivityTypes = request.connectivityTypes();
     }
 }

@@ -23,9 +23,13 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "frequency", required = true)
     String frequency;
 
-    @NotBlank(message = "'connectivityHeadset' field can not be blank")
-    @JsonProperty(value = "connectivityHeadset", required = true)
-    String connectivityHeadset;
+    @NotBlank(message = "'connectivity_type' field can not be blank")
+    @Pattern(
+            regexp = CONNECTIVITY_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
+    @JsonProperty(value = "connectivity_type", required = true)
+    String connectivityType;
 
     @NotBlank(message = "'cable_length' field can not be blank")
     @Pattern(
@@ -41,12 +45,12 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
             final String purchasedPrice,
             final String count,
             final String frequency,
-            final String connectivityHeadset,
+            final String connectivityType,
             final String cableLength
     ) {
         super(name, price, purchasedPrice, count);
         this.frequency = frequency;
-        this.connectivityHeadset = connectivityHeadset.trim();
+        this.connectivityType = connectivityType.toUpperCase().trim();
         this.cableLength = cableLength;
     }
 }
