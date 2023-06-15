@@ -4,6 +4,8 @@ import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
 import javax.persistence.*;
+
+import com.bdg.pc_build.product.model.enumerations.ModularType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -30,8 +32,8 @@ public class PowerSupply extends Product {
     @Column(name = "wattage", nullable = false, updatable = false)
     Integer wattage;
 
-    @Column(name = "is_modular", nullable = false, updatable = false)
-    Boolean isModular;
+    @Column(name = "modular_type", nullable = false, updatable = false)
+    ModularType modularType;
 
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
@@ -40,7 +42,7 @@ public class PowerSupply extends Product {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.efficiencyRating =dto.getEfficiencyRating();
         this.wattage = dto.getWattage();
-        this.isModular = dto.getIsModular();
+        this.modularType = dto.getModularType();
         this.tdp = dto.getTdp();
     }
 
@@ -51,12 +53,12 @@ public class PowerSupply extends Product {
         PowerSupply that = (PowerSupply) o;
         return Objects.equals(efficiencyRating, that.efficiencyRating)
                 && Objects.equals(wattage, that.wattage)
-                && Objects.equals(isModular, that.isModular)
+                && Objects.equals(modularType, that.modularType)
                 && Objects.equals(tdp, that.tdp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(efficiencyRating, wattage, isModular, tdp);
+        return Objects.hash(efficiencyRating, wattage, modularType, tdp);
     }
 }
