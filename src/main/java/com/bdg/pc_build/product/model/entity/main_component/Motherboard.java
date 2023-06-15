@@ -42,12 +42,12 @@ public class Motherboard extends Product {
     @Column(name = "memory_slots", nullable = false, updatable = false)
     Integer memorySlots;
 
-    @Column(name = "memory_type", nullable = false, updatable = false)
+    @Column(name = "ddr_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    DDRType memoryType;
+    DDRType ddrType;
 
-    @Column(name = "internal_connections", nullable = false, updatable = false)
-    String internalConnections;
+    @Column(name = "is_m2", nullable = false, updatable = false)
+    Boolean isM2;
     
     @Column(name= "gpu_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
@@ -62,8 +62,8 @@ public class Motherboard extends Product {
         this.atxType = dto.getAtxType();
         this.memoryMax = dto.getMemoryMax();
         this.memorySlots = dto.getMemorySlots();
-        this.memoryType = dto.getMemoryType();
-        this.internalConnections = dto.getInternalConnections();
+        this.ddrType = dto.getDdrType();
+        this.isM2 = dto.getIsM2();
         this.gpuInterfaceType = dto.getGpuInterfaceType();
         this.tdp = dto.getTdp();
     }
@@ -77,14 +77,14 @@ public class Motherboard extends Product {
                 && Objects.equals(atxType, that.atxType)
                 && Objects.equals(memoryMax, that.memoryMax)
                 && Objects.equals(memorySlots, that.memorySlots)
-                && Objects.equals(memoryType, that.memoryType)
-                && Objects.equals(internalConnections, that.internalConnections)
+                && Objects.equals(ddrType, that.ddrType)
+                && Objects.equals(isM2, that.isM2)
                 && Objects.equals(gpuInterfaceType, that.gpuInterfaceType)
                 && Objects.equals(tdp, that.tdp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(socketType, atxType, memoryMax, memorySlots, memoryType,internalConnections, gpuInterfaceType,tdp);
+        return Objects.hash(socketType, atxType, memoryMax, memorySlots, ddrType, isM2, gpuInterfaceType,tdp);
     }
 }

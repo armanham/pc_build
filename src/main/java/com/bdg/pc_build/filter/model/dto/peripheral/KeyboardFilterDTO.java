@@ -2,9 +2,13 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 
 import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.KeyboardFilterRequest;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -21,9 +25,9 @@ public class KeyboardFilterDTO {
     Double minWeight;
     Double maxWeight;
 
-    final String keyboardClass;
+    final Set<String> dimensions;
 
-    final String dimension;
+    final Set<ConnectivityType> connectivityTypes;
 
     public KeyboardFilterDTO(final KeyboardFilterRequest request) {
         this.name = request.name();
@@ -58,7 +62,24 @@ public class KeyboardFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minWeight, maxWeight);
         }
 
-        this.keyboardClass = request.keyboardClass();
-        this.dimension = request.dimension();
+        if (request.dimensions() != null && !request.dimensions().isEmpty()) {
+            this.dimensions = request.dimensions()
+                    .stream()
+                    .map(s -> s.toLowerCase().trim())
+                    .collect(Collectors.toSet());
+        } else {
+            this.dimensions = null;
+        }
+
+        if (request.connectivityTypes() != null && !request.connectivityTypes().isEmpty()) {
+            this.connectivityTypes = request.connectivityTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> ConnectivityType.toListOfStrings().contains(s))
+                    .map(ConnectivityType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.connectivityTypes = null;
+        }
     }
 }

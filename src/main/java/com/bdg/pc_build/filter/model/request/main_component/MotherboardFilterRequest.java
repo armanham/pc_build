@@ -2,6 +2,8 @@ package com.bdg.pc_build.filter.model.request.main_component;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public record MotherboardFilterRequest(
         @JsonProperty("name")
         String name,
@@ -10,12 +12,6 @@ public record MotherboardFilterRequest(
         String minPrice,
         @JsonProperty(value = "max_price")
         String maxPrice,
-
-        @JsonProperty(value = "socket_type")
-        String socketType,
-
-        @JsonProperty(value = "atx_type")
-        String atxType,
 
         @JsonProperty(value = "min_memory")
         String minMemory,
@@ -27,18 +23,25 @@ public record MotherboardFilterRequest(
         @JsonProperty(value = "max_memory_slots")
         String maxMemorySlots,
 
-        @JsonProperty(value = "memory_type")
-        String memoryType,
-
-        @JsonProperty(value = "internal_connections")
-        String internalConnections,
-
-        @JsonProperty(value = "gpu_interface_type")
-        String gpuInterfaceType,
 
         @JsonProperty(value = "min_tdp")
         String minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp
+        String maxTdp,
+
+        @JsonProperty(value = "socket_types")
+        List<String> socketTypes,
+
+        @JsonProperty(value = "atx_types")
+        List<String> atxTypes,
+
+        @JsonProperty(value = "gpu_interface_types")
+        List<String> gpuInterfaceTypes,
+
+        @JsonProperty(value = "ddr_types")
+        List<String> ddrTypes,
+
+        @JsonProperty(value = "is_m2")
+        List<String> isM2
 ) {
 }

@@ -3,7 +3,6 @@ package com.bdg.pc_build.product.model.request.creation.main_component;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
@@ -24,7 +23,7 @@ public class CaseCreationRequest extends ProductCreationRequest {
             message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
     )
     @JsonProperty(value = "max_cpu_cooler_height", required = true)
-    String maxCPUCoolerHeight;
+    String maxCpuCoolerHeight;
 
     @NotBlank(message = "'max_gpu_length' field can not be blank")
     @Pattern(
@@ -32,7 +31,7 @@ public class CaseCreationRequest extends ProductCreationRequest {
             message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
     )
     @JsonProperty(value = "max_gpu_length", required = true)
-    String maxGPULength;
+    String maxGpuLength;
 
     @NotBlank(message = "'pre_installed_fans' field can not be blank")
     @Pattern(
@@ -42,7 +41,11 @@ public class CaseCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "pre_installed_fans", required = true)
     String preInstalledFans;
 
-    @NotBlank(message = "'pre_installed_fans' field can not be blank")
+    @NotBlank(message = "'tower_type' field can not be blank")
+    @Pattern(
+            regexp = TOWER_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
     @JsonProperty(value = "tower_type", required = true)
     String towerType;
 
@@ -51,15 +54,15 @@ public class CaseCreationRequest extends ProductCreationRequest {
             final String price,
             final String purchasedPrice,
             final String count,
-            final String maxCPUCoolerHeight,
-            final String maxGPULength,
+            final String maxCpuCoolerHeight,
+            final String maxGpuLength,
             final String preInstalledFans,
             final String towerType
     ) {
         super(name, price, purchasedPrice, count);
-        this.maxCPUCoolerHeight = maxCPUCoolerHeight;
-        this.maxGPULength = maxGPULength;
+        this.maxCpuCoolerHeight = maxCpuCoolerHeight;
+        this.maxGpuLength = maxGpuLength;
         this.preInstalledFans = preInstalledFans;
-        this.towerType = towerType.trim();
+        this.towerType = towerType.toUpperCase().trim();
     }
 }

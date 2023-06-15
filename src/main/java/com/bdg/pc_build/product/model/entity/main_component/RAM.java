@@ -25,7 +25,7 @@ import java.util.Objects;
 @Table(name = "ram")
 public class RAM extends Product {
 
-    @Column(name = "speed", nullable = false, updatable = false)
+    @Column(name = "ddr_type", nullable = false, updatable = false)
     DDRType ddrType;
 
     @Column(name = "count_of_ram", nullable = false, updatable = false)

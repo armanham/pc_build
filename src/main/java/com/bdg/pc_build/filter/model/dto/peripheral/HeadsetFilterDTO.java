@@ -2,9 +2,13 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 
 import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.HeadsetFilterRequest;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -21,7 +25,7 @@ public class HeadsetFilterDTO {
     Double minCableLength;
     Double maxCableLength;
 
-    final String connectivity;
+   final Set<ConnectivityType> connectivityTypes;
 
 
     public HeadsetFilterDTO(final HeadsetFilterRequest request) {
@@ -57,6 +61,15 @@ public class HeadsetFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minCableLength, maxCableLength);
         }
 
-        this.connectivity = request.connectivity();
+        if (request.connectivityTypes() != null && !request.connectivityTypes().isEmpty()) {
+            this.connectivityTypes = request.connectivityTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> ConnectivityType.toListOfStrings().contains(s))
+                    .map(ConnectivityType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.connectivityTypes = null;
+        }
     }
 }

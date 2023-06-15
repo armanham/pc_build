@@ -8,6 +8,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Locale;
+
 import static com.bdg.pc_build.checking.pattern.Pattern.*;
 import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
 
@@ -23,9 +25,13 @@ public class SpeakerCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "frequency", required = true)
     String frequency;
 
-    @NotBlank(message = "'power_source' field can not be blank")
-    @JsonProperty(value = "power_source", required = true)
-    String powerSource;
+    @NotBlank(message = "'power_source_type' field can not be blank")
+    @Pattern(
+            regexp = POWER_SOURCE_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
+    @JsonProperty(value = "power_source_type", required = true)
+    String powerSourceType;
 
     @NotBlank(message = "'cable_length' field can not be blank")
     @Pattern(
@@ -51,7 +57,7 @@ public class SpeakerCreationRequest extends ProductCreationRequest {
     ) {
         super(name, price, purchasedPrice, count);
         this.frequency = frequency;
-        this.powerSource = powerSource.trim();
+        this.powerSourceType = powerSource.trim().toUpperCase(Locale.ROOT);
         this.cableLength = cableLength;
         this.dimension = dimension.trim();
     }

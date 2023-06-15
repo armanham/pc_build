@@ -2,14 +2,14 @@ package com.bdg.pc_build.product.model.request.creation.peripheral;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.FLOATING_POINT_NUMBER_PATTERN;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import static com.bdg.pc_build.checking.pattern.Pattern.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -23,9 +23,13 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "frequency", required = true)
     String frequency;
 
-    @NotBlank(message = "'connectivityHeadset' field can not be blank")
-    @JsonProperty(value = "connectivityHeadset", required = true)
-    String connectivityHeadset;
+    @NotBlank(message = "'connectivity_type' field can not be blank")
+    @Pattern(
+            regexp = CONNECTIVITY_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
+    @JsonProperty(value = "connectivity_type", required = true)
+    String connectivityType;
 
     @NotBlank(message = "'cable_length' field can not be blank")
     @Pattern(
@@ -41,12 +45,12 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
             final String purchasedPrice,
             final String count,
             final String frequency,
-            final String connectivityHeadset,
+            final String connectivityType,
             final String cableLength
     ) {
         super(name, price, purchasedPrice, count);
         this.frequency = frequency;
-        this.connectivityHeadset = connectivityHeadset.trim();
+        this.connectivityType = connectivityType.toUpperCase().trim();
         this.cableLength = cableLength;
     }
 }

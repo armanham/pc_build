@@ -8,16 +8,20 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.FLOATING_POINT_NUMBER_PATTERN;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
+import static com.bdg.pc_build.checking.pattern.Pattern.*;
+import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class KeyboardCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'connectivityKeyboard' field can not be blank")
-    @JsonProperty(value = "c", required = true)
-    String connectivityKeyboard;
+    @NotBlank(message = "'connectivity_type' field can not be blank")
+    @Pattern(
+            regexp = CONNECTIVITY_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
+    @JsonProperty(value = "connectivity_type", required = true)
+    String connectivityType;
 
     @NotBlank(message = "'cable_length' field can not be blank")
     @Pattern(
@@ -44,13 +48,13 @@ public class KeyboardCreationRequest extends ProductCreationRequest {
             final String price,
             final String purchasedPrice,
             final String count,
-            final String connectivityKeyboard,
+            final String connectivityType,
             final String cableLength,
             final String dimension,
             final String weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.connectivityKeyboard = connectivityKeyboard.trim();
+        this.connectivityType = connectivityType.toUpperCase().trim();
         this.cableLength = cableLength;
         this.dimension = dimension.trim();
         this.weight = weight;

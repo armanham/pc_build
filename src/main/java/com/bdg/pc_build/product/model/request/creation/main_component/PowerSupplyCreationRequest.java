@@ -31,8 +31,8 @@ public class PowerSupplyCreationRequest extends ProductCreationRequest {
             regexp = BOOLEAN_PATTERN,
             message = WRONG_BOOLEAN_PATTERN
     )
-    @JsonProperty(value = "modular", required = true)
-    String modular;
+    @JsonProperty(value = "is_modular", required = true)
+    String isModular;
 
     @NotBlank(message = "'tdp' field can not be blank")
     @Pattern(
@@ -49,13 +49,13 @@ public class PowerSupplyCreationRequest extends ProductCreationRequest {
             final String count,
             final String efficiencyRating,
             final String wattage,
-            final String modular,
+            final String isModular,
             final String tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.efficiencyRating = efficiencyRating.trim();
+        this.efficiencyRating = efficiencyRating.toUpperCase().trim();
         this.wattage = wattage;
-        this.modular = modular.trim();
+        this.isModular = isModular.trim();
         this.tdp = tdp;
     }
 }

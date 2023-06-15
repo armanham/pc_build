@@ -1,6 +1,7 @@
 package com.bdg.pc_build.filter.model.request.peripheral;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 public record HeadsetFilterRequest(
         @JsonProperty("name")
@@ -16,12 +17,13 @@ public record HeadsetFilterRequest(
         @JsonProperty(value = "max_frequency")
         String maxFrequency,
 
-        @JsonProperty(value = "connectivity")
-        String connectivity,
-
         @JsonProperty(value = "min_cable_length")
         String minCableLength,
         @JsonProperty(value = "max_cable_length")
-        String maxCableLength
-) {
+        String maxCableLength,
+
+        @JsonProperty(value = "connectivity_types")
+        List<String> connectivityTypes
+)
+{
 }

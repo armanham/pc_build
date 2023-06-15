@@ -52,6 +52,10 @@ public class CPUCreationRequest extends ProductCreationRequest {
     String integratedGraphics;
 
     @NotBlank(message = "'socket_type' field can not be blank")
+    @Pattern(
+            regexp = SOCKET_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
     @JsonProperty(value = "socket_type", required = true)
     String socketType;
 
@@ -73,6 +77,6 @@ public class CPUCreationRequest extends ProductCreationRequest {
         this.boostClock = boostClock;
         this.tdp = tdp;
         this.integratedGraphics = integratedGraphics.trim();
-        this.socketType = socketType.trim();
+        this.socketType = socketType.toUpperCase().trim();
     }
 }

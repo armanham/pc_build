@@ -2,11 +2,12 @@ package com.bdg.pc_build.product.model.request.creation.main_component;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import static com.bdg.pc_build.checking.pattern.Pattern.POSITIVE_INTEGER_NUMBER_PATTERN;
 import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE;
@@ -15,7 +16,7 @@ import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_POSITIVE_INTEGER_N
 @Getter
 public class CoolerCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'tdp field can not be blank")
+    @NotBlank(message = "'tdp' field can not be blank")
     @Pattern(
             regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
             message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE

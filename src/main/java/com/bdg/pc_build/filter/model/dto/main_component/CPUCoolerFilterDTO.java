@@ -7,6 +7,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class CPUCoolerFilterDTO {
@@ -22,7 +25,7 @@ public class CPUCoolerFilterDTO {
     Integer minTdp;
     Integer maxTdp;
 
-    SocketType socketType;
+    final Set<SocketType> socketTypes;
 
     public CPUCoolerFilterDTO(final CPUCoolerFilterRequest request) {
         this.name = request.name();
@@ -56,6 +59,16 @@ public class CPUCoolerFilterDTO {
         if (this.minTdp != null && this.maxTdp != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }
-        //TODO SOCKETTYPE
+
+        if (request.socketTypes() != null && !request.socketTypes().isEmpty()) {
+            this.socketTypes = request.socketTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> SocketType.toListOfStrings().contains(s))
+                    .map(SocketType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.socketTypes = null;
+        }
     }
 }

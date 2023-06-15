@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.request.creation.peripheral;
 
-import com.bdg.pc_build.product.model.enumerations.Connectivity;
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotBlank;
@@ -16,9 +15,13 @@ import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUM
 @Getter
 public class MouseCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'connectivityMouse' field can not be blank")
-    @JsonProperty(value = "connectivityMouse", required = true)
-    String connectivityMouse;
+    @NotBlank(message = "'connectivity_type' field can not be blank")
+    @Pattern(
+            regexp = CONNECTIVITY_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
+    @JsonProperty(value = "connectivity_type", required = true)
+    String connectivityType;
 
     @NotBlank(message = "'max_resolution' field can not be blank")
     @Pattern(
@@ -41,7 +44,7 @@ public class MouseCreationRequest extends ProductCreationRequest {
             regexp = FLOATING_POINT_NUMBER_PATTERN,
             message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
     )
-    @JsonProperty(value = "tdp", required = true)
+    @JsonProperty(value = "weight", required = true)
     String weight;
 
     public MouseCreationRequest(
@@ -49,13 +52,13 @@ public class MouseCreationRequest extends ProductCreationRequest {
             final String price,
             final String purchasedPrice,
             final String count,
-            final String connectivityMouse,
+            final String connectivityType,
             final String maxResolution,
             final String cableLength,
             final String weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.connectivityMouse = connectivityMouse.trim();
+        this.connectivityType = connectivityType.toUpperCase().trim();
         this.maxResolution = maxResolution;
         this.cableLength = cableLength;
         this.weight = weight;

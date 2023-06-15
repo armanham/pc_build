@@ -1,6 +1,7 @@
 package com.bdg.pc_build.filter.service;
 
 import com.bdg.pc_build.filter.model.dto.ProductFilterDTO;
+import com.bdg.pc_build.filter.model.dto.main_component.CaseFilterDTO;
 import com.bdg.pc_build.filter.model.dto.peripheral.MonitorFilterDTO;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
@@ -117,6 +118,73 @@ public class FilterServiceImpl implements FilterService {
                 .toList();
     }
 
+    public List<CaseDTO> filterAllCasesBasedOnSpecification(final CaseFilterDTO filterDTO){
+        Double minPrice;
+        Double maxPrice;
+        if (filterDTO.getMinPrice() != null) {
+            minPrice = filterDTO.getMinPrice();
+        } else {
+            minPrice = caseDAO.getMinPriceFromAllProducts();
+        }
+        if (filterDTO.getMaxPrice() != null) {
+            maxPrice = filterDTO.getMaxPrice();
+        } else {
+            maxPrice = caseDAO.getMaxPriceFromAllProducts();
+        }
+
+        Double minCPUCoolerHeight;
+        Double maxCPUCoolerHeight;
+        if (filterDTO.getMinCpuCoolerHeight() != null){
+            minCPUCoolerHeight = filterDTO.getMinCpuCoolerHeight();
+        }else {
+            minCPUCoolerHeight = caseDAO.getMinCpuCoolerHeightOfCases();
+        }
+        if(filterDTO.getMaxCpuCoolerHeight() != null){
+            maxCPUCoolerHeight = filterDTO.getMaxCpuCoolerHeight();
+        }else{
+            maxCPUCoolerHeight = caseDAO.getMaxCpuCoolerHeightOfCases();
+        }
+
+        Double minGPULength;
+        Double maxGPULength;
+        if (filterDTO.getMinGpuLength() != null){
+            minGPULength = filterDTO.getMinGpuLength();
+        }else{
+            minGPULength = caseDAO.getMinGpuLengthOfCases();
+        }
+        if (filterDTO.getMaxGpuLength() != null){
+            maxGPULength = filterDTO.getMaxGpuLength();
+        }else{
+            maxGPULength = caseDAO.getMaxGpuLengthOfCases();
+        }
+
+        Integer minPreInstalledFans;
+        Integer maxPreInstalledFans;
+        if (filterDTO.getMinPreInstalledFans() != null){
+            minPreInstalledFans = filterDTO.getMinPreInstalledFans();
+        }else{
+            minPreInstalledFans = caseDAO.getMinPreInstalledFansOfCases();
+        }
+        if (filterDTO.getMaxPreInstalledFans() != null){
+            maxPreInstalledFans = filterDTO.getMaxPreInstalledFans();
+        }else{
+            maxPreInstalledFans = caseDAO.getMaxPreInstalledFansOfCases();
+        }
+
+        return caseDAO.filterAllCasesBasedOnSpecification(
+                        filterDTO.getName(),
+                        minPrice, maxPrice,
+                        minCPUCoolerHeight, maxCPUCoolerHeight,
+                        minGPULength, maxGPULength,
+                        minPreInstalledFans, maxPreInstalledFans,
+                filterDTO.getTowerTypes()
+                )
+                .stream()
+                .map(CaseDTO::initDTOFromEntity)
+                .toList();
+    }
+
+
     @Override
     public List<ProductDTO> findAllBasedOnTerm(final String term) {
         List<ProductDTO> productList = new ArrayList<>();
@@ -162,21 +230,21 @@ public class FilterServiceImpl implements FilterService {
     }
 
     private List<CPUCoolerDTO> findAllCPUCoolersBasedOnTerm(final String term) {
-        return cpuCoolerDAO.findAllCPUCoolersBasedOnTerm(term.trim())
+        return cpuCoolerDAO.findAllCpuCoolersBasedOnTerm(term.trim())
                 .stream()
                 .map(CPUCoolerDTO::initDTOFromEntity)
                 .toList();
     }
 
     private List<CPUDTO> findAllCPUsBasedOnTerm(final String term) {
-        return cpuDAO.findAllCPUsBasedOnTerm(term.trim())
+        return cpuDAO.findAllCpusBasedOnTerm(term.trim())
                 .stream()
                 .map(CPUDTO::initDTOFromEntity)
                 .toList();
     }
 
     private List<GPUDTO> findAllGPUsBasedOnTerm(final String term) {
-        return gpuDAO.findAllGPUsBasedOnTerm(term.trim())
+        return gpuDAO.findAllGpusBasedOnTerm(term.trim())
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
@@ -232,7 +300,7 @@ public class FilterServiceImpl implements FilterService {
     }
 
     private List<MouseDTO> findAllMousesBasedOnTerm(final String term) {
-        return mouseDAO.findAllMousesBasedOnTerm(term.trim())
+        return mouseDAO.findAllMiceBasedOnTerm(term.trim())
                 .stream()
                 .map(MouseDTO::initDTOFromEntity)
                 .toList();

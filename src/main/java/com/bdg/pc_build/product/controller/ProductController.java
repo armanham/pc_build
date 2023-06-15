@@ -158,7 +158,7 @@ public class ProductController {
                 //TODO cases
             }
             default -> {
-                return ResponseEntity.badRequest().body("Invalid component type");
+                return ResponseEntity.badRequest().body("Invalid component connectivityTypes");
             }
         }
     }
@@ -177,7 +177,7 @@ public class ProductController {
                 //TODO cases
             }
             default -> {
-                return ResponseEntity.badRequest().body("Invalid component type");
+                return ResponseEntity.badRequest().body("Invalid component connectivityTypes");
             }
         }
     }

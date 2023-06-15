@@ -2,6 +2,8 @@ package com.bdg.pc_build.filter.model.request.main_component;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public record PowerSupplyFilterRequest(
         @JsonProperty("name")
         String name,
@@ -11,20 +13,21 @@ public record PowerSupplyFilterRequest(
         @JsonProperty(value = "max_price")
         String maxPrice,
 
-        @JsonProperty(value = "efficiency_rating")
-        String efficiencyRating,
 
         @JsonProperty(value = "min_wattage")
         String minWattage,
         @JsonProperty(value = "max_wattage")
         String maxWattage,
 
-        @JsonProperty(value = "modular")
-        String modular,
-
         @JsonProperty(value = "min_tdp")
         String minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp
+        String maxTdp,
+
+        @JsonProperty(value = "is_modular")
+        List<String> isModular,
+
+        @JsonProperty(value = "efficiency_ratings")
+        List<String> efficiencyRatings
 ) {
 }

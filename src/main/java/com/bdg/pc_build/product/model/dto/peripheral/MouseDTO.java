@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
-import com.bdg.pc_build.product.model.enumerations.Connectivity;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.MouseCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 public class MouseDTO extends ProductDTO {
 
-    Connectivity connectivityMouse;
+    ConnectivityType connectivityType;
     Integer maxResolution;
     Double cableLength;
     Double weight;
@@ -23,13 +23,13 @@ public class MouseDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final Connectivity connectivityMouse,
+            final ConnectivityType connectivityType,
             final Integer maxResolution,
             final Double cableLength,
             final Double weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.connectivityMouse = connectivityMouse;
+        this.connectivityType = connectivityType;
         this.maxResolution = maxResolution;
         this.cableLength = cableLength;
         this.weight = weight;
@@ -41,7 +41,7 @@ public class MouseDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .connectivityMouse(entity.getConnectivityMouse())
+                .connectivityType(entity.getConnectivityType())
                 .maxResolution(entity.getMaxResolution())
                 .cableLength(entity.getCableLength())
                 .weight(entity.getWeight())
@@ -54,7 +54,7 @@ public class MouseDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .connectivityMouse(Connectivity.valueOf(request.getConnectivityMouse()))
+                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType()))
                 .maxResolution(Integer.valueOf(request.getMaxResolution()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .weight(Double.valueOf(request.getWeight()))

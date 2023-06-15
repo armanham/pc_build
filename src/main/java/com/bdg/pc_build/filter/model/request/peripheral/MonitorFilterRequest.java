@@ -26,6 +26,6 @@ public record MonitorFilterRequest(
         String maxRefreshRate,
 
         @JsonProperty(value = "screen_types")
-        Collection<String> screenTypes
+        List<String> screenTypes
 ) {
 }

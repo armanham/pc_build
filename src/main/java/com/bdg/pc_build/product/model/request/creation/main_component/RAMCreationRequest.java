@@ -15,10 +15,10 @@ import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUM
 @Getter
 public class RAMCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'speed' field can not be blank")
+    @NotBlank(message = "'ddr_type' field can not be blank")
     @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
+            regexp = DDR_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "ddr_type", required = true)
     String ddrType;
@@ -58,7 +58,7 @@ public class RAMCreationRequest extends ProductCreationRequest {
             final String tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.ddrType = ddrType;
+        this.ddrType = ddrType.toUpperCase().trim();
         this.countOfRam = countOfRam;
         this.gbOfRam = gbOfRam;
         this.tdp = tdp;

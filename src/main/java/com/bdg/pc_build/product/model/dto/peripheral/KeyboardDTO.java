@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
-import com.bdg.pc_build.product.model.enumerations.Connectivity;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.KeyboardCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 public class KeyboardDTO extends ProductDTO {
 
-    Connectivity connectivityKeyboard;
+    ConnectivityType connectivityType;
     Double cableLength;
     String dimension;
     Double weight;
@@ -23,13 +23,13 @@ public class KeyboardDTO extends ProductDTO {
             final Double price,
             final Double purchasedPrice,
             final Integer count,
-            final Connectivity connectivityKeyboard,
+            final ConnectivityType connectivityType,
             final Double cableLength,
             final String dimension,
             final Double weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.connectivityKeyboard = connectivityKeyboard;
+        this.connectivityType = connectivityType;
         this.cableLength = cableLength;
         this.dimension = dimension;
         this.weight = weight;
@@ -41,7 +41,7 @@ public class KeyboardDTO extends ProductDTO {
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
-                .connectivityKeyboard(entity.getConnectivityKeyboard())
+                .connectivityType(entity.getConnectivityType())
                 .cableLength(entity.getCableLength())
                 .dimension(entity.getDimension())
                 .weight(entity.getWeight())
@@ -54,7 +54,7 @@ public class KeyboardDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .connectivityKeyboard(Connectivity.valueOf(request.getConnectivityKeyboard()))
+                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .dimension(request.getDimension())
                 .weight(Double.valueOf(request.getWeight()))

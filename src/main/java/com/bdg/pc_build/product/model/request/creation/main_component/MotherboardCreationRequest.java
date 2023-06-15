@@ -2,24 +2,32 @@ package com.bdg.pc_build.product.model.request.creation.main_component;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.POSITIVE_INTEGER_NUMBER_PATTERN;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import static com.bdg.pc_build.checking.pattern.Pattern.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class MotherboardCreationRequest extends ProductCreationRequest {
 
     @NotBlank(message = "'socket_type' field can not be blank")
+    @Pattern(
+            regexp = SOCKET_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
     @JsonProperty(value = "socket_type", required = true)
     String socketType;
 
     @NotBlank(message = "'atx_type' field can not be blank")
+    @Pattern(
+            regexp = ATX_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
     @JsonProperty(value = "atx_type", required = true)
     String atxType;
 
@@ -39,15 +47,27 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "memory_slots", required = true)
     String memorySlots;
 
-    @NotBlank(message = "'memory_type' field can not be blank")
-    @JsonProperty(value = "memory_type", required = true)
-    String memoryType;
+    @NotBlank(message = "'ddr_type' field can not be blank")
+    @Pattern(
+            regexp = DDR_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
+    @JsonProperty(value = "ddr_type", required = true)
+    String ddrType;
 
-    @NotBlank(message = "'internal_connections' field can not be blank")
-    @JsonProperty(value = "internal_connections", required = true)
-    String internalConnections;
+    @NotBlank(message = "'is_m2' field can not be blank")
+    @Pattern(
+            regexp = BOOLEAN_PATTERN,
+            message = WRONG_BOOLEAN_PATTERN
+    )
+    @JsonProperty(value = "is_m2", required = true)
+    String isM2;
 
     @NotBlank(message = "'gpu_interface_type' field can not be blank")
+    @Pattern(
+            regexp = GPU_INTERFACE_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
     @JsonProperty(value = "gpu_interface_type", required = true)
     String gpuInterfaceType;
 
@@ -68,19 +88,19 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
             final String atxType,
             final String memoryMax,
             final String memorySlots,
-            final String memoryType,
-            final String internalConnections,
+            final String ddrType,
+            final String isM2,
             final String gpuInterfaceType,
             final String tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.socketType = socketType.trim();
-        this.atxType = atxType.trim();
+        this.socketType = socketType.toUpperCase().trim();
+        this.atxType = atxType.toUpperCase().trim();
         this.memoryMax = memoryMax;
         this.memorySlots = memorySlots;
-        this.memoryType = memoryType;
-        this.internalConnections = internalConnections.trim();
-        this.gpuInterfaceType = gpuInterfaceType.trim();
+        this.ddrType = ddrType.toUpperCase().trim();
+        this.isM2 = isM2.trim();
+        this.gpuInterfaceType = gpuInterfaceType.toUpperCase().trim();
         this.tdp = tdp;
     }
 }

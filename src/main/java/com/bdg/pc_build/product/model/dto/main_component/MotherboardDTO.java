@@ -24,8 +24,8 @@ public class MotherboardDTO extends ProductDTO {
     ATXType atxType;
     Integer memoryMax;
     Integer memorySlots;
-    DDRType memoryType;
-    String internalConnections;
+    DDRType ddrType;
+    Boolean isM2;
     GPUInterfaceType gpuInterfaceType;
     Integer tdp;
 
@@ -39,8 +39,8 @@ public class MotherboardDTO extends ProductDTO {
             final ATXType atxtype,
             final Integer memoryMax,
             final Integer memorySlots,
-            final DDRType memoryType,
-            final String internalConnections,
+            final DDRType ddrType,
+            final Boolean isM2,
             final GPUInterfaceType gpuInterfaceType,
             final Integer tdp
     ) {
@@ -49,8 +49,8 @@ public class MotherboardDTO extends ProductDTO {
         this.atxType = atxtype;
         this.memoryMax = memoryMax;
         this.memorySlots = memorySlots;
-        this.memoryType = memoryType;
-        this.internalConnections = internalConnections;
+        this.ddrType = ddrType;
+        this.isM2 = isM2;
         this.gpuInterfaceType = gpuInterfaceType;
         this.tdp = tdp;
     }
@@ -65,8 +65,8 @@ public class MotherboardDTO extends ProductDTO {
                 .atxtype(entity.getAtxType())
                 .memoryMax(entity.getMemoryMax())
                 .memorySlots(entity.getMemorySlots())
-                .memoryType(entity.getMemoryType())
-                .internalConnections(String.valueOf(entity.getInternalConnections()))
+                .ddrType(entity.getDdrType())
+                .isM2(entity.getIsM2())
                 .gpuInterfaceType(entity.getGpuInterfaceType())
                 .tdp(entity.getTdp())
                 .build();
@@ -82,8 +82,8 @@ public class MotherboardDTO extends ProductDTO {
                 .atxtype(ATXType.valueOf(request.getAtxType()))
                 .memoryMax(Integer.valueOf(request.getMemoryMax()))
                 .memorySlots(Integer.valueOf(request.getMemorySlots()))
-                .memoryType(DDRType.valueOf(request.getMemoryType()))
-                .internalConnections(request.getInternalConnections())
+                .ddrType(DDRType.valueOf(request.getDdrType()))
+                .isM2(Boolean.valueOf(request.getIsM2()))
                 .gpuInterfaceType(GPUInterfaceType.valueOf(request.getGpuInterfaceType()))
                 .tdp(Integer.valueOf(request.getTdp()))
                 .build();

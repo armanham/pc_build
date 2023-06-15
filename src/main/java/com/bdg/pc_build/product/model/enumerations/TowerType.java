@@ -6,9 +6,7 @@ import java.util.stream.Collectors;
 
 public enum TowerType {
 
-    FULL,
-    MID,
-    MINI;
+    FULL, MID, MINI;
 
     public static List<String> toListOfStrings() {
         return Arrays.stream(TowerType.values())

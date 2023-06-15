@@ -2,9 +2,13 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 
 import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.SpeakerFilterRequest;
+import com.bdg.pc_build.product.model.enumerations.PowerSourceType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -21,9 +25,9 @@ public class SpeakerFilterDTO {
     Double minCableLength;
     Double maxCableLength;
 
-    final String dimension;
+    final Set<String> dimensions;
 
-    final String powerSource;
+    final Set<PowerSourceType> powerSourceTypes;
 
     public SpeakerFilterDTO(final SpeakerFilterRequest request) {
         this.name = request.name();
@@ -58,7 +62,24 @@ public class SpeakerFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minCableLength, maxCableLength);
         }
 
-        this.dimension = request.dimension();
-        this.powerSource = request.powerSource();
+        if (request.dimensions() != null && !request.dimensions().isEmpty()) {
+            this.dimensions = request.dimensions()
+                    .stream()
+                    .map(s -> s.toLowerCase().trim())
+                    .collect(Collectors.toSet());
+        } else {
+            this.dimensions = null;
+        }
+
+        if (request.powerSourceTypes() != null && !request.powerSourceTypes().isEmpty()) {
+            this.powerSourceTypes = request.powerSourceTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> PowerSourceType.toListOfStrings().contains(s))
+                    .map(PowerSourceType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.powerSourceTypes = null;
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.bdg.pc_build.filter.model.request.main_component;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public record GPUFilterRequest(
         @JsonProperty("name")
         String name,
@@ -10,9 +12,6 @@ public record GPUFilterRequest(
         String minPrice,
         @JsonProperty(value = "max_price")
         String maxPrice,
-
-        @JsonProperty(value = "GPU_interface_type")
-        String gpuInterfaceType,
 
         @JsonProperty(value = "min_memory")
         String minMemory,
@@ -37,6 +36,9 @@ public record GPUFilterRequest(
         @JsonProperty(value = "min_tdp")
         String minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp
+        String maxTdp,
+
+        @JsonProperty(value = "gpu_interface_types")
+        List<String> gpuInterfaceTypes
 ) {
 }
