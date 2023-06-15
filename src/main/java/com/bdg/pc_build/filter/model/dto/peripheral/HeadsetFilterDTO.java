@@ -27,7 +27,6 @@ public class HeadsetFilterDTO {
 
    final Set<ConnectivityType> connectivityTypes;
 
-
     public HeadsetFilterDTO(final HeadsetFilterRequest request) {
         this.name = request.name();
 

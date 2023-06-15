@@ -78,13 +78,13 @@ public class MotherboardDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .socketType(SocketType.valueOf(request.getSocketType()))
-                .atxtype(ATXType.valueOf(request.getAtxType()))
+                .socketType(SocketType.valueOf(request.getSocketType().trim().toUpperCase()))
+                .atxtype(ATXType.valueOf(request.getAtxType().trim().toUpperCase()))
                 .memoryMax(Integer.valueOf(request.getMemoryMax()))
                 .memorySlots(Integer.valueOf(request.getMemorySlots()))
-                .ddrType(DDRType.valueOf(request.getDdrType()))
-                .isM2(Boolean.valueOf(request.getIsM2()))
-                .gpuInterfaceType(GPUInterfaceType.valueOf(request.getGpuInterfaceType()))
+                .ddrType(DDRType.valueOf(request.getDdrType().trim().toUpperCase()))
+                .isM2(Boolean.valueOf(request.getIsM2().trim()))
+                .gpuInterfaceType(GPUInterfaceType.valueOf(request.getGpuInterfaceType().trim().toUpperCase()))
                 .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }

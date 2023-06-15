@@ -55,7 +55,7 @@ public class SpeakerDTO extends ProductDTO {
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
                 .frequency(Integer.valueOf(request.getFrequency()))
-                .powerSourceType(PowerSourceType.valueOf(request.getPowerSourceType()))
+                .powerSourceType(PowerSourceType.valueOf(request.getPowerSourceType().trim().toUpperCase()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .dimension(request.getDimension())
                 .build();

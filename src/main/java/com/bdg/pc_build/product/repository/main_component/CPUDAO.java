@@ -1,7 +1,6 @@
 package com.bdg.pc_build.product.repository.main_component;
 
 import com.bdg.pc_build.product.model.entity.main_component.CPU;
-import com.bdg.pc_build.product.model.entity.main_component.aCase;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
@@ -22,7 +21,7 @@ public interface CPUDAO extends ProductDAO<CPU> {
                     "AND (p.coreClock BETWEEN :minCoreClock AND :maxCoreClock) " +
                     "AND (p.boostClock BETWEEN :minBoostClock AND :maxBoostClock) " +
                     "AND (p.tdp BETWEEN :minTdp AND :maxTdp) " +
-                    "AND ((:integratedGraphics) is null or p.integratedGraphics in (:integratedGraphics)) " +
+                    "AND ((:integratedGraphics) is null or lower(p.integratedGraphics) in (:integratedGraphics)) " +
                     "AND ((:socketTypes) is null or p.socketType in (:socketTypes)) "
     )
     List<CPU> filterAllCpusBasedOnSpecification(

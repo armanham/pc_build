@@ -62,7 +62,7 @@ public class GPUDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .gpuInterfaceType(GPUInterfaceType.valueOf(request.getGpuInterfaceType()))
+                .gpuInterfaceType(GPUInterfaceType.valueOf(request.getGpuInterfaceType().trim().toUpperCase()))
                 .memory(Integer.valueOf(request.getMemory()))
                 .coreClock(Double.valueOf(request.getCoreClock()))
                 .boostClock(Double.valueOf(request.getBoostClock()))

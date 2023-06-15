@@ -52,7 +52,7 @@ public class CPUCoolerDTO extends ProductDTO {
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
                 .fanRpm(Integer.valueOf(request.getFanRpm()))
-                .socketType(SocketType.valueOf(request.getSocketType()))
+                .socketType(SocketType.valueOf(request.getSocketType().trim().toUpperCase()))
                 .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }

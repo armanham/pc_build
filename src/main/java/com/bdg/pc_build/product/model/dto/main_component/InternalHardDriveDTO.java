@@ -50,7 +50,7 @@ public class InternalHardDriveDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .internalHardDriveInterfaceType(InternalHardDriveInterfaceType.valueOf(request.getInternalHardDriveInterfaceType()))
+                .internalHardDriveInterfaceType(InternalHardDriveInterfaceType.valueOf(request.getInternalHardDriveInterfaceType().trim().toUpperCase()))
                 .capacity(Integer.valueOf(request.getCapacity()))
                 .tdp(Integer.valueOf(request.getTdp()))
                 .build();

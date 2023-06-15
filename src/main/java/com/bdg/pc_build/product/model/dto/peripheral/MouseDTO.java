@@ -54,7 +54,7 @@ public class MouseDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType()))
+                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType().trim().toUpperCase()))
                 .maxResolution(Integer.valueOf(request.getMaxResolution()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .weight(Double.valueOf(request.getWeight()))

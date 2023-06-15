@@ -3,7 +3,10 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.ExternalHardDrive;
 import com.bdg.pc_build.product.model.request.creation.peripheral.ExternalHardDriveCreationRequest;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)

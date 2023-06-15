@@ -60,7 +60,7 @@ public class RAMDTO extends ProductDTO {
                 .price(Double.valueOf(request.getPrice()))
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
-                .ddrType(DDRType.valueOf(request.getDdrType()))
+                .ddrType(DDRType.valueOf(request.getDdrType().trim().toUpperCase()))
                 .countOfRam(Integer.valueOf(request.getCountOfRam()))
                 .gbOfRam(Double.valueOf(request.getGbOfRam()))
                 .tdp(Integer.valueOf(request.getTdp()))
