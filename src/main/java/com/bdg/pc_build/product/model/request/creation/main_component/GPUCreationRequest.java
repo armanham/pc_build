@@ -75,7 +75,7 @@ public class GPUCreationRequest extends ProductCreationRequest {
             final String length,
             final String tdp) {
         super(name, price, purchasedPrice, count);
-        this.gpuInterfaceType = gpuInterfaceType.toUpperCase().trim();
+        this.gpuInterfaceType = gpuInterfaceType;
         this.memory = memory;
         this.coreClock = coreClock;
         this.boostClock = boostClock;

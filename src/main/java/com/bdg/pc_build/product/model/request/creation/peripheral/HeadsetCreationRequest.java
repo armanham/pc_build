@@ -50,7 +50,7 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
     ) {
         super(name, price, purchasedPrice, count);
         this.frequency = frequency;
-        this.connectivityType = connectivityType.toUpperCase().trim();
+        this.connectivityType = connectivityType;
         this.cableLength = cableLength;
     }
 }

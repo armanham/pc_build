@@ -58,7 +58,7 @@ public class MouseCreationRequest extends ProductCreationRequest {
             final String weight
     ) {
         super(name, price, purchasedPrice, count);
-        this.connectivityType = connectivityType.toUpperCase().trim();
+        this.connectivityType = connectivityType;
         this.maxResolution = maxResolution;
         this.cableLength = cableLength;
         this.weight = weight;

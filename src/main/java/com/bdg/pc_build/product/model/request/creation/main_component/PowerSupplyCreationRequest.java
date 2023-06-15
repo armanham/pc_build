@@ -53,9 +53,9 @@ public class PowerSupplyCreationRequest extends ProductCreationRequest {
             final String tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.efficiencyRating = efficiencyRating.toUpperCase().trim();
+        this.efficiencyRating = efficiencyRating;
         this.wattage = wattage;
-        this.isModular = isModular.trim();
+        this.isModular = isModular;
         this.tdp = tdp;
     }
 }

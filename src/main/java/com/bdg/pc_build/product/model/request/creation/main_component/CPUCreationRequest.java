@@ -76,7 +76,7 @@ public class CPUCreationRequest extends ProductCreationRequest {
         this.coreClock = coreClock;
         this.boostClock = boostClock;
         this.tdp = tdp;
-        this.integratedGraphics = integratedGraphics.trim();
-        this.socketType = socketType.toUpperCase().trim();
+        this.integratedGraphics = integratedGraphics;
+        this.socketType = socketType;
     }
 }
