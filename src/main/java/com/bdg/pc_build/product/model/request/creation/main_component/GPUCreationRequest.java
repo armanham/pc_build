@@ -16,6 +16,10 @@ import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUM
 public class GPUCreationRequest extends ProductCreationRequest {
 
     @NotBlank(message = "'gpu_interface_type' field can not be blank")
+    @Pattern(
+            regexp = GPU_INTERFACE_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
     @JsonProperty(value = "gpu_interface_type", required = true)
     String gpuInterfaceType;
 
@@ -71,7 +75,7 @@ public class GPUCreationRequest extends ProductCreationRequest {
             final String length,
             final String tdp) {
         super(name, price, purchasedPrice, count);
-        this.gpuInterfaceType = gpuInterfaceType.trim();
+        this.gpuInterfaceType = gpuInterfaceType.toUpperCase().trim();
         this.memory = memory;
         this.coreClock = coreClock;
         this.boostClock = boostClock;

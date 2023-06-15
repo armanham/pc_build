@@ -2,6 +2,8 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 
 import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.RAMFilterRequest;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
+import com.bdg.pc_build.product.model.enumerations.DDRType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
@@ -15,9 +17,6 @@ public class RAMFilterDTO {
     Double minPrice;
     Double maxPrice;
 
-    Integer minSpeed;
-    Integer maxSpeed;
-
     Integer minCountOfRam;
     Integer maxCountOfRam;
 
@@ -26,6 +25,8 @@ public class RAMFilterDTO {
 
     Integer minTdp;
     Integer maxTdp;
+
+    final Set<DDRType> ddrTypes;
 
     public RAMFilterDTO(final RAMFilterRequest request) {
         this.name = request.name();
@@ -38,16 +39,6 @@ public class RAMFilterDTO {
         }
         if (this.minPrice != null && this.maxPrice != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
-        }
-
-        if (request.minSpeed() != null && !request.minSpeed().isBlank()) {
-            this.minSpeed = Integer.valueOf(request.minSpeed());
-        }
-        if (request.maxSpeed() != null && !request.maxSpeed().isBlank()) {
-            this.maxSpeed = Integer.valueOf(request.maxSpeed());
-        }
-        if (this.minSpeed != null && this.maxSpeed != null) {
-            ValidationUtil.validateNonNegativeMinMaxValues(minSpeed, maxSpeed);
         }
 
         if (request.minCountOfRam() != null && !request.minCountOfRam().isBlank()) {
@@ -78,6 +69,17 @@ public class RAMFilterDTO {
         }
         if (this.minTdp != null && this.maxTdp != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
+        }
+
+        if (request.ddrTypes() != null && !request.ddrTypes().isEmpty()) {
+            this.ddrTypes = request.ddrTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> DDRType.toListOfStrings().contains(s))
+                    .map(DDRType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.ddrTypes = null;
         }
     }
 }

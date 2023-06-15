@@ -2,6 +2,8 @@ package com.bdg.pc_build.filter.model.request.main_component;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public record CPUFilterRequest(
         @JsonProperty("name")
         String name,
@@ -26,15 +28,15 @@ public record CPUFilterRequest(
         @JsonProperty(value = "max_boost_clock")
         String maxBoostClock,
 
-        @JsonProperty(value = "integrated_graphics")
-        String integratedGraphics,
-
-        @JsonProperty(value = "socket_type")
-        String socketType,
-
         @JsonProperty(value = "min_tdp")
         String minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp
+        String maxTdp,
+
+        @JsonProperty(value = "socket_types")
+        List<String> socketTypes,
+
+        @JsonProperty(value = "integrated_graphics")
+        List<String> integratedGraphics
 ) {
 }

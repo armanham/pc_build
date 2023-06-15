@@ -58,7 +58,24 @@ public class SpeakerFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minCableLength, maxCableLength);
         }
 
-        this.dimension = request.dimension();
-        this.powerSource = request.powerSource();
+        if (request.dimensions() != null && !request.dimensions().isEmpty()) {
+            this.dimensions = request.dimensions()
+                    .stream()
+                    .map(s -> s.toLowerCase().trim())
+                    .collect(Collectors.toSet());
+        } else {
+            this.dimensions = null;
+        }
+
+        if (request.powerSourceTypes() != null && !request.powerSourceTypes().isEmpty()) {
+            this.powerSourceTypes = request.powerSourceTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> PowerSourceType.toListOfStrings().contains(s))
+                    .map(PowerSourceType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.powerSourceTypes = null;
+        }
     }
 }

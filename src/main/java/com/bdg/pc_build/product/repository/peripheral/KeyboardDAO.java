@@ -34,7 +34,7 @@ public interface KeyboardDAO extends ProductDAO<Keyboard> {
     @Query(
             "SELECT p FROM Keyboard p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.connectivityKeyboard, ' ', " +
+                    "OR CONCAT(p.name, ' ', p.connectivityType, ' ', " +
                     "p.cableLength, ' ', p.dimension, ' ', p.weight) " +
                     "LIKE CONCAT('%', :term, '%') "
     )

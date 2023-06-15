@@ -15,7 +15,7 @@ public interface PowerSupplyDAO extends ProductDAO<PowerSupply> {
             "SELECT p FROM PowerSupply p " +
                     "WHERE :term IS NULL " +
                     "OR CONCAT(p.name, ' ', p.efficiencyRating, ' ', " +
-                    "p.wattage, ' ', p.modular, ' ', p.tdp) " +
+                    "p.wattage, ' ', p.isModular, ' ', p.tdp) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
     List<PowerSupply> findAllPowerSuppliesBasedOnTerm(

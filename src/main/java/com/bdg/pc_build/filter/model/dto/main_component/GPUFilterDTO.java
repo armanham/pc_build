@@ -7,6 +7,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class GPUFilterDTO {
@@ -31,7 +34,7 @@ public class GPUFilterDTO {
     Integer minTdp;
     Integer maxTdp;
 
-    GPUInterfaceType gpuInterfaceType;
+    final Set<GPUInterfaceType> gpuInterfaceTypes;
 
 
     public GPUFilterDTO(final GPUFilterRequest request) {
@@ -97,6 +100,15 @@ public class GPUFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }
 
-        //TODO GPUINTERFACETYPE
+        if (request.gpuInterfaceTypes() != null && !request.gpuInterfaceTypes().isEmpty()) {
+            this.gpuInterfaceTypes = request.gpuInterfaceTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> GPUInterfaceType.toListOfStrings().contains(s))
+                    .map(GPUInterfaceType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.gpuInterfaceTypes = null;
+        }
     }
 }

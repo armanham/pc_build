@@ -2,6 +2,8 @@ package com.bdg.pc_build.filter.model.request.main_component;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public record CaseFilterRequest(
         @JsonProperty("name")
         String name,
@@ -12,21 +14,21 @@ public record CaseFilterRequest(
         String maxPrice,
 
         @JsonProperty(value = "min_cpu_cooler_height")
-        String minCPUCoolerHeight,
+        String minCpuCoolerHeight,
         @JsonProperty(value = "max_cpu_cooler_height")
-        String maxCPUCoolerHeight,
+        String maxCpuCoolerHeight,
 
         @JsonProperty(value = "min_gpu_length")
-        String minGPULength,
+        String minGpuLength,
         @JsonProperty(value = "max_gpu_length")
-        String maxGPULength,
+        String maxGpuLength,
 
         @JsonProperty(value = "min_pre_installed_fans")
         String minPreInstalledFans,
         @JsonProperty(value = "max_pre_installed_fans")
         String maxPreInstalledFans,
 
-        @JsonProperty(value = "tower_type")
-        String towerType
+        @JsonProperty(value = "tower_types")
+        List<String> towerTypes
 ) {
 }

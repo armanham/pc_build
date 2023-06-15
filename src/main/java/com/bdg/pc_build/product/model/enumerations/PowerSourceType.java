@@ -4,12 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum DDRType {
-
-    DDR2, DDR3, DDR4, DDR5;
+public enum PowerSourceType {
+    AC, DC, BATTERY, SOLAR, WIND, HYDRO;
 
     public static List<String> toListOfStrings() {
-        return Arrays.stream(DDRType.values())
+        return Arrays.stream(PowerSourceType.values())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
     }

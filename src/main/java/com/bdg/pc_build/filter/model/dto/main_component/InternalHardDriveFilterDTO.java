@@ -7,6 +7,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class InternalHardDriveFilterDTO {
@@ -22,7 +25,7 @@ public class InternalHardDriveFilterDTO {
     Integer minTdp;
     Integer maxTdp;
 
-    InternalHardDriveInterfaceType type;
+    final Set<InternalHardDriveInterfaceType> internalHardDriveInterfaceTypes;
 
     public InternalHardDriveFilterDTO(final InternalHardDriveFilterRequest request) {
         this.name = request.name();
@@ -57,6 +60,15 @@ public class InternalHardDriveFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }
 
-        //TODO INTERNALHARDDRIVETYPE
+        if (request.internalHardDriveInterfaceTypes() != null && !request.internalHardDriveInterfaceTypes().isEmpty()) {
+            this.internalHardDriveInterfaceTypes = request.internalHardDriveInterfaceTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> InternalHardDriveInterfaceType.toListOfStrings().contains(s))
+                    .map(InternalHardDriveInterfaceType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.internalHardDriveInterfaceTypes = null;
+        }
     }
 }

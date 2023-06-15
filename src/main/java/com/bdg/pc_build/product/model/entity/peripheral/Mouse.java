@@ -4,7 +4,7 @@ import com.bdg.pc_build.product.model.dto.peripheral.MouseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import javax.persistence.*;
 
-import com.bdg.pc_build.product.model.enumerations.Connectivity;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -20,7 +20,7 @@ import java.util.Objects;
 public class Mouse extends Product {
 
     @Column(name = "connectivity_type", nullable = false, updatable = false)
-    Connectivity connectivityType;
+    ConnectivityType connectivityType;
 
     @Column(name = "max_resolution", nullable = false, updatable = false)
     Integer maxResolution;

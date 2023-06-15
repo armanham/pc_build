@@ -6,12 +6,7 @@ import java.util.stream.Collectors;
 
 public enum EfficiencyRating {
 
-    Nope,
-    Bronze,
-    Silver,
-    Gold,
-    Platinum,
-    Titanium;
+    NOPE, BRONZE, SILVER, GOLD, PLATINUM, TITANIUM;
 
     public static List<String> toListOfStrings() {
         return Arrays.stream(EfficiencyRating.values())

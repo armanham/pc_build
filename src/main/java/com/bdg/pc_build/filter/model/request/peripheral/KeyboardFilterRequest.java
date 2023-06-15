@@ -25,6 +25,12 @@ public record KeyboardFilterRequest(
         @JsonProperty(value = "min_weight")
         String minWeight,
         @JsonProperty(value = "max_weight")
-        String maxWeight
+        String maxWeight,
+
+        @JsonProperty(value = "dimensions")
+        List<String> dimensions,
+
+        @JsonProperty(value = "connectivity_types")
+        List<String> connectivityTypes
 ) {
 }

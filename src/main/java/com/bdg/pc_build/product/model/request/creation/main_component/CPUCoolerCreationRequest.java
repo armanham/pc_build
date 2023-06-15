@@ -2,14 +2,14 @@ package com.bdg.pc_build.product.model.request.creation.main_component;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.POSITIVE_INTEGER_NUMBER_PATTERN;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import static com.bdg.pc_build.checking.pattern.Pattern.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -24,6 +24,10 @@ public class CPUCoolerCreationRequest extends ProductCreationRequest {
     String fanRpm;
 
     @NotBlank(message = "'socket_type' field can not be blank")
+    @Pattern(
+            regexp = SOCKET_TYPE_ENUM_PATTERN,
+            message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
+    )
     @JsonProperty(value = "socket_type", required = true)
     String socketType;
 
@@ -45,8 +49,8 @@ public class CPUCoolerCreationRequest extends ProductCreationRequest {
             final String tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.fanRpm = fanRpm.trim();
-        this.socketType = socketType.trim();
+        this.fanRpm = fanRpm;
+        this.socketType = socketType.toUpperCase().trim();
         this.tdp = tdp;
     }
 }

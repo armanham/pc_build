@@ -6,9 +6,7 @@ import java.util.stream.Collectors;
 
 public enum ATXType {
 
-    mATX,
-    ATX,
-    eATX;
+    M_ATX, ATX, E_ATX;
 
     public static List<String> toListOfStrings() {
         return Arrays.stream(ATXType.values())

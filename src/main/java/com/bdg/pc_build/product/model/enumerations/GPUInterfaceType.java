@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public enum GPUInterfaceType {
 
-    PCIe_4_0_x16, PCIe_3_0_x16, PCIe_x8;
+    PCIE_4_0_X16, PCIE_3_0_X16, PCIE_X8;
 
     public static List<String> toListOfStrings() {
         return Arrays.stream(GPUInterfaceType.values())

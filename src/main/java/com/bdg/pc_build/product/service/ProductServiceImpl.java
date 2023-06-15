@@ -3,15 +3,12 @@ package com.bdg.pc_build.product.service;
 import com.bdg.pc_build.checking.exception.ApranqyQichAException;
 import com.bdg.pc_build.checking.exception.ProductNotFoundException;
 import com.bdg.pc_build.checking.exception.SameNameDifferentDescriptionException;
-import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
 import com.bdg.pc_build.product.model.entity.main_component.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.product.repository.ProductDAO;
-import com.bdg.pc_build.product.repository.peripheral.MonitorDAO;
 import com.bdg.pc_build.product.repository.main_component.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import lombok.AccessLevel;
@@ -28,15 +25,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    //Display repositories
-    MonitorDAO monitorDAO;
 
     //Main component repositories
     CaseDAO caseDAO;
     CoolerDAO coolerDAO;
     CPUCoolerDAO cpuCoolerDAO;
     CPUDAO cpuDAO;
-    ExternalHardDriveDAO externalHardDriveDAO;
     GPUDAO gpuDAO;
     InternalHardDriveDAO internalHardDriveDAO;
     MotherboardDAO motherboardDAO;
@@ -44,6 +38,8 @@ public class ProductServiceImpl implements ProductService {
     RAMDAO ramDAO;
 
     //Peripheral repositories
+    ExternalHardDriveDAO externalHardDriveDAO;
+    MonitorDAO monitorDAO;
     HeadsetDAO headsetDAO;
     KeyboardDAO keyboardDAO;
     MouseDAO mouseDAO;

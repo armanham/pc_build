@@ -14,7 +14,7 @@ public interface RAMDAO extends ProductDAO<RAM> {
     @Query(
             "SELECT p FROM RAM p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.speed, ' ', p.countOfRam, ' ', p.gbOfRam, " +
+                    "OR CONCAT(p.name, ' ', p.ddrType, ' ', p.countOfRam, ' ', p.gbOfRam, " +
                     "' ', p.tdp) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
@@ -27,12 +27,6 @@ public interface RAMDAO extends ProductDAO<RAM> {
 
     @Query("select min(p.tdp) from RAM p")
     Integer getMinTdpOfRams();
-
-    @Query("select min(p.speed) from RAM p")
-    Integer getMinSpeedOfRams();
-
-    @Query("select max(p.speed) from RAM p")
-    Integer getMaxSpeedOfRams();
 
     @Query("select min(p.countOfRam) from RAM p")
     Integer getMinCountOfRamOfRams();

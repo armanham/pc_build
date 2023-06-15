@@ -22,7 +22,7 @@ public class PowerSupplyFilterDTO {
     Integer minTdp;
     Integer maxTdp;
 
-    Boolean modular;
+    final Set<Boolean> isModular;
 
     EfficiencyRating efficiencyRating;
 
@@ -59,9 +59,26 @@ public class PowerSupplyFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }
 
-        if (request.modular() != null && !request.modular().isBlank()) {
-            this.modular = Boolean.valueOf(request.modular());
+        if (request.isModular() != null && !request.isModular().isEmpty()) {
+            this.isModular = request.isModular()
+                    .stream()
+                    .map(String::trim)
+                    .filter(s -> s.equalsIgnoreCase("true") || s.equalsIgnoreCase("false"))
+                    .map(Boolean::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.isModular = null;
         }
-        //TODO     EfficiencyRating efficiencyRating;
+
+        if (request.efficiencyRatings() != null && !request.efficiencyRatings().isEmpty()) {
+            this.efficiencyRatings = request.efficiencyRatings()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> EfficiencyRating.toListOfStrings().contains(s))
+                    .map(EfficiencyRating::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.efficiencyRatings = null;
+        }
     }
 }

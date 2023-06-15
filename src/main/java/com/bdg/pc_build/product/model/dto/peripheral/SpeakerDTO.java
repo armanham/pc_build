@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Speaker;
-import com.bdg.pc_build.product.model.enumerations.PowerSource;
+import com.bdg.pc_build.product.model.enumerations.PowerSourceType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.SpeakerCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 public class SpeakerDTO extends ProductDTO {
 
     Integer frequency;
-    PowerSource powerSource;
+    PowerSourceType powerSourceType;
     Double cableLength;
     String dimension;
 
@@ -24,13 +24,13 @@ public class SpeakerDTO extends ProductDTO {
             final Double purchasedPrice,
             final Integer count,
             final Integer frequency,
-            final PowerSource powerSource,
+            final PowerSourceType powerSourceType,
             final Double cableLength,
             final String dimension
     ) {
         super(name, price, purchasedPrice, count);
         this.frequency = frequency;
-        this.powerSource = powerSource;
+        this.powerSourceType = powerSourceType;
         this.cableLength = cableLength;
         this.dimension = dimension;
     }
@@ -42,7 +42,7 @@ public class SpeakerDTO extends ProductDTO {
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
                 .frequency(entity.getFrequency())
-                .powerSource(entity.getPowerSource())
+                .powerSourceType(entity.getPowerSourceType())
                 .cableLength(entity.getCableLength())
                 .dimension(entity.getDimension())
                 .build();
@@ -55,7 +55,7 @@ public class SpeakerDTO extends ProductDTO {
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
                 .frequency(Integer.valueOf(request.getFrequency()))
-                .powerSource(PowerSource.valueOf(request.getPowerSource()))
+                .powerSourceType(PowerSourceType.valueOf(request.getPowerSourceType()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .dimension(request.getDimension())
                 .build();

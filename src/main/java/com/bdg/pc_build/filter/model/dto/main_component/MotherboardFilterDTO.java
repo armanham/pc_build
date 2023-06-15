@@ -10,6 +10,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class MotherboardFilterDTO {
@@ -28,15 +31,12 @@ public class MotherboardFilterDTO {
     Integer minTdp;
     Integer maxTdp;
 
-    final String internalConnections;
+    final Set<Boolean> isM2;
 
-    DDRType memoryType;
-
-    GPUInterfaceType gpuInterfaceType;
-
-    SocketType socketType;
-
-    ATXType atxType;
+    final Set<DDRType> ddrTypes;
+    final Set<GPUInterfaceType> gpuInterfaceTypes;
+    final Set<SocketType> socketTypes;
+    final Set<ATXType> atxTypes;
 
     public MotherboardFilterDTO(final MotherboardFilterRequest request) {
         this.name = request.name();
@@ -81,10 +81,59 @@ public class MotherboardFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }
 
-        this.internalConnections = request.internalConnections();
-        //TODO DDRType memoryType;
-        //TODO GPUInterfaceType gpuInterfaceType;
-        //TODO SocketType socketType;
-        //TODO ATXType atxType;
+        if (request.isM2() != null && !request.isM2().isEmpty()) {
+            this.isM2 = request.isM2()
+                    .stream()
+                    .map(String::trim)
+                    .filter(s -> s.equalsIgnoreCase("true") || s.equalsIgnoreCase("false"))
+                    .map(Boolean::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.isM2 = null;
+        }
+
+        if (request.ddrTypes() != null && !request.ddrTypes().isEmpty()) {
+            this.ddrTypes = request.ddrTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> DDRType.toListOfStrings().contains(s))
+                    .map(DDRType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.ddrTypes = null;
+        }
+
+        if (request.gpuInterfaceTypes() != null && !request.gpuInterfaceTypes().isEmpty()) {
+            this.gpuInterfaceTypes = request.gpuInterfaceTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> GPUInterfaceType.toListOfStrings().contains(s))
+                    .map(GPUInterfaceType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.gpuInterfaceTypes = null;
+        }
+
+        if (request.socketTypes() != null && !request.socketTypes().isEmpty()) {
+            this.socketTypes = request.socketTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> SocketType.toListOfStrings().contains(s))
+                    .map(SocketType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.socketTypes = null;
+        }
+
+        if (request.atxTypes() != null && !request.atxTypes().isEmpty()) {
+            this.atxTypes = request.atxTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> ATXType.toListOfStrings().contains(s))
+                    .map(ATXType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.atxTypes = null;
+        }
     }
 }

@@ -19,7 +19,7 @@ public class PowerSupplyDTO extends ProductDTO {
 
     EfficiencyRating efficiencyRating;
     Integer wattage;
-    Boolean modular;
+    Boolean isModular;
     Integer tdp;
 
     @Builder
@@ -30,13 +30,13 @@ public class PowerSupplyDTO extends ProductDTO {
             final Integer count,
             final EfficiencyRating efficiencyRating,
             final Integer wattage,
-            final Boolean modular,
+            final Boolean isModular,
             final Integer tdp)
     {
         super(name, price, purchasedPrice, count);
         this.efficiencyRating = efficiencyRating;
         this.wattage = wattage;
-        this.modular = modular;
+        this.isModular = isModular;
         this.tdp = tdp;
     }
 
@@ -48,7 +48,7 @@ public class PowerSupplyDTO extends ProductDTO {
                 .count(entity.getCount())
                 .efficiencyRating(entity.getEfficiencyRating())
                 .wattage(entity.getWattage())
-                .modular(entity.getModular())
+                .isModular(entity.getIsModular())
                 .tdp(entity.getTdp())
                 .build();
     }
@@ -61,7 +61,7 @@ public class PowerSupplyDTO extends ProductDTO {
                 .count(Integer.valueOf(request.getCount()))
                 .efficiencyRating(EfficiencyRating.valueOf(request.getEfficiencyRating()))
                 .wattage(Integer.valueOf(request.getWattage()))
-                .modular(Boolean.valueOf(request.getModular()))
+                .isModular(Boolean.valueOf(request.getIsModular()))
                 .tdp(Integer.valueOf(request.getTdp()))
                 .build();
     }

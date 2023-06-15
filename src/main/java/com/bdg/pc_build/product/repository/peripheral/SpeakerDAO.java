@@ -19,8 +19,8 @@ public interface SpeakerDAO extends ProductDAO<Speaker> {
                     "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
                     "AND (p.frequency BETWEEN :minFrequency AND :maxFrequency) " +
                     "AND (p.cableLength BETWEEN :minCableLength AND :maxCableLength) " +
-                    "AND (:dimension IS NULL OR lower(p.dimension) LIKE lower(concat('%', :dimension, '%')))" +
-                    "AND (:powerSource IS NULL OR lower(p.powerSource) LIKE lower(concat('%', :powerSource, '%')))"
+                    "AND ((:dimensions) IS NULL OR lower(p.dimension) in (:dimensions)) " +
+                    "AND ((:powerSourceTypes) IS NULL OR p.powerSourceType IN (:powerSourceTypes))"
     )
     List<Speaker> filterAllSpeakersBasedOnSpecification(
             @Param("name") String name,

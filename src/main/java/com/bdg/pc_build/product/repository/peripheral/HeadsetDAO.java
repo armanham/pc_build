@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface HeadsetDAO extends ProductDAO<Headset> {
 
-    //todo
     @Query(
             "SELECT p FROM Headset p WHERE " +
                     "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
@@ -32,11 +31,12 @@ public interface HeadsetDAO extends ProductDAO<Headset> {
             @Param("minCableLength") Double minCableLength,
             @Param("maxCableLength") Double maxCableLength
     );
+
     @Query(
             "SELECT p FROM Headset p " +
                     "WHERE :term IS NULL " +
                     "OR CONCAT(p.name, ' ', p.frequency, ' ', " +
-                    "p.connectivityHeadset, ' ', p.cableLength) " +
+                    "p.connectivityType, ' ', p.cableLength) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
     List<Headset> findAllHeadsetsBasedOnTerm(

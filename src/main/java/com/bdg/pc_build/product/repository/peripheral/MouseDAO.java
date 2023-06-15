@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.repository.peripheral;
 
 
 import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
-import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,12 +23,12 @@ public interface MouseDAO extends ProductDAO<Mouse> {
                     "AND (p.cableLength BETWEEN :minCableLength AND :maxCableLength) " +
                     "AND (p.weight BETWEEN :minWeight AND :maxWeight)"
     )
-    List<Mouse> filterAllMousesBasedOnSpecification(
+    List<Mouse> filterAllMiceBasedOnSpecification(
             @Param("name") String name,
             @Param("minPrice") Double minPrice,
             @Param("maxPrice") Double maxPrice,
-            @Param("minResolution") Integer minMaxResolution,
-            @Param("maxResolution") Integer maxMaxResolution,
+            @Param("minResolution") Integer minResolution,
+            @Param("maxResolution") Integer maxResolution,
             @Param("minCableLength") Double minCableLength,
             @Param("maxCableLength") Double maxCableLength,
             @Param("minWeight") Double minWeight,
@@ -42,7 +42,7 @@ public interface MouseDAO extends ProductDAO<Mouse> {
                     "p.maxResolution, ' ', p.cableLength, ' ', p.weight) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<Mouse> findAllMousesBasedOnTerm(
+    List<Mouse> findAllMiceBasedOnTerm(
             @Param("term") String term
     );
 

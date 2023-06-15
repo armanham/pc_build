@@ -7,7 +7,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -18,16 +19,16 @@ public class CaseFilterDTO {
     Double minPrice;
     Double maxPrice;
 
-    Double minCPUCoolerHeight;
-    Double maxCPUCoolerHeight;
+    Double minCpuCoolerHeight;
+    Double maxCpuCoolerHeight;
 
-    Double minGPULength;
-    Double maxGPULength;
+    Double minGpuLength;
+    Double maxGpuLength;
 
     Integer minPreInstalledFans;
     Integer maxPreInstalledFans;
 
-    List<TowerType> towerTypes;
+    final Set<TowerType> towerTypes;
 
     public CaseFilterDTO(final CaseFilterRequest request) {
         this.name = request.name();
@@ -42,24 +43,24 @@ public class CaseFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
         }
 
-        if (request.minCPUCoolerHeight() != null && !request.minCPUCoolerHeight().isBlank()) {
-            this.minCPUCoolerHeight = Double.valueOf(request.minCPUCoolerHeight());
+        if (request.minCpuCoolerHeight() != null && !request.minCpuCoolerHeight().isBlank()) {
+            this.minCpuCoolerHeight = Double.valueOf(request.minCpuCoolerHeight());
         }
-        if (request.maxCPUCoolerHeight() != null && !request.maxCPUCoolerHeight().isBlank()) {
-            this.maxCPUCoolerHeight = Double.valueOf(request.maxCPUCoolerHeight());
+        if (request.maxCpuCoolerHeight() != null && !request.maxCpuCoolerHeight().isBlank()) {
+            this.maxCpuCoolerHeight = Double.valueOf(request.maxCpuCoolerHeight());
         }
-        if (this.minCPUCoolerHeight != null && this.maxCPUCoolerHeight != null) {
-            ValidationUtil.validateNonNegativeMinMaxValues(minCPUCoolerHeight, maxCPUCoolerHeight);
+        if (this.minCpuCoolerHeight != null && this.maxCpuCoolerHeight != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minCpuCoolerHeight, maxCpuCoolerHeight);
         }
 
-        if (request.minGPULength() != null && !request.minGPULength().isBlank()) {
-            this.minGPULength = Double.valueOf(request.minGPULength());
+        if (request.minGpuLength() != null && !request.minGpuLength().isBlank()) {
+            this.minGpuLength = Double.valueOf(request.minGpuLength());
         }
-        if (request.maxGPULength() != null && !request.maxGPULength().isBlank()) {
-            this.maxGPULength = Double.valueOf(request.maxGPULength());
+        if (request.maxGpuLength() != null && !request.maxGpuLength().isBlank()) {
+            this.maxGpuLength = Double.valueOf(request.maxGpuLength());
         }
-        if (this.minGPULength != null && this.maxGPULength != null) {
-            ValidationUtil.validateNonNegativeMinMaxValues(minGPULength, maxGPULength);
+        if (this.minGpuLength != null && this.maxGpuLength != null) {
+            ValidationUtil.validateNonNegativeMinMaxValues(minGpuLength, maxGpuLength);
         }
 
         if (request.minPreInstalledFans() != null && !request.minPreInstalledFans().isBlank()) {
@@ -71,6 +72,16 @@ public class CaseFilterDTO {
         if (this.minPreInstalledFans != null && this.maxPreInstalledFans != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minPreInstalledFans, maxPreInstalledFans);
         }
-        //TODO TowerType
+
+        if (request.towerTypes() != null && !request.towerTypes().isEmpty()) {
+            this.towerTypes = request.towerTypes()
+                    .stream()
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> TowerType.toListOfStrings().contains(s))
+                    .map(TowerType::valueOf)
+                    .collect(Collectors.toSet());
+        } else {
+            this.towerTypes = null;
+        }
     }
 }

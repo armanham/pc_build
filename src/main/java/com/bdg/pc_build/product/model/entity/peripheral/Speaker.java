@@ -4,7 +4,7 @@ import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import javax.persistence.*;
 
-import com.bdg.pc_build.product.model.enumerations.PowerSource;
+import com.bdg.pc_build.product.model.enumerations.PowerSourceType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -23,7 +23,7 @@ public class Speaker extends Product {
     Integer frequency;
 
     @Column(name = "power_source", nullable = false, updatable = false)
-    PowerSource powerSource;
+    PowerSourceType powerSourceType;
 
     @Column(name = "cable_length", nullable = false, updatable = false)
     Double cableLength;
@@ -34,7 +34,7 @@ public class Speaker extends Product {
     public Speaker(final SpeakerDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
         this.frequency = dto.getFrequency();
-        this.powerSource = dto.getPowerSource();
+        this.powerSourceType = dto.getPowerSourceType();
         this.cableLength = dto.getCableLength();
         this.dimension = dto.getDimension();
     }
@@ -45,13 +45,13 @@ public class Speaker extends Product {
         if (o == null || getClass() != o.getClass()) return false;
         Speaker speaker = (Speaker) o;
         return Objects.equals(frequency, speaker.frequency)
-                && Objects.equals(powerSource, speaker.powerSource)
+                && Objects.equals(powerSourceType, speaker.powerSourceType)
                 && Objects.equals(cableLength, speaker.cableLength)
                 && Objects.equals(dimension, speaker.dimension);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(frequency, powerSource, cableLength, dimension);
+        return Objects.hash(frequency, powerSourceType, cableLength, dimension);
     }
 }

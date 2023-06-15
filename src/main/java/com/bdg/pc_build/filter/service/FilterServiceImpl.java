@@ -134,26 +134,26 @@ public class FilterServiceImpl implements FilterService {
 
         Double minCPUCoolerHeight;
         Double maxCPUCoolerHeight;
-        if (filterDTO.getMinCPUCoolerHeight() != null){
-            minCPUCoolerHeight = filterDTO.getMinCPUCoolerHeight();
+        if (filterDTO.getMinCpuCoolerHeight() != null){
+            minCPUCoolerHeight = filterDTO.getMinCpuCoolerHeight();
         }else {
             minCPUCoolerHeight = caseDAO.getMinCpuCoolerHeightOfCases();
         }
-        if(filterDTO.getMaxCPUCoolerHeight() != null){
-            maxCPUCoolerHeight = filterDTO.getMaxCPUCoolerHeight();
+        if(filterDTO.getMaxCpuCoolerHeight() != null){
+            maxCPUCoolerHeight = filterDTO.getMaxCpuCoolerHeight();
         }else{
             maxCPUCoolerHeight = caseDAO.getMaxCpuCoolerHeightOfCases();
         }
 
         Double minGPULength;
         Double maxGPULength;
-        if (filterDTO.getMinGPULength() != null){
-            minGPULength = filterDTO.getMinGPULength();
+        if (filterDTO.getMinGpuLength() != null){
+            minGPULength = filterDTO.getMinGpuLength();
         }else{
             minGPULength = caseDAO.getMinGpuLengthOfCases();
         }
-        if (filterDTO.getMaxGPULength() != null){
-            maxGPULength = filterDTO.getMaxGPULength();
+        if (filterDTO.getMaxGpuLength() != null){
+            maxGPULength = filterDTO.getMaxGpuLength();
         }else{
             maxGPULength = caseDAO.getMaxGpuLengthOfCases();
         }
@@ -230,21 +230,21 @@ public class FilterServiceImpl implements FilterService {
     }
 
     private List<CPUCoolerDTO> findAllCPUCoolersBasedOnTerm(final String term) {
-        return cpuCoolerDAO.findAllCPUCoolersBasedOnTerm(term.trim())
+        return cpuCoolerDAO.findAllCpuCoolersBasedOnTerm(term.trim())
                 .stream()
                 .map(CPUCoolerDTO::initDTOFromEntity)
                 .toList();
     }
 
     private List<CPUDTO> findAllCPUsBasedOnTerm(final String term) {
-        return cpuDAO.findAllCPUsBasedOnTerm(term.trim())
+        return cpuDAO.findAllCpusBasedOnTerm(term.trim())
                 .stream()
                 .map(CPUDTO::initDTOFromEntity)
                 .toList();
     }
 
     private List<GPUDTO> findAllGPUsBasedOnTerm(final String term) {
-        return gpuDAO.findAllGPUsBasedOnTerm(term.trim())
+        return gpuDAO.findAllGpusBasedOnTerm(term.trim())
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
@@ -300,7 +300,7 @@ public class FilterServiceImpl implements FilterService {
     }
 
     private List<MouseDTO> findAllMousesBasedOnTerm(final String term) {
-        return mouseDAO.findAllMousesBasedOnTerm(term.trim())
+        return mouseDAO.findAllMiceBasedOnTerm(term.trim())
                 .stream()
                 .map(MouseDTO::initDTOFromEntity)
                 .toList();

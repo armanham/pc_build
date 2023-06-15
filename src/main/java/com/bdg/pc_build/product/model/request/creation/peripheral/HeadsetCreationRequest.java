@@ -2,14 +2,14 @@ package com.bdg.pc_build.product.model.request.creation.peripheral;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.FLOATING_POINT_NUMBER_PATTERN;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import static com.bdg.pc_build.checking.pattern.Pattern.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter

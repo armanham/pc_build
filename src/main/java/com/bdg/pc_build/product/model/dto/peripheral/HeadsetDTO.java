@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Headset;
-import com.bdg.pc_build.product.model.enumerations.Connectivity;
+import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.HeadsetCreationRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 public class HeadsetDTO extends ProductDTO {
 
     Integer frequency;
-    Connectivity connectivityHeadset;
+    ConnectivityType connectivityType;
     Double cableLength;
 
     @Builder
@@ -23,12 +23,12 @@ public class HeadsetDTO extends ProductDTO {
             final Double purchasedPrice,
             final Integer count,
             final Integer frequency,
-            final Connectivity connectivity,
+            final ConnectivityType connectivityType,
             final Double cableLength
     ) {
         super(name, price, purchasedPrice, count);
         this.frequency = frequency;
-        this.connectivityHeadset = connectivity;
+        this.connectivityType = connectivityType;
         this.cableLength = cableLength;
     }
 
@@ -39,7 +39,7 @@ public class HeadsetDTO extends ProductDTO {
                 .purchasedPrice(entity.getPurchasedPrice())
                 .count(entity.getCount())
                 .frequency(entity.getFrequency())
-                .connectivity(entity.getConnectivityHeadset())
+                .connectivityType(entity.getConnectivityType())
                 .cableLength(entity.getCableLength())
                 .build();
     }
@@ -51,7 +51,7 @@ public class HeadsetDTO extends ProductDTO {
                 .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
                 .count(Integer.valueOf(request.getCount()))
                 .frequency(Integer.valueOf(request.getFrequency()))
-                .connectivity(Connectivity.valueOf(request.getConnectivityHeadset()))
+                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType()))
                 .cableLength(Double.valueOf(request.getCableLength()))
                 .build();
     }

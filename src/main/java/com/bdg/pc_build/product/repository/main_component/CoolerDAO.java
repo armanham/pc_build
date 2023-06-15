@@ -18,12 +18,12 @@ public interface CoolerDAO extends ProductDAO<Cooler> {
                     "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
                     "AND (p.tdp BETWEEN :minTdp AND :maxTdp) "
     )
-    List<aCase> filterAllCoolersBasedOnSpecification(
+    List<Cooler> filterAllCoolersBasedOnSpecification(
             @Param("name") String name,
             @Param("minPrice") Double minPrice,
             @Param("maxPrice") Double maxPrice,
-            @Param("minTdp") Double minTdp,
-            @Param("maxTdp") Double maxTdp
+            @Param("minTdp") Integer minTdp,
+            @Param("maxTdp") Integer maxTdp
     );
 
     @Query(

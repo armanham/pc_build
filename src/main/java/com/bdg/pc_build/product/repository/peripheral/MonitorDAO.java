@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface MonitorDAO extends ProductDAO<Monitor> {
@@ -18,7 +19,7 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
                     "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
                     "AND (p.screenSize BETWEEN :minScreenSize AND :maxScreenSize) " +
                     "AND (p.refreshRate BETWEEN :minRefreshRate AND :maxRefreshRate) " +
-                    "AND ((:screenTypes) IS NULL OR lower(p.screenType) IN lower((:screenTypes)) )"
+                    "AND ((:screenTypes) IS NULL OR p.screenType IN (:screenTypes))"
     )
     List<Monitor> filterAllMonitorsBasedOnSpecification(
             @Param("name") String name,
@@ -28,7 +29,7 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
             @Param("maxScreenSize") Double maxScreenSize,
             @Param("minRefreshRate") Integer minRefreshRate,
             @Param("maxRefreshRate") Integer maxRefreshRate,
-            @Param("screenTypes") List<MonitorScreenType> screenTypes
+            @Param("screenTypes") Set<MonitorScreenType> screenTypes
     );
 
     @Query(
