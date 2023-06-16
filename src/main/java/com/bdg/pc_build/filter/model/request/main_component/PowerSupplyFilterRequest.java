@@ -24,8 +24,8 @@ public record PowerSupplyFilterRequest(
         @JsonProperty(value = "max_tdp")
         String maxTdp,
 
-        @JsonProperty(value = "is_modular")
-        List<String> isModular,
+        @JsonProperty(value = "modular_types")
+        List<String> modularTypes,
 
         @JsonProperty(value = "efficiency_ratings")
         List<String> efficiencyRatings

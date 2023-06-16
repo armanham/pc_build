@@ -37,6 +37,7 @@ public final class Pattern {
                     "|LGA1155|LGA1156|LGA1200|LGA1356|LGA1366" +
                     "|LGA1700|LGA2011|LGA2011MINUS3|LGA2066|STR4|STR_X4)\\s*";
     public static final String TOWER_TYPE_ENUM_PATTERN = "\\s*(?i:FULL|MID|MINI)\\s*";
+    public static final String MODULAR_TYPE_ENUM_PATTERN = "\\s*(?i:FULL|NO|SEMI)\\s*";
 
     public static final String WRONG_ENUM_PATTERN_COMMON_MESSAGE = "Invalid enum pattern: ";
 }

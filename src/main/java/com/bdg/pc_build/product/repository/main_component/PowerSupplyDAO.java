@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.repository.main_component;
 
 import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
+import com.bdg.pc_build.product.model.enumerations.ModularType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,8 +20,8 @@ public interface PowerSupplyDAO extends ProductDAO<PowerSupply> {
                     "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
                     "AND (p.wattage BETWEEN :minWattage AND :maxWattage) " +
                     "AND (p.tdp BETWEEN :minTdp AND :maxTdp) " +
-                    "AND ((:isModular) is null or p.isModular in (:isModular)) " +
-                    "AND ((:efficiencyRating) IS NULL OR p.efficiencyRating IN (:efficiencyRating))"
+                    "AND ((:modularTypes) is null or p.modularType in (:modularTypes)) " +
+                    "AND ((:efficiencyRatings) IS NULL OR p.efficiencyRating IN (:efficiencyRatings))"
     )
     List<PowerSupply> filterAllPowerSuppliesBasedOnSpecification(
             @Param("name") String name,
@@ -30,15 +31,15 @@ public interface PowerSupplyDAO extends ProductDAO<PowerSupply> {
             @Param("maxWattage") Integer maxWattage,
             @Param("minTdp") Integer minTdp,
             @Param("maxTdp") Integer maxTdp,
-            @Param("isModular") Set<Boolean> isModular,
-            @Param("efficiencyRating") Set<EfficiencyRating> efficiencyRating
+            @Param("modularTypes") Set<ModularType> modularTypes,
+            @Param("efficiencyRatings") Set<EfficiencyRating> efficiencyRatings
     );
 
     @Query(
             "SELECT p FROM PowerSupply p " +
                     "WHERE :term IS NULL " +
                     "OR CONCAT(p.name, ' ', p.efficiencyRating, ' ', " +
-                    "p.wattage, ' ', p.isModular, ' ', p.tdp) " +
+                    "p.wattage, ' ', p.modularType, ' ', p.tdp) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
     List<PowerSupply> findAllPowerSuppliesBasedOnTerm(

@@ -561,7 +561,7 @@ public class FilterServiceImpl implements FilterService {
                         minPrice, maxPrice,
                         minWattage, maxWattage,
                         minTdp, maxTdp,
-                        filterDTO.getIsModular(),
+                        filterDTO.getModularTypes(),
                         filterDTO.getEfficiencyRatings()
                 )
                 .stream()

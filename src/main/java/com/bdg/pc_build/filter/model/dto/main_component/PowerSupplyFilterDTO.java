@@ -3,6 +3,7 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 import com.bdg.pc_build.checking.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.PowerSupplyFilterRequest;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
+import com.bdg.pc_build.product.model.enumerations.ModularType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
@@ -25,8 +26,7 @@ public class PowerSupplyFilterDTO {
     Integer minTdp;
     Integer maxTdp;
 
-    final Set<Boolean> isModular;
-
+    final Set<ModularType> modularTypes;
     final Set<EfficiencyRating> efficiencyRatings;
 
     public PowerSupplyFilterDTO(final PowerSupplyFilterRequest request) {
@@ -62,15 +62,15 @@ public class PowerSupplyFilterDTO {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }
 
-        if (request.isModular() != null && !request.isModular().isEmpty()) {
-            this.isModular = request.isModular()
+        if (request.modularTypes() != null && !request.modularTypes().isEmpty()) {
+            this.modularTypes = request.modularTypes()
                     .stream()
-                    .map(String::trim)
-                    .filter(s -> s.equalsIgnoreCase("true") || s.equalsIgnoreCase("false"))
-                    .map(Boolean::valueOf)
+                    .map(s -> s.toUpperCase().trim())
+                    .filter(s -> ModularType.toListOfStrings().contains(s))
+                    .map(ModularType::valueOf)
                     .collect(Collectors.toSet());
         } else {
-            this.isModular = null;
+            this.modularTypes = null;
         }
 
         if (request.efficiencyRatings() != null && !request.efficiencyRatings().isEmpty()) {
