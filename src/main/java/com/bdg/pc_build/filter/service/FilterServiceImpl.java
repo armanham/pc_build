@@ -52,20 +52,99 @@ public class FilterServiceImpl implements FilterService {
     public List<CaseDTO> filterAllCasesBasedOnSpecification(final CaseFilterDTO filterDTO) {
         CaseFieldsHolderBasedOnFilterDTO caseFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCaseFieldsValuesFromFilterDTO(filterDTO);
 
-        List<CaseDTO> cases = new ArrayList<>(
-                caseDAO.findAllProductsByNameLike(caseFieldsHolderBasedOnFilterDTO.name())
+        List<CaseDTO> casesByName = caseDAO.findAllProductsByNameLike(caseFieldsHolderBasedOnFilterDTO.name())
+                .stream()
+                .map(CaseDTO::initDTOFromEntity)
+                .toList();
+
+        List<CaseDTO> casesByPrice = caseDAO.findAllProductsByPriceBetween(caseFieldsHolderBasedOnFilterDTO.minPrice(), caseFieldsHolderBasedOnFilterDTO.maxPrice())
+                .stream()
+                .map(CaseDTO::initDTOFromEntity)
+                .toList();
+
+        List<CaseDTO> casesByCpuCoolerHeight = caseDAO.findAllByMaxCpuCoolerHeightBetween(caseFieldsHolderBasedOnFilterDTO.minCpuCoolerHeight(), caseFieldsHolderBasedOnFilterDTO.maxCpuCoolerHeight())
+                .stream()
+                .map(CaseDTO::initDTOFromEntity)
+                .toList();
+
+        List<CaseDTO> casesByGpuLength = caseDAO.findAllByMaxGpuLengthBetween(caseFieldsHolderBasedOnFilterDTO.minGpuLength(), caseFieldsHolderBasedOnFilterDTO.maxGpuLength())
+                .stream()
+                .map(CaseDTO::initDTOFromEntity)
+                .toList();
+
+        List<CaseDTO> casesByPreInstalledFans = caseDAO.findAllByPreInstalledFansBetween(caseFieldsHolderBasedOnFilterDTO.minPreInstalledFans(), caseFieldsHolderBasedOnFilterDTO.maxPreInstalledFans())
+                .stream()
+                .map(CaseDTO::initDTOFromEntity)
+                .toList();
+
+        List<CaseDTO> casesByTowerTypeList = new ArrayList<>();
+        if (caseFieldsHolderBasedOnFilterDTO.towerTypes() != null && !caseFieldsHolderBasedOnFilterDTO.towerTypes().isEmpty()){
+            for (TowerType towerType : caseFieldsHolderBasedOnFilterDTO.towerTypes()) {
+                List<CaseDTO> casesByTowerType = caseDAO.findAllByTowerType(towerType)
                         .stream()
                         .map(CaseDTO::initDTOFromEntity)
-                        .toList()
+                        .toList();
+                casesByTowerTypeList.addAll(casesByTowerType);
+            }
+        }else{
+            casesByTowerTypeList.addAll(caseDAO.findAll()
+                    .stream()
+                    .map(CaseDTO::initDTOFromEntity)
+                    .toList()
+            );
+        }
+
+        List<CaseDTO> intersection = new ArrayList<>(casesByName);
+
+        List<List<CaseDTO>> listsToIntersect = Arrays.asList(
+                casesByPrice,
+                casesByCpuCoolerHeight,
+                casesByGpuLength,
+                casesByPreInstalledFans,
+                casesByTowerTypeList
         );
-        return null;
+
+        for (List<CaseDTO> list : listsToIntersect) {
+            List<CaseDTO> tempList = new ArrayList<>(list);
+            intersection.retainAll(tempList);
+        }
+        return intersection;
     }
 
+
+    @Override
     public List<CoolerDTO> filterAllCoolersBasedOnSpecification(final CoolerFilterDTO filterDTO) {
+        CoolerFieldsHolderBasedOnFilterDTO coolerFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCoolerFieldsValuesFromFilterDTO(filterDTO);
 
+        List<CoolerDTO> coolersByName = coolerDAO.findAllProductsByNameLike(coolerFieldsHolderBasedOnFilterDTO.name())
+                .stream()
+                .map(CoolerDTO::initDTOFromEntity)
+                .toList();
 
+        List<CoolerDTO> coolersByPrice = coolerDAO.findAllProductsByPriceBetween(coolerFieldsHolderBasedOnFilterDTO.minPrice(), coolerFieldsHolderBasedOnFilterDTO.maxPrice())
+                .stream()
+                .map(CoolerDTO::initDTOFromEntity)
+                .toList();
 
-        return null;
+        List<CoolerDTO> coolerByTdp = coolerDAO.findAllByTdpBetween(coolerFieldsHolderBasedOnFilterDTO.minTdp(), coolerFieldsHolderBasedOnFilterDTO.maxTdp())
+                .stream()
+                .map(CoolerDTO::initDTOFromEntity)
+                .toList();
+
+        List<CoolerDTO> intersection = new ArrayList<>(coolersByName);
+
+        List<List<CoolerDTO>> listsToIntersect = Arrays.asList(
+                coolersByName,
+                coolersByPrice,
+                coolerByTdp
+        );
+
+        for (List<CoolerDTO> list : listsToIntersect) {
+            List<CoolerDTO> tempList = new ArrayList<>(list);
+            intersection.retainAll(tempList);
+        }
+
+        return intersection;
     }
 
     @Override
@@ -201,77 +280,78 @@ public class FilterServiceImpl implements FilterService {
     public List<GPUDTO> filterAllGpusBasedOnSpecification(final GPUFilterDTO filterDTO) {
         GpuFieldsHolderBasedOnFilterDTO gpuFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetGpuFieldsValuesFromFilterDTO(filterDTO);
 
-        List<GPUDTO> gpuDTOsByName = gpuDAO.findAllProductsByNameLike(gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<GPUDTO> gpusByName = gpuDAO.findAllProductsByNameLike(gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
 
-        List<GPUDTO> gpuDTOsByPrice = gpuDAO.findAllByPriceBetween(
+        List<GPUDTO> gpusByPrice = gpuDAO.findAllProductsByPriceBetween(
                         gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
 
-        List<GPUDTO> gpuDTOsByMemory = gpuDAO.findAllByMemoryBetween(
+        List<GPUDTO> gpusByMemory = gpuDAO.findAllByMemoryBetween(
                         gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minMemory(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxMemory())
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
 
-        List<GPUDTO> gpuDTOsByCoreClock = gpuDAO.findAllByCoreClockBetween(
+        List<GPUDTO> gpusByCoreClock = gpuDAO.findAllByCoreClockBetween(
                         gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minCoreClock(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCoreClock())
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
 
-        List<GPUDTO> gpuDTOsByBoostClock = gpuDAO.findAllByBoostClockBetween(gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minBoostClock(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxBoostClock())
+        List<GPUDTO> gpusByBoostClock = gpuDAO.findAllByBoostClockBetween(
+                        gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minBoostClock(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxBoostClock())
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
 
-        List<GPUDTO> gpuDTOsByLength = gpuDAO.findAllByLengthBetween(gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minLength(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxLength())
+        List<GPUDTO> gpusByLength = gpuDAO.findAllByLengthBetween(
+                        gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minLength(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxLength())
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
 
-        List<GPUDTO> gpuDTOsByTdp = gpuDAO.findAllByTdpBetween(gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
+        List<GPUDTO> gpusByTdp = gpuDAO.findAllByTdpBetween(
+                        gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
 
-        List<GPUDTO> gpuDTOsByInterfaceTypeList = new ArrayList<>();
+        List<GPUDTO> gpusByInterfaceTypeList = new ArrayList<>();
         if (gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes() != null && !gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes().isEmpty()) {
             for (GPUInterfaceType gpuInterfaceType : filterDTO.getGpuInterfaceTypes()) {
                 List<GPUDTO> gpuDTOsByGpuInterfaceType = gpuDAO.findAllByGpuInterfaceType(gpuInterfaceType)
                         .stream()
                         .map(GPUDTO::initDTOFromEntity)
                         .toList();
-                gpuDTOsByInterfaceTypeList.addAll(gpuDTOsByGpuInterfaceType);
+                gpusByInterfaceTypeList.addAll(gpuDTOsByGpuInterfaceType);
             }
         } else {
-            gpuDTOsByInterfaceTypeList.addAll(gpuDAO.findAll()
+            gpusByInterfaceTypeList.addAll(gpuDAO.findAll()
                     .stream()
                     .map(GPUDTO::initDTOFromEntity)
                     .toList());
         }
 
-        List<GPUDTO> intersection = new ArrayList<>(gpuDTOsByName); // Start with the first list
+        List<GPUDTO> intersection = new ArrayList<>(gpusByName);
 
         List<List<GPUDTO>> listsToIntersect = Arrays.asList(
-                gpuDTOsByPrice,
-                gpuDTOsByMemory,
-                gpuDTOsByCoreClock,
-                gpuDTOsByBoostClock,
-                gpuDTOsByLength,
-                gpuDTOsByTdp,
-                gpuDTOsByInterfaceTypeList
+                gpusByPrice,
+                gpusByMemory,
+                gpusByCoreClock,
+                gpusByBoostClock,
+                gpusByLength,
+                gpusByTdp,
+                gpusByInterfaceTypeList
         );
-
         for (List<GPUDTO> list : listsToIntersect) {
             List<GPUDTO> tempList = new ArrayList<>(list);
             intersection.retainAll(tempList);
         }
-
         return intersection;
     }
 
