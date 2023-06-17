@@ -46,69 +46,47 @@ public interface ProductService {
     //find methods for display components
     MonitorDTO findMonitorByName(String name);
 
-    List<MonitorDTO> findMonitorByPrice(Double minPrice, Double maxPrice);
-
     List<MonitorDTO> findMonitorByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
 
     //find methods for main components
     CaseDTO findCaseByName(String name);
 
-    List<CaseDTO> findCaseByPrice(Double minPrice, Double maxPrice);
-
     List<CaseDTO> findCaseByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     CoolerDTO findCoolerByName(String name);
-
-    List<CoolerDTO> findCoolerByPrice(Double minPrice, Double maxPrice);
 
     List<CoolerDTO> findCoolerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     CPUCoolerDTO findCPUCoolerByName(String name);
 
-    List<CPUCoolerDTO> findCPUCoolerByPrice(Double minPrice, Double maxPrice);
-
     List<CPUCoolerDTO> findCPUCoolerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     CPUDTO findCPUByName(String name);
-
-    List<CPUDTO> findCPUByPrice(Double minPrice, Double maxPrice);
 
     List<CPUDTO> findCPUByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     InternalHardDriveDTO findInternalHardDriveByName(String name);
 
-    List<InternalHardDriveDTO> findInternalHardDriveByPrice(Double minPrice, Double maxPrice);
-
     List<InternalHardDriveDTO> findInternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     GPUDTO findGPUByName(String name);
-
-    List<GPUDTO> findGPUByPrice(Double minPrice, Double maxPrice);
 
     List<GPUDTO> findGPUByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     ExternalHardDriveDTO findExternalHardDriveByName(String name);
 
-    List<ExternalHardDriveDTO> findExternalHardDriveByPrice(Double minPrice, Double maxPrice);
-
     List<ExternalHardDriveDTO> findExternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     MotherboardDTO findMotherboardByName(String name);
-
-    List<MotherboardDTO> findMotherboardByPrice(Double minPrice, Double maxPrice);
 
     List<MotherboardDTO> findMotherboardByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     PowerSupplyDTO findPowerSupplyByName(String name);
 
-    List<PowerSupplyDTO> findPowerSupplyByPrice(Double minPrice, Double maxPrice);
-
     List<PowerSupplyDTO> findPowerSupplyByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     RAMDTO findRAMByName(String name);
-
-    List<RAMDTO> findRAMByPrice(Double minPrice, Double maxPrice);
 
     List<RAMDTO> findRAMByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
@@ -116,25 +94,17 @@ public interface ProductService {
     //find methods for peripheral components
     HeadsetDTO findHeadsetByName(String name);
 
-    List<HeadsetDTO> findHeadsetByPrice(Double minPrice, Double maxPrice);
-
     List<HeadsetDTO> findHeadsetByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     KeyboardDTO findKeyboardByName(String name);
-
-    List<KeyboardDTO> findKeyboardByPrice(Double minPrice, Double maxPrice);
 
     List<KeyboardDTO> findKeyboardByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     MouseDTO findMouseByName(String name);
 
-    List<MouseDTO> findMouseByPrice(Double minPrice, Double maxPrice);
-
     List<MouseDTO> findMouseByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     SpeakerDTO findSpeakerByName(String name);
-
-    List<SpeakerDTO> findSpeakerByPrice(Double minPrice, Double maxPrice);
 
     List<SpeakerDTO> findSpeakerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
