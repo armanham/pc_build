@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.service;
 
-import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 
