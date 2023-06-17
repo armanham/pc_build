@@ -16,6 +16,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/filter")
@@ -160,14 +161,14 @@ public class FilterController {
         );
     }
 
-    @GetMapping(value = "/speaker")
-    public List<SpeakerDTO> filterSpeakersBasedOnSpecification(
-            @RequestBody SpeakerFilterRequest request
-    ) {
-        return filterService.filterAllSpeakersBasedOnSpecification(
-                new SpeakerFilterDTO(request)
-        );
-    }
+//    @GetMapping(value = "/speaker")
+//    public List<SpeakerDTO> filterSpeakersBasedOnSpecification(
+//            @RequestBody SpeakerFilterRequest request
+//    ) {
+//        return filterService.filterAllSpeakersBasedOnSpecification(
+//                new SpeakerFilterDTO(request)
+//        );
+//    }
 
     @GetMapping(value = "/{term}")
     public List<ProductDTO> filterAllByTerm(

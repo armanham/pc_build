@@ -11,40 +11,45 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface MotherboardDAO extends ProductDAO<Motherboard> {
 
+    List<Motherboard> findAllByMemoryMaxBetween(Integer minMemory, Integer maxMemory);
+
+    List<Motherboard> findAllByMemorySlotsBetween(Integer minMemorySlots, Integer maxMemorySlots);
+
+    List<Motherboard> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
+
     @Query(
             "SELECT p FROM Motherboard p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
-                    "AND (p.memoryMax BETWEEN :minMemory AND :maxMemory) " +
-                    "AND (p.memorySlots BETWEEN :minMemorySlots AND :maxMemorySlots) " +
-                    "AND (p.tdp BETWEEN :minTdp AND :maxTdp) " +
-                    "AND ((:isM2) is null or p.isM2 in (:isM2)) " +
-                    "AND ((:ddrTypes) is null or p.ddrType in (:ddrTypes)) " +
-                    "AND ((:gpuInterfaceTypes) is null or p.gpuInterfaceType in (:gpuInterfaceTypes)) " +
-                    "AND ((:socketTypes) is null or p.socketType in (:socketTypes)) " +
-                    "AND ((:atxTypes) is null or p.atxType in (:atxTypes)) "
+                    "(:isM2 IS NULL OR p.isM2 = :isM2) "
     )
-    List<Motherboard> filterAllMotherboardsBasedOnSpecification(
-            @Param("name") String name,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            @Param("minMemory") Integer minMemory,
-            @Param("maxMemory") Integer maxMemory,
-            @Param("minMemorySlots") Integer minMemorySlots,
-            @Param("maxMemorySlots") Integer maxMemorySlots,
-            @Param("minTdp") Integer minTdp,
-            @Param("maxTdp") Integer maxTdp,
-            @Param("isM2") Set<Boolean> isM2,
-            @Param("ddrTypes") Set<DDRType> ddrTypes,
-            @Param("gpuInterfaceTypes") Set<GPUInterfaceType> gpuInterfaceTypes,
-            @Param("socketTypes") Set<SocketType> socketTypes,
-            @Param("atxTypes") Set<ATXType> atxTypes
-    );
+    List<Motherboard> findAllByIsM2(@Param("isM2") Boolean isM2);
+
+    @Query(
+            "SELECT p FROM Motherboard p WHERE " +
+                    "(:ddrType IS NULL OR p.ddrType = :ddrType) "
+    )
+    List<Motherboard> findAllByDdrType(@Param("ddrType") DDRType ddrType);
+
+    @Query(
+            "SELECT p FROM Motherboard p WHERE " +
+                    "(:gpuInterfaceType IS NULL OR p.gpuInterfaceType = :gpuInterfaceType) "
+    )
+    List<Motherboard> findAllByGpuInterfaceType(@Param("gpuInterfaceType") GPUInterfaceType gpuInterfaceType);
+
+    @Query(
+            "SELECT p FROM Motherboard p WHERE " +
+                    "(:socketType IS NULL OR p.socketType = :socketType) "
+    )
+    List<Motherboard> findAllBySocketType(@Param("socketType") SocketType socketType);
+
+    @Query(
+            "SELECT p FROM Motherboard p WHERE " +
+                    "(:atxType IS NULL OR p.atxType = :atxType) "
+    )
+    List<Motherboard> findAllByAtxType(@Param("atxType") ATXType atxType);
 
     @Query(
             "SELECT p FROM Motherboard p " +

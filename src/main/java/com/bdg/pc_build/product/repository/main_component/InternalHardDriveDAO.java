@@ -8,29 +8,20 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface InternalHardDriveDAO extends ProductDAO<InternalHardDrive> {
 
+    List<InternalHardDrive> findAllByCapacityBetween(Integer minCapacity, Integer maxCapacity);
+
+    List<InternalHardDrive> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
+
     @Query(
             "SELECT p FROM InternalHardDrive p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
-                    "AND (p.capacity BETWEEN :minCapacity AND :maxCapacity) " +
-                    "AND (p.tdp BETWEEN :minTdp AND :maxTdp) " +
-                    "AND ((:internalHardDriveInterfaceTypes) is null or p.internalHardDriveInterfaceType in (:internalHardDriveInterfaceTypes)) "
+                    "(:internalHardDriveInterfaceType IS NULL OR p.internalHardDriveInterfaceType = :internalHardDriveInterfaceType) "
     )
-    List<InternalHardDrive> filterAllInternalHardDrivesBasedOnSpecification(
-            @Param("name") String name,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            @Param("minCapacity") Integer minCapacity,
-            @Param("maxCapacity") Integer maxCapacity,
-            @Param("minTdp") Integer minTdp,
-            @Param("maxTdp") Integer maxTdp,
-            @Param("internalHardDriveInterfaceTypes") Set<InternalHardDriveInterfaceType> internalHardDriveInterfaceTypes
-    );
+    List<InternalHardDrive> findAllByInternalHardDriveInterfaceType(@Param("internalHardDriveInterfaceType") InternalHardDriveInterfaceType internalHardDriveInterfaceType);
+
 
     @Query(
             "SELECT p FROM InternalHardDrive p " +

@@ -9,31 +9,25 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface PowerSupplyDAO extends ProductDAO<PowerSupply> {
 
+    List<PowerSupply> findAllByWattageBetween(Integer minWattage, Integer maxWattage);
+
+    List<PowerSupply> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
+
     @Query(
             "SELECT p FROM PowerSupply p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
-                    "AND (p.wattage BETWEEN :minWattage AND :maxWattage) " +
-                    "AND (p.tdp BETWEEN :minTdp AND :maxTdp) " +
-                    "AND ((:modularTypes) is null or p.modularType in (:modularTypes)) " +
-                    "AND ((:efficiencyRatings) IS NULL OR p.efficiencyRating IN (:efficiencyRatings))"
+                    "(:modularType IS NULL OR p.modularType = :modularType) "
     )
-    List<PowerSupply> filterAllPowerSuppliesBasedOnSpecification(
-            @Param("name") String name,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            @Param("minWattage") Integer minWattage,
-            @Param("maxWattage") Integer maxWattage,
-            @Param("minTdp") Integer minTdp,
-            @Param("maxTdp") Integer maxTdp,
-            @Param("modularTypes") Set<ModularType> modularTypes,
-            @Param("efficiencyRatings") Set<EfficiencyRating> efficiencyRatings
-    );
+    List<PowerSupply> findAllByModularType(@Param("modularType") ModularType modularType);
+
+    @Query(
+            "SELECT p FROM PowerSupply p WHERE " +
+                    "(:efficiencyRating IS NULL OR p.efficiencyRating = :efficiencyRating) "
+    )
+    List<PowerSupply> findAllByEfficiencyRating(@Param("efficiencyRating") EfficiencyRating efficiencyRating);
 
     @Query(
             "SELECT p FROM PowerSupply p " +

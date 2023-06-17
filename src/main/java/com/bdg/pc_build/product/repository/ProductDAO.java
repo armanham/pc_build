@@ -1,6 +1,7 @@
 package com.bdg.pc_build.product.repository;
 
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.product.model.entity.main_component.GPU;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -14,10 +15,12 @@ public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY
 
     Optional<ENTITY> findByName(String name);
 
-//    @Query(
-//            "SELECT p FROM #{#entityName} p WHERE lower(p.name) LIKE lower(concat('%', :name, '%'))"
-//    )
-//    List<ENTITY> findAllProductsByNameIgnoreCaseLikeTerm(@Param("name") String name);
+
+    @Query(
+            "SELECT p FROM #{#entityName} p WHERE " +
+                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) "
+    )
+    List<ENTITY> findAllProductsByNameLike(@Param("name") String name);
 
     List<ENTITY> findAllProductsByPriceBetween(Double minPrice, Double maxPrice);
 

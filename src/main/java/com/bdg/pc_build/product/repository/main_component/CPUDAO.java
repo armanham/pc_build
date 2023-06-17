@@ -13,32 +13,25 @@ import java.util.Set;
 @Repository
 public interface CPUDAO extends ProductDAO<CPU> {
 
+    List<CPU> findAllByCoreCountBetween(Integer minCoreCount, Integer maxCoreCount);
+
+    List<CPU> findAllByCoreClockBetween(Double minCoreClock, Double maxCoreClock);
+
+    List<CPU> findAllByBoostClockBetween(Double minBoostClock, Double maxBoostClock);
+
+    List<CPU> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
+
     @Query(
             "SELECT p FROM CPU p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
-                    "AND (p.coreCount BETWEEN :minCoreCount AND :maxCoreCount) " +
-                    "AND (p.coreClock BETWEEN :minCoreClock AND :maxCoreClock) " +
-                    "AND (p.boostClock BETWEEN :minBoostClock AND :maxBoostClock) " +
-                    "AND (p.tdp BETWEEN :minTdp AND :maxTdp) " +
-                    "AND ((:integratedGraphics) is null or lower(p.integratedGraphics) in (:integratedGraphics)) " +
-                    "AND ((:socketTypes) is null or p.socketType in (:socketTypes)) "
+                    "(:socketType IS NULL OR p.socketType = :socketType) "
     )
-    List<CPU> filterAllCpusBasedOnSpecification(
-            @Param("name") String name,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            @Param("minCoreCount") Integer minCoreCount,
-            @Param("maxCoreCount") Integer maxCoreCount,
-            @Param("minCoreClock") Double minCoreClock,
-            @Param("maxCoreClock") Double maxCoreClock,
-            @Param("minBoostClock") Double minBoostClock,
-            @Param("maxBoostClock") Double maxBoostClock,
-            @Param("minTdp") Integer minTdp,
-            @Param("maxTdp") Integer maxTdp,
-            @Param("integratedGraphics") Set<String> integratedGraphics,
-            @Param("socketTypes") Set<SocketType> socketTypes
-    );
+    List<CPU> findAllBySocketType(@Param("socketType") SocketType socketType);
+
+    @Query(
+            "SELECT p FROM CPU p WHERE " +
+                    "(:integratedGraphics IS NULL OR p.integratedGraphics = :integratedGraphics) "
+    )
+    List<CPU> findAllByIntegratedGraphics(@Param("integratedGraphics") String integratedGraphics);
 
     @Query(
             "SELECT p FROM CPU p " +

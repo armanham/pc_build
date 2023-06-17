@@ -3,7 +3,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 import com.bdg.pc_build.product.model.dto.main_component.CaseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.TowerType;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

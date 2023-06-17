@@ -1,6 +1,7 @@
 package com.bdg.pc_build.product.repository.peripheral;
 
 import com.bdg.pc_build.product.model.entity.peripheral.Headset;
+import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
 import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
 import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
@@ -33,6 +34,16 @@ public interface HeadsetDAO extends ProductDAO<Headset> {
             @Param("maxCableLength") Double maxCableLength,
             @Param("connectivityTypes") Set<ConnectivityType> connectivityTypes
     );
+
+    List<Headset> findAllByFrequencyBetween(Integer minFrequency, Integer maxFrequency);
+    List<Headset> findAllByCableLengthBetween(Double minCableLength, Double maxCableLength);
+
+    @Query(
+            "SELECT p FROM Headset p WHERE " +
+                    "(:connectivityType IS NULL OR p.connectivityType = :connectivityType) "
+    )
+    List<Headset> findAllByConnectivityType(@Param("connectivityType") ConnectivityType connectivityType);
+
 
     @Query(
             "SELECT p FROM Headset p " +

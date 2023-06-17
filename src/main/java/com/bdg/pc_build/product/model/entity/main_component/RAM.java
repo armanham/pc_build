@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.RAMDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.bdg.pc_build.product.model.enumerations.DDRType;
 import lombok.*;
