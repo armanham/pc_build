@@ -1,6 +1,8 @@
 package com.bdg.pc_build.product.repository.peripheral;
 
+import com.bdg.pc_build.product.model.entity.main_component.GPU;
 import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
+import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
@@ -13,24 +15,15 @@ import java.util.Set;
 @Repository
 public interface MonitorDAO extends ProductDAO<Monitor> {
 
+    List<Monitor> findAllByScreenSizeBetween(Double minScreenSize, Double maxScreenSize);
+
+    List<Monitor> findAllByRefreshRateBetween(Double minRefreshRate, Double maxRefreshRate);
+
     @Query(
             "SELECT p FROM Monitor p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
-                    "AND (p.screenSize BETWEEN :minScreenSize AND :maxScreenSize) " +
-                    "AND (p.refreshRate BETWEEN :minRefreshRate AND :maxRefreshRate) " +
-                    "AND ((:screenTypes) IS NULL OR p.screenType IN (:screenTypes))"
+                    "(:monitorScreenType IS NULL OR p.screenType = :monitorScreenType) "
     )
-    List<Monitor> filterAllMonitorsBasedOnSpecification(
-            @Param("name") String name,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            @Param("minScreenSize") Double minScreenSize,
-            @Param("maxScreenSize") Double maxScreenSize,
-            @Param("minRefreshRate") Integer minRefreshRate,
-            @Param("maxRefreshRate") Integer maxRefreshRate,
-            @Param("screenTypes") Set<MonitorScreenType> screenTypes
-    );
+    List<Monitor> findAllByMonitorScreenType(@Param("monitorScreenType") MonitorScreenType monitorScreenType);
 
     @Query(
             "SELECT p FROM Monitor p " +

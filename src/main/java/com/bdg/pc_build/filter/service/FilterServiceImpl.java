@@ -92,34 +92,14 @@ public class FilterServiceImpl implements FilterService {
     public List<CPUCoolerDTO> filterAllCpuCoolersBasedOnSpecification(final CPUCoolerFilterDTO filterDTO) {
 
 
-        return cpuCoolerDAO.filterAllCpuCoolersBasedOnSpecification(
-                        filterDTO.getName(),
-                        minPrice, maxPrice,
-                        minFanRpm, maxFanRpm,
-                        minTdp, maxTdp,
-                        filterDTO.getSocketTypes()
-                )
-                .stream()
-                .map(CPUCoolerDTO::initDTOFromEntity)
-                .toList();
+
+        return null;
     }
 
     public List<CPUDTO> filterAllCpusBasedOnSpecification(final CPUFilterDTO filterDTO) {
 
 
-        return cpuDAO.filterAllCpusBasedOnSpecification(
-                        filterDTO.getName(),
-                        minPrice, maxPrice,
-                        minCoreCount, maxCoreCount,
-                        minCoreClock, maxCoreClock,
-                        minBoostClock, maxBoostClock,
-                        minTdp, maxTdp,
-                        filterDTO.getIntegratedGraphics(),
-                        filterDTO.getSocketTypes()
-                )
-                .stream()
-                .map(CPUDTO::initDTOFromEntity)
-                .toList();
+        return null;
     }
 
 
@@ -215,45 +195,20 @@ public class FilterServiceImpl implements FilterService {
 
     public List<PowerSupplyDTO> filterAllPowerSuppliesBasedOnSpecification(final PowerSupplyFilterDTO filterDTO) {
 
-        return powerSupplyDAO.filterAllPowerSuppliesBasedOnSpecification(
-                        filterDTO.getName(),
-                        minPrice, maxPrice,
-                        minWattage, maxWattage,
-                        minTdp, maxTdp,
-                        filterDTO.getModularTypes(),
-                        filterDTO.getEfficiencyRatings()
-                )
-                .stream()
-                .map(PowerSupplyDTO::initDTOFromEntity)
-                .toList();
+
+        return null;
     }
 
     public List<RAMDTO> filterAllRamsBasedOnSpecification(final RAMFilterDTO filterDTO) {
 
-        return ramDAO.filterAllRamsBasedOnSpecification(
-                        filterDTO.getName(),
-                        minPrice, maxPrice,
-                        minCountOfRam, maxCountOfRam,
-                        minGbOfRam, maxGbOfRam,
-                        minTdp, maxTdp,
-                        filterDTO.getDdrTypes()
-                )
-                .stream()
-                .map(RAMDTO::initDTOFromEntity)
-                .toList();
+
+        return null;
     }
 
     public List<ExternalHardDriveDTO> filterAllExternalHardDrivesBasedOnSpecification(final ExternalHardDriveFilterDTO filterDTO) {
 
-        return externalHardDriveDAO.filterAllExternalHardDrivesBasedOnSpecification(
-                        filterDTO.getName(),
-                        minPrice, maxPrice,
-                        minCapacity, maxCapacity,
-                        minTdp, maxTdp
-                )
-                .stream()
-                .map(ExternalHardDriveDTO::initDTOFromEntity)
-                .toList();
+
+        return null;
     }
 
     public List<HeadsetDTO> filterAllHeadsetsBasedOnSpecification(final HeadsetFilterDTO filterDTO) {
@@ -267,55 +222,8 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<MonitorDTO> filterAllMonitorsBasedOnSpecification(final MonitorFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = monitorDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = monitorDAO.getMaxPriceFromAllProducts();
-        }
 
-        Double minScreenSize;
-        Double maxScreenSize;
-        if (filterDTO.getMinScreenSize() != null) {
-            minScreenSize = filterDTO.getMinScreenSize();
-        } else {
-            minScreenSize = monitorDAO.getMinScreenSizeOfMonitors();
-        }
-        if (filterDTO.getMaxScreenSize() != null) {
-            maxScreenSize = filterDTO.getMaxScreenSize();
-        } else {
-            maxScreenSize = monitorDAO.getMaxScreenSizeOfMonitors();
-        }
-
-        Integer minRefreshRate;
-        Integer maxRefreshRate;
-        if (filterDTO.getMinRefreshRate() != null) {
-            minRefreshRate = filterDTO.getMinRefreshRate();
-        } else {
-            minRefreshRate = monitorDAO.getMinRefreshRateOfMonitors();
-        }
-        if (filterDTO.getMaxRefreshRate() != null) {
-            maxRefreshRate = filterDTO.getMaxRefreshRate();
-        } else {
-            maxRefreshRate = monitorDAO.getMaxRefreshRateOfMonitors();
-        }
-
-        return monitorDAO.filterAllMonitorsBasedOnSpecification(
-                        filterDTO.getName(),
-                        minPrice, maxPrice,
-                        minScreenSize, maxScreenSize,
-                        minRefreshRate, maxRefreshRate,
-                        filterDTO.getScreenTypes()
-                )
-                .stream()
-                .map(MonitorDTO::initDTOFromEntity)
-                .toList();
+        return null;
     }
 
     public List<MouseDTO> filterAllMiceBasedOnSpecification(final MouseFilterDTO filterDTO) {

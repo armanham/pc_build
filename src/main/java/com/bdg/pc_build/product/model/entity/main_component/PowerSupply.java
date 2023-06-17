@@ -3,8 +3,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
-import javax.persistence.*;
-
+import jakarta.persistence.*;
 import com.bdg.pc_build.product.model.enumerations.ModularType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

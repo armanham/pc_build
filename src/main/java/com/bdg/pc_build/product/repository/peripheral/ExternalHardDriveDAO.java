@@ -11,23 +11,10 @@ import java.util.List;
 @Repository
 public interface ExternalHardDriveDAO extends ProductDAO<ExternalHardDrive> {
 
-    @Query(
-            "SELECT p FROM ExternalHardDrive p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
-                    "AND (p.capacity BETWEEN :minCapacity AND :maxCapacity) " +
-                    "AND (p.tdp BETWEEN :minTdp AND :maxTdp) "
+    List<ExternalHardDrive> findAllByCapacityBetween(Integer minCapacity, Integer maxCapacity);
 
-    )
-    List<ExternalHardDrive> filterAllExternalHardDrivesBasedOnSpecification(
-            @Param("name") String name,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            @Param("minCapacity") Integer minCapacity,
-            @Param("maxCapacity") Integer maxCapacity,
-            @Param("minTdp") Integer minTdp,
-            @Param("maxTdp") Integer maxTdp
-    );
+    List<ExternalHardDrive> findAllTdpBetween(Integer minTdp, Integer maxTdp);
+
 
     @Query(
             "SELECT p FROM ExternalHardDrive p " +
