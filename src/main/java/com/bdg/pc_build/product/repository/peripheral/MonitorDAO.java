@@ -16,22 +16,16 @@ public interface MonitorDAO extends ProductDAO<Monitor> {
 
     List<Monitor> findAllByRefreshRateBetween(Integer minRefreshRate, Integer maxRefreshRate);
 
-    @Query(
-            "SELECT p FROM Monitor p WHERE " +
-                    "(:monitorScreenType IS NULL OR p.screenType = :monitorScreenType) "
-    )
+    @Query("SELECT p FROM Monitor p WHERE " +
+            "(:monitorScreenType IS NULL OR p.screenType = :monitorScreenType) ")
     List<Monitor> findAllByMonitorScreenType(@Param("monitorScreenType") MonitorScreenType monitorScreenType);
 
-    @Query(
-            "SELECT p FROM Monitor p " +
-                    "WHERE :term IS NULL " +
-                    "OR length(:term) = 0 " +
-                    "OR lower(CONCAT(p.name, ' ', p.screenSize, ' ', p.refreshRate, ' ', p.screenType)) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<Monitor> findAllBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM Monitor p " +
+            "WHERE :term IS NULL " +
+            "OR length(:term) = 0 " +
+            "OR lower(CONCAT(p.name, ' ', p.screenSize, ' ', p.refreshRate, ' ', p.screenType)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<Monitor> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select min(p.screenSize) from Monitor p ")
     Double getMinScreenSizeOfMonitors();

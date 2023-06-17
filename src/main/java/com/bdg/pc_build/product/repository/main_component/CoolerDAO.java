@@ -13,15 +13,11 @@ public interface CoolerDAO extends ProductDAO<Cooler> {
 
     List<Cooler> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
-    @Query(
-            "SELECT p FROM Cooler p " +
-                    "WHERE :term IS NULL " +
-                    "OR lower(CONCAT(p.name, ' ', p.tdp)) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<Cooler> findAllBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM Cooler p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.tdp)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<Cooler> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select max(p.tdp) from Cooler p")
     Integer getMaxTdpOfCoolers();

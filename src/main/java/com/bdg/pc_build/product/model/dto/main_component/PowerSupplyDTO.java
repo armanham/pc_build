@@ -8,16 +8,9 @@ import com.bdg.pc_build.product.model.request.creation.main_component.PowerSuppl
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-/**
- * @author Arman Hakhverdyan
- * <p>
- * DTO (Data Transfer Object) representing a power supply.
- */
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class PowerSupplyDTO extends ProductDTO {
 

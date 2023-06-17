@@ -3,18 +3,13 @@ package com.bdg.pc_build.product.model.entity.main_component;
 import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
-import jakarta.persistence.*;
 import com.bdg.pc_build.product.model.enumerations.ModularType;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-/**
- * @Author Arman Hakhverdyan
- * <p>
- * Entity for PowerSupply
- */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,7 +34,7 @@ public class PowerSupply extends Product {
 
     public PowerSupply(final PowerSupplyDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
-        this.efficiencyRating =dto.getEfficiencyRating();
+        this.efficiencyRating = dto.getEfficiencyRating();
         this.wattage = dto.getWattage();
         this.modularType = dto.getModularType();
         this.tdp = dto.getTdp();

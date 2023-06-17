@@ -2,20 +2,15 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.RAMDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import jakarta.persistence.*;
-
 import com.bdg.pc_build.product.model.enumerations.DDRType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-
-/**
- * @author Arman Hakhverdyan
- * <p>
- * Entity for RAM
- */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor

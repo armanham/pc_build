@@ -19,22 +19,16 @@ public interface MouseDAO extends ProductDAO<Mouse> {
 
     List<Mouse> findAllByWeightBetween(Double minWeight, Double maxWeight);
 
-    @Query(
-            "SELECT p FROM Mouse p WHERE " +
-                    "(:connectivityType IS NULL OR p.connectivityType = :connectivityType) "
-    )
+    @Query("SELECT p FROM Mouse p WHERE " +
+                    "(:connectivityType IS NULL OR p.connectivityType = :connectivityType) ")
     List<Mouse> findAllByConnectivityType(@Param("connectivityType") ConnectivityType connectivityType);
 
-    @Query(
-            "SELECT p FROM Mouse p " +
+    @Query("SELECT p FROM Mouse p " +
                     "WHERE :term IS NULL " +
                     "OR lower(CONCAT(p.name, ' ', p.connectivityType, ' ', " +
                     "p.maxResolution, ' ', p.cableLength, ' ', p.weight)) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<Mouse> findAllBasedOnTerm(
-            @Param("term") String term
-    );
+                    "LIKE CONCAT('%', :term, '%') ")
+    List<Mouse> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select min(p.maxResolution) from Mouse p ")
     Integer getMinResolutionOfMice();

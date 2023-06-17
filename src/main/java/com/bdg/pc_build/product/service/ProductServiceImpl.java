@@ -61,7 +61,6 @@ public class ProductServiceImpl implements ProductService {
         return repository.save(product);
     }
 
-
     private <ENTITY extends Product> ENTITY findByName(
             final String name,
             final ProductDAO<ENTITY> repository
@@ -72,7 +71,6 @@ public class ProductServiceImpl implements ProductService {
         }
         return optionalENTITY.get();
     }
-
 
     private <ENTITY extends Product> List<ENTITY> findAllByPrice(
             final Double minPrice,
@@ -103,7 +101,6 @@ public class ProductServiceImpl implements ProductService {
         foundedProduct.setPrice(newPrice);
         return repository.save(foundedProduct);
     }
-
 
     private <ENTITY extends Product> ENTITY reduceCountByName(
             final String name,

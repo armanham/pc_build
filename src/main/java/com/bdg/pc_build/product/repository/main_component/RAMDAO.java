@@ -18,22 +18,16 @@ public interface RAMDAO extends ProductDAO<RAM> {
 
     List<RAM> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
-    @Query(
-            "SELECT p FROM RAM p WHERE " +
-                    "(:ddrType IS NULL OR p.ddrType = :ddrType) "
-    )
+    @Query("SELECT p FROM RAM p WHERE " +
+            "(:ddrType IS NULL OR p.ddrType = :ddrType) ")
     List<RAM> findAllByDdrType(DDRType ddrType);
 
-    @Query(
-            "SELECT p FROM RAM p " +
-                    "WHERE :term IS NULL " +
-                    "OR lower(CONCAT(p.name, ' ', p.ddrType, ' ', p.countOfRam, ' ', p.gbOfRam, " +
-                    "' ', p.tdp)) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<RAM> findAllBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM RAM p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.ddrType, ' ', p.countOfRam, ' ', p.gbOfRam, " +
+            "' ', p.tdp)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<RAM> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select max(p.tdp) from RAM p")
     Integer getMaxTdpOfRams();

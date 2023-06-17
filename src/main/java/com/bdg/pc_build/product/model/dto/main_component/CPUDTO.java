@@ -4,16 +4,12 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPU;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.creation.main_component.CPUCreationRequest;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-/**
- * @author Arman Hakhverdyan
- * <p>
- * An Immutable DataTransferObject of CPU for service layer.
- */
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class CPUDTO extends ProductDTO {
 

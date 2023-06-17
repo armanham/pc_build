@@ -20,28 +20,20 @@ public interface CPUDAO extends ProductDAO<CPU> {
 
     List<CPU> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
-    @Query(
-            "SELECT p FROM CPU p WHERE " +
-                    "(:socketType IS NULL OR p.socketType = :socketType) "
-    )
+    @Query("SELECT p FROM CPU p WHERE " +
+            "(:socketType IS NULL OR p.socketType = :socketType) ")
     List<CPU> findAllBySocketType(@Param("socketType") SocketType socketType);
 
-    @Query(
-            "SELECT p FROM CPU p WHERE " +
-                    "(:integratedGraphics IS NULL OR p.integratedGraphics = :integratedGraphics) "
-    )
+    @Query("SELECT p FROM CPU p WHERE " +
+            "(:integratedGraphics IS NULL OR p.integratedGraphics = :integratedGraphics) ")
     List<CPU> findAllByIntegratedGraphics(@Param("integratedGraphics") String integratedGraphics);
 
-    @Query(
-            "SELECT p FROM CPU p " +
-                    "WHERE :term IS NULL " +
-                    "OR lower(CONCAT(p.name, ' ', p.socketType, ' ', p.tdp, " +
-                    "' ', p.boostClock, ' ', p.coreClock, ' ', p.coreCount, ' ', p.integratedGraphics)) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<CPU> findAllBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM CPU p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.socketType, ' ', p.tdp, " +
+            "' ', p.boostClock, ' ', p.coreClock, ' ', p.coreCount, ' ', p.integratedGraphics)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<CPU> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select max(p.tdp) from CPU p")
     Integer getMaxTdpOfCpus();

@@ -13,25 +13,22 @@ import java.util.Optional;
 public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY, String> {
 
     List<ENTITY> findAllBasedOnTerm(String term);
+
     Optional<ENTITY> findByName(String name);
 
 
-    @Query(
-            "SELECT p FROM #{#entityName} p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) "
-    )
+    @Query("SELECT p FROM #{#entityName} p WHERE " +
+            "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) ")
     List<ENTITY> findAllProductsByNameLike(@Param("name") String name);
 
     List<ENTITY> findAllProductsByPriceBetween(Double minPrice, Double maxPrice);
 
     List<ENTITY> findAllProductsByPurchasedPriceBetween(Double minPrice, Double maxPrice);
 
-    @Query(
-            "SELECT p FROM #{#entityName} p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND ((:minPrice IS NULL AND :maxPrice IS NULL) " +
-                    "OR (p.price BETWEEN :minPrice AND :maxPrice ))"
-    )
+    @Query("SELECT p FROM #{#entityName} p WHERE " +
+            "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
+            "AND ((:minPrice IS NULL AND :maxPrice IS NULL) " +
+            "OR (p.price BETWEEN :minPrice AND :maxPrice ))")
     List<ENTITY> filterAllBasedOnNameAndPrice(
             @Param("name") String name,
             @Param("minPrice") Double minPrice,

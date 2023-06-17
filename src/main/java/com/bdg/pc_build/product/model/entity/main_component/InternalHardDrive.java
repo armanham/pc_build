@@ -18,7 +18,7 @@ import java.util.Objects;
 @Table(name = "internal_hard_drive")
 public class InternalHardDrive extends Product {
 
-    @Column(name = "internal_hard _drive_interface_type", nullable = false, updatable = false)
+    @Column(name = "internal_hard_drive_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     InternalHardDriveInterfaceType internalHardDriveInterfaceType;
 

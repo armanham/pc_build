@@ -13,25 +13,19 @@ import java.util.List;
 public interface HeadsetDAO extends ProductDAO<Headset> {
 
     List<Headset> findAllByFrequencyBetween(Integer minFrequency, Integer maxFrequency);
+
     List<Headset> findAllByCableLengthBetween(Double minCableLength, Double maxCableLength);
 
-    @Query(
-            "SELECT p FROM Headset p WHERE " +
-                    "(:connectivityType IS NULL OR p.connectivityType = :connectivityType) "
-    )
+    @Query("SELECT p FROM Headset p WHERE " +
+            "(:connectivityType IS NULL OR p.connectivityType = :connectivityType) ")
     List<Headset> findAllByConnectivityType(@Param("connectivityType") ConnectivityType connectivityType);
 
-
-    @Query(
-            "SELECT p FROM Headset p " +
-                    "WHERE :term IS NULL " +
-                    "OR lower(CONCAT(p.name, ' ', p.frequency, ' ', " +
-                    "p.connectivityType, ' ', p.cableLength))" +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<Headset> findAllBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM Headset p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.frequency, ' ', " +
+            "p.connectivityType, ' ', p.cableLength))" +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<Headset> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select min(p.frequency) from Headset p ")
     Integer getMinFrequencyOfHeadset();

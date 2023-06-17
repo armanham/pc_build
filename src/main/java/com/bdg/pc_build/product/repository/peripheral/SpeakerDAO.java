@@ -15,22 +15,16 @@ public interface SpeakerDAO extends ProductDAO<Speaker> {
 
     List<Speaker> findAllByCableLengthBetween(Double minCableLength, Double maxCableLength);
 
-    @Query(
-            "SELECT p FROM Speaker p WHERE " +
-                    "(:dimension IS NULL OR lower(p.dimension) = :dimension) "
-    )
+    @Query("SELECT p FROM Speaker p WHERE " +
+            "(:dimension IS NULL OR lower(p.dimension) = :dimension) ")
     List<Speaker> findAllByDimension(@Param("dimension") String dimension);
 
-    @Query(
-            "SELECT p FROM Speaker p " +
-                    "WHERE :term IS NULL " +
-                    "OR lower(CONCAT(p.name, ' ', p.frequency, ' ', " +
-                    "p.powerSourceType, ' ', p.cableLength, ' ', p.dimension)) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<Speaker> findAllBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM Speaker p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.frequency, ' ', " +
+            "p.powerSourceType, ' ', p.cableLength, ' ', p.dimension)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<Speaker> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select min(p.frequency) from Speaker p ")
     Integer getMinFrequencyOfSpeakers();

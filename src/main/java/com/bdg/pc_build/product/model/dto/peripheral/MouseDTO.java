@@ -4,11 +4,12 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
 import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.MouseCreationRequest;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class MouseDTO extends ProductDTO {
 

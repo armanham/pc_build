@@ -12,9 +12,6 @@ import java.util.List;
 @Repository
 public interface GPUDAO extends ProductDAO<GPU> {
 
-
-    List<GPU> findAllByPriceBetween(Double minPrice, Double maxPrice);
-
     List<GPU> findAllByMemoryBetween(Integer minMemory, Integer maxMemory);
 
     List<GPU> findAllByCoreClockBetween(Double minCoreClock, Double maxCoreClock);
@@ -25,22 +22,16 @@ public interface GPUDAO extends ProductDAO<GPU> {
 
     List<GPU> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
-    @Query(
-            "SELECT p FROM GPU p WHERE " +
-                    "(:gpuInterfaceType IS NULL OR p.gpuInterfaceType = :gpuInterfaceType) "
-    )
+    @Query("SELECT p FROM GPU p WHERE " +
+            "(:gpuInterfaceType IS NULL OR p.gpuInterfaceType = :gpuInterfaceType) ")
     List<GPU> findAllByGpuInterfaceType(@Param("gpuInterfaceType") GPUInterfaceType gpuInterfaceType);
 
-    @Query(
-            "SELECT p FROM GPU p " +
-                    "WHERE :term IS NULL " +
-                    "OR lower(CONCAT(p.name, ' ', p.coreClock, ' ', p.boostClock, " +
-                    "' ', p.tdp, ' ', p.gpuInterfaceType, ' ', p.length, ' ', p.memory)) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<GPU> findAllBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM GPU p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.coreClock, ' ', p.boostClock, " +
+            "' ', p.tdp, ' ', p.gpuInterfaceType, ' ', p.length, ' ', p.memory)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<GPU> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select max(p.tdp) from GPU p")
     Integer getMaxTdpOfGpus();

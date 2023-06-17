@@ -7,16 +7,12 @@ import com.bdg.pc_build.product.model.enumerations.DDRType;
 import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.creation.main_component.MotherboardCreationRequest;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-/**
- * @author Arman Hakhverdyan
- * <p>
- * An Immutable DataTransferObject of Motherboard for service layer.
- */
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class MotherboardDTO extends ProductDTO {
 

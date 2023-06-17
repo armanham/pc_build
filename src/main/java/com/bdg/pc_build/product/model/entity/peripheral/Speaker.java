@@ -2,9 +2,10 @@ package com.bdg.pc_build.product.model.entity.peripheral;
 
 import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import jakarta.persistence.*;
-
 import com.bdg.pc_build.product.model.enumerations.PowerSourceType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

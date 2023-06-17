@@ -5,16 +5,12 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.RAM;
 import com.bdg.pc_build.product.model.enumerations.DDRType;
 import com.bdg.pc_build.product.model.request.creation.main_component.RAMCreationRequest;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-/**
- * @author Arman Hakhverdyan
- * <p>
- * An Immutable DataTransferObject of RAM for service layer.
- */
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class RAMDTO extends ProductDTO {
 

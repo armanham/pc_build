@@ -15,15 +15,11 @@ public interface CPUCoolerDAO extends ProductDAO<CPUCooler> {
 
     List<CPUCooler> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
-    @Query(
-            "SELECT p FROM CPUCooler p " +
-                    "WHERE :term IS NULL " +
-                    "OR lower(CONCAT(p.name, ' ', p.tdp, ' ', p.fanRpm, ' ', p.socketType)) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<CPUCooler> findAllBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM CPUCooler p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.tdp, ' ', p.fanRpm, ' ', p.socketType)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<CPUCooler> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select max(p.tdp) from CPUCooler p")
     Integer getMaxTdpOfCpuCoolers();

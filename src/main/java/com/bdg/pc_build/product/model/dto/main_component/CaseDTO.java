@@ -7,11 +7,9 @@ import com.bdg.pc_build.product.model.request.creation.main_component.CaseCreati
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class CaseDTO extends ProductDTO {
 
