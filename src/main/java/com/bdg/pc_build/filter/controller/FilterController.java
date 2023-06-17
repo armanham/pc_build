@@ -172,7 +172,7 @@ public class FilterController {
 
     @GetMapping(value = "/{term}")
     public List<ProductDTO> filterAllByTerm(
-            @PathVariable("term") String term
+            @PathVariable String term
     ) {
         return filterService.findAllProductsBasedOnTerm(term);
     }

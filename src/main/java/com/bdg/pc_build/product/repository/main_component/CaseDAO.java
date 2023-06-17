@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface CaseDAO extends ProductDAO<aCase> {
 
+
     List<aCase> findAllByMaxCpuCoolerHeightBetween(Double minCpuCoolerHeight, Double maxCpuCoolerHeight);
 
     List<aCase> findAllByMaxGpuLengthBetween(Double minGpuLength, Double maxGpuLength);
@@ -28,11 +29,11 @@ public interface CaseDAO extends ProductDAO<aCase> {
     @Query(
             "SELECT p FROM aCase p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.maxCpuCoolerHeight, ' ', p.maxGpuLength, " +
-                    "' ', p.preInstalledFans, ' ', p.towerType) " +
+                    "OR lower(CONCAT(p.name, ' ', p.maxCpuCoolerHeight, ' ', p.maxGpuLength, " +
+                    "' ', p.preInstalledFans, ' ', p.towerType)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<aCase> findAllCasesBasedOnTerm(
+    List<aCase> findAllBasedOnTerm(
             @Param("term") String term
     );
 

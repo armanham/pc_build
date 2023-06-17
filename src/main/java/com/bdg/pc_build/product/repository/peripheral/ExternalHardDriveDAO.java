@@ -13,16 +13,16 @@ public interface ExternalHardDriveDAO extends ProductDAO<ExternalHardDrive> {
 
     List<ExternalHardDrive> findAllByCapacityBetween(Integer minCapacity, Integer maxCapacity);
 
-    List<ExternalHardDrive> findAllTdpBetween(Integer minTdp, Integer maxTdp);
+    List<ExternalHardDrive> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
 
     @Query(
             "SELECT p FROM ExternalHardDrive p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.capacity, ' ', p.tdp) " +
+                    "OR lower(CONCAT(p.name, ' ', p.capacity, ' ', p.tdp)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<ExternalHardDrive> findAllExternalHardDrivesBasedOnTerm(
+    List<ExternalHardDrive> findAllBasedOnTerm(
             @Param("term") String term
     );
 

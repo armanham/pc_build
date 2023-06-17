@@ -16,10 +16,10 @@ public interface CoolerDAO extends ProductDAO<Cooler> {
     @Query(
             "SELECT p FROM Cooler p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.tdp) " +
+                    "OR lower(CONCAT(p.name, ' ', p.tdp)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<Cooler> findAllCoolersBasedOnTerm(
+    List<Cooler> findAllBasedOnTerm(
             @Param("term") String term
     );
 

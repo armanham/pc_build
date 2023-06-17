@@ -18,10 +18,10 @@ public interface CPUCoolerDAO extends ProductDAO<CPUCooler> {
     @Query(
             "SELECT p FROM CPUCooler p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.tdp, ' ', p.fanRpm, ' ', p.socketType) " +
+                    "OR lower(CONCAT(p.name, ' ', p.tdp, ' ', p.fanRpm, ' ', p.socketType)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<CPUCooler> findAllCpuCoolersBasedOnTerm(
+    List<CPUCooler> findAllBasedOnTerm(
             @Param("term") String term
     );
 

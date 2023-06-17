@@ -54,12 +54,12 @@ public interface MotherboardDAO extends ProductDAO<Motherboard> {
     @Query(
             "SELECT p FROM Motherboard p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.tdp, ' ', p.gpuInterfaceType, " +
+                    "OR lower(CONCAT(p.name, ' ', p.tdp, ' ', p.gpuInterfaceType, " +
                     "' ', p.socketType, ' ', p.atxType, ' ', p.isM2, " +
-                    "' ', p.memoryMax, ' ', p.memorySlots, ' ', p.ddrType) " +
+                    "' ', p.memoryMax, ' ', p.memorySlots, ' ', p.ddrType)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<Motherboard> findAllMotherboardsBasedOnTerm(
+    List<Motherboard> findAllBasedOnTerm(
             @Param("term") String term
     );
 

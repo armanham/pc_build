@@ -34,11 +34,11 @@ public interface GPUDAO extends ProductDAO<GPU> {
     @Query(
             "SELECT p FROM GPU p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.coreClock, ' ', p.boostClock, " +
-                    "' ', p.tdp, ' ', p.gpuInterfaceType, ' ', p.length, ' ', p.memory) " +
+                    "OR lower(CONCAT(p.name, ' ', p.coreClock, ' ', p.boostClock, " +
+                    "' ', p.tdp, ' ', p.gpuInterfaceType, ' ', p.length, ' ', p.memory)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<GPU> findAllGpusBasedOnTerm(
+    List<GPU> findAllBasedOnTerm(
             @Param("term") String term
     );
 

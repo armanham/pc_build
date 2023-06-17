@@ -27,11 +27,11 @@ public interface RAMDAO extends ProductDAO<RAM> {
     @Query(
             "SELECT p FROM RAM p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.ddrType, ' ', p.countOfRam, ' ', p.gbOfRam, " +
-                    "' ', p.tdp) " +
+                    "OR lower(CONCAT(p.name, ' ', p.ddrType, ' ', p.countOfRam, ' ', p.gbOfRam, " +
+                    "' ', p.tdp)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<RAM> findAllRamsBasedOnTerm(
+    List<RAM> findAllBasedOnTerm(
             @Param("term") String term
     );
 

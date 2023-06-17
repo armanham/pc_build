@@ -26,11 +26,11 @@ public interface InternalHardDriveDAO extends ProductDAO<InternalHardDrive> {
     @Query(
             "SELECT p FROM InternalHardDrive p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.tdp, ' ', p.capacity, " +
-                    "' ', p.internalHardDriveInterfaceType) " +
+                    "OR lower(CONCAT(p.name, ' ', p.tdp, ' ', p.capacity, " +
+                    "' ', p.internalHardDriveInterfaceType)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<InternalHardDrive> findAllInternalHardDrivesBasedOnTerm(
+    List<InternalHardDrive> findAllBasedOnTerm(
             @Param("term") String term
     );
 

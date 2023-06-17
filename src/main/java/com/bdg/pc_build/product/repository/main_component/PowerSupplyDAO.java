@@ -32,11 +32,11 @@ public interface PowerSupplyDAO extends ProductDAO<PowerSupply> {
     @Query(
             "SELECT p FROM PowerSupply p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.efficiencyRating, ' ', " +
-                    "p.wattage, ' ', p.modularType, ' ', p.tdp) " +
+                    "OR lower(CONCAT(p.name, ' ', p.efficiencyRating, ' ', " +
+                    "p.wattage, ' ', p.modularType, ' ', p.tdp)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<PowerSupply> findAllPowerSuppliesBasedOnTerm(
+    List<PowerSupply> findAllBasedOnTerm(
             @Param("term") String term
     );
 

@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface CPUDAO extends ProductDAO<CPU> {
@@ -36,11 +35,11 @@ public interface CPUDAO extends ProductDAO<CPU> {
     @Query(
             "SELECT p FROM CPU p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.socketType, ' ', p.tdp, " +
-                    "' ', p.boostClock, ' ', p.coreClock, ' ', p.coreCount, ' ', p.integratedGraphics) " +
+                    "OR lower(CONCAT(p.name, ' ', p.socketType, ' ', p.tdp, " +
+                    "' ', p.boostClock, ' ', p.coreClock, ' ', p.coreCount, ' ', p.integratedGraphics)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<CPU> findAllCpusBasedOnTerm(
+    List<CPU> findAllBasedOnTerm(
             @Param("term") String term
     );
 

@@ -1,11 +1,7 @@
 package com.bdg.pc_build.product.repository.peripheral;
 
-import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
-import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
 import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
-import com.bdg.pc_build.product.model.enumerations.ModularType;
-import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -58,11 +54,11 @@ public interface KeyboardDAO extends ProductDAO<Keyboard> {
     @Query(
             "SELECT p FROM Keyboard p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.connectivityType, ' ', " +
-                    "p.cableLength, ' ', p.dimension, ' ', p.weight) " +
+                    "OR lower(CONCAT(p.name, ' ', p.connectivityType, ' ', " +
+                    "p.cableLength, ' ', p.dimension, ' ', p.weight)) " +
                     "LIKE CONCAT('%', :term, '%') "
     )
-    List<Keyboard> findAllKeyboardsBasedOnTerm(
+    List<Keyboard> findAllBasedOnTerm(
             @Param("term") String term
     );
 

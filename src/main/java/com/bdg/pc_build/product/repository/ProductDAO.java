@@ -1,7 +1,6 @@
 package com.bdg.pc_build.product.repository;
 
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.model.entity.main_component.GPU;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -13,6 +12,7 @@ import java.util.Optional;
 @NoRepositoryBean
 public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY, String> {
 
+    List<ENTITY> findAllBasedOnTerm(String term);
     Optional<ENTITY> findByName(String name);
 
 
@@ -32,7 +32,7 @@ public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY
                     "AND ((:minPrice IS NULL AND :maxPrice IS NULL) " +
                     "OR (p.price BETWEEN :minPrice AND :maxPrice ))"
     )
-    List<ENTITY> filterAllProductsBasedOnNameAndPrice(
+    List<ENTITY> filterAllBasedOnNameAndPrice(
             @Param("name") String name,
             @Param("minPrice") Double minPrice,
             @Param("maxPrice") Double maxPrice
