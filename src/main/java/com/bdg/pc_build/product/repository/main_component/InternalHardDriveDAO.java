@@ -8,10 +8,20 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface InternalHardDriveDAO extends ProductDAO<InternalHardDrive> {
+
+    List<InternalHardDrive> findAllByCapacityBetween(Integer minCapacity, Integer maxCapacity);
+
+    List<InternalHardDrive> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
+
+    @Query(
+            "SELECT p FROM InternalHardDrive p WHERE " +
+                    "(:internalHardDriveInterfaceType IS NULL OR p.internalHardDriveInterfaceType = :internalHardDriveInterfaceType) "
+    )
+    List<InternalHardDrive> findAllByInternalHardDriveInterfaceType(@Param("internalHardDriveInterfaceType") InternalHardDriveInterfaceType internalHardDriveInterfaceType);
+
 
     @Query(
             "SELECT p FROM InternalHardDrive p " +
