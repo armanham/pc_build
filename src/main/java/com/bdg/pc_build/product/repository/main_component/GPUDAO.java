@@ -1,7 +1,6 @@
 package com.bdg.pc_build.product.repository.main_component;
 
 import com.bdg.pc_build.product.model.entity.main_component.GPU;
-import com.bdg.pc_build.product.model.entity.main_component.aCase;
 import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
@@ -9,38 +8,28 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface GPUDAO extends ProductDAO<GPU> {
 
+
+    List<GPU> findAllByPriceBetween(Double minPrice, Double maxPrice);
+
+    List<GPU> findAllByMemoryBetween(Integer minMemory, Integer maxMemory);
+
+    List<GPU> findAllByCoreClockBetween(Double minCoreClock, Double maxCoreClock);
+
+    List<GPU> findAllByBoostClockBetween(Double minBoostClock, Double maxBoostClock);
+
+    List<GPU> findAllByLengthBetween(Double minLength, Double maxLength);
+
+    List<GPU> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
+
     @Query(
             "SELECT p FROM GPU p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
-                    "AND (p.memory BETWEEN :minMemory AND :maxMemory) " +
-                    "AND (p.coreClock BETWEEN :minCoreClock AND :maxCoreClock) " +
-                    "AND (p.boostClock BETWEEN :minBoostClock AND :maxBoostClock) " +
-                    "AND (p.length BETWEEN :minLength AND :maxLength) " +
-                    "AND (p.tdp BETWEEN :minTdp AND :maxTdp) " +
-                    "AND ((:gpuInterfaceTypes) is null or p.gpuInterfaceType in (:gpuInterfaceTypes)) "
+                    "(:gpuInterfaceType IS NULL OR p.gpuInterfaceType = :gpuInterfaceType) "
     )
-    List<GPU> filterAllGpusBasedOnSpecification(
-            @Param("name") String name,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            @Param("minMemory") Integer minMemory,
-            @Param("maxMemory") Integer maxMemory,
-            @Param("minCoreClock") Double minCoreClock,
-            @Param("maxCoreClock") Double maxCoreClock,
-            @Param("minBoostClock") Double minBoostClock,
-            @Param("maxBoostClock") Double maxBoostClock,
-            @Param("minLength") Double minLength,
-            @Param("maxLength") Double maxLength,
-            @Param("minTdp") Integer minTdp,
-            @Param("maxTdp") Integer maxTdp,
-            @Param("gpuInterfaceTypes") Set<GPUInterfaceType> gpuInterfaceTypes
-    );
+    List<GPU> findAllByGpuInterfaceType(@Param("gpuInterfaceType") GPUInterfaceType gpuInterfaceType);
 
     @Query(
             "SELECT p FROM GPU p " +

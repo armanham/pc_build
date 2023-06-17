@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.entity.peripheral;
 
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import lombok.*;

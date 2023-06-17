@@ -8,32 +8,22 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface CaseDAO extends ProductDAO<aCase> {
 
+    List<aCase> findAllByMaxCpuCoolerHeightBetween(Double minCpuCoolerHeight, Double maxCpuCoolerHeight);
+
+    List<aCase> findAllByMaxGpuLengthBetween(Double minGpuLength, Double maxGpuLength);
+
+    List<aCase> findAllByPreInstalledFansBetween(Integer minPreInstalledFans, Integer maxPreInstalledFans);
+
     @Query(
             "SELECT p FROM aCase p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
-                    "AND (p.maxCpuCoolerHeight BETWEEN :minCpuCoolerHeight AND :maxCpuCoolerHeight) " +
-                    "AND (p.maxGpuLength BETWEEN :minGpuLength AND :maxGpuLength) " +
-                    "AND (p.preInstalledFans BETWEEN :minPreInstalledFans AND :maxPreInstalledFans) " +
-                    "AND ((:towerTypes) IS NULL OR p.towerType IN (:towerTypes) )"
+                    "(:gpuInterfaceType IS NULL OR p.towerType = :towerType) "
     )
-    List<aCase> filterAllCasesBasedOnSpecification(
-            @Param("name") String name,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            @Param("minCpuCoolerHeight") Double minCpuCoolerHeight,
-            @Param("maxCpuCoolerHeight") Double maxCpuCoolerHeight,
-            @Param("minGpuLength") Double minGpuLength,
-            @Param("maxGpuLength") Double maxGpuLength,
-            @Param("minPreInstalledFans") Integer minPreInstalledFans,
-            @Param("maxPreInstalledFans") Integer maxPreInstalledFans,
-            @Param("towerTypes") Set<TowerType> towerTypes
-    );
+    List<aCase> findAllByTowerType(@Param("towerType") TowerType towerType);
+
 
     @Query(
             "SELECT p FROM aCase p " +

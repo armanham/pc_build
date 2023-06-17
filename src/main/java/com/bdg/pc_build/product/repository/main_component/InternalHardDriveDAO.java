@@ -14,25 +14,6 @@ import java.util.Set;
 public interface InternalHardDriveDAO extends ProductDAO<InternalHardDrive> {
 
     @Query(
-            "SELECT p FROM InternalHardDrive p WHERE " +
-                    "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) " +
-                    "AND (p.price BETWEEN :minPrice AND :maxPrice) " +
-                    "AND (p.capacity BETWEEN :minCapacity AND :maxCapacity) " +
-                    "AND (p.tdp BETWEEN :minTdp AND :maxTdp) " +
-                    "AND ((:internalHardDriveInterfaceTypes) is null or p.internalHardDriveInterfaceType in (:internalHardDriveInterfaceTypes)) "
-    )
-    List<InternalHardDrive> filterAllInternalHardDrivesBasedOnSpecification(
-            @Param("name") String name,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            @Param("minCapacity") Integer minCapacity,
-            @Param("maxCapacity") Integer maxCapacity,
-            @Param("minTdp") Integer minTdp,
-            @Param("maxTdp") Integer maxTdp,
-            @Param("internalHardDriveInterfaceTypes") Set<InternalHardDriveInterfaceType> internalHardDriveInterfaceTypes
-    );
-
-    @Query(
             "SELECT p FROM InternalHardDrive p " +
                     "WHERE :term IS NULL " +
                     "OR CONCAT(p.name, ' ', p.tdp, ' ', p.capacity, " +

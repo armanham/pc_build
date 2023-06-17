@@ -1,15 +1,12 @@
 package com.bdg.pc_build.product.repository.peripheral;
 
-import com.bdg.pc_build.product.model.entity.main_component.aCase;
 import com.bdg.pc_build.product.model.entity.peripheral.ExternalHardDrive;
-import com.bdg.pc_build.product.model.enumerations.TowerType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface ExternalHardDriveDAO extends ProductDAO<ExternalHardDrive> {
