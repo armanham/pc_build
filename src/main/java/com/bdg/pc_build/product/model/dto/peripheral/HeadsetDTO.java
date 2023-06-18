@@ -46,6 +46,9 @@ public class HeadsetDTO extends ProductDTO {
     }
 
     public static HeadsetDTO initDTOFromRequest(final HeadsetCreationRequest request) {
+        if (Integer.parseInt(request.getFrequency()) < 20 || Integer.parseInt(request.getFrequency()) > 20000) {
+            throw new IllegalArgumentException("'frequency' must be between 20 and 20000 inclusive");
+        }
         return HeadsetDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

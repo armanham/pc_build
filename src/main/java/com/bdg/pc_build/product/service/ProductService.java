@@ -117,13 +117,13 @@ public interface ProductService {
 
     CoolerDTO updateCoolerPriceByName(String name, Double newPrice);
 
-    CPUDTO updateCPUPriceByName(String name, Double newPrice);
+    CPUDTO updateCpuPriceByName(String name, Double newPrice);
 
-    CPUCoolerDTO updateCPUCoolerPriceByName(String name, Double newPrice);
+    CPUCoolerDTO updateCpuCoolerPriceByName(String name, Double newPrice);
 
     InternalHardDriveDTO updateInternalHardDrivePriceByName(String name, Double newPrice);
 
-    GPUDTO updateGPUPriceByName(String name, Double newPrice);
+    GPUDTO updateGpuPriceByName(String name, Double newPrice);
 
     ExternalHardDriveDTO updateExternalHardDrivePriceByName(String name, Double newPrice);
 
@@ -131,7 +131,7 @@ public interface ProductService {
 
     PowerSupplyDTO updatePowerSupplyPriceByName(String name, Double newPrice);
 
-    RAMDTO updateRAMPriceByName(String name, Double newPrice);
+    RAMDTO updateRamPriceByName(String name, Double newPrice);
 
     HeadsetDTO updateHeadsetPriceByName(String name, Double newPrice);
 

@@ -59,6 +59,12 @@ public class CPUDTO extends ProductDTO {
     }
 
     public static CPUDTO initDTOFromRequest(final CPUCreationRequest request) {
+        if (Integer.parseInt(request.getCoreCount()) % 2 != 0) {
+            throw new IllegalArgumentException("'coreCount' must be even number");
+        }
+        if (Double.parseDouble(request.getCoreClock()) >= Double.parseDouble(request.getBoostClock())) {
+            throw new IllegalArgumentException("'boostClock' must be greater than 'coreClock'");
+        }
         return CPUDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

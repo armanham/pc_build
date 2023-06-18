@@ -41,6 +41,9 @@ public class ExternalHardDriveDTO extends ProductDTO {
     }
 
     public static ExternalHardDriveDTO initDTOFromRequest(final ExternalHardDriveCreationRequest request) {
+        if ((Integer.parseInt(request.getCapacity()) & Integer.parseInt(request.getCapacity()) - 1) != 0) {
+            throw new IllegalArgumentException("'capacity' must be power of two");
+        }
         return ExternalHardDriveDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

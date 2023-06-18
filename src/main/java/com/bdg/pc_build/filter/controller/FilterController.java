@@ -61,7 +61,7 @@ public class FilterController {
         );
     }
 
-    @GetMapping(value = "/cpuCooler")
+    @GetMapping(value = "/cpu-cooler")
     public List<CPUCoolerDTO> filterCpuCoolersBasedOnSpecification(
             @RequestBody CPUCoolerFilterRequest request
     ) {
@@ -79,7 +79,7 @@ public class FilterController {
         );
     }
 
-    @GetMapping(value = "/internalHardDrive")
+    @GetMapping(value = "/internal-hard-drive")
     public List<InternalHardDriveDTO> filterInternalHardDrivesBasedOnSpecification(
             @RequestBody InternalHardDriveFilterRequest request
     ) {
@@ -97,7 +97,7 @@ public class FilterController {
         );
     }
 
-    @GetMapping(value = "/powerSupply")
+    @GetMapping(value = "/power-supply")
     public List<PowerSupplyDTO> filterPowerSuppliesBasedOnSpecification(
             @RequestBody PowerSupplyFilterRequest request
     ) {
@@ -115,7 +115,7 @@ public class FilterController {
         );
     }
 
-    @GetMapping(value = "/externalHardDrive")
+    @GetMapping(value = "/external-hard-drive")
     public List<ExternalHardDriveDTO> filterExternalHardDrivesBasedOnSpecification(
             @RequestBody ExternalHardDriveFilterRequest request
     ) {

@@ -402,12 +402,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public CPUDTO updateCPUPriceByName(final String name, final Double newPrice) {
+    public CPUDTO updateCpuPriceByName(final String name, final Double newPrice) {
         return CPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuDAO));
     }
 
     @Override
-    public CPUCoolerDTO updateCPUCoolerPriceByName(final String name, final Double newPrice) {
+    public CPUCoolerDTO updateCpuCoolerPriceByName(final String name, final Double newPrice) {
         return CPUCoolerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuCoolerDAO));
     }
 
@@ -417,7 +417,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public GPUDTO updateGPUPriceByName(final String name, final Double newPrice) {
+    public GPUDTO updateGpuPriceByName(final String name, final Double newPrice) {
         return GPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, gpuDAO));
     }
 
@@ -437,7 +437,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public RAMDTO updateRAMPriceByName(final String name, final Double newPrice) {
+    public RAMDTO updateRamPriceByName(final String name, final Double newPrice) {
         return RAMDTO.initDTOFromEntity(updatePriceByName(name, newPrice, ramDAO));
     }
 

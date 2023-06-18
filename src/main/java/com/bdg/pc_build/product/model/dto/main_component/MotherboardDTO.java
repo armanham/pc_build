@@ -69,6 +69,12 @@ public class MotherboardDTO extends ProductDTO {
     }
 
     public static MotherboardDTO initDTOFromRequest(final MotherboardCreationRequest request) {
+        if ((Integer.parseInt(request.getMemoryMax()) & Integer.parseInt(request.getMemoryMax()) - 1) != 0) {
+            throw new IllegalArgumentException("'memoryMax' must be power of two");
+        }
+        if (Integer.parseInt(request.getMemorySlots()) % 2 != 0) {
+            throw new IllegalArgumentException("'memorySlots' must be even number");
+        }
         return MotherboardDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

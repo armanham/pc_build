@@ -46,6 +46,9 @@ public class MonitorDTO extends ProductDTO {
     }
 
     public static MonitorDTO initDTOFromRequest(final MonitorCreationRequest request) {
+        if (Integer.parseInt(request.getRefreshRate()) > 30) {
+            throw new IllegalArgumentException("'refreshRate' must be less or equal than 30");
+        }
         return MonitorDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

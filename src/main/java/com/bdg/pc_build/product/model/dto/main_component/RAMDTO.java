@@ -51,6 +51,9 @@ public class RAMDTO extends ProductDTO {
     }
 
     public static RAMDTO initDTOFromRequest(final RAMCreationRequest request) {
+        if ((Integer.parseInt(request.getGbOfRam()) & Integer.parseInt(request.getGbOfRam()) - 1) != 0) {
+            throw new IllegalArgumentException("'memoryMax' must be power of two");
+        }
         return RAMDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

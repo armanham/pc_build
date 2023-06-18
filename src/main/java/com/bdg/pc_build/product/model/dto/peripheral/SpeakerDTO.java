@@ -50,6 +50,9 @@ public class SpeakerDTO extends ProductDTO {
     }
 
     public static SpeakerDTO initDTOFromRequest(final SpeakerCreationRequest request) {
+        if (Integer.parseInt(request.getFrequency()) < 20 || Integer.parseInt(request.getFrequency()) > 20000) {
+            throw new IllegalArgumentException("'frequency' must be between 20 and 20000 inclusive");
+        }
         return SpeakerDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

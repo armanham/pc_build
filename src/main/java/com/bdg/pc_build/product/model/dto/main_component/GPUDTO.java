@@ -58,6 +58,12 @@ public class GPUDTO extends ProductDTO {
     }
 
     public static GPUDTO initDTOFromRequest(final GPUCreationRequest request) {
+        if (Integer.parseInt(request.getMemory()) % 2 != 0) {
+            throw new IllegalArgumentException("'memory' must be even number");
+        }
+        if (Double.parseDouble(request.getCoreClock()) >= Double.parseDouble(request.getBoostClock())) {
+            throw new IllegalArgumentException("'boostClock' must be greater than 'coreClock'");
+        }
         return GPUDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))
