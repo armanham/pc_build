@@ -46,28 +46,27 @@ public class ComputerServiceImpl implements ComputerService {
 
     public ComputerDTO initComputerDTOFromRequest(final ComputerCreationRequest request) {
         ComputerDTO computerDTO = new ComputerDTO();
-        double price = 0;
 
-        setCase(request, computerDTO, price);
-        setCooler(request, computerDTO, price);
-        setCpu(request, computerDTO, price);
-        setCpuCooler(request, computerDTO, price);
-        setGpu(request, computerDTO, price);
-        setInternalHardDrive(request, computerDTO, price);
+        setCase(request, computerDTO);
+        setCooler(request, computerDTO);
+        setCpu(request, computerDTO);
+        setCpuCooler(request, computerDTO);
+        setGpu(request, computerDTO);
+        setInternalHardDrive(request, computerDTO);
         setMotherboard(request, computerDTO);
-        setPowerSupply(request, computerDTO, price);
-        setRam(request, computerDTO, price);
-        setExternalHardDrive(request, computerDTO, price);
-        setHeadset(request, computerDTO, price);
-        setKeyboard(request, computerDTO, price);
-        setMonitor(request, computerDTO, price);
-        setMouse(request, computerDTO, price);
-        setSpeaker(request, computerDTO, price);
+        setPowerSupply(request, computerDTO);
+        setRam(request, computerDTO);
+        setExternalHardDrive(request, computerDTO);
+        setHeadset(request, computerDTO);
+        setKeyboard(request, computerDTO);
+        setMonitor(request, computerDTO);
+        setMouse(request, computerDTO);
+        setSpeaker(request, computerDTO);
 
         return computerDTO;
     }
 
-    private void setCase(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setCase(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getACaseName() != null) {
             Optional<aCase> optionalACase = caseDAO.findByName(request.getACaseName());
             if (optionalACase.isEmpty()) {
@@ -82,7 +81,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setCooler(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setCooler(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getCoolerNames() != null && !request.getCoolerNames().isEmpty()) {
             List<CoolerDTO> coolerDTOs = new ArrayList<>();
 
@@ -92,51 +91,63 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Cooler.class, coolerName);
                 }
                 CoolerDTO coolerDTO = CoolerDTO.initDTOFromEntity(optionalCooler.get());
+                if (coolerDTO.getCount() == 0) {
+                    throw new OutOfStockException(aCase.class, coolerDTO.getName(), 0);
+                }
                 coolerDTOs.add(coolerDTO);
-                price += coolerDTO.getPrice();
             }
 
             computerDTO.setCoolers(coolerDTOs);
+            computerDTO.setPrice(computerDTO.getPrice() + coolerDTOs.size() * coolerDTOs.get(0).getPrice());
         }
     }
 
-    private void setCpu(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setCpu(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getCpuName() != null) {
             Optional<CPU> optionalCpu = cpuDAO.findByName(request.getCpuName());
             if (optionalCpu.isEmpty()) {
                 throw new ProductNotFoundException(CPU.class, request.getCpuName());
             }
             CPUDTO cpuDTO = CPUDTO.initDTOFromEntity(optionalCpu.get());
+            if (cpuDTO.getCount() == 0) {
+                throw new OutOfStockException(aCase.class, cpuDTO.getName(), 0);
+            }
             computerDTO.setCpu(cpuDTO);
-            price += cpuDTO.getPrice();
+            computerDTO.setPrice(computerDTO.getPrice() + cpuDTO.getPrice());
         }
     }
 
-    private void setCpuCooler(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setCpuCooler(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getCpuCoolerName() != null) {
             Optional<CPUCooler> optionalCpuCooler = cpuCoolerDAO.findByName(request.getCpuCoolerName());
             if (optionalCpuCooler.isEmpty()) {
                 throw new ProductNotFoundException(CPUCooler.class, request.getCpuCoolerName());
             }
             CPUCoolerDTO cpuCoolerDTO = CPUCoolerDTO.initDTOFromEntity(optionalCpuCooler.get());
+            if (cpuCoolerDTO.getCount() == 0) {
+                throw new OutOfStockException(aCase.class, cpuCoolerDTO.getName(), 0);
+            }
             computerDTO.setCpuCooler(cpuCoolerDTO);
-            price += cpuCoolerDTO.getPrice();
+            computerDTO.setPrice(computerDTO.getPrice() + cpuCoolerDTO.getPrice());
         }
     }
 
-    private void setGpu(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setGpu(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getGpuName() != null) {
             Optional<GPU> optionalGpu = gpuDAO.findByName(request.getGpuName());
             if (optionalGpu.isEmpty()) {
                 throw new ProductNotFoundException(GPU.class, request.getGpuName());
             }
             GPUDTO gpuDTO = GPUDTO.initDTOFromEntity(optionalGpu.get());
+            if (gpuDTO.getCount() == 0) {
+                throw new OutOfStockException(aCase.class, gpuDTO.getName(), 0);
+            }
             computerDTO.setGpu(gpuDTO);
             computerDTO.setPrice(computerDTO.getPrice() + gpuDTO.getPrice());
         }
     }
 
-    private void setInternalHardDrive(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setInternalHardDrive(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getInternalHardDriveNames() != null && !request.getInternalHardDriveNames().isEmpty()) {
             List<InternalHardDriveDTO> internalHardDriveDTOs = new ArrayList<>();
 
@@ -146,11 +157,14 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(InternalHardDrive.class, internalHardDriveName);
                 }
                 InternalHardDriveDTO internalHardDriveDTO = InternalHardDriveDTO.initDTOFromEntity(optionalInternalHardDrive.get());
+                if (internalHardDriveDTO.getCount() == 0) {
+                    throw new OutOfStockException(aCase.class, internalHardDriveDTO.getName(), 0);
+                }
                 internalHardDriveDTOs.add(internalHardDriveDTO);
-                price += internalHardDriveDTO.getPrice();
             }
 
             computerDTO.setInternalHardDrives(internalHardDriveDTOs);
+            computerDTO.setPrice(computerDTO.getPrice() + internalHardDriveDTOs.size() * internalHardDriveDTOs.get(0).getPrice());
         }
     }
 
@@ -161,24 +175,30 @@ public class ComputerServiceImpl implements ComputerService {
                 throw new ProductNotFoundException(Motherboard.class, request.getMotherboardName());
             }
             MotherboardDTO motherboardDTO = MotherboardDTO.initDTOFromEntity(optionalMotherboard.get());
+            if (motherboardDTO.getCount() == 0) {
+                throw new OutOfStockException(aCase.class, motherboardDTO.getName(), 0);
+            }
             computerDTO.setMotherboard(motherboardDTO);
             computerDTO.setPrice(computerDTO.getPrice() + motherboardDTO.getPrice());
         }
     }
 
-    private void setPowerSupply(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setPowerSupply(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getPowerSupplyName() != null) {
             Optional<PowerSupply> optionalPowerSupply = powerSupplyDAO.findByName(request.getPowerSupplyName());
             if (optionalPowerSupply.isEmpty()) {
                 throw new ProductNotFoundException(PowerSupply.class, request.getPowerSupplyName());
             }
             PowerSupplyDTO powerSupplyDTO = PowerSupplyDTO.initDTOFromEntity(optionalPowerSupply.get());
+            if (powerSupplyDTO.getCount() == 0) {
+                throw new OutOfStockException(aCase.class, powerSupplyDTO.getName(), 0);
+            }
             computerDTO.setPowerSupply(powerSupplyDTO);
-            price += powerSupplyDTO.getPrice();
+            computerDTO.setPrice(computerDTO.getPrice() * powerSupplyDTO.getPrice());
         }
     }
 
-    private void setRam(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setRam(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getRamNames() != null && !request.getRamNames().isEmpty()) {
             List<RAMDTO> ramDTOs = new ArrayList<>();
 
@@ -188,17 +208,20 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(RAM.class, RamName);
                 }
                 RAMDTO ramDTO = RAMDTO.initDTOFromEntity(optionalRam.get());
+                if (ramDTO.getCount() == 0) {
+                    throw new OutOfStockException(aCase.class, ramDTO.getName(), 0);
+                }
                 ramDTOs.add(ramDTO);
-                price += ramDTO.getPrice();
             }
 
             computerDTO.setRams(ramDTOs);
+            computerDTO.setPrice(computerDTO.getPrice() + ramDTOs.size() * ramDTOs.get(0).getPrice());
         }
     }
 
-    private void setExternalHardDrive(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setExternalHardDrive(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getExternalHardDriveNames() != null && !request.getExternalHardDriveNames().isEmpty()) {
-            List<ExternalHardDriveDTO> externalHardDriveDTOS = new ArrayList<>();
+            List<ExternalHardDriveDTO> externalHardDriveDTOs = new ArrayList<>();
 
             for (String externalHardDriveName : request.getExternalHardDriveNames()) {
                 Optional<ExternalHardDrive> optionalExternalHardDrive = externalHardDriveDAO.findByName(externalHardDriveName);
@@ -206,15 +229,18 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(ExternalHardDrive.class, externalHardDriveName);
                 }
                 ExternalHardDriveDTO externalHardDriveDTO = ExternalHardDriveDTO.initDTOFromEntity(optionalExternalHardDrive.get());
-                externalHardDriveDTOS.add(externalHardDriveDTO);
-                price += externalHardDriveDTO.getPrice();
+                if (externalHardDriveDTO.getCount() == 0) {
+                    throw new OutOfStockException(aCase.class, externalHardDriveDTO.getName(), 0);
+                }
+                externalHardDriveDTOs.add(externalHardDriveDTO);
             }
 
-            computerDTO.setExternalHardDrives(externalHardDriveDTOS);
+            computerDTO.setExternalHardDrives(externalHardDriveDTOs);
+            computerDTO.setPrice(computerDTO.getPrice() + externalHardDriveDTOs.size() * externalHardDriveDTOs.get(0).getPrice());
         }
     }
 
-    private void setHeadset(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setHeadset(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getHeadsetNames() != null && !request.getHeadsetNames().isEmpty()) {
             List<HeadsetDTO> headsetDTOs = new ArrayList<>();
 
@@ -224,15 +250,18 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Headset.class, headsetName);
                 }
                 HeadsetDTO headsetDTO = HeadsetDTO.initDTOFromEntity(optionalHeadset.get());
+                if (headsetDTO.getCount() == 0) {
+                    throw new OutOfStockException(aCase.class, headsetDTO.getName(), 0);
+                }
                 headsetDTOs.add(headsetDTO);
-                price += headsetDTO.getPrice();
             }
 
             computerDTO.setHeadsets(headsetDTOs);
+            computerDTO.setPrice(computerDTO.getPrice() + headsetDTOs.size() * headsetDTOs.get(0).getPrice());
         }
     }
 
-    private void setKeyboard(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setKeyboard(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getKeyboardNames() != null && !request.getKeyboardNames().isEmpty()) {
             List<KeyboardDTO> keyboardDTOs = new ArrayList<>();
 
@@ -242,15 +271,18 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Keyboard.class, keyboardName);
                 }
                 KeyboardDTO keyboardDTO = KeyboardDTO.initDTOFromEntity(optionalKeyboard.get());
+                if (keyboardDTO.getCount() == 0) {
+                    throw new OutOfStockException(aCase.class, keyboardDTO.getName(), 0);
+                }
                 keyboardDTOs.add(keyboardDTO);
-                price += keyboardDTO.getPrice();
             }
 
             computerDTO.setKeyboards(keyboardDTOs);
+            computerDTO.setPrice(computerDTO.getPrice() + keyboardDTOs.size() * keyboardDTOs.get(0).getPrice());
         }
     }
 
-    private void setMonitor(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setMonitor(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getMonitorNames() != null && !request.getMonitorNames().isEmpty()) {
             List<MonitorDTO> monitorDTOs = new ArrayList<>();
 
@@ -260,15 +292,18 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Monitor.class, monitorName);
                 }
                 MonitorDTO monitorDTO = MonitorDTO.initDTOFromEntity(optionalMonitor.get());
+                if (monitorDTO.getCount() == 0) {
+                    throw new OutOfStockException(aCase.class, monitorDTO.getName(), 0);
+                }
                 monitorDTOs.add(monitorDTO);
-                price += monitorDTO.getPrice();
             }
 
             computerDTO.setMonitors(monitorDTOs);
+            computerDTO.setPrice(computerDTO.getPrice() + monitorDTOs.size() * monitorDTOs.get(0).getPrice());
         }
     }
 
-    private void setMouse(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setMouse(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getMouseNames() != null && !request.getMouseNames().isEmpty()) {
             List<MouseDTO> mouseDTOs = new ArrayList<>();
 
@@ -278,16 +313,18 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Mouse.class, mouseName);
                 }
                 MouseDTO mouseDTO = MouseDTO.initDTOFromEntity(optionalMouse.get());
+                if (mouseDTO.getCount() == 0) {
+                    throw new OutOfStockException(aCase.class, mouseDTO.getName(), 0);
+                }
                 mouseDTOs.add(mouseDTO);
-                price += mouseDTO.getPrice();
             }
 
-
             computerDTO.setMouses(mouseDTOs);
+            computerDTO.setPrice(computerDTO.getPrice() + mouseDTOs.get(0).getPrice());
         }
     }
 
-    private void setSpeaker(ComputerCreationRequest request, ComputerDTO computerDTO, double price) {
+    private void setSpeaker(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getSpeakerNames() != null && !request.getSpeakerNames().isEmpty()) {
             List<SpeakerDTO> speakerDTOs = new ArrayList<>();
 
@@ -297,11 +334,14 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Speaker.class, speakerName);
                 }
                 SpeakerDTO speakerDTO = SpeakerDTO.initDTOFromEntity(optionalSpeaker.get());
+                if (speakerDTO.getCount() == 0) {
+                    throw new OutOfStockException(aCase.class, speakerDTO.getName(), 0);
+                }
                 speakerDTOs.add(speakerDTO);
-                price += speakerDTO.getPrice();
             }
 
             computerDTO.setSpeakers(speakerDTOs);
+            computerDTO.setPrice(computerDTO.getPrice() + speakerDTOs.size() * speakerDTOs.get(0).getPrice());
         }
     }
 }
