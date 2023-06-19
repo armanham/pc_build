@@ -64,7 +64,6 @@ public class ComputerServiceImpl implements ComputerService {
         setMouse(request, computerDTO, price);
         setSpeaker(request, computerDTO, price);
 
-//        computerDTO.setPrice(price);
         return computerDTO;
     }
 

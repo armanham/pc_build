@@ -191,15 +191,38 @@ public class ProductController {
             @RequestBody ReduceCountRequest request
     ) {
         switch (componentType) {
-            case "monitor" -> {
-                return ResponseEntity.ok().body(productService.reduceMonitorCountByName(request.productName(), request.countToBeReduced()));
-//            case "case" -> productService.findCaseByName(name);
-//            case "cooler" -> productService.
-                //TODO cases
-            }
-            default -> {
-                return ResponseEntity.badRequest().body("Invalid component connectivityTypes");
-            }
+            case "case" ->
+                    ResponseEntity.ok().body(productService.reduceCaseCountByName(request.productName(), request.countToBeReduced()));
+            case "cooler" ->
+                    ResponseEntity.ok().body(productService.reduceCoolerCountByName(request.productName(), request.countToBeReduced()));
+            case "cpu-cooler" ->
+                    ResponseEntity.ok().body(productService.reduceCPUCoolerCountByName(request.productName(), request.countToBeReduced()));
+            case "cpu" ->
+                    ResponseEntity.ok().body(productService.reduceCPUCountByName(request.productName(), request.countToBeReduced()));
+            case "gpu" ->
+                    ResponseEntity.ok().body(productService.reduceGPUCountByName(request.productName(), request.countToBeReduced()));
+            case "internal-hard-drive" ->
+                    ResponseEntity.ok().body(productService.reduceInternalHardDriveCountByName(request.productName(), request.countToBeReduced()));
+            case "motherboard" ->
+                    ResponseEntity.ok().body(productService.reduceMotherboardCountByName(request.productName(), request.countToBeReduced()));
+            case "power-supply" ->
+                    ResponseEntity.ok().body(productService.reducePowerSupplyCountByName(request.productName(), request.countToBeReduced()));
+            case "ram" ->
+                    ResponseEntity.ok().body(productService.reduceRAMCountByName(request.productName(), request.countToBeReduced()));
+            case "external-hard-drive" ->
+                    ResponseEntity.ok().body(productService.reduceExternalHardDriveCountByName(request.productName(), request.countToBeReduced()));
+            case "headset" ->
+                    ResponseEntity.ok().body(productService.reduceHeadsetCountByName(request.productName(), request.countToBeReduced()));
+            case "keyboard" ->
+                    ResponseEntity.ok().body(productService.reduceKeyboardCountByName(request.productName(), request.countToBeReduced()));
+            case "monitor" ->
+                    ResponseEntity.ok().body(productService.reduceMonitorCountByName(request.productName(), request.countToBeReduced()));
+            case "mouse" ->
+                    ResponseEntity.ok().body(productService.reduceMouseCountByName(request.productName(), request.countToBeReduced()));
+            case "speaker" ->
+                    ResponseEntity.ok().body(productService.reduceSpeakerCountByName(request.productName(), request.countToBeReduced()));
+            default -> ResponseEntity.badRequest().body("Invalid component type");
         }
+        return ResponseEntity.ok().body("");
     }
 }
