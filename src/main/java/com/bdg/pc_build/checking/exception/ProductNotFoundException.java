@@ -9,4 +9,13 @@ public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException(Class clazz, String name) {
         super(clazz.getSimpleName() + " Product with name : " + name + " not found: ");
     }
+
+    public ProductNotFoundException(String message) {
+        super(message);
+    }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage();
+    }
 }
