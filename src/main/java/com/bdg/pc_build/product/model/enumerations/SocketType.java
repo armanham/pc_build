@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum SocketType {
+
     AM1, AM2PLUS, AM3, AM3PLUS, AM4, AM5, FM1, FM2,
     FM2PLUS, G34, LGA771, LGA775, LGA1150, LGA1151,
     LGA1155, LGA1156, LGA1200, LGA1356, LGA1366,

@@ -1,17 +1,14 @@
 package com.bdg.pc_build.product.repository.peripheral;
 
 
-import com.bdg.pc_build.product.model.entity.main_component.GPU;
 import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
 import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
-import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface MouseDAO extends ProductDAO<Mouse> {
@@ -22,22 +19,16 @@ public interface MouseDAO extends ProductDAO<Mouse> {
 
     List<Mouse> findAllByWeightBetween(Double minWeight, Double maxWeight);
 
-    @Query(
-            "SELECT p FROM Mouse p WHERE " +
-                    "(:connectivityType IS NULL OR p.connectivityType = :connectivityType) "
-    )
+    @Query("SELECT p FROM Mouse p WHERE " +
+                    "(:connectivityType IS NULL OR p.connectivityType = :connectivityType) ")
     List<Mouse> findAllByConnectivityType(@Param("connectivityType") ConnectivityType connectivityType);
 
-    @Query(
-            "SELECT p FROM Mouse p " +
+    @Query("SELECT p FROM Mouse p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.connectivityType, ' ', " +
-                    "p.maxResolution, ' ', p.cableLength, ' ', p.weight) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<Mouse> findAllMiceBasedOnTerm(
-            @Param("term") String term
-    );
+                    "OR lower(CONCAT(p.name, ' ', p.connectivityType, ' ', " +
+                    "p.maxResolution, ' ', p.cableLength, ' ', p.weight)) " +
+                    "LIKE CONCAT('%', :term, '%') ")
+    List<Mouse> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select min(p.maxResolution) from Mouse p ")
     Integer getMinResolutionOfMice();

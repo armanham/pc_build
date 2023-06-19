@@ -7,16 +7,12 @@ import com.bdg.pc_build.product.model.enumerations.DDRType;
 import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.creation.main_component.MotherboardCreationRequest;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-/**
- * @author Arman Hakhverdyan
- * <p>
- * An Immutable DataTransferObject of Motherboard for service layer.
- */
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class MotherboardDTO extends ProductDTO {
 
@@ -73,6 +69,12 @@ public class MotherboardDTO extends ProductDTO {
     }
 
     public static MotherboardDTO initDTOFromRequest(final MotherboardCreationRequest request) {
+        if ((Integer.parseInt(request.getMemoryMax()) & Integer.parseInt(request.getMemoryMax()) - 1) != 0) {
+            throw new IllegalArgumentException("'memoryMax' must be power of two");
+        }
+        if (Integer.parseInt(request.getMemorySlots()) % 2 != 0) {
+            throw new IllegalArgumentException("'memorySlots' must be even number");
+        }
         return MotherboardDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

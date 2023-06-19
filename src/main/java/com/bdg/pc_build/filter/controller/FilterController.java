@@ -16,7 +16,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/filter")
@@ -62,7 +61,7 @@ public class FilterController {
         );
     }
 
-    @GetMapping(value = "/cpuCooler")
+    @GetMapping(value = "/cpu-cooler")
     public List<CPUCoolerDTO> filterCpuCoolersBasedOnSpecification(
             @RequestBody CPUCoolerFilterRequest request
     ) {
@@ -80,7 +79,7 @@ public class FilterController {
         );
     }
 
-    @GetMapping(value = "/internalHardDrive")
+    @GetMapping(value = "/internal-hard-drive")
     public List<InternalHardDriveDTO> filterInternalHardDrivesBasedOnSpecification(
             @RequestBody InternalHardDriveFilterRequest request
     ) {
@@ -98,7 +97,7 @@ public class FilterController {
         );
     }
 
-    @GetMapping(value = "/powerSupply")
+    @GetMapping(value = "/power-supply")
     public List<PowerSupplyDTO> filterPowerSuppliesBasedOnSpecification(
             @RequestBody PowerSupplyFilterRequest request
     ) {
@@ -116,7 +115,7 @@ public class FilterController {
         );
     }
 
-    @GetMapping(value = "/externalHardDrive")
+    @GetMapping(value = "/external-hard-drive")
     public List<ExternalHardDriveDTO> filterExternalHardDrivesBasedOnSpecification(
             @RequestBody ExternalHardDriveFilterRequest request
     ) {
@@ -161,18 +160,18 @@ public class FilterController {
         );
     }
 
-//    @GetMapping(value = "/speaker")
-//    public List<SpeakerDTO> filterSpeakersBasedOnSpecification(
-//            @RequestBody SpeakerFilterRequest request
-//    ) {
-//        return filterService.filterAllSpeakersBasedOnSpecification(
-//                new SpeakerFilterDTO(request)
-//        );
-//    }
+    @GetMapping(value = "/speaker")
+    public List<SpeakerDTO> filterSpeakersBasedOnSpecification(
+            @RequestBody SpeakerFilterRequest request
+    ) {
+        return filterService.filterAllSpeakersBasedOnSpecification(
+                new SpeakerFilterDTO(request)
+        );
+    }
 
     @GetMapping(value = "/{term}")
     public List<ProductDTO> filterAllByTerm(
-            @PathVariable("term") String term
+            @PathVariable String term
     ) {
         return filterService.findAllProductsBasedOnTerm(term);
     }

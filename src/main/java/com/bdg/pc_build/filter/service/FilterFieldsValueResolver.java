@@ -2,7 +2,9 @@ package com.bdg.pc_build.filter.service;
 
 import com.bdg.pc_build.filter.model.dto.main_component.*;
 import com.bdg.pc_build.filter.model.dto.peripheral.*;
+import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.*;
+import com.bdg.pc_build.product.repository.ProductDAO;
 import com.bdg.pc_build.product.repository.main_component.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import lombok.AccessLevel;
@@ -38,18 +40,7 @@ public class FilterFieldsValueResolver {
 
 
     public CaseFieldsHolderBasedOnFilterDTO resolveAndGetCaseFieldsValuesFromFilterDTO(final CaseFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = caseDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = caseDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), caseDAO);
 
         Double minCpuCoolerHeight;
         Double maxCpuCoolerHeight;
@@ -92,7 +83,7 @@ public class FilterFieldsValueResolver {
 
         return new CaseFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minCpuCoolerHeight, maxCpuCoolerHeight,
                 minGpuLength, maxGpuLength,
                 minPreInstalledFans, maxPreInstalledFans,
@@ -101,18 +92,7 @@ public class FilterFieldsValueResolver {
     }
 
     public CoolerFieldsHolderBasedOnFilterDTO resolveAndGetCoolerFieldsValuesFromFilterDTO(final CoolerFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = coolerDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = coolerDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), coolerDAO);
 
         Integer minTdp;
         Integer maxTdp;
@@ -129,24 +109,13 @@ public class FilterFieldsValueResolver {
 
         return new CoolerFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minTdp, maxTdp
         );
     }
 
     public CpuCoolerFieldsHolderBasedOnFilterDTO resolveAndGetCpuCoolerFieldsValuesFromFilterDTO(final CPUCoolerFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = cpuCoolerDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = cpuCoolerDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), cpuCoolerDAO);
 
         Integer minFanRpm;
         Integer maxFanRpm;
@@ -176,7 +145,7 @@ public class FilterFieldsValueResolver {
 
         return new CpuCoolerFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minFanRpm, maxFanRpm,
                 minTdp, maxTdp,
                 filterDTO.getSocketTypes()
@@ -184,18 +153,7 @@ public class FilterFieldsValueResolver {
     }
 
     public CpuFieldsHolderBasedOnFilterDTO resolveAndGetCpuFieldsValuesFromFilterDTO(final CPUFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = cpuDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = cpuDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), cpuDAO);
 
         Integer minCoreCount;
         Integer maxCoreCount;
@@ -251,7 +209,7 @@ public class FilterFieldsValueResolver {
 
         return new CpuFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minCoreCount, maxCoreCount,
                 minCoreClock, maxCoreClock,
                 minBoostClock, maxBoostClock,
@@ -262,18 +220,7 @@ public class FilterFieldsValueResolver {
     }
 
     public GpuFieldsHolderBasedOnFilterDTO resolveAndGetGpuFieldsValuesFromFilterDTO(final GPUFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = gpuDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = gpuDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), gpuDAO);
 
         Integer minMemory;
         Integer maxMemory;
@@ -342,7 +289,7 @@ public class FilterFieldsValueResolver {
 
         return new GpuFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minMemory, maxMemory,
                 minCoreClock, maxCoreClock,
                 minBoostClock, maxBoostClock,
@@ -353,18 +300,7 @@ public class FilterFieldsValueResolver {
     }
 
     public InternalHardDriveFieldsHolderBasedOnFilterDTO resolveAndGetInternalHardDriveFieldsValuesFromFilterDTO(final InternalHardDriveFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = internalHardDriveDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = internalHardDriveDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), internalHardDriveDAO);
 
         Integer minCapacity;
         Integer maxCapacity;
@@ -394,7 +330,7 @@ public class FilterFieldsValueResolver {
 
         return new InternalHardDriveFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minCapacity, maxCapacity,
                 minTdp, maxTdp,
                 filterDTO.getInternalHardDriveInterfaceTypes()
@@ -402,18 +338,7 @@ public class FilterFieldsValueResolver {
     }
 
     public MotherboardFieldsHolderBasedOnFilterDTO resolveAndGetMotherboardFieldsValuesFromFilterDTO(final MotherboardFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = motherboardDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = motherboardDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), motherboardDAO);
 
         Integer minMemory;
         Integer maxMemory;
@@ -456,7 +381,7 @@ public class FilterFieldsValueResolver {
 
         return new MotherboardFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minMemory, maxMemory,
                 minMemorySlots, maxMemorySlots,
                 minTdp, maxTdp,
@@ -469,18 +394,7 @@ public class FilterFieldsValueResolver {
     }
 
     public PowerSupplyFieldsHolderBasedOnFilterDTO resolveAndGetPowerSupplyFieldsValuesFromFilterDTO(final PowerSupplyFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = powerSupplyDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = powerSupplyDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), powerSupplyDAO);
 
         Integer minWattage;
         Integer maxWattage;
@@ -510,7 +424,7 @@ public class FilterFieldsValueResolver {
 
         return new PowerSupplyFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minWattage, maxWattage,
                 minTdp, maxTdp,
                 filterDTO.getModularTypes(),
@@ -519,18 +433,7 @@ public class FilterFieldsValueResolver {
     }
 
     public RamFieldsHolderBasedOnFilterDTO resolveAndGetRamFieldsValuesFromFilterDTO(final RAMFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = ramDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = ramDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), ramDAO);
 
         Integer minCountOfRam;
         Integer maxCountOfRam;
@@ -573,7 +476,7 @@ public class FilterFieldsValueResolver {
 
         return new RamFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minCountOfRam, maxCountOfRam,
                 minGbOfRam, maxGbOfRam,
                 minTdp, maxTdp,
@@ -582,18 +485,7 @@ public class FilterFieldsValueResolver {
     }
 
     public ExternalHardDriveFieldsHolderBasedOnFilterDTO resolveAndGetExternalHardDriveFieldsValuesFromFilterDTO(final ExternalHardDriveFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = externalHardDriveDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = externalHardDriveDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), externalHardDriveDAO);
 
         Integer minCapacity;
         Integer maxCapacity;
@@ -623,25 +515,14 @@ public class FilterFieldsValueResolver {
 
         return new ExternalHardDriveFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minCapacity, maxCapacity,
                 minTdp, maxTdp
         );
     }
 
     public HeadsetFieldsHolderBasedOnFilterDTO resolveAndGetHeadsetFieldsValuesFromFilterDTO(final HeadsetFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = headsetDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = headsetDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), headsetDAO);
 
         Integer minFrequency;
         Integer maxFrequency;
@@ -671,7 +552,7 @@ public class FilterFieldsValueResolver {
 
         return new HeadsetFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minFrequency, maxFrequency,
                 minCableLength, maxCableLength,
                 filterDTO.getConnectivityTypes()
@@ -679,18 +560,7 @@ public class FilterFieldsValueResolver {
     }
 
     public KeyboardFieldsHolderBasedOnFilterDTO resolveAndGetKeyboardFieldsValuesFromFilterDTO(final KeyboardFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = keyboardDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = keyboardDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), keyboardDAO);
 
         Double minCableLength;
         Double maxCableLength;
@@ -720,7 +590,7 @@ public class FilterFieldsValueResolver {
 
         return new KeyboardFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minCableLength, maxCableLength,
                 minWeight, maxWeight,
                 filterDTO.getDimensions(),
@@ -729,18 +599,7 @@ public class FilterFieldsValueResolver {
     }
 
     public MonitorFieldsHolderBasedOnFilterDTO resolveAndGetMonitorFieldsValuesFromFilterDTO(final MonitorFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = monitorDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = monitorDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), monitorDAO);
 
         Double minScreenSize;
         Double maxScreenSize;
@@ -770,7 +629,7 @@ public class FilterFieldsValueResolver {
 
         return new MonitorFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minScreenSize, maxScreenSize,
                 minRefreshRate, maxRefreshRate,
                 filterDTO.getScreenTypes()
@@ -778,18 +637,7 @@ public class FilterFieldsValueResolver {
     }
 
     public MouseFieldsHolderBasedOnFilterDTO resolveAndGetMouseFieldsValuesFromFilterDTO(final MouseFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = mouseDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = mouseDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), mouseDAO);
 
         Integer minResolution;
         Integer maxResolution;
@@ -832,7 +680,7 @@ public class FilterFieldsValueResolver {
 
         return new MouseFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minResolution, maxResolution,
                 minCableLength, maxCableLength,
                 minWeight, maxWeight,
@@ -841,18 +689,7 @@ public class FilterFieldsValueResolver {
     }
 
     public SpeakerFieldsHolderBasedOnFilterDTO resolveAndGetSpeakerFieldsValuesFromFilterDTO(final SpeakerFilterDTO filterDTO) {
-        Double minPrice;
-        Double maxPrice;
-        if (filterDTO.getMinPrice() != null) {
-            minPrice = filterDTO.getMinPrice();
-        } else {
-            minPrice = speakerDAO.getMinPriceFromAllProducts();
-        }
-        if (filterDTO.getMaxPrice() != null) {
-            maxPrice = filterDTO.getMaxPrice();
-        } else {
-            maxPrice = speakerDAO.getMaxPriceFromAllProducts();
-        }
+        MinMaxPriceValuesHolder minMaxPriceValuesHolder = getMinMaxPriceValuesHolder(filterDTO.getMinPrice(), filterDTO.getMaxPrice(), speakerDAO);
 
         Integer minFrequency;
         Integer maxFrequency;
@@ -882,7 +719,7 @@ public class FilterFieldsValueResolver {
 
         return new SpeakerFieldsHolderBasedOnFilterDTO(
                 filterDTO.getName(),
-                minPrice, maxPrice,
+                minMaxPriceValuesHolder.minPrice(), minMaxPriceValuesHolder.maxPrice(),
                 minFrequency, maxFrequency,
                 minCableLength, maxCableLength,
                 filterDTO.getDimensions(),
@@ -1038,5 +875,18 @@ public class FilterFieldsValueResolver {
             Set<String> dimensions,
             Set<PowerSourceType> powerSourceTypes
     ) {
+    }
+
+    private <ENTITY extends Product> MinMaxPriceValuesHolder getMinMaxPriceValuesHolder(Double minPrice, Double maxPrice, ProductDAO<ENTITY> dao) {
+        if (minPrice == null) {
+            dao.getMinPriceFromAllProducts();
+        }
+        if (maxPrice == null) {
+            dao.getMaxPriceFromAllProducts();
+        }
+        return new MinMaxPriceValuesHolder(minPrice, maxPrice);
+    }
+
+    private record MinMaxPriceValuesHolder(Double minPrice, Double maxPrice) {
     }
 }

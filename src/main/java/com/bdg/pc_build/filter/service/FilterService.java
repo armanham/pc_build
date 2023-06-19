@@ -8,7 +8,6 @@ import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 
 import java.util.List;
-import java.util.Set;
 
 public interface FilterService {
 

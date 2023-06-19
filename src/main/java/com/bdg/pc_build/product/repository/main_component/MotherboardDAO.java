@@ -21,47 +21,33 @@ public interface MotherboardDAO extends ProductDAO<Motherboard> {
 
     List<Motherboard> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
-    @Query(
-            "SELECT p FROM Motherboard p WHERE " +
-                    "(:isM2 IS NULL OR p.isM2 = :isM2) "
-    )
+    @Query("SELECT p FROM Motherboard p WHERE " +
+            "(:isM2 IS NULL OR p.isM2 = :isM2) ")
     List<Motherboard> findAllByIsM2(@Param("isM2") Boolean isM2);
 
-    @Query(
-            "SELECT p FROM Motherboard p WHERE " +
-                    "(:ddrType IS NULL OR p.ddrType = :ddrType) "
-    )
+    @Query("SELECT p FROM Motherboard p WHERE " +
+            "(:ddrType IS NULL OR p.ddrType = :ddrType) ")
     List<Motherboard> findAllByDdrType(@Param("ddrType") DDRType ddrType);
 
-    @Query(
-            "SELECT p FROM Motherboard p WHERE " +
-                    "(:gpuInterfaceType IS NULL OR p.gpuInterfaceType = :gpuInterfaceType) "
-    )
+    @Query("SELECT p FROM Motherboard p WHERE " +
+            "(:gpuInterfaceType IS NULL OR p.gpuInterfaceType = :gpuInterfaceType) ")
     List<Motherboard> findAllByGpuInterfaceType(@Param("gpuInterfaceType") GPUInterfaceType gpuInterfaceType);
 
-    @Query(
-            "SELECT p FROM Motherboard p WHERE " +
-                    "(:socketType IS NULL OR p.socketType = :socketType) "
-    )
+    @Query("SELECT p FROM Motherboard p WHERE " +
+            "(:socketType IS NULL OR p.socketType = :socketType) ")
     List<Motherboard> findAllBySocketType(@Param("socketType") SocketType socketType);
 
-    @Query(
-            "SELECT p FROM Motherboard p WHERE " +
-                    "(:atxType IS NULL OR p.atxType = :atxType) "
-    )
+    @Query("SELECT p FROM Motherboard p WHERE " +
+            "(:atxType IS NULL OR p.atxType = :atxType) ")
     List<Motherboard> findAllByAtxType(@Param("atxType") ATXType atxType);
 
-    @Query(
-            "SELECT p FROM Motherboard p " +
-                    "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.tdp, ' ', p.gpuInterfaceType, " +
-                    "' ', p.socketType, ' ', p.atxType, ' ', p.isM2, " +
-                    "' ', p.memoryMax, ' ', p.memorySlots, ' ', p.ddrType) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<Motherboard> findAllMotherboardsBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM Motherboard p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.tdp, ' ', p.gpuInterfaceType, " +
+            "' ', p.socketType, ' ', p.atxType, ' ', p.isM2, " +
+            "' ', p.memoryMax, ' ', p.memorySlots, ' ', p.ddrType)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<Motherboard> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select max(p.tdp) from Motherboard p")
     Integer getMaxTdpOfMotherboards();

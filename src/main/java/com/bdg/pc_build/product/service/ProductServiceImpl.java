@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.service;
 
+import com.bdg.pc_build.checking.exception.ApranqyQichAException;
 import com.bdg.pc_build.checking.exception.ProductNotFoundException;
 import com.bdg.pc_build.checking.exception.SameNameDifferentDescriptionException;
 import com.bdg.pc_build.product.model.dto.main_component.*;
@@ -61,7 +62,6 @@ public class ProductServiceImpl implements ProductService {
         return repository.save(product);
     }
 
-
     private <ENTITY extends Product> ENTITY findByName(
             final String name,
             final ProductDAO<ENTITY> repository
@@ -71,15 +71,6 @@ public class ProductServiceImpl implements ProductService {
             throw new ProductNotFoundException(optionalENTITY.getClass(), name);
         }
         return optionalENTITY.get();
-    }
-
-
-    private <ENTITY extends Product> List<ENTITY> findAllByPrice(
-            final Double minPrice,
-            final Double maxPrice,
-            final ProductDAO<ENTITY> repository
-    ) {
-        return repository.findAllProductsByPriceBetween(minPrice, maxPrice);
     }
 
     private <ENTITY extends Product> List<ENTITY> findAllByPurchasedPrice(
@@ -103,7 +94,6 @@ public class ProductServiceImpl implements ProductService {
         foundedProduct.setPrice(newPrice);
         return repository.save(foundedProduct);
     }
-
 
     private <ENTITY extends Product> ENTITY reduceCountByName(
             final String name,
@@ -206,14 +196,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<MonitorDTO> findMonitorByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, monitorDAO)
-                .stream()
-                .map(MonitorDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
     public List<MonitorDTO> findMonitorByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, monitorDAO)
                 .stream()
@@ -224,14 +206,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public CaseDTO findCaseByName(final String name) {
         return CaseDTO.initDTOFromEntity(findByName(name, caseDAO));
-    }
-
-    @Override
-    public List<CaseDTO> findCaseByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, caseDAO)
-                .stream()
-                .map(CaseDTO::initDTOFromEntity)
-                .toList();
     }
 
     @Override
@@ -248,14 +222,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<CoolerDTO> findCoolerByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, coolerDAO)
-                .stream()
-                .map(CoolerDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
     public List<CoolerDTO> findCoolerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, coolerDAO)
                 .stream()
@@ -266,14 +232,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public CPUCoolerDTO findCPUCoolerByName(final String name) {
         return CPUCoolerDTO.initDTOFromEntity(findByName(name, cpuCoolerDAO));
-    }
-
-    @Override
-    public List<CPUCoolerDTO> findCPUCoolerByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, cpuCoolerDAO)
-                .stream()
-                .map(CPUCoolerDTO::initDTOFromEntity)
-                .toList();
     }
 
     @Override
@@ -290,14 +248,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<CPUDTO> findCPUByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, cpuDAO)
-                .stream()
-                .map(CPUDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
     public List<CPUDTO> findCPUByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuDAO)
                 .stream()
@@ -308,14 +258,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public InternalHardDriveDTO findInternalHardDriveByName(final String name) {
         return InternalHardDriveDTO.initDTOFromEntity(findByName(name, internalHardDriveDAO));
-    }
-
-    @Override
-    public List<InternalHardDriveDTO> findInternalHardDriveByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, internalHardDriveDAO)
-                .stream()
-                .map(InternalHardDriveDTO::initDTOFromEntity)
-                .toList();
     }
 
     @Override
@@ -332,14 +274,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<GPUDTO> findGPUByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, gpuDAO)
-                .stream()
-                .map(GPUDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
     public List<GPUDTO> findGPUByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, gpuDAO)
                 .stream()
@@ -350,14 +284,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ExternalHardDriveDTO findExternalHardDriveByName(final String name) {
         return ExternalHardDriveDTO.initDTOFromEntity(findByName(name, externalHardDriveDAO));
-    }
-
-    @Override
-    public List<ExternalHardDriveDTO> findExternalHardDriveByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, externalHardDriveDAO)
-                .stream()
-                .map(ExternalHardDriveDTO::initDTOFromEntity)
-                .toList();
     }
 
     @Override
@@ -374,14 +300,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<MotherboardDTO> findMotherboardByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, motherboardDAO)
-                .stream()
-                .map(MotherboardDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
     public List<MotherboardDTO> findMotherboardByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, motherboardDAO)
                 .stream()
@@ -392,14 +310,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public PowerSupplyDTO findPowerSupplyByName(final String name) {
         return PowerSupplyDTO.initDTOFromEntity(findByName(name, powerSupplyDAO));
-    }
-
-    @Override
-    public List<PowerSupplyDTO> findPowerSupplyByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, powerSupplyDAO)
-                .stream()
-                .map(PowerSupplyDTO::initDTOFromEntity)
-                .toList();
     }
 
     @Override
@@ -416,14 +326,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<RAMDTO> findRAMByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, ramDAO)
-                .stream()
-                .map(RAMDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
     public List<RAMDTO> findRAMByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, ramDAO)
                 .stream()
@@ -434,14 +336,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public HeadsetDTO findHeadsetByName(final String name) {
         return HeadsetDTO.initDTOFromEntity(findByName(name, headsetDAO));
-    }
-
-    @Override
-    public List<HeadsetDTO> findHeadsetByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, headsetDAO)
-                .stream()
-                .map(HeadsetDTO::initDTOFromEntity)
-                .toList();
     }
 
     @Override
@@ -458,14 +352,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<KeyboardDTO> findKeyboardByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, keyboardDAO)
-                .stream()
-                .map(KeyboardDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
     public List<KeyboardDTO> findKeyboardByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, keyboardDAO)
                 .stream()
@@ -479,14 +365,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<MouseDTO> findMouseByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, mouseDAO)
-                .stream()
-                .map(MouseDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
     public List<MouseDTO> findMouseByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, mouseDAO)
                 .stream()
@@ -497,14 +375,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public SpeakerDTO findSpeakerByName(final String name) {
         return SpeakerDTO.initDTOFromEntity(findByName(name, speakerDAO));
-    }
-
-    @Override
-    public List<SpeakerDTO> findSpeakerByPrice(final Double minPrice, final Double maxPrice) {
-        return findAllByPrice(minPrice, maxPrice, speakerDAO)
-                .stream()
-                .map(SpeakerDTO::initDTOFromEntity)
-                .toList();
     }
 
     @Override
@@ -532,12 +402,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public CPUDTO updateCPUPriceByName(final String name, final Double newPrice) {
+    public CPUDTO updateCpuPriceByName(final String name, final Double newPrice) {
         return CPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuDAO));
     }
 
     @Override
-    public CPUCoolerDTO updateCPUCoolerPriceByName(final String name, final Double newPrice) {
+    public CPUCoolerDTO updateCpuCoolerPriceByName(final String name, final Double newPrice) {
         return CPUCoolerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuCoolerDAO));
     }
 
@@ -547,7 +417,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public GPUDTO updateGPUPriceByName(final String name, final Double newPrice) {
+    public GPUDTO updateGpuPriceByName(final String name, final Double newPrice) {
         return GPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, gpuDAO));
     }
 
@@ -567,7 +437,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public RAMDTO updateRAMPriceByName(final String name, final Double newPrice) {
+    public RAMDTO updateRamPriceByName(final String name, final Double newPrice) {
         return RAMDTO.initDTOFromEntity(updatePriceByName(name, newPrice, ramDAO));
     }
 

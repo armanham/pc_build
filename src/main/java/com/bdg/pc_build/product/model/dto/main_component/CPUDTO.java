@@ -4,16 +4,12 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPU;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.creation.main_component.CPUCreationRequest;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-/**
- * @author Arman Hakhverdyan
- * <p>
- * An Immutable DataTransferObject of CPU for service layer.
- */
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class CPUDTO extends ProductDTO {
 
@@ -63,6 +59,12 @@ public class CPUDTO extends ProductDTO {
     }
 
     public static CPUDTO initDTOFromRequest(final CPUCreationRequest request) {
+        if (Integer.parseInt(request.getCoreCount()) % 2 != 0) {
+            throw new IllegalArgumentException("'coreCount' must be even number");
+        }
+        if (Double.parseDouble(request.getCoreClock()) >= Double.parseDouble(request.getBoostClock())) {
+            throw new IllegalArgumentException("'boostClock' must be greater than 'coreClock'");
+        }
         return CPUDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

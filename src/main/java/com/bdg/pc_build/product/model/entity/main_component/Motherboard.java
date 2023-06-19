@@ -13,12 +13,6 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-/**
- * @author Arman Hakhverdyan
- *
- * Entity for Motherboard
- */
-
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -48,8 +42,8 @@ public class Motherboard extends Product {
 
     @Column(name = "is_m2", nullable = false, updatable = false)
     Boolean isM2;
-    
-    @Column(name= "gpu_interface_type", nullable = false, updatable = false)
+
+    @Column(name = "gpu_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     GPUInterfaceType gpuInterfaceType;
 
@@ -85,6 +79,6 @@ public class Motherboard extends Product {
 
     @Override
     public int hashCode() {
-        return Objects.hash(socketType, atxType, memoryMax, memorySlots, ddrType, isM2, gpuInterfaceType,tdp);
+        return Objects.hash(socketType, atxType, memoryMax, memorySlots, ddrType, isM2, gpuInterfaceType, tdp);
     }
 }

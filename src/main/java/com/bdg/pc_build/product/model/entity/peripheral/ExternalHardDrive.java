@@ -2,7 +2,9 @@ package com.bdg.pc_build.product.model.entity.peripheral;
 
 import com.bdg.pc_build.product.model.dto.peripheral.ExternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

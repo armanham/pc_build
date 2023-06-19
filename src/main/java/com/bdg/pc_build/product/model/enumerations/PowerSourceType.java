@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum PowerSourceType {
+
     AC, DC, BATTERY, SOLAR, WIND, HYDRO;
 
     public static List<String> toListOfStrings() {

@@ -17,28 +17,20 @@ public interface PowerSupplyDAO extends ProductDAO<PowerSupply> {
 
     List<PowerSupply> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
-    @Query(
-            "SELECT p FROM PowerSupply p WHERE " +
-                    "(:modularType IS NULL OR p.modularType = :modularType) "
-    )
+    @Query("SELECT p FROM PowerSupply p WHERE " +
+            "(:modularType IS NULL OR p.modularType = :modularType) ")
     List<PowerSupply> findAllByModularType(@Param("modularType") ModularType modularType);
 
-    @Query(
-            "SELECT p FROM PowerSupply p WHERE " +
-                    "(:efficiencyRating IS NULL OR p.efficiencyRating = :efficiencyRating) "
-    )
+    @Query("SELECT p FROM PowerSupply p WHERE " +
+            "(:efficiencyRating IS NULL OR p.efficiencyRating = :efficiencyRating) ")
     List<PowerSupply> findAllByEfficiencyRating(@Param("efficiencyRating") EfficiencyRating efficiencyRating);
 
-    @Query(
-            "SELECT p FROM PowerSupply p " +
-                    "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.efficiencyRating, ' ', " +
-                    "p.wattage, ' ', p.modularType, ' ', p.tdp) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<PowerSupply> findAllPowerSuppliesBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM PowerSupply p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.efficiencyRating, ' ', " +
+            "p.wattage, ' ', p.modularType, ' ', p.tdp)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<PowerSupply> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select min(p.wattage) from PowerSupply p")
     Integer getMinWattageOfPowerSupplies();

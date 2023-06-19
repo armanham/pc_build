@@ -2,17 +2,13 @@ package com.bdg.pc_build.product.model.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public abstract class ProductDTO {
-
 
     String name;
     Double price;

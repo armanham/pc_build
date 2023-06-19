@@ -5,16 +5,12 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.RAM;
 import com.bdg.pc_build.product.model.enumerations.DDRType;
 import com.bdg.pc_build.product.model.request.creation.main_component.RAMCreationRequest;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-/**
- * @author Arman Hakhverdyan
- * <p>
- * An Immutable DataTransferObject of RAM for service layer.
- */
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class RAMDTO extends ProductDTO {
 
@@ -55,6 +51,9 @@ public class RAMDTO extends ProductDTO {
     }
 
     public static RAMDTO initDTOFromRequest(final RAMCreationRequest request) {
+        if ((Integer.parseInt(request.getGbOfRam()) & Integer.parseInt(request.getGbOfRam()) - 1) != 0) {
+            throw new IllegalArgumentException("'memoryMax' must be power of two");
+        }
         return RAMDTO.builder()
                 .name(request.getName())
                 .price(Double.valueOf(request.getPrice()))

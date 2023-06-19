@@ -18,23 +18,16 @@ public interface CaseDAO extends ProductDAO<aCase> {
 
     List<aCase> findAllByPreInstalledFansBetween(Integer minPreInstalledFans, Integer maxPreInstalledFans);
 
-    @Query(
-            "SELECT p FROM aCase p WHERE " +
-                    "(:gpuInterfaceType IS NULL OR p.towerType = :towerType) "
-    )
+    @Query("SELECT p FROM aCase p WHERE " +
+                    "(:gpuInterfaceType IS NULL OR p.towerType = :towerType) ")
     List<aCase> findAllByTowerType(@Param("towerType") TowerType towerType);
 
-
-    @Query(
-            "SELECT p FROM aCase p " +
+    @Query("SELECT p FROM aCase p " +
                     "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.maxCpuCoolerHeight, ' ', p.maxGpuLength, " +
-                    "' ', p.preInstalledFans, ' ', p.towerType) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<aCase> findAllCasesBasedOnTerm(
-            @Param("term") String term
-    );
+                    "OR lower(CONCAT(p.name, ' ', p.maxCpuCoolerHeight, ' ', p.maxGpuLength, " +
+                    "' ', p.preInstalledFans, ' ', p.towerType)) " +
+                    "LIKE CONCAT('%', :term, '%') ")
+    List<aCase> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select max(p.maxCpuCoolerHeight) from aCase p")
     Double getMaxCpuCoolerHeightOfCases();

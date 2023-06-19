@@ -16,23 +16,17 @@ public interface InternalHardDriveDAO extends ProductDAO<InternalHardDrive> {
 
     List<InternalHardDrive> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
-    @Query(
-            "SELECT p FROM InternalHardDrive p WHERE " +
-                    "(:internalHardDriveInterfaceType IS NULL OR p.internalHardDriveInterfaceType = :internalHardDriveInterfaceType) "
-    )
+    @Query("SELECT p FROM InternalHardDrive p WHERE " +
+            "(:internalHardDriveInterfaceType IS NULL " +
+            "OR p.internalHardDriveInterfaceType = :internalHardDriveInterfaceType) ")
     List<InternalHardDrive> findAllByInternalHardDriveInterfaceType(@Param("internalHardDriveInterfaceType") InternalHardDriveInterfaceType internalHardDriveInterfaceType);
 
-
-    @Query(
-            "SELECT p FROM InternalHardDrive p " +
-                    "WHERE :term IS NULL " +
-                    "OR CONCAT(p.name, ' ', p.tdp, ' ', p.capacity, " +
-                    "' ', p.internalHardDriveInterfaceType) " +
-                    "LIKE CONCAT('%', :term, '%') "
-    )
-    List<InternalHardDrive> findAllInternalHardDrivesBasedOnTerm(
-            @Param("term") String term
-    );
+    @Query("SELECT p FROM InternalHardDrive p " +
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.tdp, ' ', p.capacity, " +
+            "' ', p.internalHardDriveInterfaceType)) " +
+            "LIKE CONCAT('%', :term, '%') ")
+    List<InternalHardDrive> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select max(p.tdp) from InternalHardDrive p")
     Integer getMaxTdpOfInternalHardDrives();

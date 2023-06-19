@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum InternalHardDriveInterfaceType {
+
     SSD_M2, SSD, HDD;
 
     public static List<String> toListOfStrings() {
