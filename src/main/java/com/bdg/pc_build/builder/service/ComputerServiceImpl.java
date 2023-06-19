@@ -4,6 +4,7 @@ import com.bdg.pc_build.builder.model.dto.ComputerDTO;
 import com.bdg.pc_build.builder.model.request.ComputerCreationRequest;
 import com.bdg.pc_build.checking.exception.OutOfStockException;
 import com.bdg.pc_build.checking.exception.ProductNotFoundException;
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import com.bdg.pc_build.product.model.entity.main_component.*;
@@ -73,9 +74,7 @@ public class ComputerServiceImpl implements ComputerService {
                 throw new ProductNotFoundException(aCase.class, request.getACaseName());
             }
             CaseDTO caseDTO = CaseDTO.initDTOFromEntity(optionalACase.get());
-            if (caseDTO.getCount() == 0) {
-                throw new OutOfStockException(aCase.class, caseDTO.getName(), 0);
-            }
+            checkIfWantedCountIsAvailable(1, caseDTO);
             computerDTO.setACase(caseDTO);
             computerDTO.setPrice(computerDTO.getPrice() + caseDTO.getPrice());
         }
@@ -91,12 +90,10 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Cooler.class, coolerName);
                 }
                 CoolerDTO coolerDTO = CoolerDTO.initDTOFromEntity(optionalCooler.get());
-                if (coolerDTO.getCount() == 0) {
-                    throw new OutOfStockException(aCase.class, coolerDTO.getName(), 0);
-                }
                 coolerDTOs.add(coolerDTO);
             }
 
+            checkIfWantedCountIsAvailable(coolerDTOs.size(), coolerDTOs.get(0));
             computerDTO.setCoolers(coolerDTOs);
             computerDTO.setPrice(computerDTO.getPrice() + coolerDTOs.size() * coolerDTOs.get(0).getPrice());
         }
@@ -109,9 +106,7 @@ public class ComputerServiceImpl implements ComputerService {
                 throw new ProductNotFoundException(CPU.class, request.getCpuName());
             }
             CPUDTO cpuDTO = CPUDTO.initDTOFromEntity(optionalCpu.get());
-            if (cpuDTO.getCount() == 0) {
-                throw new OutOfStockException(aCase.class, cpuDTO.getName(), 0);
-            }
+            checkIfWantedCountIsAvailable(1, cpuDTO);
             computerDTO.setCpu(cpuDTO);
             computerDTO.setPrice(computerDTO.getPrice() + cpuDTO.getPrice());
         }
@@ -124,9 +119,7 @@ public class ComputerServiceImpl implements ComputerService {
                 throw new ProductNotFoundException(CPUCooler.class, request.getCpuCoolerName());
             }
             CPUCoolerDTO cpuCoolerDTO = CPUCoolerDTO.initDTOFromEntity(optionalCpuCooler.get());
-            if (cpuCoolerDTO.getCount() == 0) {
-                throw new OutOfStockException(aCase.class, cpuCoolerDTO.getName(), 0);
-            }
+            checkIfWantedCountIsAvailable(1, cpuCoolerDTO);
             computerDTO.setCpuCooler(cpuCoolerDTO);
             computerDTO.setPrice(computerDTO.getPrice() + cpuCoolerDTO.getPrice());
         }
@@ -139,9 +132,7 @@ public class ComputerServiceImpl implements ComputerService {
                 throw new ProductNotFoundException(GPU.class, request.getGpuName());
             }
             GPUDTO gpuDTO = GPUDTO.initDTOFromEntity(optionalGpu.get());
-            if (gpuDTO.getCount() == 0) {
-                throw new OutOfStockException(aCase.class, gpuDTO.getName(), 0);
-            }
+            checkIfWantedCountIsAvailable(1, gpuDTO);
             computerDTO.setGpu(gpuDTO);
             computerDTO.setPrice(computerDTO.getPrice() + gpuDTO.getPrice());
         }
@@ -157,12 +148,10 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(InternalHardDrive.class, internalHardDriveName);
                 }
                 InternalHardDriveDTO internalHardDriveDTO = InternalHardDriveDTO.initDTOFromEntity(optionalInternalHardDrive.get());
-                if (internalHardDriveDTO.getCount() == 0) {
-                    throw new OutOfStockException(aCase.class, internalHardDriveDTO.getName(), 0);
-                }
                 internalHardDriveDTOs.add(internalHardDriveDTO);
             }
 
+            checkIfWantedCountIsAvailable(internalHardDriveDTOs.size(), internalHardDriveDTOs.get(0));
             computerDTO.setInternalHardDrives(internalHardDriveDTOs);
             computerDTO.setPrice(computerDTO.getPrice() + internalHardDriveDTOs.size() * internalHardDriveDTOs.get(0).getPrice());
         }
@@ -175,9 +164,7 @@ public class ComputerServiceImpl implements ComputerService {
                 throw new ProductNotFoundException(Motherboard.class, request.getMotherboardName());
             }
             MotherboardDTO motherboardDTO = MotherboardDTO.initDTOFromEntity(optionalMotherboard.get());
-            if (motherboardDTO.getCount() == 0) {
-                throw new OutOfStockException(aCase.class, motherboardDTO.getName(), 0);
-            }
+            checkIfWantedCountIsAvailable(1, motherboardDTO);
             computerDTO.setMotherboard(motherboardDTO);
             computerDTO.setPrice(computerDTO.getPrice() + motherboardDTO.getPrice());
         }
@@ -190,9 +177,7 @@ public class ComputerServiceImpl implements ComputerService {
                 throw new ProductNotFoundException(PowerSupply.class, request.getPowerSupplyName());
             }
             PowerSupplyDTO powerSupplyDTO = PowerSupplyDTO.initDTOFromEntity(optionalPowerSupply.get());
-            if (powerSupplyDTO.getCount() == 0) {
-                throw new OutOfStockException(aCase.class, powerSupplyDTO.getName(), 0);
-            }
+            checkIfWantedCountIsAvailable(1, powerSupplyDTO);
             computerDTO.setPowerSupply(powerSupplyDTO);
             computerDTO.setPrice(computerDTO.getPrice() * powerSupplyDTO.getPrice());
         }
@@ -208,12 +193,10 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(RAM.class, RamName);
                 }
                 RAMDTO ramDTO = RAMDTO.initDTOFromEntity(optionalRam.get());
-                if (ramDTO.getCount() == 0) {
-                    throw new OutOfStockException(aCase.class, ramDTO.getName(), 0);
-                }
                 ramDTOs.add(ramDTO);
             }
 
+            checkIfWantedCountIsAvailable(ramDTOs.size(), ramDTOs.get(0));
             computerDTO.setRams(ramDTOs);
             computerDTO.setPrice(computerDTO.getPrice() + ramDTOs.size() * ramDTOs.get(0).getPrice());
         }
@@ -229,12 +212,10 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(ExternalHardDrive.class, externalHardDriveName);
                 }
                 ExternalHardDriveDTO externalHardDriveDTO = ExternalHardDriveDTO.initDTOFromEntity(optionalExternalHardDrive.get());
-                if (externalHardDriveDTO.getCount() == 0) {
-                    throw new OutOfStockException(aCase.class, externalHardDriveDTO.getName(), 0);
-                }
                 externalHardDriveDTOs.add(externalHardDriveDTO);
             }
 
+            checkIfWantedCountIsAvailable(externalHardDriveDTOs.size(), externalHardDriveDTOs.get(0));
             computerDTO.setExternalHardDrives(externalHardDriveDTOs);
             computerDTO.setPrice(computerDTO.getPrice() + externalHardDriveDTOs.size() * externalHardDriveDTOs.get(0).getPrice());
         }
@@ -250,12 +231,10 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Headset.class, headsetName);
                 }
                 HeadsetDTO headsetDTO = HeadsetDTO.initDTOFromEntity(optionalHeadset.get());
-                if (headsetDTO.getCount() == 0) {
-                    throw new OutOfStockException(aCase.class, headsetDTO.getName(), 0);
-                }
                 headsetDTOs.add(headsetDTO);
             }
 
+            checkIfWantedCountIsAvailable(headsetDTOs.size(), headsetDTOs.get(0));
             computerDTO.setHeadsets(headsetDTOs);
             computerDTO.setPrice(computerDTO.getPrice() + headsetDTOs.size() * headsetDTOs.get(0).getPrice());
         }
@@ -271,12 +250,10 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Keyboard.class, keyboardName);
                 }
                 KeyboardDTO keyboardDTO = KeyboardDTO.initDTOFromEntity(optionalKeyboard.get());
-                if (keyboardDTO.getCount() == 0) {
-                    throw new OutOfStockException(aCase.class, keyboardDTO.getName(), 0);
-                }
                 keyboardDTOs.add(keyboardDTO);
             }
 
+            checkIfWantedCountIsAvailable(keyboardDTOs.size(), keyboardDTOs.get(0));
             computerDTO.setKeyboards(keyboardDTOs);
             computerDTO.setPrice(computerDTO.getPrice() + keyboardDTOs.size() * keyboardDTOs.get(0).getPrice());
         }
@@ -292,12 +269,10 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Monitor.class, monitorName);
                 }
                 MonitorDTO monitorDTO = MonitorDTO.initDTOFromEntity(optionalMonitor.get());
-                if (monitorDTO.getCount() == 0) {
-                    throw new OutOfStockException(aCase.class, monitorDTO.getName(), 0);
-                }
                 monitorDTOs.add(monitorDTO);
             }
 
+            checkIfWantedCountIsAvailable(monitorDTOs.size(), monitorDTOs.get(0));
             computerDTO.setMonitors(monitorDTOs);
             computerDTO.setPrice(computerDTO.getPrice() + monitorDTOs.size() * monitorDTOs.get(0).getPrice());
         }
@@ -313,12 +288,10 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Mouse.class, mouseName);
                 }
                 MouseDTO mouseDTO = MouseDTO.initDTOFromEntity(optionalMouse.get());
-                if (mouseDTO.getCount() == 0) {
-                    throw new OutOfStockException(aCase.class, mouseDTO.getName(), 0);
-                }
                 mouseDTOs.add(mouseDTO);
             }
 
+            checkIfWantedCountIsAvailable(mouseDTOs.size(), mouseDTOs.get(0));
             computerDTO.setMouses(mouseDTOs);
             computerDTO.setPrice(computerDTO.getPrice() + mouseDTOs.get(0).getPrice());
         }
@@ -334,14 +307,18 @@ public class ComputerServiceImpl implements ComputerService {
                     throw new ProductNotFoundException(Speaker.class, speakerName);
                 }
                 SpeakerDTO speakerDTO = SpeakerDTO.initDTOFromEntity(optionalSpeaker.get());
-                if (speakerDTO.getCount() == 0) {
-                    throw new OutOfStockException(aCase.class, speakerDTO.getName(), 0);
-                }
                 speakerDTOs.add(speakerDTO);
             }
 
+            checkIfWantedCountIsAvailable(speakerDTOs.size(), speakerDTOs.get(0));
             computerDTO.setSpeakers(speakerDTOs);
             computerDTO.setPrice(computerDTO.getPrice() + speakerDTOs.size() * speakerDTOs.get(0).getPrice());
+        }
+    }
+
+    private <DTO extends ProductDTO> void checkIfWantedCountIsAvailable(int wantedCount, DTO product) {
+        if (wantedCount > product.getCount() || product.getCount() == 0) {
+            throw new OutOfStockException(product.getName(), product.getCount());
         }
     }
 }
