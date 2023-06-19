@@ -57,21 +57,21 @@ public interface ProductService {
 
     List<CoolerDTO> findCoolerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    CPUCoolerDTO findCPUCoolerByName(String name);
+    CPUCoolerDTO findCpuCoolerByName(String name);
 
-    List<CPUCoolerDTO> findCPUCoolerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
+    List<CPUCoolerDTO> findCpuCoolerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    CPUDTO findCPUByName(String name);
+    CPUDTO findCpuByName(String name);
 
-    List<CPUDTO> findCPUByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
+    List<CPUDTO> findCpuByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     InternalHardDriveDTO findInternalHardDriveByName(String name);
 
     List<InternalHardDriveDTO> findInternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    GPUDTO findGPUByName(String name);
+    GPUDTO findGpuByName(String name);
 
-    List<GPUDTO> findGPUByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
+    List<GPUDTO> findGpuByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     ExternalHardDriveDTO findExternalHardDriveByName(String name);
 
@@ -85,9 +85,9 @@ public interface ProductService {
 
     List<PowerSupplyDTO> findPowerSupplyByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    RAMDTO findRAMByName(String name);
+    RAMDTO findRamByName(String name);
 
-    List<RAMDTO> findRAMByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
+    List<RAMDTO> findRamByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
 
     //find methods for peripheral components

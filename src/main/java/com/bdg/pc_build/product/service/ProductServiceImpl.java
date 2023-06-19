@@ -230,12 +230,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public CPUCoolerDTO findCPUCoolerByName(final String name) {
+    public CPUCoolerDTO findCpuCoolerByName(final String name) {
         return CPUCoolerDTO.initDTOFromEntity(findByName(name, cpuCoolerDAO));
     }
 
     @Override
-    public List<CPUCoolerDTO> findCPUCoolerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
+    public List<CPUCoolerDTO> findCpuCoolerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuCoolerDAO)
                 .stream()
                 .map(CPUCoolerDTO::initDTOFromEntity)
@@ -243,12 +243,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public CPUDTO findCPUByName(final String name) {
+    public CPUDTO findCpuByName(final String name) {
         return CPUDTO.initDTOFromEntity(findByName(name, cpuDAO));
     }
 
     @Override
-    public List<CPUDTO> findCPUByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
+    public List<CPUDTO> findCpuByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuDAO)
                 .stream()
                 .map(CPUDTO::initDTOFromEntity)
@@ -269,12 +269,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public GPUDTO findGPUByName(final String name) {
+    public GPUDTO findGpuByName(final String name) {
         return GPUDTO.initDTOFromEntity(findByName(name, gpuDAO));
     }
 
     @Override
-    public List<GPUDTO> findGPUByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
+    public List<GPUDTO> findGpuByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, gpuDAO)
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
@@ -321,12 +321,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public RAMDTO findRAMByName(final String name) {
+    public RAMDTO findRamByName(final String name) {
         return RAMDTO.initDTOFromEntity(findByName(name, ramDAO));
     }
 
     @Override
-    public List<RAMDTO> findRAMByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
+    public List<RAMDTO> findRamByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, ramDAO)
                 .stream()
                 .map(RAMDTO::initDTOFromEntity)
