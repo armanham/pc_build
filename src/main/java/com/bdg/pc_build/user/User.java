@@ -4,18 +4,21 @@ import com.bdg.pc_build.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "_user")
 public class User implements UserDetails {
@@ -40,8 +43,25 @@ public class User implements UserDetails {
     @Column(name = "role", nullable = false)
     Role role;
 
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    Timestamp created_at;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    Timestamp updated_at;
+
     @OneToMany(mappedBy = "user")
     List<Token> tokens;
+
+    @Builder
+    public User(String firstname, String lastname, String email, String password, Role role) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

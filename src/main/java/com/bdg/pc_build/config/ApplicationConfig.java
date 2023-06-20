@@ -1,6 +1,6 @@
 package com.bdg.pc_build.config;
 
-import com.bdg.pc_build.user.UserRepository;
+import com.bdg.pc_build.user.UserDAO;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class ApplicationConfig {
 
-    UserRepository userRepository;
+    UserDAO userRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {

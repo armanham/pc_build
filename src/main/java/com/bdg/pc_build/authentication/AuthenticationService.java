@@ -8,7 +8,7 @@ import com.bdg.pc_build.token.TokenRepository;
 import com.bdg.pc_build.token.TokenType;
 import com.bdg.pc_build.user.Role;
 import com.bdg.pc_build.user.User;
-import com.bdg.pc_build.user.UserRepository;
+import com.bdg.pc_build.user.UserDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,7 +29,7 @@ import java.util.Optional;
 @Service
 public class AuthenticationService {
 
-    UserRepository userRepository;
+    UserDAO userRepository;
     TokenRepository tokenRepository;
     PasswordEncoder passwordEncoder;
     JwtService jwtService;

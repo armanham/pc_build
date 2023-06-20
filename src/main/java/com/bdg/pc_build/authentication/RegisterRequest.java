@@ -1,6 +1,8 @@
 package com.bdg.pc_build.authentication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
@@ -14,14 +16,15 @@ import org.hibernate.validator.constraints.Length;
 public class RegisterRequest {
 
     @JsonProperty(value = "first_name", required = true)
-    @Length(min = 3, max = 24)
+    @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "The first name is required")
     String firstname;
 
     @JsonProperty(value = "last_name", required = true)
-    @Length(min = 3, max = 24)
+    @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "The last name is required")
     String lastname;
 
     @JsonProperty(value = "email", required = true)
+    @Email(message = "Please provide a valid email address")
     String email;
 
     @JsonProperty(value = "password", required = true)
