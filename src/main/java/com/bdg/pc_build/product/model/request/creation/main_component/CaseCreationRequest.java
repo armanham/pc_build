@@ -9,10 +9,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-
-
 import static com.bdg.pc_build.checking.pattern.Pattern.*;
-
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
