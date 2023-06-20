@@ -1,4 +1,4 @@
-package com.bdg.pc_build.builder.model.request;
+package com.bdg.pc_build.computer_builder.model.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;

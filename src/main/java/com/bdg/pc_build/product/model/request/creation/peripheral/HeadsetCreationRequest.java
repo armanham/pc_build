@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.*;
+import static com.bdg.pc_build.product.pattern.Pattern.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter

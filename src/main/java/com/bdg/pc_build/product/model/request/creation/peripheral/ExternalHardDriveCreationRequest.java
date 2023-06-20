@@ -8,8 +8,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.POSITIVE_INTEGER_NUMBER_PATTERN;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE;
+import static com.bdg.pc_build.product.pattern.Pattern.POSITIVE_INTEGER_NUMBER_PATTERN;
+import static com.bdg.pc_build.product.pattern.Pattern.WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter

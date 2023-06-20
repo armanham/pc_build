@@ -1,8 +1,7 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
-import com.bdg.pc_build.checking.ValidationUtil;
+import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.RAMFilterRequest;
-import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.enumerations.DDRType;
 import lombok.AccessLevel;
 import lombok.Getter;

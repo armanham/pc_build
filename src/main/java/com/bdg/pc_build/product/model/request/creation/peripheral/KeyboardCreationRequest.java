@@ -8,8 +8,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.*;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
+import static com.bdg.pc_build.product.pattern.Pattern.*;
+import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter

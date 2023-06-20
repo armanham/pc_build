@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +16,13 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/desire-log")
+@RequestMapping("/api/v1/desire-log")
 public class DesireLogController {
 
     DesireLogService desireLogService;
 
     @PostMapping("/new")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> addNew(
             @Valid
             @RequestBody final DesireLogRequest request
@@ -29,25 +31,29 @@ public class DesireLogController {
     }
 
     @GetMapping("/get-by-id/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public DesireLogDTO getById(
             @PathVariable("id") final Long id
     ) {
         return desireLogService.getById(id);
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getAll() {
         return ResponseEntity.ok().body(desireLogService.getAllLogs());
     }
 
     @GetMapping("/get-by-checked-status/{status}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<DesireLogDTO> getByCheckedStatus(
             @PathVariable("status") boolean status
     ) {
         return desireLogService.getByCheckStatus(status);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/mark-as-checked/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public DesireLogDTO markAsChecked(
             @PathVariable("id") Long id
     ) {

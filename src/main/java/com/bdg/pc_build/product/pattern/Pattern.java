@@ -1,4 +1,4 @@
-package com.bdg.pc_build.checking.pattern;
+package com.bdg.pc_build.product.pattern;
 
 public final class Pattern {
 

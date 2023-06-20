@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
-import com.bdg.pc_build.checking.ValidationUtil;
+import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.PowerSupplyFilterRequest;
 import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.model.enumerations.ModularType;

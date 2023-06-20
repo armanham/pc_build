@@ -8,10 +8,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Locale;
-
-import static com.bdg.pc_build.checking.pattern.Pattern.*;
-import static com.bdg.pc_build.checking.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
+import static com.bdg.pc_build.product.pattern.Pattern.*;
+import static com.bdg.pc_build.product.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter

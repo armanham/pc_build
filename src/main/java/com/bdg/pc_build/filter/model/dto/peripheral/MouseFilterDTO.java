@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto.peripheral;
 
-import com.bdg.pc_build.checking.ValidationUtil;
+import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.MouseFilterRequest;
 import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
 import lombok.AccessLevel;

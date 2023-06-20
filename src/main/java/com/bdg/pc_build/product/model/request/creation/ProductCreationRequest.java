@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.checking.pattern.Pattern.*;
+import static com.bdg.pc_build.product.pattern.Pattern.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
