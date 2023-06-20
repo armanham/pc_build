@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
-import com.bdg.pc_build.checking.ValidationUtil;
+import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.CPUFilterRequest;
 import com.bdg.pc_build.product.model.enumerations.SocketType;
 import lombok.AccessLevel;

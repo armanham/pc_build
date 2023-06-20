@@ -12,17 +12,19 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/api/v1/management/product")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductManagementController {
 
     ProductService productService;
 
     @PostMapping("/new/monitor")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MonitorDTO> saveMonitor(
             @Valid
             @RequestBody MonitorCreationRequest request
@@ -31,6 +33,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/case")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CaseDTO> saveCase(
             @Valid
             @RequestBody CaseCreationRequest request
@@ -39,6 +42,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/cooler")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CoolerDTO> saveCooler(
             @Valid
             @RequestBody CoolerCreationRequest request
@@ -46,7 +50,8 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveCooler(CoolerDTO.initDTOFromRequest(request)));
     }
 
-    @PostMapping("/new/cpuCooler")
+    @PostMapping("/new/cpu-cooler")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CPUCoolerDTO> saveCPUCooler(
             @Valid
             @RequestBody CPUCoolerCreationRequest request
@@ -55,6 +60,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/cpu")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CPUDTO> saveCPU(
             @Valid
             @RequestBody CPUCreationRequest request
@@ -63,6 +69,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/gpu")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<GPUDTO> saveGPU(
             @Valid
             @RequestBody GPUCreationRequest request
@@ -70,7 +77,8 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveGPU(GPUDTO.initDTOFromRequest(request)));
     }
 
-    @PostMapping("/new/internalHardDrive")
+    @PostMapping("/new/internal-hard-drive")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<InternalHardDriveDTO> saveInternalHardDrive(
             @Valid
             @RequestBody InternalHardDriveCreationRequest request
@@ -79,6 +87,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/motherboard")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MotherboardDTO> saveMotherboard(
             @Valid
             @RequestBody MotherboardCreationRequest request
@@ -86,7 +95,8 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveMotherboard(MotherboardDTO.initDTOFromRequest(request)));
     }
 
-    @PostMapping("/new/powerSupply")
+    @PostMapping("/new/power-supply")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<PowerSupplyDTO> savePowerSupply(
             @Valid
             @RequestBody PowerSupplyCreationRequest request
@@ -95,6 +105,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/ram")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<RAMDTO> saveRAM(
             @Valid
             @RequestBody RAMCreationRequest request
@@ -102,7 +113,8 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveRAM(RAMDTO.initDTOFromRequest(request)));
     }
 
-    @PostMapping("/new/externalHardDrive")
+    @PostMapping("/new/external-hard-drive")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ExternalHardDriveDTO> saveExternalHardDrive(
             @Valid
             @RequestBody ExternalHardDriveCreationRequest request
@@ -111,6 +123,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/headset")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<HeadsetDTO> saveHeadset(
             @Valid
             @RequestBody HeadsetCreationRequest request
@@ -119,6 +132,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/keyboard")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<KeyboardDTO> saveKeyboard(
             @Valid
             @RequestBody KeyboardCreationRequest request
@@ -127,6 +141,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/mouse")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MouseDTO> saveMouse(
             @Valid
             @RequestBody MouseCreationRequest request
@@ -135,6 +150,7 @@ public class ProductController {
     }
 
     @PostMapping("/new/speaker")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<SpeakerDTO> saveSpeaker(
             @Valid
             @RequestBody SpeakerCreationRequest request
@@ -142,8 +158,8 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveSpeaker(SpeakerDTO.initDTOFromRequest(request)));
     }
 
-    //ADMIN
     @PutMapping(value = "/edit-price/{componentType}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> editPrice(
             @PathVariable("componentType") String componentType,
             @RequestBody EditPriceRequest request
@@ -184,8 +200,8 @@ public class ProductController {
         return ResponseEntity.ok().body("");
     }
 
-    //ADMIN/USER
     @PutMapping(value = "/reduce/{componentType}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> reduceCount(
             @PathVariable("componentType") String componentType,
             @RequestBody ReduceCountRequest request

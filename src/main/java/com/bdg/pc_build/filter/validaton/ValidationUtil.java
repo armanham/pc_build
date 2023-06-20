@@ -1,4 +1,4 @@
-package com.bdg.pc_build.checking;
+package com.bdg.pc_build.filter.validaton;
 
 public final class ValidationUtil {
 

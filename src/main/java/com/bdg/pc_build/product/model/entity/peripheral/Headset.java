@@ -3,9 +3,7 @@ package com.bdg.pc_build.product.model.entity.peripheral;
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -24,6 +22,7 @@ public class Headset extends Product {
     Integer frequency;
 
     @Column(name = "connectivity_type", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     ConnectivityType connectivityType;
 
     @Column(name = "cable_length", nullable = false, updatable = false)

@@ -1,4 +1,4 @@
-package com.bdg.pc_build.builder.model.dto;
+package com.bdg.pc_build.computer_builder.model.dto;
 
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;

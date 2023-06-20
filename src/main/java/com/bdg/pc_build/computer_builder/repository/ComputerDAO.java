@@ -1,6 +1,6 @@
-package com.bdg.pc_build.builder.repository;
+package com.bdg.pc_build.computer_builder.repository;
 
-import com.bdg.pc_build.builder.model.dto.ComputerDTO;
+import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

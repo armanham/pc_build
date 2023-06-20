@@ -877,7 +877,9 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    private <ENTITY extends Product> MinMaxPriceValuesHolder getMinMaxPriceValuesHolder(Double minPrice, Double maxPrice, ProductDAO<ENTITY> dao) {
+    private <ENTITY extends Product> MinMaxPriceValuesHolder getMinMaxPriceValuesHolder(
+            Double minPrice, Double maxPrice, ProductDAO<ENTITY> dao
+    ) {
         if (minPrice == null) {
             dao.getMinPriceFromAllProducts();
         }
