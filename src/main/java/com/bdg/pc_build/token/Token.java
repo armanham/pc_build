@@ -1,6 +1,6 @@
 package com.bdg.pc_build.token;
 
-import com.bdg.pc_build.user.User;
+import com.bdg.pc_build.user.model.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.Length;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -17,11 +16,11 @@ public class RegisterRequest {
 
     @JsonProperty(value = "first_name", required = true)
     @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "The first name is required")
-    String firstname;
+    String firstName;
 
     @JsonProperty(value = "last_name", required = true)
     @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "The last name is required")
-    String lastname;
+    String lastName;
 
     @JsonProperty(value = "email", required = true)
     @Email(message = "Please provide a valid email address")
@@ -29,7 +28,4 @@ public class RegisterRequest {
 
     @JsonProperty(value = "password", required = true)
     String password;
-
-    @JsonProperty(value = "role", required = true)
-    String role;
 }

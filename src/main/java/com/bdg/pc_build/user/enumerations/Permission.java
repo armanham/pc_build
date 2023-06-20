@@ -1,4 +1,4 @@
-package com.bdg.pc_build.user;
+package com.bdg.pc_build.user.enumerations;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

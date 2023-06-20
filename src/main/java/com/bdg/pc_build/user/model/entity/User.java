@@ -1,6 +1,7 @@
-package com.bdg.pc_build.user;
+package com.bdg.pc_build.user.model.entity;
 
 import com.bdg.pc_build.token.Token;
+import com.bdg.pc_build.user.enumerations.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -9,14 +10,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
-
 @Getter
 @Setter
 @Entity
@@ -28,10 +27,10 @@ public class User implements UserDetails {
     Long id;
 
     @Column(name = "first_name", nullable = false)
-    String firstname;
+    String firstName;
 
     @Column(name = "last_name")
-    String lastname;
+    String lastName;
 
     @Column(name = "email", nullable = false, unique = true)
     String email;
@@ -55,9 +54,15 @@ public class User implements UserDetails {
     List<Token> tokens;
 
     @Builder
-    public User(String firstname, String lastname, String email, String password, Role role) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public User(
+            String firstName,
+            String lastName,
+            String email,
+            String password,
+            Role role
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.role = role;

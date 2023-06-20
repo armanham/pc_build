@@ -6,9 +6,9 @@ import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.token.TokenRepository;
 import com.bdg.pc_build.token.TokenType;
-import com.bdg.pc_build.user.Role;
-import com.bdg.pc_build.user.User;
-import com.bdg.pc_build.user.UserDAO;
+import com.bdg.pc_build.user.enumerations.Role;
+import com.bdg.pc_build.user.model.entity.User;
+import com.bdg.pc_build.user.repository.UserDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -41,11 +41,11 @@ public class AuthenticationService {
             throw new EmailAlreadyExistsException(request.getEmail());
         }
         var user = User.builder()
-                .firstname(request.getFirstname().trim())
-                .lastname(request.getLastname().trim())
+                .firstName(request.getFirstName().trim())
+                .lastName(request.getLastName().trim())
                 .email(request.getEmail().trim())
                 .password(passwordEncoder.encode(request.getPassword().trim()))
-                .role(Role.valueOf(request.getRole().trim()))
+                .role(Role.USER)
                 .build();
         var savedUser = userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);

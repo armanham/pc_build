@@ -1,6 +1,6 @@
 package com.bdg.pc_build.config;
 
-import com.bdg.pc_build.user.UserDAO;
+import com.bdg.pc_build.user.repository.UserDAO;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

@@ -1,4 +1,4 @@
-package com.bdg.pc_build.user;
+package com.bdg.pc_build.user.enumerations;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.bdg.pc_build.user.Permission.*;
+import static com.bdg.pc_build.user.enumerations.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {
