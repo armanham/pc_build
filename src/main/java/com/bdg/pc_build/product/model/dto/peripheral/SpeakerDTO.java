@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Speaker;
-import com.bdg.pc_build.product.model.enumerations.PowerSourceType;
+import com.bdg.pc_build.product.enumerations.PowerSourceType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.SpeakerCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;

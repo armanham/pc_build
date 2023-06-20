@@ -1,10 +1,10 @@
 package com.bdg.pc_build.product.repository.main_component;
 
 import com.bdg.pc_build.product.model.entity.main_component.Motherboard;
-import com.bdg.pc_build.product.model.enumerations.ATXType;
-import com.bdg.pc_build.product.model.enumerations.DDRType;
-import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
-import com.bdg.pc_build.product.model.enumerations.SocketType;
+import com.bdg.pc_build.product.enumerations.ATXType;
+import com.bdg.pc_build.product.enumerations.DDRType;
+import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
+import com.bdg.pc_build.product.enumerations.SocketType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

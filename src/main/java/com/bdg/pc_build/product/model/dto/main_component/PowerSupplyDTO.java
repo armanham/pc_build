@@ -2,8 +2,8 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
-import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
-import com.bdg.pc_build.product.model.enumerations.ModularType;
+import com.bdg.pc_build.product.enumerations.EfficiencyRating;
+import com.bdg.pc_build.product.enumerations.ModularType;
 import com.bdg.pc_build.product.model.request.creation.main_component.PowerSupplyCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;

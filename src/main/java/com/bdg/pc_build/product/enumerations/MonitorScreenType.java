@@ -1,15 +1,15 @@
-package com.bdg.pc_build.product.model.enumerations;
+package com.bdg.pc_build.product.enumerations;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum InternalHardDriveInterfaceType {
+public enum MonitorScreenType {
 
-    SSD_M2, SSD, HDD;
+    IPS, NANO_IPS, VA, TN, LED;
 
     public static List<String> toListOfStrings() {
-        return Arrays.stream(InternalHardDriveInterfaceType.values())
+        return Arrays.stream(MonitorScreenType.values())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
     }

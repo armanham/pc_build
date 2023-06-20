@@ -1,15 +1,15 @@
-package com.bdg.pc_build.product.model.enumerations;
+package com.bdg.pc_build.product.enumerations;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum ATXType {
+public enum TowerType {
 
-    M_ATX, ATX, E_ATX;
+    FULL, MID, MINI;
 
     public static List<String> toListOfStrings() {
-        return Arrays.stream(ATXType.values())
+        return Arrays.stream(TowerType.values())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
     }

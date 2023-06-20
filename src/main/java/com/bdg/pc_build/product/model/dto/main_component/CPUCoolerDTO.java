@@ -3,7 +3,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPUCooler;
-import com.bdg.pc_build.product.model.enumerations.SocketType;
+import com.bdg.pc_build.product.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.creation.main_component.CPUCoolerCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;

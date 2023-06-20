@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.main_component;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.aCase;
-import com.bdg.pc_build.product.model.enumerations.TowerType;
+import com.bdg.pc_build.product.enumerations.TowerType;
 import com.bdg.pc_build.product.model.request.creation.main_component.CaseCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;

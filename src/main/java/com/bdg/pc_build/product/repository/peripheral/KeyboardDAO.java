@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.repository.peripheral;
 
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
-import com.bdg.pc_build.product.model.enumerations.ConnectivityType;
+import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

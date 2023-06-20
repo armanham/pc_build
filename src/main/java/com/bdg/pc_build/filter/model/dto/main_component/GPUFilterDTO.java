@@ -2,7 +2,7 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.GPUFilterRequest;
-import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
+import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;

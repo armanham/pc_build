@@ -2,7 +2,7 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.InternalHardDriveFilterRequest;
-import com.bdg.pc_build.product.model.enumerations.InternalHardDriveInterfaceType;
+import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;

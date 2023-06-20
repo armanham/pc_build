@@ -1,15 +1,15 @@
-package com.bdg.pc_build.product.model.enumerations;
+package com.bdg.pc_build.product.enumerations;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum ConnectivityType {
+public enum PowerSourceType {
 
-    WIRED, WIRELESS, USB, BLUETOOTH;
+    AC, DC, BATTERY, SOLAR, WIND, HYDRO;
 
     public static List<String> toListOfStrings() {
-        return Arrays.stream(ConnectivityType.values())
+        return Arrays.stream(PowerSourceType.values())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
     }

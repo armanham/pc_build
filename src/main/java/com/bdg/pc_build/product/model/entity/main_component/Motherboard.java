@@ -3,10 +3,10 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.MotherboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.model.enumerations.ATXType;
-import com.bdg.pc_build.product.model.enumerations.DDRType;
-import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
-import com.bdg.pc_build.product.model.enumerations.SocketType;
+import com.bdg.pc_build.product.enumerations.ATXType;
+import com.bdg.pc_build.product.enumerations.DDRType;
+import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
+import com.bdg.pc_build.product.enumerations.SocketType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

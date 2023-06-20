@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.model.enumerations.InternalHardDriveInterfaceType;
+import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

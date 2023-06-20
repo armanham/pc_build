@@ -2,10 +2,10 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.MotherboardFilterRequest;
-import com.bdg.pc_build.product.model.enumerations.ATXType;
-import com.bdg.pc_build.product.model.enumerations.DDRType;
-import com.bdg.pc_build.product.model.enumerations.GPUInterfaceType;
-import com.bdg.pc_build.product.model.enumerations.SocketType;
+import com.bdg.pc_build.product.enumerations.ATXType;
+import com.bdg.pc_build.product.enumerations.DDRType;
+import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
+import com.bdg.pc_build.product.enumerations.SocketType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;

@@ -2,7 +2,7 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
-import com.bdg.pc_build.product.model.enumerations.MonitorScreenType;
+import com.bdg.pc_build.product.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.MonitorCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;

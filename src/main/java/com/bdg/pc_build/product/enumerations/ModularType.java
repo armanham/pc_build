@@ -1,4 +1,4 @@
-package com.bdg.pc_build.product.model.enumerations;
+package com.bdg.pc_build.product.enumerations;
 
 import java.util.Arrays;
 import java.util.List;

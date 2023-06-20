@@ -2,8 +2,8 @@ package com.bdg.pc_build.filter.service;
 
 import com.bdg.pc_build.filter.model.dto.main_component.*;
 import com.bdg.pc_build.filter.model.dto.peripheral.*;
+import com.bdg.pc_build.product.enumerations.*;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.model.enumerations.*;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import com.bdg.pc_build.product.repository.main_component.*;
 import com.bdg.pc_build.product.repository.peripheral.*;

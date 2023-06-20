@@ -1,8 +1,8 @@
 package com.bdg.pc_build.product.repository.main_component;
 
 import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
-import com.bdg.pc_build.product.model.enumerations.EfficiencyRating;
-import com.bdg.pc_build.product.model.enumerations.ModularType;
+import com.bdg.pc_build.product.enumerations.EfficiencyRating;
+import com.bdg.pc_build.product.enumerations.ModularType;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
