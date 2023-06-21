@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.repository.peripheral;
 
+import com.bdg.pc_build.product.enumerations.PowerSourceType;
 import com.bdg.pc_build.product.model.entity.peripheral.Speaker;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
@@ -18,6 +19,10 @@ public interface SpeakerDAO extends ProductDAO<Speaker> {
     @Query("SELECT p FROM Speaker p WHERE " +
             "(:dimension IS NULL OR lower(p.dimension) = :dimension) ")
     List<Speaker> findAllByDimension(@Param("dimension") String dimension);
+
+    @Query("SELECT p FROM Speaker p WHERE " +
+            "(:powerSourceType IS NULL OR lower(p.powerSourceType) = :powerSourceType) ")
+    List<Speaker> findAllByPowerSourceType(@Param("powerSourceType") PowerSourceType powerSourceType);
 
     @Query("SELECT p FROM Speaker p " +
             "WHERE :term IS NULL " +

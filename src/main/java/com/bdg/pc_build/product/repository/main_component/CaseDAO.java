@@ -19,7 +19,7 @@ public interface CaseDAO extends ProductDAO<aCase> {
     List<aCase> findAllByPreInstalledFansBetween(Integer minPreInstalledFans, Integer maxPreInstalledFans);
 
     @Query("SELECT p FROM aCase p WHERE " +
-                    "(:gpuInterfaceType IS NULL OR p.towerType = :towerType) ")
+                    "(:towerType IS NULL OR p.towerType = :towerType) ")
     List<aCase> findAllByTowerType(@Param("towerType") TowerType towerType);
 
     @Query("SELECT p FROM aCase p " +

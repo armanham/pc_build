@@ -111,7 +111,6 @@ public class FilterServiceImpl implements FilterService {
         return intersection;
     }
 
-
     @Override
     public List<CoolerDTO> filterAllCoolersBasedOnSpecification(final CoolerFilterDTO filterDTO) {
         CoolerFieldsHolderBasedOnFilterDTO coolerFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCoolerFieldsValuesFromFilterDTO(filterDTO);
@@ -134,7 +133,6 @@ public class FilterServiceImpl implements FilterService {
         List<CoolerDTO> intersection = new ArrayList<>(coolersByName);
 
         List<List<CoolerDTO>> listsToIntersect = Arrays.asList(
-                coolersByName,
                 coolersByPrice,
                 coolerByTdp
         );
@@ -171,12 +169,30 @@ public class FilterServiceImpl implements FilterService {
                 .map(CPUCoolerDTO::initDTOFromEntity)
                 .toList();
 
+        List<CPUCoolerDTO> cpuCoolersBySocketTypeList = new ArrayList<>();
+        if (cpuCoolerFieldsHolderBasedOnFilterDTO.socketTypes() != null && !cpuCoolerFieldsHolderBasedOnFilterDTO.socketTypes().isEmpty()) {
+            for (SocketType socketType : cpuCoolerFieldsHolderBasedOnFilterDTO.socketTypes()) {
+                List<CPUCoolerDTO> casesBySocketType = cpuCoolerDAO.findAllBySocketType(socketType)
+                        .stream()
+                        .map(CPUCoolerDTO::initDTOFromEntity)
+                        .toList();
+                cpuCoolersBySocketTypeList.addAll(casesBySocketType);
+            }
+        } else {
+            cpuCoolersBySocketTypeList.addAll(cpuCoolerDAO.findAll()
+                    .stream()
+                    .map(CPUCoolerDTO::initDTOFromEntity)
+                    .toList()
+            );
+        }
+
+
         List<CPUCoolerDTO> intersection = new ArrayList<>(cpuCoolersByName);
 
         List<List<CPUCoolerDTO>> listsToIntersect = Arrays.asList(
-                cpuCoolersByName,
                 cpuCoolersByPrice,
                 cpuCoolersByFamRpm,
+                cpuCoolersBySocketTypeList,
                 cpuCoolersByTdp
         );
 
@@ -239,17 +255,17 @@ public class FilterServiceImpl implements FilterService {
                     .toList());
         }
 
-        List<CPUDTO> cpusByInterfaceTypeList = new ArrayList<>();
+        List<CPUDTO> cpusByIntergratedGraphicsList = new ArrayList<>();
         if (cpuFieldsHolderBasedOnFilterDTO.integratedGraphics() != null && !cpuFieldsHolderBasedOnFilterDTO.integratedGraphics().isEmpty()) {
             for (String integratedGraphics : filterDTO.getIntegratedGraphics()) {
                 List<CPUDTO> cpuDTOsByIntegratedGraphics = cpuDAO.findAllByIntegratedGraphics(integratedGraphics)
                         .stream()
                         .map(CPUDTO::initDTOFromEntity)
                         .toList();
-                cpusByInterfaceTypeList.addAll(cpuDTOsByIntegratedGraphics);
+                cpusByIntergratedGraphicsList.addAll(cpuDTOsByIntegratedGraphics);
             }
         } else {
-            cpusByInterfaceTypeList.addAll(cpuDAO.findAll()
+            cpusByIntergratedGraphicsList.addAll(cpuDAO.findAll()
                     .stream()
                     .map(CPUDTO::initDTOFromEntity)
                     .toList());
@@ -258,14 +274,13 @@ public class FilterServiceImpl implements FilterService {
         List<CPUDTO> intersection = new ArrayList<>(cpusByName);
 
         List<List<CPUDTO>> listsToIntersect = Arrays.asList(
-                cpusByName,
                 cpusByPrice,
                 cpusByCoreCount,
                 cpusByCoreCLock,
                 cpusByBoostCLock,
                 cpusByTdp,
                 cpusBySocketTypeList,
-                cpusByInterfaceTypeList
+                cpusByIntergratedGraphicsList
         );
         for (List<CPUDTO> list : listsToIntersect) {
             List<CPUDTO> tempList = new ArrayList<>(list);
@@ -364,8 +379,7 @@ public class FilterServiceImpl implements FilterService {
                 .map(InternalHardDriveDTO::initDTOFromEntity)
                 .toList();
 
-        List<InternalHardDriveDTO> internalHardDrivesByPrice = internalHardDriveDAO.findAllProductsByPriceBetween(
-                        internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+        List<InternalHardDriveDTO> internalHardDrivesByPrice = internalHardDriveDAO.findAllProductsByPriceBetween(internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(InternalHardDriveDTO::initDTOFromEntity)
                 .toList();
@@ -385,11 +399,11 @@ public class FilterServiceImpl implements FilterService {
         List<InternalHardDriveDTO> internalHardDriveByInternalHardDRiveInterfaceTypeList = new ArrayList<>();
         if (internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.internalHardDriveInterfaceTypes() != null && !internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.internalHardDriveInterfaceTypes().isEmpty()) {
             for (InternalHardDriveInterfaceType internalHardDriveInterfaceType : filterDTO.getInternalHardDriveInterfaceTypes()) {
-                List<InternalHardDriveDTO> internalHardDriveDTOsByIsM2 = internalHardDriveDAO.findAllByInternalHardDriveInterfaceType(internalHardDriveInterfaceType)
+                List<InternalHardDriveDTO> internalHardDriveDTOsByInterfaceType = internalHardDriveDAO.findAllByInternalHardDriveInterfaceType(internalHardDriveInterfaceType)
                         .stream()
                         .map(InternalHardDriveDTO::initDTOFromEntity)
                         .toList();
-                internalHardDriveByInternalHardDRiveInterfaceTypeList.addAll(internalHardDriveDTOsByIsM2); //
+                internalHardDriveByInternalHardDRiveInterfaceTypeList.addAll(internalHardDriveDTOsByInterfaceType); //
             }
         } else {
             internalHardDriveByInternalHardDRiveInterfaceTypeList.addAll(internalHardDriveDAO.findAll()
@@ -465,7 +479,7 @@ public class FilterServiceImpl implements FilterService {
         }
 
         List<MotherboardDTO> motherboardsByDdrTypeList = new ArrayList<>();
-        if (motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.isM2() != null && !motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes().isEmpty()) {
+        if (motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes() != null && !motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes().isEmpty()) {
             for (DDRType ddrType : filterDTO.getDdrTypes()) {
                 List<MotherboardDTO> motherboardsByDdrType = motherboardDAO.findAllByDdrType(ddrType)
                         .stream()
@@ -531,7 +545,8 @@ public class FilterServiceImpl implements FilterService {
         List<MotherboardDTO> intersection = new ArrayList<>(motherboardsByName);
 
         List<List<MotherboardDTO>> listsToIntersect = Arrays.asList(
-                motherboardsByName,
+                motherboardsByPrice,
+                motherboardsByMemoryMax,
                 motherboardsByMemorySlots,
                 motherboardsByTdp,
                 motherboardsByIsM2List,
@@ -643,7 +658,7 @@ public class FilterServiceImpl implements FilterService {
                 .map(RAMDTO::initDTOFromEntity)
                 .toList();
 
-        List<RAMDTO> ramsByCapacity = ramDAO.findAllByCountOfRamBetween(
+        List<RAMDTO> ramsByCountOfRam = ramDAO.findAllByCountOfRamBetween(
                         ramFieldsHolderBasedOnFilterDTOFromFilterDTO.minCountOfRam(), ramFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCountOfRam())
                 .stream()
                 .map(RAMDTO::initDTOFromEntity)
@@ -681,7 +696,7 @@ public class FilterServiceImpl implements FilterService {
 
         List<List<RAMDTO>> listsToIntersect = Arrays.asList(
                 ramsByPrice,
-                ramsByCapacity,
+                ramsByCountOfRam,
                 ramsByGbOfRam,
                 ramsByTdp,
                 ramsByDdrTypeList
@@ -927,6 +942,7 @@ public class FilterServiceImpl implements FilterService {
         );
         for (List<MonitorDTO> list : listsToIntersect) {
             List<MonitorDTO> tempList = new ArrayList<>(list);
+            System.out.println(tempList);
             intersection.retainAll(tempList);
         }
         return intersection;
@@ -1041,12 +1057,29 @@ public class FilterServiceImpl implements FilterService {
                     .toList());
         }
 
+        List<SpeakerDTO> speakersByPowerSourceTypeList = new ArrayList<>();
+        if (speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.powerSourceTypes() != null && !speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.powerSourceTypes().isEmpty()) {
+            for (PowerSourceType powerSourceType : filterDTO.getPowerSourceTypes()) {
+                List<SpeakerDTO> speakersByPowerSourceType = speakerDAO.findAllByPowerSourceType(powerSourceType)
+                        .stream()
+                        .map(SpeakerDTO::initDTOFromEntity)
+                        .toList();
+                speakersByPowerSourceTypeList.addAll(speakersByPowerSourceType);
+            }
+        } else {
+            speakersByPowerSourceTypeList.addAll(speakerDAO.findAll()
+                    .stream()
+                    .map(SpeakerDTO::initDTOFromEntity)
+                    .toList());
+        }
+
         List<SpeakerDTO> intersection = new ArrayList<>(speakersByName);
 
         List<List<SpeakerDTO>> listsToIntersect = Arrays.asList(
                 speakersByPrice,
                 speakersByFrequency,
                 speakersByCableLength,
+                speakersByPowerSourceTypeList,
                 speakersByDimensionList
         );
         for (List<SpeakerDTO> list : listsToIntersect) {
