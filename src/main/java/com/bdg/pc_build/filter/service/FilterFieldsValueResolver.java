@@ -881,10 +881,10 @@ public class FilterFieldsValueResolver {
             Double minPrice, Double maxPrice, ProductDAO<ENTITY> dao
     ) {
         if (minPrice == null) {
-            dao.getMinPriceFromAllProducts();
+            minPrice = dao.getMinPriceFromAllProducts();
         }
         if (maxPrice == null) {
-            dao.getMaxPriceFromAllProducts();
+            maxPrice = dao.getMaxPriceFromAllProducts();
         }
         return new MinMaxPriceValuesHolder(minPrice, maxPrice);
     }

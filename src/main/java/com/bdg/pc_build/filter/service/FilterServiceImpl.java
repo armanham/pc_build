@@ -942,7 +942,6 @@ public class FilterServiceImpl implements FilterService {
         );
         for (List<MonitorDTO> list : listsToIntersect) {
             List<MonitorDTO> tempList = new ArrayList<>(list);
-            System.out.println(tempList);
             intersection.retainAll(tempList);
         }
         return intersection;
