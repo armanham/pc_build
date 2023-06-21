@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DesireLogService {
 
-    DesireLogDTO save(DesireLogDTO dto);
+    DesireLogDTO save(String authHeader, DesireLogDTO dto);
 
     List<DesireLogDTO> getAllLogs();
 

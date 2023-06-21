@@ -2,9 +2,13 @@ package com.bdg.pc_build.desire_log.service;
 
 import com.bdg.pc_build.checking.exception.ProductAlreadyCheckedException;
 import com.bdg.pc_build.checking.exception.ProductNotFoundException;
+import com.bdg.pc_build.checking.exception.UserNotFoundException;
+import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.desire_log.repository.DesireLogDAO;
+import com.bdg.pc_build.user.model.entity.User;
+import com.bdg.pc_build.user.repository.UserDAO;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -18,15 +22,20 @@ import java.util.Optional;
 @Service
 public class DesireLogServiceImpl implements DesireLogService {
 
+    JwtService jwtService;
+    UserDAO userDAO;
     DesireLogDAO desireLogDAO;
 
     @Override
-    public DesireLogDTO save(final DesireLogDTO dto) {
+    public DesireLogDTO save(final String authHeader, final DesireLogDTO dto) {
+        User user = getUserByAuthHeader(authHeader);
         Optional<DesireLog> optionalDesireLog =
                 desireLogDAO
                         .findByNameAndComponentTypeAndDescriptionAndChecked(dto.getName(), dto.getComponentType(), dto.getDescription(), false);
         if (optionalDesireLog.isEmpty()) {
-            return new DesireLogDTO(desireLogDAO.save(new DesireLog(dto)));
+            DesireLog desireLogToSave = new DesireLog(dto);
+            desireLogToSave.addUser(user);
+            return new DesireLogDTO(desireLogDAO.save(desireLogToSave));
         }
 
         DesireLog desireLog = optionalDesireLog.get();
@@ -73,5 +82,20 @@ public class DesireLogServiceImpl implements DesireLogService {
             throw new ProductNotFoundException("Product with the given id: " + id + " in desire log not found: ");
         }
         return new DesireLogDTO(optionalDesireLog.get());
+    }
+
+    private User getUserByAuthHeader(final String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new IllegalArgumentException(); //TODO
+        }
+        final String token = authHeader.substring(7);
+        final String email = jwtService.extractUsername(token);
+
+        User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
+
+        if (!jwtService.isTokenValid(token, user)) {
+            throw new IllegalArgumentException(); //TODO
+        }
+        return user;
     }
 }
