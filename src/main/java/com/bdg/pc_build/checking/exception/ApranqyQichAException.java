@@ -6,4 +6,3 @@ public class ApranqyQichAException extends RuntimeException {
     public ApranqyQichAException(Class<? extends Product> aClass, String name, Integer count) {
     }
 }
-

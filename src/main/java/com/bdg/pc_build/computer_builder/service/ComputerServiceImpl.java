@@ -49,20 +49,20 @@ public class ComputerServiceImpl implements ComputerService {
         ComputerDTO computerDTO = new ComputerDTO();
 
         setCase(request, computerDTO);
-        setCooler(request, computerDTO);
+        setCoolers(request, computerDTO);
         setCpu(request, computerDTO);
         setCpuCooler(request, computerDTO);
         setGpu(request, computerDTO);
-        setInternalHardDrive(request, computerDTO);
+        setInternalHardDrives(request, computerDTO);
         setMotherboard(request, computerDTO);
         setPowerSupply(request, computerDTO);
-        setRam(request, computerDTO);
-        setExternalHardDrive(request, computerDTO);
-        setHeadset(request, computerDTO);
-        setKeyboard(request, computerDTO);
-        setMonitor(request, computerDTO);
-        setMouse(request, computerDTO);
-        setSpeaker(request, computerDTO);
+        setRams(request, computerDTO);
+        setExternalHardDrives(request, computerDTO);
+        setHeadsets(request, computerDTO);
+        setKeyboards(request, computerDTO);
+        setMonitors(request, computerDTO);
+        setMice(request, computerDTO);
+        setSpeakers(request, computerDTO);
 
         return computerDTO;
     }
@@ -80,7 +80,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setCooler(ComputerCreationRequest request, ComputerDTO computerDTO) {
+    private void setCoolers(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getCoolerNames() != null && !request.getCoolerNames().isEmpty()) {
             List<CoolerDTO> coolerDTOs = new ArrayList<>();
 
@@ -138,7 +138,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setInternalHardDrive(ComputerCreationRequest request, ComputerDTO computerDTO) {
+    private void setInternalHardDrives(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getInternalHardDriveNames() != null && !request.getInternalHardDriveNames().isEmpty()) {
             List<InternalHardDriveDTO> internalHardDriveDTOs = new ArrayList<>();
 
@@ -183,7 +183,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setRam(ComputerCreationRequest request, ComputerDTO computerDTO) {
+    private void setRams(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getRamNames() != null && !request.getRamNames().isEmpty()) {
             List<RAMDTO> ramDTOs = new ArrayList<>();
 
@@ -202,7 +202,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setExternalHardDrive(ComputerCreationRequest request, ComputerDTO computerDTO) {
+    private void setExternalHardDrives(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getExternalHardDriveNames() != null && !request.getExternalHardDriveNames().isEmpty()) {
             List<ExternalHardDriveDTO> externalHardDriveDTOs = new ArrayList<>();
 
@@ -221,7 +221,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setHeadset(ComputerCreationRequest request, ComputerDTO computerDTO) {
+    private void setHeadsets(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getHeadsetNames() != null && !request.getHeadsetNames().isEmpty()) {
             List<HeadsetDTO> headsetDTOs = new ArrayList<>();
 
@@ -240,7 +240,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setKeyboard(ComputerCreationRequest request, ComputerDTO computerDTO) {
+    private void setKeyboards(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getKeyboardNames() != null && !request.getKeyboardNames().isEmpty()) {
             List<KeyboardDTO> keyboardDTOs = new ArrayList<>();
 
@@ -259,7 +259,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setMonitor(ComputerCreationRequest request, ComputerDTO computerDTO) {
+    private void setMonitors(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getMonitorNames() != null && !request.getMonitorNames().isEmpty()) {
             List<MonitorDTO> monitorDTOs = new ArrayList<>();
 
@@ -278,7 +278,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setMouse(ComputerCreationRequest request, ComputerDTO computerDTO) {
+    private void setMice(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getMouseNames() != null && !request.getMouseNames().isEmpty()) {
             List<MouseDTO> mouseDTOs = new ArrayList<>();
 
@@ -297,7 +297,7 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private void setSpeaker(ComputerCreationRequest request, ComputerDTO computerDTO) {
+    private void setSpeakers(ComputerCreationRequest request, ComputerDTO computerDTO) {
         if (request.getSpeakerNames() != null && !request.getSpeakerNames().isEmpty()) {
             List<SpeakerDTO> speakerDTOs = new ArrayList<>();
 
