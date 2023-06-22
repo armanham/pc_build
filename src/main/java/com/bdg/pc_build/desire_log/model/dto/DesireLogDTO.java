@@ -1,7 +1,7 @@
 package com.bdg.pc_build.desire_log.model.dto;
 
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
-import com.bdg.pc_build.desire_log.model.request.DesireLogRequest;
+import com.bdg.pc_build.desire_log.model.request.DesireLogCreationRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
@@ -20,7 +20,7 @@ public class DesireLogDTO {
 
     Integer count;
 
-    public DesireLogDTO(final DesireLogRequest request) {
+    public DesireLogDTO(final DesireLogCreationRequest request) {
         if (request.getComponentType() != null) {
             this.componentType = request.getComponentType().trim();
         } else {

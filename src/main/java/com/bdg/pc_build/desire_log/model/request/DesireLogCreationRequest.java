@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.Length;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Setter
 @Getter
-public class DesireLogRequest {
+public class DesireLogCreationRequest {
 
     @JsonProperty(value = "component_type")
     String componentType;

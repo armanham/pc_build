@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
@@ -95,6 +96,14 @@ public class DesireLogServiceImpl implements DesireLogService {
         }
         return new DesireLogDTO(optionalDesireLog.get());
     }
+
+    @Override
+    public Set<User> getUsersByLogId(final Long id) {
+        DesireLog desireLog = desireLogDAO.findById(id).orElseThrow(()-> new ProductNotFoundException("Product with the given id: " + id + " in desire log not found: "));
+
+        return desireLog.getUsers();
+    }
+
 
     private User getUserByAuthHeader(final String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {

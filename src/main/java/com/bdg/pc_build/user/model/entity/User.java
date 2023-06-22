@@ -3,6 +3,7 @@ package com.bdg.pc_build.user.model.entity;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.user.enumerations.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -52,10 +53,12 @@ public class User implements UserDetails {
     @Column(name = "updated_at")
     Timestamp updated_at;
 
-    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Token> tokens;
 
-    @ManyToMany(mappedBy = "users")
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     List<DesireLog> desireLogs = new ArrayList<>();
 
     @Builder

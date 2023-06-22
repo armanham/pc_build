@@ -50,7 +50,7 @@ public class DesireLog {
     @Column(name = "updated_at")
     Timestamp updatedAt;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_desire_log")
     Set<User> users = new LinkedHashSet<>();
 

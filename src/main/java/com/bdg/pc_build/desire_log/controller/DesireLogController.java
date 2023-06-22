@@ -1,8 +1,9 @@
 package com.bdg.pc_build.desire_log.controller;
 
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
-import com.bdg.pc_build.desire_log.model.request.DesireLogRequest;
+import com.bdg.pc_build.desire_log.model.request.DesireLogCreationRequest;
 import com.bdg.pc_build.desire_log.service.DesireLogService;
+import com.bdg.pc_build.user.model.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -14,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
@@ -26,13 +28,13 @@ public class DesireLogController {
     @PostMapping("/new")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> save(
-            @Valid @RequestBody final DesireLogRequest desireLogRequest,
+            @Valid @RequestBody final DesireLogCreationRequest desireLogCreationRequest,
             HttpServletRequest httpServletRequest
     ) {
-        return ResponseEntity.ok().body(desireLogService.save(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), new DesireLogDTO(desireLogRequest)));
+        return ResponseEntity.ok().body(desireLogService.save(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), new DesireLogDTO(desireLogCreationRequest)));
     }
 
-    @GetMapping("/get-by-id/{id}")
+    @GetMapping("/get/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public DesireLogDTO getById(
             @PathVariable("id") final Long id
@@ -60,5 +62,13 @@ public class DesireLogController {
             @PathVariable("id") Long id
     ) {
         return desireLogService.markAsCheckedById(id);
+    }
+
+    @GetMapping("/get/{id}/users")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Set<User> getUsersByLogId(
+            @PathVariable("id") Long id
+    ) {
+        return desireLogService.getUsersByLogId(id);
     }
 }

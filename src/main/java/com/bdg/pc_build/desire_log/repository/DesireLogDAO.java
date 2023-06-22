@@ -1,6 +1,7 @@
 package com.bdg.pc_build.desire_log.repository;
 
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
+import com.bdg.pc_build.user.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
