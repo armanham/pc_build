@@ -3,6 +3,7 @@ package com.bdg.pc_build.desire_log.controller;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.desire_log.model.request.DesireLogRequest;
 import com.bdg.pc_build.desire_log.service.DesireLogService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +26,10 @@ public class DesireLogController {
     @PostMapping("/new")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> addNew(
-            @Valid
-            @RequestBody final DesireLogRequest request
+            @Valid @RequestBody final DesireLogRequest desireLogRequest,
+            HttpServletRequest httpServletRequest
     ) {
-        return ResponseEntity.ok().body(desireLogService.save(new DesireLogDTO(request)));
+        return ResponseEntity.ok().body(desireLogService.save(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), new DesireLogDTO(desireLogRequest)));
     }
 
     @GetMapping("/get-by-id/{id}")

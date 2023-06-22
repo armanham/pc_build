@@ -13,12 +13,14 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
+@Transactional
 @Service
 public class DesireLogServiceImpl implements DesireLogService {
 
@@ -39,8 +41,18 @@ public class DesireLogServiceImpl implements DesireLogService {
         }
 
         DesireLog desireLog = optionalDesireLog.get();
+
+        if (desireLog.getChecked()) {
+            DesireLog desireLogToSave = new DesireLog(dto);
+            desireLogToSave.addUser(user);
+            return new DesireLogDTO(desireLogDAO.save(desireLogToSave));
+        }
+        if (desireLog.getUsers().contains(user)) {
+            throw new IllegalArgumentException();//TODO
+        }
         desireLog.setCount(desireLog.getCount() + 1);
-        return new DesireLogDTO(desireLogDAO.save(desireLog));
+        desireLog.addUser(user);
+        return new DesireLogDTO(desireLog);
     }
 
     @Override

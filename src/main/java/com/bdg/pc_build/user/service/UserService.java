@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface UserService {
 
-    User updateFirstNameByEmail(String email, String firstName);
+    User updateFirstNameByAuthHeader(String authHeader, String newFirstName);
 
-    User updateLastNameByEmail(String email, String lastName);
+    User updateLastNameByAuthHeader(String authHeader, String newLastName);
 
-    User updateEmailByEmail(String email, String newEmail);
+    User updateEmailByAuthHeader(String authHeader, String newEmail);
+
+    User updatePasswordByAuthHeader(String authHeader, String newPassword);
 
     User changeUserRoleToAdminByEmail(String email);
 

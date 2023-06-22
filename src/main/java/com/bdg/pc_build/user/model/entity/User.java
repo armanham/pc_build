@@ -1,5 +1,6 @@
 package com.bdg.pc_build.user.model.entity;
 
+import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.user.enumerations.Role;
 import jakarta.persistence.*;
@@ -11,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -52,6 +54,9 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     List<Token> tokens;
+
+    @ManyToMany(mappedBy = "users")
+    List<DesireLog> desireLogs = new ArrayList<>();
 
     @Builder
     public User(

@@ -1,6 +1,7 @@
 package com.bdg.pc_build.desire_log.model.entity;
 
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
+import com.bdg.pc_build.user.model.entity.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -11,6 +12,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -46,6 +49,15 @@ public class DesireLog {
     @UpdateTimestamp
     @Column(name = "updated_at")
     Timestamp updatedAt;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_desire_log")
+    Set<User> users = new LinkedHashSet<>();
+
+    public void addUser(User user){
+        users.add(user);
+        user.getDesireLogs().add(this);
+    }
 
     public DesireLog(final DesireLogDTO dto) {
         this.componentType = dto.getComponentType();

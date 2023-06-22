@@ -6,10 +6,12 @@ import com.bdg.pc_build.user.model.request.EmailUpdateRequest;
 import com.bdg.pc_build.user.model.request.FirstNameUpdateRequest;
 import com.bdg.pc_build.user.model.request.LastNameUpdateRequest;
 import com.bdg.pc_build.user.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -25,32 +27,33 @@ public class UserController {
     UserService userService;
 
     @PutMapping("/update/first-name")
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<String> updateFirstName(
-            @Valid
-            @RequestBody FirstNameUpdateRequest request
+            @Valid @RequestBody FirstNameUpdateRequest firstNameUpdateRequest,
+            HttpServletRequest httpServletRequest
     ) {
-        userService.updateFirstNameByEmail(request.email(), request.newFirstName());
+        userService.updateFirstNameByAuthHeader(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), firstNameUpdateRequest.newFirstName());
         return ResponseEntity.ok("First name updated successfully");
     }
 
     @PutMapping("update/last-name")
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<String> updateLastName(
-            @Valid
-            @RequestBody LastNameUpdateRequest request
+            @Valid @RequestBody LastNameUpdateRequest lastNameUpdateRequest,
+            HttpServletRequest httpServletRequest
     ) {
-        userService.updateLastNameByEmail(request.email(), request.newLastName());
+        userService.updateLastNameByAuthHeader(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), lastNameUpdateRequest.newLastName());
         return ResponseEntity.ok("Last name updated successfully");
     }
 
     @PutMapping("update/email")
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<String> updateEmail(
-            @Valid
-            @RequestBody EmailUpdateRequest request
+            @Valid @RequestBody EmailUpdateRequest emailUpdateRequest,
+            HttpServletRequest httpServletRequest
+
     ) {
-        userService.updateEmailByEmail(request.email(), request.newEmail());
+        userService.updateEmailByAuthHeader(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), emailUpdateRequest.newEmail());
         return ResponseEntity.ok("Email updated successfully");
     }
 
