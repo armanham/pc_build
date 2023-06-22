@@ -350,11 +350,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public KeyboardDTO findKeyboardByName(final String name) {
-        return KeyboardDTO.initDTOFromEntity(findByName(name, keyboardDAO));
-    }
-
-    @Override
     public List<KeyboardDTO> findKeyboardByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, keyboardDAO)
                 .stream()
@@ -363,21 +358,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public MouseDTO findMouseByName(final String name) {
-        return MouseDTO.initDTOFromEntity(findByName(name, mouseDAO));
-    }
-
-    @Override
     public List<MouseDTO> findMouseByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, mouseDAO)
                 .stream()
                 .map(MouseDTO::initDTOFromEntity)
                 .toList();
-    }
-
-    @Override
-    public SpeakerDTO findSpeakerByName(final String name) {
-        return SpeakerDTO.initDTOFromEntity(findByName(name, speakerDAO));
     }
 
     @Override

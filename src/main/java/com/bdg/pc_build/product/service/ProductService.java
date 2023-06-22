@@ -1,11 +1,14 @@
 package com.bdg.pc_build.product.service;
 
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 
 import java.util.List;
 
 public interface ProductService {
+
+    ProductDTO findProductByName(String name);
 
     //save methods for display components
     MonitorDTO saveMonitor(MonitorDTO dto);
@@ -95,15 +98,9 @@ public interface ProductService {
 
     List<HeadsetDTO> findHeadsetByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    KeyboardDTO findKeyboardByName(String name);
-
     List<KeyboardDTO> findKeyboardByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    MouseDTO findMouseByName(String name);
-
     List<MouseDTO> findMouseByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    SpeakerDTO findSpeakerByName(String name);
 
     List<SpeakerDTO> findSpeakerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
