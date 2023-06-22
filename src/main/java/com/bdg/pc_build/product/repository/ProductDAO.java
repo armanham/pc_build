@@ -16,7 +16,6 @@ public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY
 
     Optional<ENTITY> findByName(String name);
 
-
     @Query("SELECT p FROM #{#entityName} p WHERE " +
             "(:name IS NULL OR lower(p.name) LIKE lower(concat('%', :name, '%'))) ")
     List<ENTITY> findAllProductsByNameLike(@Param("name") String name);

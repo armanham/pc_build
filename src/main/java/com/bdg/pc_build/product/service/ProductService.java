@@ -176,4 +176,34 @@ public interface ProductService {
     MouseDTO reduceMouseCountByName(String name, Integer count);
 
     SpeakerDTO reduceSpeakerCountByName(String name, Integer count);
+
+    List<CaseDTO> getAllCases();
+
+    List<CoolerDTO> getAllCoolers();
+
+    List<CPUCoolerDTO> getAllCpuCoolers();
+
+    List<CPUDTO> getAllCpus();
+
+    List<GPUDTO> getAllGpus();
+
+    List<InternalHardDriveDTO> getAllInternalHardDrives();
+
+    List<MotherboardDTO> getAllMotherboards();
+
+    List<PowerSupplyDTO> getAllPowerSupplies();
+
+    List<RAMDTO> getAllRams();
+
+    List<ExternalHardDriveDTO> getAllExternalHardDrives();
+
+    List<HeadsetDTO> getAllHeadsets();
+
+    List<KeyboardDTO> getAllKeyboards();
+
+    List<MonitorDTO> getAllMonitors();
+
+    List<MouseDTO> getAllMice();
+
+    List<SpeakerDTO> getAllSpeakers();
 }

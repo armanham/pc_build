@@ -114,6 +114,9 @@ public class ProductServiceImpl implements ProductService {
         return repository.save(foundedProduct);
     }
 
+    private <ENTITY extends Product> List<ENTITY> findAll(final ProductDAO<ENTITY> dao) {
+        return dao.findAll();
+    }
 
     @Override
     public MonitorDTO saveMonitor(final MonitorDTO dto) {
@@ -534,5 +537,80 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public SpeakerDTO reduceSpeakerCountByName(final String name, final Integer countToBeReduced) {
         return SpeakerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, speakerDAO));
+    }
+
+    @Override
+    public List<CaseDTO> getAllCases() {
+        return findAll(caseDAO).stream().map(CaseDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<CoolerDTO> getAllCoolers() {
+        return findAll(coolerDAO).stream().map(CoolerDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<CPUCoolerDTO> getAllCpuCoolers() {
+        return findAll(cpuCoolerDAO).stream().map(CPUCoolerDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<CPUDTO> getAllCpus() {
+        return findAll(cpuDAO).stream().map(CPUDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<GPUDTO> getAllGpus() {
+        return findAll(gpuDAO).stream().map(GPUDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<InternalHardDriveDTO> getAllInternalHardDrives() {
+        return findAll(internalHardDriveDAO).stream().map(InternalHardDriveDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<MotherboardDTO> getAllMotherboards() {
+        return findAll(motherboardDAO).stream().map(MotherboardDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<PowerSupplyDTO> getAllPowerSupplies() {
+        return findAll(powerSupplyDAO).stream().map(PowerSupplyDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<RAMDTO> getAllRams() {
+        return findAll(ramDAO).stream().map(RAMDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<ExternalHardDriveDTO> getAllExternalHardDrives() {
+        return findAll(externalHardDriveDAO).stream().map(ExternalHardDriveDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<HeadsetDTO> getAllHeadsets() {
+        return findAll(headsetDAO).stream().map(HeadsetDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<KeyboardDTO> getAllKeyboards() {
+        return findAll(keyboardDAO).stream().map(KeyboardDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<MonitorDTO> getAllMonitors() {
+        return findAll(monitorDAO).stream().map(MonitorDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<MouseDTO> getAllMice() {
+        return findAll(mouseDAO).stream().map(MouseDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public List<SpeakerDTO> getAllSpeakers() {
+        return findAll(speakerDAO).stream().map(SpeakerDTO::initDTOFromEntity).toList();
     }
 }

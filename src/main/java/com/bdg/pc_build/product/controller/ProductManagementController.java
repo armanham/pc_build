@@ -15,8 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value = "/api/v1/management/product")
+@RequestMapping(value = "/api/v1/product")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class ProductManagementController {
@@ -26,8 +28,7 @@ public class ProductManagementController {
     @PostMapping("/new/monitor")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MonitorDTO> saveMonitor(
-            @Valid
-            @RequestBody MonitorCreationRequest request
+            @Valid @RequestBody MonitorCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveMonitor(MonitorDTO.initDTOFromRequest(request)));
     }
@@ -35,8 +36,7 @@ public class ProductManagementController {
     @PostMapping("/new/case")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CaseDTO> saveCase(
-            @Valid
-            @RequestBody CaseCreationRequest request
+            @Valid @RequestBody CaseCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveCase(CaseDTO.initDTOFromRequest(request)));
     }
@@ -44,8 +44,7 @@ public class ProductManagementController {
     @PostMapping("/new/cooler")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CoolerDTO> saveCooler(
-            @Valid
-            @RequestBody CoolerCreationRequest request
+            @Valid @RequestBody CoolerCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveCooler(CoolerDTO.initDTOFromRequest(request)));
     }
@@ -53,8 +52,7 @@ public class ProductManagementController {
     @PostMapping("/new/cpu-cooler")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CPUCoolerDTO> saveCPUCooler(
-            @Valid
-            @RequestBody CPUCoolerCreationRequest request
+            @Valid @RequestBody CPUCoolerCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveCpuCooler(CPUCoolerDTO.initDTOFromRequest(request)));
     }
@@ -62,8 +60,7 @@ public class ProductManagementController {
     @PostMapping("/new/cpu")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CPUDTO> saveCPU(
-            @Valid
-            @RequestBody CPUCreationRequest request
+            @Valid @RequestBody CPUCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveCPU(CPUDTO.initDTOFromRequest(request)));
     }
@@ -71,8 +68,7 @@ public class ProductManagementController {
     @PostMapping("/new/gpu")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<GPUDTO> saveGPU(
-            @Valid
-            @RequestBody GPUCreationRequest request
+            @Valid @RequestBody GPUCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveGPU(GPUDTO.initDTOFromRequest(request)));
     }
@@ -80,8 +76,7 @@ public class ProductManagementController {
     @PostMapping("/new/internal-hard-drive")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<InternalHardDriveDTO> saveInternalHardDrive(
-            @Valid
-            @RequestBody InternalHardDriveCreationRequest request
+            @Valid @RequestBody InternalHardDriveCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveInternalHardDrive(InternalHardDriveDTO.initDTOFromRequest(request)));
     }
@@ -89,8 +84,7 @@ public class ProductManagementController {
     @PostMapping("/new/motherboard")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MotherboardDTO> saveMotherboard(
-            @Valid
-            @RequestBody MotherboardCreationRequest request
+            @Valid @RequestBody MotherboardCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveMotherboard(MotherboardDTO.initDTOFromRequest(request)));
     }
@@ -98,8 +92,7 @@ public class ProductManagementController {
     @PostMapping("/new/power-supply")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<PowerSupplyDTO> savePowerSupply(
-            @Valid
-            @RequestBody PowerSupplyCreationRequest request
+            @Valid @RequestBody PowerSupplyCreationRequest request
     ) {
         return ResponseEntity.ok(productService.savePowerSupply(PowerSupplyDTO.initDTOFromRequest(request)));
     }
@@ -107,8 +100,7 @@ public class ProductManagementController {
     @PostMapping("/new/ram")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<RAMDTO> saveRAM(
-            @Valid
-            @RequestBody RAMCreationRequest request
+            @Valid @RequestBody RAMCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveRAM(RAMDTO.initDTOFromRequest(request)));
     }
@@ -116,8 +108,7 @@ public class ProductManagementController {
     @PostMapping("/new/external-hard-drive")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ExternalHardDriveDTO> saveExternalHardDrive(
-            @Valid
-            @RequestBody ExternalHardDriveCreationRequest request
+            @Valid @RequestBody ExternalHardDriveCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveExternalHardDrive(ExternalHardDriveDTO.initDTOFromRequest(request)));
     }
@@ -125,8 +116,7 @@ public class ProductManagementController {
     @PostMapping("/new/headset")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<HeadsetDTO> saveHeadset(
-            @Valid
-            @RequestBody HeadsetCreationRequest request
+            @Valid @RequestBody HeadsetCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveHeadset(HeadsetDTO.initDTOFromRequest(request)));
     }
@@ -134,8 +124,7 @@ public class ProductManagementController {
     @PostMapping("/new/keyboard")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<KeyboardDTO> saveKeyboard(
-            @Valid
-            @RequestBody KeyboardCreationRequest request
+            @Valid @RequestBody KeyboardCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveKeyboard(KeyboardDTO.initDTOFromRequest(request)));
     }
@@ -143,8 +132,7 @@ public class ProductManagementController {
     @PostMapping("/new/mouse")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MouseDTO> saveMouse(
-            @Valid
-            @RequestBody MouseCreationRequest request
+            @Valid @RequestBody MouseCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveMouse(MouseDTO.initDTOFromRequest(request)));
     }
@@ -152,16 +140,15 @@ public class ProductManagementController {
     @PostMapping("/new/speaker")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<SpeakerDTO> saveSpeaker(
-            @Valid
-            @RequestBody SpeakerCreationRequest request
+            @Valid @RequestBody SpeakerCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveSpeaker(SpeakerDTO.initDTOFromRequest(request)));
     }
 
-    @PutMapping(value = "/edit-price/{componentType}")
+    @PutMapping(value = "/edit-price/{component-type}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> editPrice(
-            @PathVariable("componentType") String componentType,
+            @PathVariable("component-type") String componentType,
             @RequestBody EditPriceRequest request
     ) {
         switch (componentType) {
@@ -200,10 +187,10 @@ public class ProductManagementController {
         return ResponseEntity.ok().body("");
     }
 
-    @PutMapping(value = "/reduce/{componentType}")
+    @PutMapping(value = "/reduce/{component-type}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> reduceCount(
-            @PathVariable("componentType") String componentType,
+            @PathVariable("component-type") String componentType,
             @RequestBody ReduceCountRequest request
     ) {
         switch (componentType) {
@@ -240,5 +227,95 @@ public class ProductManagementController {
             default -> ResponseEntity.badRequest().body("Invalid component type");
         }
         return ResponseEntity.ok().body("");
+    }
+
+    @GetMapping("/case")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<CaseDTO> getAllCases() {
+        return productService.getAllCases();
+    }
+
+    @GetMapping("/cooler")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<CoolerDTO> getAllCoolers() {
+        return productService.getAllCoolers();
+    }
+
+    @GetMapping("/cpu-cooler")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<CPUCoolerDTO> getAllCpuCoolers() {
+        return productService.getAllCpuCoolers();
+    }
+
+    @GetMapping("/cpu")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<CPUDTO> getAllCpus() {
+        return productService.getAllCpus();
+    }
+
+    @GetMapping("/gpu")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<GPUDTO> getAllGpus() {
+        return productService.getAllGpus();
+    }
+
+    @GetMapping("/internal-hard-drive")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<InternalHardDriveDTO> getAllInternalHardDrives() {
+        return productService.getAllInternalHardDrives();
+    }
+
+    @GetMapping("/motherboard")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<MotherboardDTO> getAllMotherboards() {
+        return productService.getAllMotherboards();
+    }
+
+    @GetMapping("/power-supply")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<PowerSupplyDTO> getAllPowerSupplies() {
+        return productService.getAllPowerSupplies();
+    }
+
+    @GetMapping("/ram")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<RAMDTO> getAllRams() {
+        return productService.getAllRams();
+    }
+
+    @GetMapping("/external-hard-drive")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<ExternalHardDriveDTO> getAllExternalHardDrives() {
+        return productService.getAllExternalHardDrives();
+    }
+
+    @GetMapping("/headset")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<HeadsetDTO> getAllHeadsets() {
+        return productService.getAllHeadsets();
+    }
+
+    @GetMapping("/keyboard")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<KeyboardDTO> getAllKeyboards() {
+        return productService.getAllKeyboards();
+    }
+
+    @GetMapping("/monitor")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<MonitorDTO> getAllMonitors() {
+        return productService.getAllMonitors();
+    }
+
+    @GetMapping("/mouse")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<MouseDTO> getAllMice() {
+        return productService.getAllMice();
+    }
+
+    @GetMapping("/speaker")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public List<SpeakerDTO> getAllSpeakers() {
+        return productService.getAllSpeakers();
     }
 }

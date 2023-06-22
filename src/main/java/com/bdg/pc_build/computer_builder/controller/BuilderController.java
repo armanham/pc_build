@@ -27,7 +27,7 @@ public class BuilderController {
     ComputerDAO computerDAO;
 
     @PostMapping("/build-computer")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @ApiOperation(value = "build")
     public ResponseEntity<?> build(
             @RequestBody ComputerCreationRequest request
@@ -42,7 +42,7 @@ public class BuilderController {
     }
 
     @GetMapping("built-computers")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<ComputerDTO> getAllComputers() {
         return computerDAO.getComputerDTOList();
     }
