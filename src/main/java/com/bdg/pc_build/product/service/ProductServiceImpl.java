@@ -3,6 +3,7 @@ package com.bdg.pc_build.product.service;
 import com.bdg.pc_build.checking.exception.ApranqyQichAException;
 import com.bdg.pc_build.checking.exception.ProductNotFoundException;
 import com.bdg.pc_build.checking.exception.SameNameDifferentDescriptionException;
+import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import com.bdg.pc_build.product.model.entity.Product;
@@ -60,17 +61,6 @@ public class ProductServiceImpl implements ProductService {
             return repository.save(foundedProduct);
         }
         return repository.save(product);
-    }
-
-    private <ENTITY extends Product> ENTITY findByName(
-            final String name,
-            final ProductDAO<ENTITY> repository
-    ) {
-        Optional<ENTITY> optionalENTITY = repository.findByName(name);
-        if (optionalENTITY.isEmpty()) {
-            throw new ProductNotFoundException(optionalENTITY.getClass(), name);
-        }
-        return optionalENTITY.get();
     }
 
     private <ENTITY extends Product> List<ENTITY> findAllByPurchasedPrice(
@@ -194,21 +184,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public MonitorDTO findMonitorByName(final String name) {
-        return MonitorDTO.initDTOFromEntity(findByName(name, monitorDAO));
-    }
-
-    @Override
     public List<MonitorDTO> findMonitorByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, monitorDAO)
                 .stream()
                 .map(MonitorDTO::initDTOFromEntity)
                 .toList();
-    }
-
-    @Override
-    public CaseDTO findCaseByName(final String name) {
-        return CaseDTO.initDTOFromEntity(findByName(name, caseDAO));
     }
 
     @Override
@@ -220,21 +200,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public CoolerDTO findCoolerByName(final String name) {
-        return CoolerDTO.initDTOFromEntity(findByName(name, coolerDAO));
-    }
-
-    @Override
     public List<CoolerDTO> findCoolerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, coolerDAO)
                 .stream()
                 .map(CoolerDTO::initDTOFromEntity)
                 .toList();
-    }
-
-    @Override
-    public CPUCoolerDTO findCpuCoolerByName(final String name) {
-        return CPUCoolerDTO.initDTOFromEntity(findByName(name, cpuCoolerDAO));
     }
 
     @Override
@@ -246,21 +216,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public CPUDTO findCpuByName(final String name) {
-        return CPUDTO.initDTOFromEntity(findByName(name, cpuDAO));
-    }
-
-    @Override
     public List<CPUDTO> findCpuByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuDAO)
                 .stream()
                 .map(CPUDTO::initDTOFromEntity)
                 .toList();
-    }
-
-    @Override
-    public InternalHardDriveDTO findInternalHardDriveByName(final String name) {
-        return InternalHardDriveDTO.initDTOFromEntity(findByName(name, internalHardDriveDAO));
     }
 
     @Override
@@ -272,21 +232,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public GPUDTO findGpuByName(final String name) {
-        return GPUDTO.initDTOFromEntity(findByName(name, gpuDAO));
-    }
-
-    @Override
     public List<GPUDTO> findGpuByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, gpuDAO)
                 .stream()
                 .map(GPUDTO::initDTOFromEntity)
                 .toList();
-    }
-
-    @Override
-    public ExternalHardDriveDTO findExternalHardDriveByName(final String name) {
-        return ExternalHardDriveDTO.initDTOFromEntity(findByName(name, externalHardDriveDAO));
     }
 
     @Override
@@ -298,21 +248,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public MotherboardDTO findMotherboardByName(final String name) {
-        return MotherboardDTO.initDTOFromEntity(findByName(name, motherboardDAO));
-    }
-
-    @Override
     public List<MotherboardDTO> findMotherboardByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, motherboardDAO)
                 .stream()
                 .map(MotherboardDTO::initDTOFromEntity)
                 .toList();
-    }
-
-    @Override
-    public PowerSupplyDTO findPowerSupplyByName(final String name) {
-        return PowerSupplyDTO.initDTOFromEntity(findByName(name, powerSupplyDAO));
     }
 
     @Override
@@ -324,21 +264,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public RAMDTO findRamByName(final String name) {
-        return RAMDTO.initDTOFromEntity(findByName(name, ramDAO));
-    }
-
-    @Override
     public List<RAMDTO> findRamByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
         return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, ramDAO)
                 .stream()
                 .map(RAMDTO::initDTOFromEntity)
                 .toList();
-    }
-
-    @Override
-    public HeadsetDTO findHeadsetByName(final String name) {
-        return HeadsetDTO.initDTOFromEntity(findByName(name, headsetDAO));
     }
 
     @Override
@@ -372,7 +302,6 @@ public class ProductServiceImpl implements ProductService {
                 .map(SpeakerDTO::initDTOFromEntity)
                 .toList();
     }
-
 
     @Override
     public MonitorDTO updateMonitorPriceByName(final String name, final Double newPrice) {
@@ -522,6 +451,19 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public SpeakerDTO reduceSpeakerCountByName(final String name, final Integer countToBeReduced) {
         return SpeakerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, speakerDAO));
+    }
+
+    @Override
+    public ProductDTO findProductByName(final String name){
+        Optional<aCase> optionalACase = caseDAO.findByName(name);
+        if (optionalACase.isPresent()){
+            return CaseDTO.initDTOFromEntity(optionalACase.get());
+        }
+        Optional<Cooler> optionalCooler = coolerDAO.findByName(name);
+        if (optionalCooler.isPresent()){
+            return CoolerDTO.initDTOFromEntity(optionalCooler.get());
+        }
+        return null; //TODO
     }
 
     @Override

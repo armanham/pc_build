@@ -46,56 +46,32 @@ public interface ProductService {
 
 
     //find methods for display components
-    MonitorDTO findMonitorByName(String name);
-
     List<MonitorDTO> findMonitorByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
 
     //find methods for main components
-    CaseDTO findCaseByName(String name);
-
     List<CaseDTO> findCaseByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    CoolerDTO findCoolerByName(String name);
 
     List<CoolerDTO> findCoolerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    CPUCoolerDTO findCpuCoolerByName(String name);
-
     List<CPUCoolerDTO> findCpuCoolerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    CPUDTO findCpuByName(String name);
 
     List<CPUDTO> findCpuByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    InternalHardDriveDTO findInternalHardDriveByName(String name);
-
     List<InternalHardDriveDTO> findInternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    GPUDTO findGpuByName(String name);
 
     List<GPUDTO> findGpuByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    ExternalHardDriveDTO findExternalHardDriveByName(String name);
-
     List<ExternalHardDriveDTO> findExternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    MotherboardDTO findMotherboardByName(String name);
 
     List<MotherboardDTO> findMotherboardByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
-    PowerSupplyDTO findPowerSupplyByName(String name);
-
     List<PowerSupplyDTO> findPowerSupplyByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    RAMDTO findRamByName(String name);
 
     List<RAMDTO> findRamByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
 
     //find methods for peripheral components
-    HeadsetDTO findHeadsetByName(String name);
-
     List<HeadsetDTO> findHeadsetByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
     List<KeyboardDTO> findKeyboardByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);

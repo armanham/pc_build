@@ -1,8 +1,6 @@
 package com.bdg.pc_build.product.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +19,12 @@ import java.sql.Timestamp;
 public abstract class Product {
 
     @Id
-    @Column(name = "name", updatable = false)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_sequence")
+//    @SequenceGenerator(name = "global_sequence", sequenceName = "global_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", updatable = false, unique = true)
     String name;
 
     @Column(name = "price", nullable = false)
