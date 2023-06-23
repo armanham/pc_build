@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.OK)
 public class NotCompletableException extends RuntimeException{
 
-    public NotCompletableException() {
+    public NotCompletableException(String message) {
+        super(message);
     }
 }
