@@ -1,4 +1,4 @@
-package com.bdg.pc_build.checking.exception;
+package com.bdg.pc_build.exception;
 
 import com.bdg.pc_build.product.model.entity.Product;
 

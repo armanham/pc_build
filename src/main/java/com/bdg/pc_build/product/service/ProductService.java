@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    ProductDTO findProductByName(String name);
+    ProductDTO findById(Long id);
 
     //save methods for display components
     MonitorDTO saveMonitor(MonitorDTO dto);

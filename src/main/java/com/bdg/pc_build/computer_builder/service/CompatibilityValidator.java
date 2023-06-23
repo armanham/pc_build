@@ -1,7 +1,7 @@
 package com.bdg.pc_build.computer_builder.service;
 
 import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
-import com.bdg.pc_build.checking.exception.NotCompletableException;
+import com.bdg.pc_build.exception.NotCompletableException;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.enumerations.ATXType;
 import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;

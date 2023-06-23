@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.product.model.dto.main_component.CPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.SocketType;
@@ -7,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -47,6 +49,9 @@ public class CPU extends Product {
     @Column(name = "socket_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     SocketType socketType;
+
+    @ManyToMany(mappedBy = "cpus")
+    List<Order> orders;
 
     public CPU(final CPUDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

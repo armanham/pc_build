@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @NoRepositoryBean
-public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY, String> {
+public interface ProductDAO<ENTITY extends Product> extends JpaRepository<ENTITY, Long> {
 
     List<ENTITY> findAllBasedOnTerm(String term);
 

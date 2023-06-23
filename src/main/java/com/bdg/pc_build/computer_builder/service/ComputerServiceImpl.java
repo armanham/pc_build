@@ -2,8 +2,8 @@ package com.bdg.pc_build.computer_builder.service;
 
 import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
 import com.bdg.pc_build.computer_builder.model.request.ComputerCreationRequest;
-import com.bdg.pc_build.checking.exception.OutOfStockException;
-import com.bdg.pc_build.checking.exception.ProductNotFoundException;
+import com.bdg.pc_build.exception.OutOfStockException;
+import com.bdg.pc_build.exception.ProductNotFoundException;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;

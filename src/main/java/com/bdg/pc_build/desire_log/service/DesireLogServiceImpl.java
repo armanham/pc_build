@@ -1,8 +1,8 @@
 package com.bdg.pc_build.desire_log.service;
 
-import com.bdg.pc_build.checking.exception.ProductAlreadyCheckedException;
-import com.bdg.pc_build.checking.exception.ProductNotFoundException;
-import com.bdg.pc_build.checking.exception.UserNotFoundException;
+import com.bdg.pc_build.exception.ProductAlreadyCheckedException;
+import com.bdg.pc_build.exception.ProductNotFoundException;
+import com.bdg.pc_build.exception.UserNotFoundException;
 import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;

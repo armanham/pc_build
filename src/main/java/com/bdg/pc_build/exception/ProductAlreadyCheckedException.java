@@ -1,4 +1,4 @@
-package com.bdg.pc_build.checking.exception;
+package com.bdg.pc_build.exception;
 
 public class ProductAlreadyCheckedException extends RuntimeException {
 

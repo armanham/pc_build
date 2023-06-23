@@ -1,6 +1,7 @@
 package com.bdg.pc_build.user.model.entity;
 
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
+import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.user.enumerations.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -60,6 +61,9 @@ public class User implements UserDetails {
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     List<DesireLog> desireLogs = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    List<Order> orders;
 
     @Builder
     public User(

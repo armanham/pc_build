@@ -1,4 +1,4 @@
-package com.bdg.pc_build.checking.exception;
+package com.bdg.pc_build.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,8 +1,8 @@
 package com.bdg.pc_build.product.service;
 
-import com.bdg.pc_build.checking.exception.ApranqyQichAException;
-import com.bdg.pc_build.checking.exception.ProductNotFoundException;
-import com.bdg.pc_build.checking.exception.SameNameDifferentDescriptionException;
+import com.bdg.pc_build.exception.ApranqyQichAException;
+import com.bdg.pc_build.exception.ProductNotFoundException;
+import com.bdg.pc_build.exception.SameNameDifferentDescriptionException;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
@@ -453,17 +453,58 @@ public class ProductServiceImpl implements ProductService {
         return SpeakerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, speakerDAO));
     }
 
-    @Override
-    public ProductDTO findProductByName(final String name){
-        Optional<aCase> optionalACase = caseDAO.findByName(name);
-        if (optionalACase.isPresent()){
-            return CaseDTO.initDTOFromEntity(optionalACase.get());
+    private <ENTITY extends Product> ENTITY findProductById(Long id, ProductDAO<ENTITY> dao) {
+        Optional<ENTITY> result = dao.findById(id);
+        return result.orElseThrow(() -> new ProductNotFoundException("aaa"));
+    }
+
+    public ProductDTO findById(final Long id) {
+        if (id >= 1 && id <= 300) {
+            return CaseDTO.initDTOFromEntity(findProductById(id, caseDAO));
         }
-        Optional<Cooler> optionalCooler = coolerDAO.findByName(name);
-        if (optionalCooler.isPresent()){
-            return CoolerDTO.initDTOFromEntity(optionalCooler.get());
+        if (id >= 301 && id <= 600) {
+            return CoolerDTO.initDTOFromEntity(findProductById(id, coolerDAO));
         }
-        return null; //TODO
+        if (id >= 601 && id <= 900) {
+            return CPUDTO.initDTOFromEntity(findProductById(id, cpuDAO));
+        }
+        if (id >= 901 && id <= 1200) {
+            return CPUCoolerDTO.initDTOFromEntity(findProductById(id, cpuCoolerDAO));
+        }
+        if (id >= 1201 && id <= 1500) {
+            return GPUDTO.initDTOFromEntity(findProductById(id, gpuDAO));
+        }
+        if (id >= 1501 && id <= 1800) {
+            return InternalHardDriveDTO.initDTOFromEntity(findProductById(id, internalHardDriveDAO));
+        }
+        if (id >= 1801 && id <= 2100) {
+            return MotherboardDTO.initDTOFromEntity(findProductById(id, motherboardDAO));
+        }
+        if (id >= 2101 && id <= 2400) {
+            return PowerSupplyDTO.initDTOFromEntity(findProductById(id, powerSupplyDAO));
+        }
+        if (id >= 2401 && id <= 2700) {
+            return RAMDTO.initDTOFromEntity(findProductById(id, ramDAO));
+        }
+        if (id >= 2701 && id <= 3000) {
+            return ExternalHardDriveDTO.initDTOFromEntity(findProductById(id, externalHardDriveDAO));
+        }
+        if (id >= 3001 && id <= 3300) {
+            return HeadsetDTO.initDTOFromEntity(findProductById(id, headsetDAO));
+        }
+        if (id >= 3301 && id <= 3600) {
+            return KeyboardDTO.initDTOFromEntity(findProductById(id, keyboardDAO));
+        }
+        if (id >= 3601 && id <= 3900) {
+            return MonitorDTO.initDTOFromEntity(findProductById(id, monitorDAO));
+        }
+        if (id >= 3901 && id <= 4200) {
+            return MouseDTO.initDTOFromEntity(findProductById(id, mouseDAO));
+        }
+        if (id >= 4201 && id <= 4500) {
+            return SpeakerDTO.initDTOFromEntity(findProductById(id, speakerDAO));
+        }
+        throw new ProductNotFoundException("aaaaa");
     }
 
     @Override

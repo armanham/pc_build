@@ -1,8 +1,8 @@
 package com.bdg.pc_build.user.service;
 
 import com.bdg.pc_build.authentication.AuthenticationService;
-import com.bdg.pc_build.checking.exception.EmailAlreadyExistsException;
-import com.bdg.pc_build.checking.exception.UserNotFoundException;
+import com.bdg.pc_build.exception.EmailAlreadyExistsException;
+import com.bdg.pc_build.exception.UserNotFoundException;
 import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.user.enumerations.Role;

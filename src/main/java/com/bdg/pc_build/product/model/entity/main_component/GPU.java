@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
@@ -7,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
 import java.util.Objects;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -42,6 +44,9 @@ public class GPU extends Product {
 
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;
+
+    @ManyToMany(mappedBy = "gpus")
+    List<Order> orders;
 
     public GPU(final GPUDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
