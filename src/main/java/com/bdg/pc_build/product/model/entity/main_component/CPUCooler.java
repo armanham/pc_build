@@ -18,6 +18,12 @@ import java.util.Objects;
 @Table(name = "cpu_cooler")
 public class CPUCooler extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_cooler_sequence", initialValue = 901)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "fan_rpm", nullable = false, updatable = false)
     Integer fanRpm;
 

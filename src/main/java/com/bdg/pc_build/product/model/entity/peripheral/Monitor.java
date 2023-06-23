@@ -6,6 +6,7 @@ import com.bdg.pc_build.product.enumerations.MonitorScreenType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Objects;
 
@@ -18,6 +19,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "monitor")
 public class Monitor extends Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "monitor_sequence", initialValue = 3601)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "screen_size", nullable = false, updatable = false)
     Double screenSize;

@@ -18,6 +18,12 @@ import java.util.Objects;
 @Table(name = "keyboard")
 public class Keyboard extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "keyboard_sequence", initialValue = 3301)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "connectivity_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     ConnectivityType connectivityType;

@@ -18,11 +18,11 @@ import java.sql.Timestamp;
 @Getter
 public abstract class Product {
 
-    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_sequence")
-//    @SequenceGenerator(name = "global_sequence", sequenceName = "global_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+////    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_sequence")
+////    @SequenceGenerator(name = "global_sequence", sequenceName = "global_sequence", allocationSize = 1)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
     @Column(name = "name", updatable = false, unique = true)
     String name;

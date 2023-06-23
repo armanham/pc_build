@@ -2,9 +2,7 @@ package com.bdg.pc_build.product.model.entity.peripheral;
 
 import com.bdg.pc_build.product.model.dto.peripheral.ExternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -18,6 +16,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "external_hard_drive")
 public class ExternalHardDrive extends Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "external_hard_drive_sequence", initialValue = 2701)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "capacity", nullable = false, updatable = false)
     Integer capacity;

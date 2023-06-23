@@ -18,6 +18,12 @@ import java.util.Objects;
 @Table(name = "gpu")
 public class GPU extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "gpu_sequence", initialValue = 1201)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "gpu_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     GPUInterfaceType gpuInterfaceType;

@@ -19,6 +19,12 @@ import java.util.Objects;
 @Table(name = "power_supply")
 public class PowerSupply extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "power_supply_sequence", initialValue = 2101)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "efficiency_rating", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     EfficiencyRating efficiencyRating;

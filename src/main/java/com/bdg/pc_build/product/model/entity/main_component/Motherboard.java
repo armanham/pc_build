@@ -22,6 +22,12 @@ import java.util.Objects;
 @Table(name = "motherboard")
 public class Motherboard extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "motherboard_sequence", initialValue = 1801)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "socket_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     SocketType socketType;
