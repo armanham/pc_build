@@ -18,6 +18,12 @@ import java.util.Objects;
 @Table(name = "mouse")
 public class Mouse extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "mouse_sequence", initialValue = 3901)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "connectivity_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     ConnectivityType connectivityType;

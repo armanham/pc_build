@@ -18,6 +18,12 @@ import java.util.Objects;
 @Table(name = "headset")
 public class Headset extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "headset_sequence", initialValue = 3001)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "frequency", nullable = false, updatable = false)
     Integer frequency;
 

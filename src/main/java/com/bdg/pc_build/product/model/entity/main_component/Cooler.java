@@ -2,9 +2,7 @@ package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.product.model.dto.main_component.CoolerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -18,6 +16,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "cooler")
 public class Cooler extends Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "cooler_sequence", initialValue = 301)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "tdp", nullable = false, updatable = false)
     private Integer tdp;

@@ -18,6 +18,12 @@ import java.util.Objects;
 @Table(name = "ram")
 public class RAM extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "ram_sequence", initialValue = 2401)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "ddr_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     DDRType ddrType;

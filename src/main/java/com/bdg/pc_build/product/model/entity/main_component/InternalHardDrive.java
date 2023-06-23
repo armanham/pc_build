@@ -18,6 +18,12 @@ import java.util.Objects;
 @Table(name = "internal_hard_drive")
 public class InternalHardDrive extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "internal_hard_drive_sequence", initialValue = 1501)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "internal_hard_drive_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     InternalHardDriveInterfaceType internalHardDriveInterfaceType;

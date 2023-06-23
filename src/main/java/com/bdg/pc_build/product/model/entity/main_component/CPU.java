@@ -23,6 +23,12 @@ import java.util.Objects;
 @Table(name = "cpu")
 public class CPU extends Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_sequence", initialValue = 601)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "core_count", nullable = false, updatable = false)
     Integer coreCount;
 

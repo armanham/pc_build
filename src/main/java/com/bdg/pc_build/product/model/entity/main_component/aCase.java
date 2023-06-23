@@ -6,6 +6,7 @@ import com.bdg.pc_build.product.enumerations.TowerType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Objects;
 
@@ -17,6 +18,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "a_case")
 public class aCase extends Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
+    @SequenceGenerator(name = "entity_seq", sequenceName = "case_sequence", initialValue = 1)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "max_cpu_cooler_height", nullable = false, updatable = false)
     Double maxCpuCoolerHeight;
