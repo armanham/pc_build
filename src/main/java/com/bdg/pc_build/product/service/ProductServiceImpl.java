@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.service;
 
-import com.bdg.pc_build.exception.ApranqyQichAException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
 import com.bdg.pc_build.exception.SameNameDifferentDescriptionException;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
@@ -85,7 +84,7 @@ public class ProductServiceImpl implements ProductService {
         return repository.save(foundedProduct);
     }
 
-    private <ENTITY extends Product> ENTITY reduceCountByName(
+    private <ENTITY extends Product> ENTITY reduceCountById(
             final Long id,
             final Integer countToBeReduced,
             final ProductDAO<ENTITY> repository
@@ -380,77 +379,77 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public MonitorDTO reduceMonitorCountById(final Long id, final Integer countToBeReduced) {
-        return MonitorDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, monitorDAO));
+        return MonitorDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, monitorDAO));
     }
 
     @Override
     public CaseDTO reduceCaseCountById(final Long id, final Integer countToBeReduced) {
-        return CaseDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, caseDAO));
+        return CaseDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, caseDAO));
     }
 
     @Override
     public CoolerDTO reduceCoolerCountById(final Long id, final Integer countToBeReduced) {
-        return CoolerDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, coolerDAO));
+        return CoolerDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, coolerDAO));
     }
 
     @Override
     public CPUDTO reduceCPUCountById(final Long id, final Integer countToBeReduced) {
-        return CPUDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, cpuDAO));
+        return CPUDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, cpuDAO));
     }
 
     @Override
     public CPUCoolerDTO reduceCPUCoolerCountById(final Long id, final Integer countToBeReduced) {
-        return CPUCoolerDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, cpuCoolerDAO));
+        return CPUCoolerDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, cpuCoolerDAO));
     }
 
     @Override
     public InternalHardDriveDTO reduceInternalHardDriveCountById(final Long id, final Integer countToBeReduced) {
-        return InternalHardDriveDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, internalHardDriveDAO));
+        return InternalHardDriveDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, internalHardDriveDAO));
     }
 
     @Override
     public GPUDTO reduceGPUCountById(final Long id, final Integer countToBeReduced) {
-        return GPUDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, gpuDAO));
+        return GPUDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, gpuDAO));
     }
 
     @Override
     public ExternalHardDriveDTO reduceExternalHardDriveCountById(final Long id, final Integer countToBeReduced) {
-        return ExternalHardDriveDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, externalHardDriveDAO));
+        return ExternalHardDriveDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, externalHardDriveDAO));
     }
 
     @Override
     public MotherboardDTO reduceMotherboardCountById(final Long id, final Integer countToBeReduced) {
-        return MotherboardDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, motherboardDAO));
+        return MotherboardDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, motherboardDAO));
     }
 
     @Override
     public PowerSupplyDTO reducePowerSupplyCountById(final Long id, final Integer countToBeReduced) {
-        return PowerSupplyDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, powerSupplyDAO));
+        return PowerSupplyDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, powerSupplyDAO));
     }
 
     @Override
     public RAMDTO reduceRAMCountById(final Long id, final Integer countToBeReduced) {
-        return RAMDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, ramDAO));
+        return RAMDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, ramDAO));
     }
 
     @Override
     public HeadsetDTO reduceHeadsetCountById(final Long id, final Integer countToBeReduced) {
-        return HeadsetDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, headsetDAO));
+        return HeadsetDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, headsetDAO));
     }
 
     @Override
     public KeyboardDTO reduceKeyboardCountById(final Long id, final Integer countToBeReduced) {
-        return KeyboardDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, keyboardDAO));
+        return KeyboardDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, keyboardDAO));
     }
 
     @Override
     public MouseDTO reduceMouseCountById(final Long id, final Integer countToBeReduced) {
-        return MouseDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, mouseDAO));
+        return MouseDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, mouseDAO));
     }
 
     @Override
     public SpeakerDTO reduceSpeakerCountById(final Long id, final Integer countToBeReduced) {
-        return SpeakerDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, speakerDAO));
+        return SpeakerDTO.initDTOFromEntity(reduceCountById(id, countToBeReduced, speakerDAO));
     }
 
     private <ENTITY extends Product> ENTITY findProductById(Long id, ProductDAO<ENTITY> dao) {
