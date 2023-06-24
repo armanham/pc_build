@@ -7,6 +7,7 @@ import com.bdg.pc_build.product.model.request.creation.main_component.GPUCreatio
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -22,6 +23,7 @@ public class GPUDTO extends ProductDTO {
 
     @Builder
     public GPUDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -33,7 +35,7 @@ public class GPUDTO extends ProductDTO {
             final Double length,
             final Integer tdp
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.gpuInterfaceType = gpuInterfaceType;
         this.memory = memory;
         this.coreClock = coreClock;

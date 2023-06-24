@@ -458,6 +458,7 @@ public class ProductServiceImpl implements ProductService {
         return result.orElseThrow(() -> new ProductNotFoundException("aaa"));
     }
 
+
     public ProductDTO findById(final Long id) {
         if (id >= 1 && id <= 300) {
             return CaseDTO.initDTOFromEntity(findProductById(id, caseDAO));
@@ -580,5 +581,155 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<SpeakerDTO> getAllSpeakers() {
         return findAll(speakerDAO).stream().map(SpeakerDTO::initDTOFromEntity).toList();
+    }
+
+    @Override
+    public Integer getCountByDto(ProductDTO dto){
+        if(dto instanceof CaseDTO caseDTO){
+            return new aCase(caseDTO).getCount();
+        }
+        if(dto instanceof CoolerDTO coolerDTO){
+            return new Cooler(coolerDTO).getCount();
+        }
+        if(dto instanceof CPUDTO cpuDTO){
+            return new CPU(cpuDTO).getCount();
+        }
+        if(dto instanceof CPUCoolerDTO cpuCoolerDTO){
+            return new CPUCooler(cpuCoolerDTO).getCount();
+        }
+        if(dto instanceof GPUDTO gpudto){
+            return new GPU(gpudto).getCount();
+        }
+        if(dto instanceof InternalHardDriveDTO internalHardDriveDTO){
+            return new InternalHardDrive(internalHardDriveDTO).getCount();
+        }
+        if(dto instanceof MotherboardDTO motherboardDTO){
+            return new Motherboard(motherboardDTO).getCount();
+        }
+        if(dto instanceof PowerSupplyDTO powerSupplyDTO){
+            return new PowerSupply(powerSupplyDTO).getCount();
+        }
+        if(dto instanceof RAMDTO ramDTO){
+            return new RAM(ramDTO).getCount();
+        }
+        if(dto instanceof ExternalHardDriveDTO externalHardDriveDTO){
+            return new ExternalHardDrive(externalHardDriveDTO).getCount();
+        }
+        if(dto instanceof HeadsetDTO headsetDTO){
+            return new Headset(headsetDTO).getCount();
+        }
+        if(dto instanceof KeyboardDTO keyboardDTO){
+            return new Keyboard(keyboardDTO).getCount();
+        }
+        if(dto instanceof MonitorDTO caseDTO){
+            return new Monitor(caseDTO).getCount();
+        }
+        if(dto instanceof MouseDTO mouseDTO){
+            return new Mouse(mouseDTO).getCount();
+        }
+        if(dto instanceof SpeakerDTO speakerDTO){
+            return new Speaker(speakerDTO).getCount();
+        }
+        return 0;
+    }
+
+    @Override
+    public void reduceCountByDto(ProductDTO dto, Integer count){
+        if(dto instanceof CaseDTO){
+            reduceCaseCountByName(dto.getName(), count);
+        }
+        if(dto instanceof CoolerDTO){
+            reduceCoolerCountByName(dto.getName(), count);
+        }
+        if(dto instanceof CPUDTO){
+            reduceCPUCountByName(dto.getName(), count);
+        }
+        if(dto instanceof CPUCoolerDTO){
+            reduceCPUCoolerCountByName(dto.getName(), count);
+        }
+        if(dto instanceof GPUDTO){
+            reduceGPUCountByName(dto.getName(), count);
+        }
+        if(dto instanceof InternalHardDriveDTO){
+            reduceInternalHardDriveCountByName(dto.getName(), count);
+        }
+        if(dto instanceof MotherboardDTO){
+            reduceMotherboardCountByName(dto.getName(), count);
+        }
+        if(dto instanceof PowerSupplyDTO){
+            reducePowerSupplyCountByName(dto.getName(), count);
+        }
+        if(dto instanceof RAMDTO){
+            reduceRAMCountByName(dto.getName(), count);
+        }
+        if(dto instanceof ExternalHardDriveDTO){
+            reduceExternalHardDriveCountByName(dto.getName(), count);
+        }
+        if(dto instanceof HeadsetDTO){
+            reduceHeadsetCountByName(dto.getName(), count);
+        }
+        if(dto instanceof KeyboardDTO){
+            reduceKeyboardCountByName(dto.getName(), count);
+        }
+        if(dto instanceof MonitorDTO){
+            reduceMonitorCountByName(dto.getName(), count);
+        }
+        if(dto instanceof MouseDTO){
+            reduceMouseCountByName(dto.getName(), count);
+        }
+        if(dto instanceof SpeakerDTO){
+            reduceSpeakerCountByName(dto.getName(), count);
+        }
+    }
+
+
+    @Override
+    public void saveProductByDto(ProductDTO dto){
+        if(dto instanceof CaseDTO caseDTO){
+            saveCase(caseDTO);
+        }
+        if(dto instanceof CoolerDTO coolerDTO){
+            saveCooler(coolerDTO);
+        }
+        if(dto instanceof CPUDTO cpuDTO){
+            saveCPU(cpuDTO);
+        }
+        if(dto instanceof CPUCoolerDTO cpuCoolerDTO){
+            saveCpuCooler(cpuCoolerDTO);
+        }
+        if(dto instanceof GPUDTO gpudto){
+            saveGPU(gpudto);
+        }
+        if(dto instanceof InternalHardDriveDTO internalHardDriveDTO){
+            saveInternalHardDrive(internalHardDriveDTO);
+        }
+        if(dto instanceof MotherboardDTO motherboardDTO){
+            saveMotherboard(motherboardDTO);
+        }
+        if(dto instanceof PowerSupplyDTO powerSupplyDTO){
+            savePowerSupply(powerSupplyDTO);
+        }
+        if(dto instanceof RAMDTO ramDTO){
+            saveRAM(ramDTO);
+        }
+        if(dto instanceof ExternalHardDriveDTO externalHardDriveDTO){
+            saveExternalHardDrive(externalHardDriveDTO);
+        }
+        if(dto instanceof HeadsetDTO headsetDTO){
+            saveHeadset(headsetDTO);
+        }
+        if(dto instanceof KeyboardDTO keyboardDTO){
+            saveKeyboard(keyboardDTO);
+        }
+        if(dto instanceof MonitorDTO monitorDTO){
+            reduceMonitorCountByName(monitorDTO.getName(), 13);
+            saveMonitor(monitorDTO);
+        }
+        if(dto instanceof MouseDTO mouseDTO){
+            saveMouse(mouseDTO);
+        }
+        if(dto instanceof SpeakerDTO speakerDTO){
+            saveSpeaker(speakerDTO);
+        }
     }
 }

@@ -60,4 +60,5 @@ public class Keyboard extends Product {
     public int hashCode() {
         return Objects.hash(connectivityType, cableLength, dimension, weight);
     }
+    
 }

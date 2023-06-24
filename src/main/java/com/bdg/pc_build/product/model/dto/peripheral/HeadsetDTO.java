@@ -7,6 +7,7 @@ import com.bdg.pc_build.product.model.request.creation.peripheral.HeadsetCreatio
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -19,6 +20,7 @@ public class HeadsetDTO extends ProductDTO {
 
     @Builder
     public HeadsetDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -27,7 +29,7 @@ public class HeadsetDTO extends ProductDTO {
             final ConnectivityType connectivityType,
             final Double cableLength
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.frequency = frequency;
         this.connectivityType = connectivityType;
         this.cableLength = cableLength;

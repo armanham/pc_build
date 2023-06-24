@@ -8,6 +8,7 @@ import com.bdg.pc_build.product.model.request.creation.main_component.CPUCoolerC
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -20,6 +21,7 @@ public class CPUCoolerDTO extends ProductDTO {
 
     @Builder
     public CPUCoolerDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -28,7 +30,7 @@ public class CPUCoolerDTO extends ProductDTO {
             final SocketType socketType,
             final Integer tdp
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.fanRpm = fanRpm;
         this.socketType = socketType;
         this.tdp = tdp;

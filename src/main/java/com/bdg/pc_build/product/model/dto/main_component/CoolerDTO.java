@@ -6,6 +6,7 @@ import com.bdg.pc_build.product.model.request.creation.main_component.CoolerCrea
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -16,13 +17,14 @@ public class CoolerDTO extends ProductDTO {
 
     @Builder
     public CoolerDTO(
+            final Long id,
             final  String name,
             final Double price,
             final Double purchasedPrice,
             final Integer count,
             final Integer tdp
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.tdp = tdp;
     }
 

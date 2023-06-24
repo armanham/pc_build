@@ -7,6 +7,7 @@ import com.bdg.pc_build.product.model.request.creation.main_component.InternalHa
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -19,6 +20,7 @@ public class InternalHardDriveDTO extends ProductDTO {
 
     @Builder
     public InternalHardDriveDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -27,7 +29,7 @@ public class InternalHardDriveDTO extends ProductDTO {
             final Integer capacity,
             final Integer tdp
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.internalHardDriveInterfaceType = internalHardDriveInterfaceType;
         this.capacity = capacity;
         this.tdp = tdp;

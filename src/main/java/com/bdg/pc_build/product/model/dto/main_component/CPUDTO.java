@@ -7,6 +7,7 @@ import com.bdg.pc_build.product.model.request.creation.main_component.CPUCreatio
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -23,6 +24,7 @@ public class CPUDTO extends ProductDTO {
     @Builder
 
     public CPUDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -34,7 +36,7 @@ public class CPUDTO extends ProductDTO {
             final String integratedGraphics,
             final SocketType socketType
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.coreCount = coreCount;
         this.coreClock = coreClock;
         this.boostClock = boostClock;

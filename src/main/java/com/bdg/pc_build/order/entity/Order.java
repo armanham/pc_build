@@ -11,7 +11,9 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -69,7 +71,7 @@ public class Order {
 
     @ManyToMany
     @JoinTable(name = "order_headset")
-    List<Headset> headsets;
+    List<Headset> headsets = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_keyboard")
@@ -77,7 +79,7 @@ public class Order {
 
     @ManyToMany
     @JoinTable(name = "order_monitor")
-    List<Monitor> monitors;
+    List<Monitor> monitors = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_mouse")
@@ -87,16 +89,63 @@ public class Order {
     @JoinTable(name = "order_speaker")
     List<Speaker> speakers;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+//    User user;
 
     @Column(name = "total_price", nullable = false)
-    Double totalPrice;
+    BigDecimal totalPrice;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     Timestamp createdAt;
 
+
+    public void addCase(aCase acase){
+        this.cases.add(acase);
+    }
+    public void addCooler(Cooler cooler){
+        this.coolers.add(cooler);
+    }
+    public void addCPU(CPU cpu){
+        this.cpus.add(cpu);
+    }
+    public void addCPUCooler(CPUCooler cpuCooler){
+        this.cpuCoolers.add(cpuCooler);
+    }
+    public void addGPU(GPU gpu){
+        this.gpus.add(gpu);
+    }
+    public void addInternalHardDrive(InternalHardDrive internalHardDrive){
+        this.internalHardDrives.add(internalHardDrive);
+    }
+    public void addMotherboard(Motherboard motherboard){
+        this.motherboards.add(motherboard);
+    }
+    public void addPowerSupply(PowerSupply powerSupply){
+        this.powerSupplies.add(powerSupply);
+    }
+    public void addRAM(RAM ram){
+        this.rams.add(ram);
+    }
+    public void addExternalHardDrive(ExternalHardDrive externalHardDrive){
+        this.externalHardDrives.add(externalHardDrive);
+    }
+    public void addHeadset(Headset headset){
+        this.headsets.add(headset);
+    }
+    public void addKeyboard(Keyboard keyboard){
+        this.keyboards.add(keyboard);
+    }
+
+    public void addMonitor(Monitor monitor){
+        this.monitors.add(monitor);
+    }
+    public void addMouse(Mouse mouse){
+        this.mice.add(mouse);
+    }
+    public void addSpeaker(Speaker speaker){
+        this.speakers.add(speaker);
+    }
 
 }

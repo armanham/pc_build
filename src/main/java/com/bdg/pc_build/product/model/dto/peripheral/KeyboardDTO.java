@@ -7,6 +7,7 @@ import com.bdg.pc_build.product.model.request.creation.peripheral.KeyboardCreati
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -20,6 +21,7 @@ public class KeyboardDTO extends ProductDTO {
 
     @Builder
     public KeyboardDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -29,7 +31,7 @@ public class KeyboardDTO extends ProductDTO {
             final String dimension,
             final Double weight
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.connectivityType = connectivityType;
         this.cableLength = cableLength;
         this.dimension = dimension;

@@ -10,6 +10,7 @@ public interface ProductService {
 
     ProductDTO findById(Long id);
 
+
     //save methods for display components
     MonitorDTO saveMonitor(MonitorDTO dto);
 
@@ -179,4 +180,8 @@ public interface ProductService {
     List<MouseDTO> getAllMice();
 
     List<SpeakerDTO> getAllSpeakers();
+
+    Integer getCountByDto(ProductDTO dto);
+    void reduceCountByDto(ProductDTO dto, Integer count);
+    void saveProductByDto(ProductDTO dto);
 }

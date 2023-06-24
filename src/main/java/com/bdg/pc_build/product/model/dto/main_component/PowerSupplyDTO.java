@@ -8,6 +8,7 @@ import com.bdg.pc_build.product.model.request.creation.main_component.PowerSuppl
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -21,6 +22,7 @@ public class PowerSupplyDTO extends ProductDTO {
 
     @Builder
     public PowerSupplyDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -29,7 +31,7 @@ public class PowerSupplyDTO extends ProductDTO {
             final Integer wattage,
             final ModularType modularType,
             final Integer tdp) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.efficiencyRating = efficiencyRating;
         this.wattage = wattage;
         this.modularType = modularType;

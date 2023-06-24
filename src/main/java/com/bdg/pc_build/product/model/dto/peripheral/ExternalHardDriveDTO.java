@@ -6,6 +6,7 @@ import com.bdg.pc_build.product.model.request.creation.peripheral.ExternalHardDr
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -17,6 +18,7 @@ public class ExternalHardDriveDTO extends ProductDTO {
 
     @Builder
     public ExternalHardDriveDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -24,7 +26,7 @@ public class ExternalHardDriveDTO extends ProductDTO {
             final Integer capacity,
             final Integer tdp
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.capacity = capacity;
         this.tdp = tdp;
     }

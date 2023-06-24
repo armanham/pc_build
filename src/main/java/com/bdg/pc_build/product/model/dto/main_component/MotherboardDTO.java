@@ -10,6 +10,7 @@ import com.bdg.pc_build.product.model.request.creation.main_component.Motherboar
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -27,6 +28,7 @@ public class MotherboardDTO extends ProductDTO {
 
     @Builder
     public MotherboardDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -40,7 +42,7 @@ public class MotherboardDTO extends ProductDTO {
             final GPUInterfaceType gpuInterfaceType,
             final Integer tdp
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.socketType = socketType;
         this.atxType = atxtype;
         this.memoryMax = memoryMax;

@@ -19,6 +19,7 @@ public class MonitorDTO extends ProductDTO {
 
     @Builder
     public MonitorDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -27,7 +28,7 @@ public class MonitorDTO extends ProductDTO {
             final Integer refreshRate,
             final MonitorScreenType screenType
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.screenSize = screenSize;
         this.refreshRate = refreshRate;
         this.screenType = screenType;

@@ -7,6 +7,7 @@ import com.bdg.pc_build.product.model.request.creation.peripheral.MouseCreationR
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -20,6 +21,7 @@ public class MouseDTO extends ProductDTO {
 
     @Builder
     public MouseDTO(
+            final Long id,
             final String name,
             final Double price,
             final Double purchasedPrice,
@@ -29,7 +31,7 @@ public class MouseDTO extends ProductDTO {
             final Double cableLength,
             final Double weight
     ) {
-        super(name, price, purchasedPrice, count);
+        super(id, name, price, purchasedPrice, count);
         this.connectivityType = connectivityType;
         this.maxResolution = maxResolution;
         this.cableLength = cableLength;
