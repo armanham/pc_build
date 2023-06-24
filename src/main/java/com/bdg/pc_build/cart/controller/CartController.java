@@ -2,7 +2,7 @@ package com.bdg.pc_build.cart.controller;
 
 import com.bdg.pc_build.cart.service.CartService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.shopping_cart.CartItem;
+import com.bdg.pc_build.cart.model.CartItem;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

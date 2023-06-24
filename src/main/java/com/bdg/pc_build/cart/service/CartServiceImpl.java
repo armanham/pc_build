@@ -3,7 +3,7 @@ package com.bdg.pc_build.cart.service;
 import com.bdg.pc_build.order.service.OrderService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.service.ProductService;
-import com.bdg.pc_build.shopping_cart.CartItem;
+import com.bdg.pc_build.cart.model.CartItem;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
