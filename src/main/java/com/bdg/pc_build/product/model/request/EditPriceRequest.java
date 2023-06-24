@@ -4,13 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record EditPriceRequest(
 
-        @JsonProperty(value = "product_name")
-        String productName,
+        @JsonProperty(value = "product_id")
+        Long productId,
 
         @JsonProperty(value = "new_price")
         Double newPrice
 ) {
-        public EditPriceRequest {
-                //TODO VALIDATIONS
-        }
+        //todo validations
 }

@@ -75,7 +75,7 @@ public class CartServiceImpl implements CartService{
                 throw new IllegalArgumentException("Not enough products");
             }
             else{
-                productService.reduceCountByDto(entry.getKey(), entry.getValue());
+               // productService.reduceCountByDto(entry.getKey(), entry.getValue()); todo
             }
         }
         orderService.save(products.keySet(), getTotal());

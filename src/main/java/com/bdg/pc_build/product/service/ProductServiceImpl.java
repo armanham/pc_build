@@ -71,14 +71,14 @@ public class ProductServiceImpl implements ProductService {
         return repository.findAllProductsByPurchasedPriceBetween(minPurchasedPrice, maxPurchasedPrice);
     }
 
-    private <ENTITY extends Product> ENTITY updatePriceByName(
-            final String name,
+    private <ENTITY extends Product> ENTITY updatePriceById(
+            final Long id,
             final Double newPrice,
             final ProductDAO<ENTITY> repository
     ) {
-        Optional<ENTITY> optionalENTITY = repository.findByName(name);
+        Optional<ENTITY> optionalENTITY = repository.findById(id);
         if (optionalENTITY.isEmpty()) {
-            throw new ProductNotFoundException(optionalENTITY.getClass(), name);
+            throw new IllegalArgumentException(); //todo
         }
         ENTITY foundedProduct = optionalENTITY.get();
         foundedProduct.setPrice(newPrice);
@@ -86,19 +86,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private <ENTITY extends Product> ENTITY reduceCountByName(
-            final String name,
+            final Long id,
             final Integer countToBeReduced,
             final ProductDAO<ENTITY> repository
     ) {
-        Optional<ENTITY> optionalENTITY = repository.findByName(name);
+        Optional<ENTITY> optionalENTITY = repository.findById(id);
         if (optionalENTITY.isEmpty()) {
-            throw new ProductNotFoundException(optionalENTITY.getClass(), name);
+            throw new IllegalArgumentException(); //todo
         }
 
         ENTITY foundedProduct = optionalENTITY.get();
 
         if (foundedProduct.getCount() < countToBeReduced) {
-            throw new ApranqyQichAException(foundedProduct.getClass(), name, foundedProduct.getCount());
+            throw new IllegalArgumentException(); //todo
         }
         foundedProduct.setCount(foundedProduct.getCount() - countToBeReduced);
         return repository.save(foundedProduct);
@@ -304,153 +304,153 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public MonitorDTO updateMonitorPriceByName(final String name, final Double newPrice) {
-        return MonitorDTO.initDTOFromEntity(updatePriceByName(name, newPrice, monitorDAO));
+    public MonitorDTO updateMonitorPriceById(final Long id, final Double newPrice) {
+        return MonitorDTO.initDTOFromEntity(updatePriceById(id, newPrice, monitorDAO));
     }
 
     @Override
-    public CaseDTO updateCasePriceByName(final String name, final Double newPrice) {
-        return CaseDTO.initDTOFromEntity(updatePriceByName(name, newPrice, caseDAO));
+    public CaseDTO updateCasePriceById(final Long id, final Double newPrice) {
+        return CaseDTO.initDTOFromEntity(updatePriceById(id, newPrice, caseDAO));
     }
 
     @Override
-    public CoolerDTO updateCoolerPriceByName(final String name, final Double newPrice) {
-        return CoolerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, coolerDAO));
+    public CoolerDTO updateCoolerPriceById(final Long id, final Double newPrice) {
+        return CoolerDTO.initDTOFromEntity(updatePriceById(id, newPrice, coolerDAO));
     }
 
     @Override
-    public CPUDTO updateCpuPriceByName(final String name, final Double newPrice) {
-        return CPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuDAO));
+    public CPUDTO updateCpuPriceById(final Long id, final Double newPrice) {
+        return CPUDTO.initDTOFromEntity(updatePriceById(id, newPrice, cpuDAO));
     }
 
     @Override
-    public CPUCoolerDTO updateCpuCoolerPriceByName(final String name, final Double newPrice) {
-        return CPUCoolerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, cpuCoolerDAO));
+    public CPUCoolerDTO updateCpuCoolerPriceById(final Long id, final Double newPrice) {
+        return CPUCoolerDTO.initDTOFromEntity(updatePriceById(id, newPrice, cpuCoolerDAO));
     }
 
     @Override
-    public InternalHardDriveDTO updateInternalHardDrivePriceByName(final String name, final Double newPrice) {
-        return InternalHardDriveDTO.initDTOFromEntity(updatePriceByName(name, newPrice, internalHardDriveDAO));
+    public InternalHardDriveDTO updateInternalHardDrivePriceById(final Long id, final Double newPrice) {
+        return InternalHardDriveDTO.initDTOFromEntity(updatePriceById(id, newPrice, internalHardDriveDAO));
     }
 
     @Override
-    public GPUDTO updateGpuPriceByName(final String name, final Double newPrice) {
-        return GPUDTO.initDTOFromEntity(updatePriceByName(name, newPrice, gpuDAO));
+    public GPUDTO updateGpuPriceById(final Long id, final Double newPrice) {
+        return GPUDTO.initDTOFromEntity(updatePriceById(id, newPrice, gpuDAO));
     }
 
     @Override
-    public ExternalHardDriveDTO updateExternalHardDrivePriceByName(final String name, final Double newPrice) {
-        return ExternalHardDriveDTO.initDTOFromEntity(updatePriceByName(name, newPrice, externalHardDriveDAO));
+    public ExternalHardDriveDTO updateExternalHardDrivePriceById(final Long id, final Double newPrice) {
+        return ExternalHardDriveDTO.initDTOFromEntity(updatePriceById(id, newPrice, externalHardDriveDAO));
     }
 
     @Override
-    public MotherboardDTO updateMotherboardPriceByName(final String name, final Double newPrice) {
-        return MotherboardDTO.initDTOFromEntity(updatePriceByName(name, newPrice, motherboardDAO));
+    public MotherboardDTO updateMotherboardPriceById(final Long id, final Double newPrice) {
+        return MotherboardDTO.initDTOFromEntity(updatePriceById(id, newPrice, motherboardDAO));
     }
 
     @Override
-    public PowerSupplyDTO updatePowerSupplyPriceByName(final String name, final Double newPrice) {
-        return PowerSupplyDTO.initDTOFromEntity(updatePriceByName(name, newPrice, powerSupplyDAO));
+    public PowerSupplyDTO updatePowerSupplyPriceById(final Long id, final Double newPrice) {
+        return PowerSupplyDTO.initDTOFromEntity(updatePriceById(id, newPrice, powerSupplyDAO));
     }
 
     @Override
-    public RAMDTO updateRamPriceByName(final String name, final Double newPrice) {
-        return RAMDTO.initDTOFromEntity(updatePriceByName(name, newPrice, ramDAO));
+    public RAMDTO updateRamPriceById(final Long id, final Double newPrice) {
+        return RAMDTO.initDTOFromEntity(updatePriceById(id, newPrice, ramDAO));
     }
 
     @Override
-    public HeadsetDTO updateHeadsetPriceByName(final String name, final Double newPrice) {
-        return HeadsetDTO.initDTOFromEntity(updatePriceByName(name, newPrice, headsetDAO));
+    public HeadsetDTO updateHeadsetPriceById(final Long id, final Double newPrice) {
+        return HeadsetDTO.initDTOFromEntity(updatePriceById(id, newPrice, headsetDAO));
     }
 
     @Override
-    public KeyboardDTO updateKeyboardPriceByName(final String name, final Double newPrice) {
-        return KeyboardDTO.initDTOFromEntity(updatePriceByName(name, newPrice, keyboardDAO));
+    public KeyboardDTO updateKeyboardPriceById(final Long id, final Double newPrice) {
+        return KeyboardDTO.initDTOFromEntity(updatePriceById(id, newPrice, keyboardDAO));
     }
 
     @Override
-    public MouseDTO updateMousePriceByName(final String name, final Double newPrice) {
-        return MouseDTO.initDTOFromEntity(updatePriceByName(name, newPrice, mouseDAO));
+    public MouseDTO updateMousePriceById(final Long id, final Double newPrice) {
+        return MouseDTO.initDTOFromEntity(updatePriceById(id, newPrice, mouseDAO));
     }
 
     @Override
-    public SpeakerDTO updateSpeakerPriceByName(final String name, final Double newPrice) {
-        return SpeakerDTO.initDTOFromEntity(updatePriceByName(name, newPrice, speakerDAO));
+    public SpeakerDTO updateSpeakerPriceById(final Long id, final Double newPrice) {
+        return SpeakerDTO.initDTOFromEntity(updatePriceById(id, newPrice, speakerDAO));
     }
 
     @Override
-    public MonitorDTO reduceMonitorCountByName(final String name, final Integer countToBeReduced) {
-        return MonitorDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, monitorDAO));
+    public MonitorDTO reduceMonitorCountById(final Long id, final Integer countToBeReduced) {
+        return MonitorDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, monitorDAO));
     }
 
     @Override
-    public CaseDTO reduceCaseCountByName(final String name, final Integer countToBeReduced) {
-        return CaseDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, caseDAO));
+    public CaseDTO reduceCaseCountById(final Long id, final Integer countToBeReduced) {
+        return CaseDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, caseDAO));
     }
 
     @Override
-    public CoolerDTO reduceCoolerCountByName(final String name, final Integer countToBeReduced) {
-        return CoolerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, coolerDAO));
+    public CoolerDTO reduceCoolerCountById(final Long id, final Integer countToBeReduced) {
+        return CoolerDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, coolerDAO));
     }
 
     @Override
-    public CPUDTO reduceCPUCountByName(final String name, final Integer countToBeReduced) {
-        return CPUDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, cpuDAO));
+    public CPUDTO reduceCPUCountById(final Long id, final Integer countToBeReduced) {
+        return CPUDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, cpuDAO));
     }
 
     @Override
-    public CPUCoolerDTO reduceCPUCoolerCountByName(final String name, final Integer countToBeReduced) {
-        return CPUCoolerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, cpuCoolerDAO));
+    public CPUCoolerDTO reduceCPUCoolerCountById(final Long id, final Integer countToBeReduced) {
+        return CPUCoolerDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, cpuCoolerDAO));
     }
 
     @Override
-    public InternalHardDriveDTO reduceInternalHardDriveCountByName(final String name, final Integer countToBeReduced) {
-        return InternalHardDriveDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, internalHardDriveDAO));
+    public InternalHardDriveDTO reduceInternalHardDriveCountById(final Long id, final Integer countToBeReduced) {
+        return InternalHardDriveDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, internalHardDriveDAO));
     }
 
     @Override
-    public GPUDTO reduceGPUCountByName(final String name, final Integer countToBeReduced) {
-        return GPUDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, gpuDAO));
+    public GPUDTO reduceGPUCountById(final Long id, final Integer countToBeReduced) {
+        return GPUDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, gpuDAO));
     }
 
     @Override
-    public ExternalHardDriveDTO reduceExternalHardDriveCountByName(final String name, final Integer countToBeReduced) {
-        return ExternalHardDriveDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, externalHardDriveDAO));
+    public ExternalHardDriveDTO reduceExternalHardDriveCountById(final Long id, final Integer countToBeReduced) {
+        return ExternalHardDriveDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, externalHardDriveDAO));
     }
 
     @Override
-    public MotherboardDTO reduceMotherboardCountByName(final String name, final Integer countToBeReduced) {
-        return MotherboardDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, motherboardDAO));
+    public MotherboardDTO reduceMotherboardCountById(final Long id, final Integer countToBeReduced) {
+        return MotherboardDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, motherboardDAO));
     }
 
     @Override
-    public PowerSupplyDTO reducePowerSupplyCountByName(final String name, final Integer countToBeReduced) {
-        return PowerSupplyDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, powerSupplyDAO));
+    public PowerSupplyDTO reducePowerSupplyCountById(final Long id, final Integer countToBeReduced) {
+        return PowerSupplyDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, powerSupplyDAO));
     }
 
     @Override
-    public RAMDTO reduceRAMCountByName(final String name, final Integer countToBeReduced) {
-        return RAMDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, ramDAO));
+    public RAMDTO reduceRAMCountById(final Long id, final Integer countToBeReduced) {
+        return RAMDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, ramDAO));
     }
 
     @Override
-    public HeadsetDTO reduceHeadsetCountByName(final String name, final Integer countToBeReduced) {
-        return HeadsetDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, headsetDAO));
+    public HeadsetDTO reduceHeadsetCountById(final Long id, final Integer countToBeReduced) {
+        return HeadsetDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, headsetDAO));
     }
 
     @Override
-    public KeyboardDTO reduceKeyboardCountByName(final String name, final Integer countToBeReduced) {
-        return KeyboardDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, keyboardDAO));
+    public KeyboardDTO reduceKeyboardCountById(final Long id, final Integer countToBeReduced) {
+        return KeyboardDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, keyboardDAO));
     }
 
     @Override
-    public MouseDTO reduceMouseCountByName(final String name, final Integer countToBeReduced) {
-        return MouseDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, mouseDAO));
+    public MouseDTO reduceMouseCountById(final Long id, final Integer countToBeReduced) {
+        return MouseDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, mouseDAO));
     }
 
     @Override
-    public SpeakerDTO reduceSpeakerCountByName(final String name, final Integer countToBeReduced) {
-        return SpeakerDTO.initDTOFromEntity(reduceCountByName(name, countToBeReduced, speakerDAO));
+    public SpeakerDTO reduceSpeakerCountById(final Long id, final Integer countToBeReduced) {
+        return SpeakerDTO.initDTOFromEntity(reduceCountByName(id, countToBeReduced, speakerDAO));
     }
 
     private <ENTITY extends Product> ENTITY findProductById(Long id, ProductDAO<ENTITY> dao) {
@@ -581,155 +581,5 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<SpeakerDTO> getAllSpeakers() {
         return findAll(speakerDAO).stream().map(SpeakerDTO::initDTOFromEntity).toList();
-    }
-
-    @Override
-    public Integer getCountByDto(ProductDTO dto){
-        if(dto instanceof CaseDTO caseDTO){
-            return new aCase(caseDTO).getCount();
-        }
-        if(dto instanceof CoolerDTO coolerDTO){
-            return new Cooler(coolerDTO).getCount();
-        }
-        if(dto instanceof CPUDTO cpuDTO){
-            return new CPU(cpuDTO).getCount();
-        }
-        if(dto instanceof CPUCoolerDTO cpuCoolerDTO){
-            return new CPUCooler(cpuCoolerDTO).getCount();
-        }
-        if(dto instanceof GPUDTO gpudto){
-            return new GPU(gpudto).getCount();
-        }
-        if(dto instanceof InternalHardDriveDTO internalHardDriveDTO){
-            return new InternalHardDrive(internalHardDriveDTO).getCount();
-        }
-        if(dto instanceof MotherboardDTO motherboardDTO){
-            return new Motherboard(motherboardDTO).getCount();
-        }
-        if(dto instanceof PowerSupplyDTO powerSupplyDTO){
-            return new PowerSupply(powerSupplyDTO).getCount();
-        }
-        if(dto instanceof RAMDTO ramDTO){
-            return new RAM(ramDTO).getCount();
-        }
-        if(dto instanceof ExternalHardDriveDTO externalHardDriveDTO){
-            return new ExternalHardDrive(externalHardDriveDTO).getCount();
-        }
-        if(dto instanceof HeadsetDTO headsetDTO){
-            return new Headset(headsetDTO).getCount();
-        }
-        if(dto instanceof KeyboardDTO keyboardDTO){
-            return new Keyboard(keyboardDTO).getCount();
-        }
-        if(dto instanceof MonitorDTO caseDTO){
-            return new Monitor(caseDTO).getCount();
-        }
-        if(dto instanceof MouseDTO mouseDTO){
-            return new Mouse(mouseDTO).getCount();
-        }
-        if(dto instanceof SpeakerDTO speakerDTO){
-            return new Speaker(speakerDTO).getCount();
-        }
-        return 0;
-    }
-
-    @Override
-    public void reduceCountByDto(ProductDTO dto, Integer count){
-        if(dto instanceof CaseDTO){
-            reduceCaseCountByName(dto.getName(), count);
-        }
-        if(dto instanceof CoolerDTO){
-            reduceCoolerCountByName(dto.getName(), count);
-        }
-        if(dto instanceof CPUDTO){
-            reduceCPUCountByName(dto.getName(), count);
-        }
-        if(dto instanceof CPUCoolerDTO){
-            reduceCPUCoolerCountByName(dto.getName(), count);
-        }
-        if(dto instanceof GPUDTO){
-            reduceGPUCountByName(dto.getName(), count);
-        }
-        if(dto instanceof InternalHardDriveDTO){
-            reduceInternalHardDriveCountByName(dto.getName(), count);
-        }
-        if(dto instanceof MotherboardDTO){
-            reduceMotherboardCountByName(dto.getName(), count);
-        }
-        if(dto instanceof PowerSupplyDTO){
-            reducePowerSupplyCountByName(dto.getName(), count);
-        }
-        if(dto instanceof RAMDTO){
-            reduceRAMCountByName(dto.getName(), count);
-        }
-        if(dto instanceof ExternalHardDriveDTO){
-            reduceExternalHardDriveCountByName(dto.getName(), count);
-        }
-        if(dto instanceof HeadsetDTO){
-            reduceHeadsetCountByName(dto.getName(), count);
-        }
-        if(dto instanceof KeyboardDTO){
-            reduceKeyboardCountByName(dto.getName(), count);
-        }
-        if(dto instanceof MonitorDTO){
-            reduceMonitorCountByName(dto.getName(), count);
-        }
-        if(dto instanceof MouseDTO){
-            reduceMouseCountByName(dto.getName(), count);
-        }
-        if(dto instanceof SpeakerDTO){
-            reduceSpeakerCountByName(dto.getName(), count);
-        }
-    }
-
-
-    @Override
-    public void saveProductByDto(ProductDTO dto){
-        if(dto instanceof CaseDTO caseDTO){
-            saveCase(caseDTO);
-        }
-        if(dto instanceof CoolerDTO coolerDTO){
-            saveCooler(coolerDTO);
-        }
-        if(dto instanceof CPUDTO cpuDTO){
-            saveCPU(cpuDTO);
-        }
-        if(dto instanceof CPUCoolerDTO cpuCoolerDTO){
-            saveCpuCooler(cpuCoolerDTO);
-        }
-        if(dto instanceof GPUDTO gpudto){
-            saveGPU(gpudto);
-        }
-        if(dto instanceof InternalHardDriveDTO internalHardDriveDTO){
-            saveInternalHardDrive(internalHardDriveDTO);
-        }
-        if(dto instanceof MotherboardDTO motherboardDTO){
-            saveMotherboard(motherboardDTO);
-        }
-        if(dto instanceof PowerSupplyDTO powerSupplyDTO){
-            savePowerSupply(powerSupplyDTO);
-        }
-        if(dto instanceof RAMDTO ramDTO){
-            saveRAM(ramDTO);
-        }
-        if(dto instanceof ExternalHardDriveDTO externalHardDriveDTO){
-            saveExternalHardDrive(externalHardDriveDTO);
-        }
-        if(dto instanceof HeadsetDTO headsetDTO){
-            saveHeadset(headsetDTO);
-        }
-        if(dto instanceof KeyboardDTO keyboardDTO){
-            saveKeyboard(keyboardDTO);
-        }
-        if(dto instanceof MonitorDTO monitorDTO){
-            reduceMonitorCountByName(monitorDTO.getName(), 13);
-            saveMonitor(monitorDTO);
-        }
-        if(dto instanceof MouseDTO mouseDTO){
-            saveMouse(mouseDTO);
-        }
-        if(dto instanceof SpeakerDTO speakerDTO){
-            saveSpeaker(speakerDTO);
-        }
     }
 }

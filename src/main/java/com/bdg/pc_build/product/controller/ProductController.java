@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/product")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
-public class ProductManagementController {
+public class ProductController {
 
     ProductService productService;
 
@@ -153,35 +153,35 @@ public class ProductManagementController {
     ) {
         switch (componentType) {
             case "case" ->
-                    ResponseEntity.ok().body(productService.updateCasePriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateCasePriceById(request.productId(), request.newPrice()));
             case "cooler" ->
-                    ResponseEntity.ok().body(productService.updateCoolerPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateCoolerPriceById(request.productId(), request.newPrice()));
             case "cpu-cooler" ->
-                    ResponseEntity.ok().body(productService.updateCpuCoolerPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateCpuCoolerPriceById(request.productId(), request.newPrice()));
             case "cpu" ->
-                    ResponseEntity.ok().body(productService.updateCpuPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateCpuPriceById(request.productId(), request.newPrice()));
             case "gpu" ->
-                    ResponseEntity.ok().body(productService.updateGpuPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateGpuPriceById(request.productId(), request.newPrice()));
             case "internal-hard-drive" ->
-                    ResponseEntity.ok().body(productService.updateInternalHardDrivePriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateInternalHardDrivePriceById(request.productId(), request.newPrice()));
             case "motherboard" ->
-                    ResponseEntity.ok().body(productService.updateMotherboardPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateMotherboardPriceById(request.productId(), request.newPrice()));
             case "power-supply" ->
-                    ResponseEntity.ok().body(productService.updatePowerSupplyPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updatePowerSupplyPriceById(request.productId(), request.newPrice()));
             case "ram" ->
-                    ResponseEntity.ok().body(productService.updateRamPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateRamPriceById(request.productId(), request.newPrice()));
             case "external-hard-drive" ->
-                    ResponseEntity.ok().body(productService.updateExternalHardDrivePriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateExternalHardDrivePriceById(request.productId(), request.newPrice()));
             case "headset" ->
-                    ResponseEntity.ok().body(productService.updateHeadsetPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateHeadsetPriceById(request.productId(), request.newPrice()));
             case "keyboard" ->
-                    ResponseEntity.ok().body(productService.updateKeyboardPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateKeyboardPriceById(request.productId(), request.newPrice()));
             case "monitor" ->
-                    ResponseEntity.ok().body(productService.updateMonitorPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateMonitorPriceById(request.productId(), request.newPrice()));
             case "mouse" ->
-                    ResponseEntity.ok().body(productService.updateMousePriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateMousePriceById(request.productId(), request.newPrice()));
             case "speaker" ->
-                    ResponseEntity.ok().body(productService.updateSpeakerPriceByName(request.productName(), request.newPrice()));
+                    ResponseEntity.ok().body(productService.updateSpeakerPriceById(request.productId(), request.newPrice()));
             default -> ResponseEntity.badRequest().body("Invalid component type");
         }
         return ResponseEntity.ok().body("");
@@ -195,35 +195,35 @@ public class ProductManagementController {
     ) {
         switch (componentType) {
             case "case" ->
-                    ResponseEntity.ok().body(productService.reduceCaseCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceCaseCountById(request.productId(), request.countToBeReduced()));
             case "cooler" ->
-                    ResponseEntity.ok().body(productService.reduceCoolerCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceCoolerCountById(request.productId(), request.countToBeReduced()));
             case "cpu-cooler" ->
-                    ResponseEntity.ok().body(productService.reduceCPUCoolerCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceCPUCoolerCountById(request.productId(), request.countToBeReduced()));
             case "cpu" ->
-                    ResponseEntity.ok().body(productService.reduceCPUCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceCPUCountById(request.productId(), request.countToBeReduced()));
             case "gpu" ->
-                    ResponseEntity.ok().body(productService.reduceGPUCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceGPUCountById(request.productId(), request.countToBeReduced()));
             case "internal-hard-drive" ->
-                    ResponseEntity.ok().body(productService.reduceInternalHardDriveCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceInternalHardDriveCountById(request.productId(), request.countToBeReduced()));
             case "motherboard" ->
-                    ResponseEntity.ok().body(productService.reduceMotherboardCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceMotherboardCountById(request.productId(), request.countToBeReduced()));
             case "power-supply" ->
-                    ResponseEntity.ok().body(productService.reducePowerSupplyCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reducePowerSupplyCountById(request.productId(), request.countToBeReduced()));
             case "ram" ->
-                    ResponseEntity.ok().body(productService.reduceRAMCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceRAMCountById(request.productId(), request.countToBeReduced()));
             case "external-hard-drive" ->
-                    ResponseEntity.ok().body(productService.reduceExternalHardDriveCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceExternalHardDriveCountById(request.productId(), request.countToBeReduced()));
             case "headset" ->
-                    ResponseEntity.ok().body(productService.reduceHeadsetCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceHeadsetCountById(request.productId(), request.countToBeReduced()));
             case "keyboard" ->
-                    ResponseEntity.ok().body(productService.reduceKeyboardCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceKeyboardCountById(request.productId(), request.countToBeReduced()));
             case "monitor" ->
-                    ResponseEntity.ok().body(productService.reduceMonitorCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceMonitorCountById(request.productId(), request.countToBeReduced()));
             case "mouse" ->
-                    ResponseEntity.ok().body(productService.reduceMouseCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceMouseCountById(request.productId(), request.countToBeReduced()));
             case "speaker" ->
-                    ResponseEntity.ok().body(productService.reduceSpeakerCountByName(request.productName(), request.countToBeReduced()));
+                    ResponseEntity.ok().body(productService.reduceSpeakerCountById(request.productId(), request.countToBeReduced()));
             default -> ResponseEntity.badRequest().body("Invalid component type");
         }
         return ResponseEntity.ok().body("");
