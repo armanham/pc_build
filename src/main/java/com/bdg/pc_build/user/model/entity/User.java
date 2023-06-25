@@ -62,8 +62,8 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     List<DesireLog> desireLogs = new ArrayList<>();
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    List<Order> orders;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    List<Order> orders;
 
     @Builder
     public User(

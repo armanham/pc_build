@@ -7,13 +7,14 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 public interface CartService {
+
     void addProduct(CartItem item);
 
     void removeProduct(CartItem item);
 
     Map<ProductDTO, Integer> getProductsInCart();
 
-    void checkout();
+    void checkout(String authHeader);
 
     BigDecimal getTotal();
 }

@@ -89,9 +89,9 @@ public class Order {
     @JoinTable(name = "order_speaker")
     List<Speaker> speakers;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-//    User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    User user;
 
     @Column(name = "total_price", nullable = false)
     BigDecimal totalPrice;
