@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.model.entity;
 
-import com.bdg.pc_build.exception.ApranqyQichAException;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,13 +48,5 @@ public abstract class Product {
         this.price = price;
         this.purchasedPrice = purchasedPrice;
         this.count = count;
-    }
-
-    public void reduceCount(Integer count){
-        if(this.count < count){
-            //todo
-            throw new IllegalArgumentException();
-        }
-        this.count -= count;
     }
 }

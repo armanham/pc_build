@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
@@ -20,7 +21,7 @@ public class Headset extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "headset_sequence", initialValue = 3001)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "headset_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_HEADSET)
     @Column(name = "id")
     private Long id;
 

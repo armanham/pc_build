@@ -1,6 +1,7 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.main_component.CPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.SocketType;
@@ -27,7 +28,7 @@ public class CPU extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_sequence", initialValue = 601)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_CPU)
     @Column(name = "id")
     private Long id;
 

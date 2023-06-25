@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.MonitorScreenType;
@@ -22,7 +23,7 @@ public class Monitor extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "monitor_sequence", initialValue = 3601)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "monitor_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_MONITOR)
     @Column(name = "id")
     private Long id;
 

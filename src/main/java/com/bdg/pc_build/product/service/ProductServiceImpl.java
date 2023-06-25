@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.bdg.pc_build.product.model.InitialAndMaxValues.*;
+
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -113,77 +115,137 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public MonitorDTO saveMonitor(final MonitorDTO dto) {
-        return MonitorDTO.initDTOFromEntity(save(new Monitor(dto), monitorDAO));
+        Monitor toSave = save(new Monitor(dto), monitorDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_MONITOR || toSave.getId() > FINAL_ID_VALUE_MONITOR) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return MonitorDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public CaseDTO saveCase(final CaseDTO dto) {
-        return CaseDTO.initDTOFromEntity(save(new aCase(dto), caseDAO));
+        aCase toSave = save(new aCase(dto), caseDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_CASE || toSave.getId() > FINAL_ID_VALUE_CASE) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return CaseDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public CoolerDTO saveCooler(final CoolerDTO dto) {
-        return CoolerDTO.initDTOFromEntity(save(new Cooler(dto), coolerDAO));
+        Cooler toSave = save(new Cooler(dto), coolerDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_COOLER || toSave.getId() > FINAL_ID_VALUE_COOLER) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return CoolerDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public CPUCoolerDTO saveCpuCooler(final CPUCoolerDTO dto) {
-        return CPUCoolerDTO.initDTOFromEntity(save(new CPUCooler(dto), cpuCoolerDAO));
+        CPUCooler toSave = save(new CPUCooler(dto), cpuCoolerDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_CPU_COOLER || toSave.getId() > FINAL_ID_VALUE_CPU_COOLER) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return CPUCoolerDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public CPUDTO saveCPU(final CPUDTO dto) {
-        return CPUDTO.initDTOFromEntity(save(new CPU(dto), cpuDAO));
+        CPU toSave = save(new CPU(dto), cpuDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_CPU || toSave.getId() > FINAL_ID_VALUE_CPU) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return CPUDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public InternalHardDriveDTO saveInternalHardDrive(final InternalHardDriveDTO dto) {
-        return InternalHardDriveDTO.initDTOFromEntity(save(new InternalHardDrive(dto), internalHardDriveDAO));
+        InternalHardDrive toSave = save(new InternalHardDrive(dto), internalHardDriveDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE || toSave.getId() > FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return InternalHardDriveDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public GPUDTO saveGPU(final GPUDTO dto) {
-        return GPUDTO.initDTOFromEntity(save(new GPU(dto), gpuDAO));
+        GPU toSave = save(new GPU(dto), gpuDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_GPU || toSave.getId() > FINAL_ID_VALUE_GPU) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return GPUDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public ExternalHardDriveDTO saveExternalHardDrive(final ExternalHardDriveDTO dto) {
-        return ExternalHardDriveDTO.initDTOFromEntity(save(new ExternalHardDrive(dto), externalHardDriveDAO));
+        ExternalHardDrive toSave = save(new ExternalHardDrive(dto), externalHardDriveDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE || toSave.getId() > FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return ExternalHardDriveDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public MotherboardDTO saveMotherboard(final MotherboardDTO dto) {
-        return MotherboardDTO.initDTOFromEntity(save(new Motherboard(dto), motherboardDAO));
+        Motherboard toSave = save(new Motherboard(dto), motherboardDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_MOTHERBOARD || toSave.getId() > FINAL_ID_VALUE_MOTHERBOARD) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return MotherboardDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public PowerSupplyDTO savePowerSupply(final PowerSupplyDTO dto) {
-        return PowerSupplyDTO.initDTOFromEntity(save(new PowerSupply(dto), powerSupplyDAO));
+        PowerSupply toSave = save(new PowerSupply(dto), powerSupplyDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_POWER_SUPPLY || toSave.getId() > FINAL_ID_VALUE_POWER_SUPPLY) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return PowerSupplyDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public RAMDTO saveRAM(final RAMDTO dto) {
-        return RAMDTO.initDTOFromEntity(save(new RAM(dto), ramDAO));
+        RAM toSave = save(new RAM(dto), ramDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_RAM || toSave.getId() > FINAL_ID_VALUE_RAM) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return RAMDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public HeadsetDTO saveHeadset(final HeadsetDTO dto) {
-        return HeadsetDTO.initDTOFromEntity(save(new Headset(dto), headsetDAO));
+        Headset toSave = save(new Headset(dto), headsetDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_HEADSET || toSave.getId() > FINAL_ID_VALUE_HEADSET) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return HeadsetDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public KeyboardDTO saveKeyboard(final KeyboardDTO dto) {
-        return KeyboardDTO.initDTOFromEntity(save(new Keyboard(dto), keyboardDAO));
+        Keyboard toSave = save(new Keyboard(dto), keyboardDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_KEYBOARD || toSave.getId() > FINAL_ID_VALUE_KEYBOARD) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return KeyboardDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public MouseDTO saveMouse(final MouseDTO dto) {
-        return MouseDTO.initDTOFromEntity(save(new Mouse(dto), mouseDAO));
+        Mouse toSave = save(new Mouse(dto), mouseDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_MOUSE || toSave.getId() > FINAL_ID_VALUE_MOUSE) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return MouseDTO.initDTOFromEntity(toSave);
     }
 
     @Override
     public SpeakerDTO saveSpeaker(final SpeakerDTO dto) {
-        return SpeakerDTO.initDTOFromEntity(save(new Speaker(dto), speakerDAO));
+        Speaker toSave = save(new Speaker(dto), speakerDAO);
+        if (toSave.getId() < INITIAL_ID_VALUE_SPEAKER || toSave.getId() > FINAL_ID_VALUE_SPEAKER) {
+            throw new IllegalArgumentException(); //todo
+        }
+        return SpeakerDTO.initDTOFromEntity(toSave);
     }
 
     @Override
@@ -308,49 +370,49 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void updatePriceById(final Long id, final Double newPrice) {
-        if (id >= 1 && id <= 300) {
+        if (id >= INITIAL_ID_VALUE_CASE && id <= FINAL_ID_VALUE_CASE) {
             updatePriceById(id, newPrice, caseDAO);
         }
-        if (id >= 301 && id <= 600) {
+        if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
             updatePriceById(id, newPrice, coolerDAO);
         }
-        if (id >= 601 && id <= 900) {
+        if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
             updatePriceById(id, newPrice, cpuDAO);
         }
-        if (id >= 901 && id <= 1200) {
+        if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
             updatePriceById(id, newPrice, cpuCoolerDAO);
         }
-        if (id >= 1201 && id <= 1500) {
+        if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
             updatePriceById(id, newPrice, gpuDAO);
         }
-        if (id >= 1501 && id <= 1800) {
+        if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
             updatePriceById(id, newPrice, internalHardDriveDAO);
         }
-        if (id >= 1801 && id <= 2100) {
+        if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
             updatePriceById(id, newPrice, motherboardDAO);
         }
-        if (id >= 2101 && id <= 2400) {
+        if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
             updatePriceById(id, newPrice, powerSupplyDAO);
         }
-        if (id >= 2401 && id <= 2700) {
+        if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
             updatePriceById(id, newPrice, ramDAO);
         }
-        if (id >= 2701 && id <= 3000) {
+        if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
             updatePriceById(id, newPrice, externalHardDriveDAO);
         }
-        if (id >= 3001 && id <= 3300) {
+        if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
             updatePriceById(id, newPrice, headsetDAO);
         }
-        if (id >= 3301 && id <= 3600) {
+        if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
             updatePriceById(id, newPrice, keyboardDAO);
         }
-        if (id >= 3601 && id <= 3900) {
+        if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
             updatePriceById(id, newPrice, monitorDAO);
         }
-        if (id >= 3901 && id <= 4200) {
+        if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
             updatePriceById(id, newPrice, mouseDAO);
         }
-        if (id >= 4201 && id <= 4500) {
+        if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             updatePriceById(id, newPrice, speakerDAO);
         }
         throw new ProductNotFoundException("aaaaa"); // todo
@@ -358,98 +420,98 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void reduceCountById(final Long id, final Integer countToBeReduced) {
-        if (id >= 1 && id <= 300) {
+        if (id >= INITIAL_ID_VALUE_CASE && id <= FINAL_ID_VALUE_CASE) {
             reduceCountById(id, countToBeReduced, caseDAO);
         }
-        if (id >= 301 && id <= 600) {
+        if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
             reduceCountById(id, countToBeReduced, coolerDAO);
         }
-        if (id >= 601 && id <= 900) {
+        if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
             reduceCountById(id, countToBeReduced, cpuDAO);
         }
-        if (id >= 901 && id <= 1200) {
+        if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
             reduceCountById(id, countToBeReduced, cpuCoolerDAO);
         }
-        if (id >= 1201 && id <= 1500) {
+        if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
             reduceCountById(id, countToBeReduced, gpuDAO);
         }
-        if (id >= 1501 && id <= 1800) {
+        if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
             reduceCountById(id, countToBeReduced, internalHardDriveDAO);
         }
-        if (id >= 1801 && id <= 2100) {
+        if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
             reduceCountById(id, countToBeReduced, motherboardDAO);
         }
-        if (id >= 2101 && id <= 2400) {
+        if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
             reduceCountById(id, countToBeReduced, powerSupplyDAO);
         }
-        if (id >= 2401 && id <= 2700) {
+        if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
             reduceCountById(id, countToBeReduced, ramDAO);
         }
-        if (id >= 2701 && id <= 3000) {
+        if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
             reduceCountById(id, countToBeReduced, externalHardDriveDAO);
         }
-        if (id >= 3001 && id <= 3300) {
+        if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
             reduceCountById(id, countToBeReduced, headsetDAO);
         }
-        if (id >= 3301 && id <= 3600) {
+        if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
             reduceCountById(id, countToBeReduced, keyboardDAO);
         }
-        if (id >= 3601 && id <= 3900) {
+        if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
             reduceCountById(id, countToBeReduced, monitorDAO);
         }
-        if (id >= 3901 && id <= 4200) {
+        if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
             reduceCountById(id, countToBeReduced, mouseDAO);
         }
-        if (id >= 4201 && id <= 4500) {
+        if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             reduceCountById(id, countToBeReduced, speakerDAO);
         }
         throw new ProductNotFoundException("aaaaa"); // todo
     }
 
     public ProductDTO findById(final Long id) {
-        if (id >= 1 && id <= 300) {
+        if (id >= INITIAL_ID_VALUE_CASE && id <= FINAL_ID_VALUE_CASE) {
             return CaseDTO.initDTOFromEntity(findById(id, caseDAO));
         }
-        if (id >= 301 && id <= 600) {
+        if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
             return CoolerDTO.initDTOFromEntity(findById(id, coolerDAO));
         }
-        if (id >= 601 && id <= 900) {
+        if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
             return CPUDTO.initDTOFromEntity(findById(id, cpuDAO));
         }
-        if (id >= 901 && id <= 1200) {
+        if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
             return CPUCoolerDTO.initDTOFromEntity(findById(id, cpuCoolerDAO));
         }
-        if (id >= 1201 && id <= 1500) {
+        if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
             return GPUDTO.initDTOFromEntity(findById(id, gpuDAO));
         }
-        if (id >= 1501 && id <= 1800) {
+        if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
             return InternalHardDriveDTO.initDTOFromEntity(findById(id, internalHardDriveDAO));
         }
-        if (id >= 1801 && id <= 2100) {
+        if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
             return MotherboardDTO.initDTOFromEntity(findById(id, motherboardDAO));
         }
-        if (id >= 2101 && id <= 2400) {
+        if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
             return PowerSupplyDTO.initDTOFromEntity(findById(id, powerSupplyDAO));
         }
-        if (id >= 2401 && id <= 2700) {
+        if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
             return RAMDTO.initDTOFromEntity(findById(id, ramDAO));
         }
-        if (id >= 2701 && id <= 3000) {
+        if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
             return ExternalHardDriveDTO.initDTOFromEntity(findById(id, externalHardDriveDAO));
         }
-        if (id >= 3001 && id <= 3300) {
+        if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
             return HeadsetDTO.initDTOFromEntity(findById(id, headsetDAO));
         }
-        if (id >= 3301 && id <= 3600) {
+        if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
             return KeyboardDTO.initDTOFromEntity(findById(id, keyboardDAO));
         }
-        if (id >= 3601 && id <= 3900) {
+        if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
             return MonitorDTO.initDTOFromEntity(findById(id, monitorDAO));
         }
-        if (id >= 3901 && id <= 4200) {
+        if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
             return MouseDTO.initDTOFromEntity(findById(id, mouseDAO));
         }
-        if (id >= 4201 && id <= 4500) {
+        if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             return SpeakerDTO.initDTOFromEntity(findById(id, speakerDAO));
         }
         throw new ProductNotFoundException("aaaaa"); //todo

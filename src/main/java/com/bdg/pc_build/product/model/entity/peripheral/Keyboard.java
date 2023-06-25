@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.peripheral.KeyboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
@@ -20,7 +21,7 @@ public class Keyboard extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "keyboard_sequence", initialValue = 3301)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "keyboard_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_KEYBOARD)
     @Column(name = "id")
     private Long id;
 

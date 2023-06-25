@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.PowerSourceType;
@@ -20,7 +21,7 @@ public class Speaker extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "speaker_sequence", initialValue = 4201)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "speaker_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_SPEAKER)
     @Column(name = "id")
     private Long id;
 

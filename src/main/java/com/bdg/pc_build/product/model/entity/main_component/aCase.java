@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.main_component.CaseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.TowerType;
@@ -21,7 +22,7 @@ public class aCase extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "case_sequence", initialValue = 1)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "case_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_CASE)
     @Column(name = "id")
     private Long id;
 

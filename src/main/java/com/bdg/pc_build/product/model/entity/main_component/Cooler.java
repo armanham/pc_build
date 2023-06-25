@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.main_component.CoolerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.*;
@@ -19,7 +20,7 @@ public class Cooler extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "cooler_sequence", initialValue = 301)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "cooler_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_COOLER)
     @Column(name = "id")
     private Long id;
 

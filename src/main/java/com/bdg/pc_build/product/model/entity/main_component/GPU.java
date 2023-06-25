@@ -1,6 +1,7 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
@@ -22,7 +23,7 @@ public class GPU extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "gpu_sequence", initialValue = 1201)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "gpu_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_GPU)
     @Column(name = "id")
     private Long id;
 

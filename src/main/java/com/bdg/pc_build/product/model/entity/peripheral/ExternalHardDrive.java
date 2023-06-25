@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.peripheral.ExternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.*;
@@ -19,7 +20,7 @@ public class ExternalHardDrive extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "external_hard_drive_sequence", initialValue = 2701)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "external_hard_drive_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE)
     @Column(name = "id")
     private Long id;
 

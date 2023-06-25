@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
@@ -20,7 +21,7 @@ public class InternalHardDrive extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "internal_hard_drive_sequence", initialValue = 1501)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "internal_hard_drive_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE)
     @Column(name = "id")
     private Long id;
 
