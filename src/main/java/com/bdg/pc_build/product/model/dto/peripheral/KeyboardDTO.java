@@ -40,6 +40,7 @@ public class KeyboardDTO extends ProductDTO {
 
     public static KeyboardDTO initDTOFromEntity(final Keyboard entity) {
         return KeyboardDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

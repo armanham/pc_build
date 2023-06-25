@@ -40,6 +40,7 @@ public class MouseDTO extends ProductDTO {
 
     public static MouseDTO initDTOFromEntity(final Mouse entity) {
         return MouseDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

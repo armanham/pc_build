@@ -55,6 +55,7 @@ public class MotherboardDTO extends ProductDTO {
 
     public static MotherboardDTO initDTOFromEntity(final Motherboard entity) {
         return MotherboardDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

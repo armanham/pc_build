@@ -37,6 +37,7 @@ public class HeadsetDTO extends ProductDTO {
 
     public static HeadsetDTO initDTOFromEntity(final Headset entity) {
         return HeadsetDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

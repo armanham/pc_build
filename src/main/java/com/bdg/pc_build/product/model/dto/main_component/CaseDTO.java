@@ -40,6 +40,7 @@ public class CaseDTO extends ProductDTO {
 
     public static CaseDTO initDTOFromEntity(final aCase entity) {
         return CaseDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

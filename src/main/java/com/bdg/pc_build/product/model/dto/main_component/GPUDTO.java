@@ -46,6 +46,7 @@ public class GPUDTO extends ProductDTO {
 
     public static GPUDTO initDTOFromEntity(final GPU entity) {
         return GPUDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

@@ -36,6 +36,7 @@ public class MonitorDTO extends ProductDTO {
 
     public static MonitorDTO initDTOFromEntity(final Monitor entity) {
         return MonitorDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

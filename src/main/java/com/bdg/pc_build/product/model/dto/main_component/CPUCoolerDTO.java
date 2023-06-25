@@ -38,6 +38,7 @@ public class CPUCoolerDTO extends ProductDTO {
 
     public static CPUCoolerDTO initDTOFromEntity(CPUCooler entity) {
         return CPUCoolerDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

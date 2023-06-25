@@ -100,7 +100,6 @@ public class Order {
     @Column(name = "created_at", nullable = false, updatable = false)
     Timestamp createdAt;
 
-
     public void addCase(aCase acase){
         this.cases.add(acase);
     }
@@ -137,7 +136,6 @@ public class Order {
     public void addKeyboard(Keyboard keyboard){
         this.keyboards.add(keyboard);
     }
-
     public void addMonitor(Monitor monitor){
         this.monitors.add(monitor);
     }
@@ -147,5 +145,4 @@ public class Order {
     public void addSpeaker(Speaker speaker){
         this.speakers.add(speaker);
     }
-
 }

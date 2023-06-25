@@ -40,6 +40,7 @@ public class SpeakerDTO extends ProductDTO {
 
     public static SpeakerDTO initDTOFromEntity(final Speaker entity) {
         return SpeakerDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

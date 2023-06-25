@@ -82,74 +82,10 @@ public interface ProductService {
     List<SpeakerDTO> findSpeakerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
 
 
-    //update methods for display components
-    MonitorDTO updateMonitorPriceById(Long id, Double newPrice);
+    void updatePriceById(Long id, Double newPrice);
 
+    void reduceCountById(Long id, Integer countToBeReduced);
 
-    //update methods for main components
-    CaseDTO updateCasePriceById(Long id, Double newPrice);
-
-    CoolerDTO updateCoolerPriceById(Long id, Double newPrice);
-
-    CPUDTO updateCpuPriceById(Long id, Double newPrice);
-
-    CPUCoolerDTO updateCpuCoolerPriceById(Long id, Double newPrice);
-
-    InternalHardDriveDTO updateInternalHardDrivePriceById(Long id, Double newPrice);
-
-    GPUDTO updateGpuPriceById(Long id, Double newPrice);
-
-    ExternalHardDriveDTO updateExternalHardDrivePriceById(Long id, Double newPrice);
-
-    MotherboardDTO updateMotherboardPriceById(Long id, Double newPrice);
-
-    PowerSupplyDTO updatePowerSupplyPriceById(Long id, Double newPrice);
-
-    RAMDTO updateRamPriceById(Long id, Double newPrice);
-
-    HeadsetDTO updateHeadsetPriceById(Long id, Double newPrice);
-
-    KeyboardDTO updateKeyboardPriceById(Long id, Double newPrice);
-
-    MouseDTO updateMousePriceById(Long id, Double newPrice);
-
-    SpeakerDTO updateSpeakerPriceById(Long id, Double newPrice);
-
-
-    //reduce methods for display components
-    MonitorDTO reduceMonitorCountById(Long id, Integer count);
-
-
-    //reduce methods for main components
-    CaseDTO reduceCaseCountById(Long id, Integer count);
-
-    CoolerDTO reduceCoolerCountById(Long id, Integer count);
-
-    CPUDTO reduceCPUCountById(Long id, Integer count);
-
-    CPUCoolerDTO reduceCPUCoolerCountById(Long id, Integer count);
-
-    InternalHardDriveDTO reduceInternalHardDriveCountById(Long id, Integer count);
-
-    GPUDTO reduceGPUCountById(Long id, Integer count);
-
-    ExternalHardDriveDTO reduceExternalHardDriveCountById(Long id, Integer count);
-
-    MotherboardDTO reduceMotherboardCountById(Long id, Integer count);
-
-    PowerSupplyDTO reducePowerSupplyCountById(Long id, Integer count);
-
-    RAMDTO reduceRAMCountById(Long id, Integer count);
-
-
-    //reduce methods for peripheral components
-    HeadsetDTO reduceHeadsetCountById(Long id, Integer count);
-
-    KeyboardDTO reduceKeyboardCountById(Long id, Integer count);
-
-    MouseDTO reduceMouseCountById(Long id, Integer count);
-
-    SpeakerDTO reduceSpeakerCountById(Long id, Integer count);
 
     List<CaseDTO> getAllCases();
 

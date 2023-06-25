@@ -37,6 +37,7 @@ public class InternalHardDriveDTO extends ProductDTO {
 
     public static InternalHardDriveDTO initDTOFromEntity(final InternalHardDrive entity) {
         return InternalHardDriveDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

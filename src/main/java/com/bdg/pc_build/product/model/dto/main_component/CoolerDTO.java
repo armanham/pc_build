@@ -30,6 +30,7 @@ public class CoolerDTO extends ProductDTO {
 
     public static CoolerDTO initDTOFromEntity(final Cooler entity) {
         return CoolerDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

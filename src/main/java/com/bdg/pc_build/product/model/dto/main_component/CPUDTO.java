@@ -47,6 +47,7 @@ public class CPUDTO extends ProductDTO {
 
     public static CPUDTO initDTOFromEntity(final CPU entity) {
         return CPUDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

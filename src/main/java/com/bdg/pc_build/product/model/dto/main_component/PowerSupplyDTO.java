@@ -40,6 +40,7 @@ public class PowerSupplyDTO extends ProductDTO {
 
     public static PowerSupplyDTO initDTOFromEntity(final PowerSupply entity) {
         return PowerSupplyDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())

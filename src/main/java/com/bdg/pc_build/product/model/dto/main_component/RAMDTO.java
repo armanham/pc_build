@@ -41,6 +41,7 @@ public class RAMDTO extends ProductDTO {
 
     public static RAMDTO initDTOFromEntity(final RAM entity) {
         return RAMDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .purchasedPrice(entity.getPurchasedPrice())
