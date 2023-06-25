@@ -4,6 +4,7 @@ import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.desire_log.model.request.DesireLogCreationRequest;
 import com.bdg.pc_build.desire_log.service.DesireLogService;
 import com.bdg.pc_build.user.model.entity.User;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -21,6 +22,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/desire-log")
+@SecurityRequirement(name = "bearerAuth")
 public class DesireLogController {
 
     DesireLogService desireLogService;
@@ -42,7 +44,7 @@ public class DesireLogController {
         return desireLogService.getById(id);
     }
 
-    @GetMapping("/")
+    @GetMapping("/getAll")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getAll() {
         return ResponseEntity.ok().body(desireLogService.getAllLogs());

@@ -3,6 +3,7 @@ package com.bdg.pc_build.cart.controller;
 import com.bdg.pc_build.cart.service.CartService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.cart.model.CartItem;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -18,6 +19,7 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
 public class CartController {
     CartService cartService;
 

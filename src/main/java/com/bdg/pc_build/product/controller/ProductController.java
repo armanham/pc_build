@@ -7,6 +7,7 @@ import com.bdg.pc_build.product.model.request.ReduceCountRequest;
 import com.bdg.pc_build.product.model.request.creation.main_component.*;
 import com.bdg.pc_build.product.model.request.creation.peripheral.*;
 import com.bdg.pc_build.product.service.ProductService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/product")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
 public class ProductController {
 
     ProductService productService;

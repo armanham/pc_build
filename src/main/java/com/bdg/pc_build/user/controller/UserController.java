@@ -6,6 +6,7 @@ import com.bdg.pc_build.user.model.request.EmailUpdateRequest;
 import com.bdg.pc_build.user.model.request.FirstNameUpdateRequest;
 import com.bdg.pc_build.user.model.request.LastNameUpdateRequest;
 import com.bdg.pc_build.user.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -22,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/api/v1/user")
+@SecurityRequirement(name = "bearerAuth")
 public class UserController {
 
     UserService userService;
