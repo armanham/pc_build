@@ -27,7 +27,7 @@ import java.util.Objects;
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Transactional
 public class CartServiceImpl implements CartService {
 
@@ -36,6 +36,8 @@ public class CartServiceImpl implements CartService {
     JwtService jwtService;
     UserDAO userDAO;
     private Map<ProductDTO, Integer> cartItems = new HashMap<>();
+
+
 
 
     @Override
@@ -82,6 +84,7 @@ public class CartServiceImpl implements CartService {
                 //todo
                 throw new IllegalArgumentException("Not enough products");
             } else {
+                System.out.println(entry.getKey().getId());
                 productService.reduceCountById(entry.getKey().getId(), entry.getValue());
             }
         }

@@ -423,49 +423,51 @@ public class ProductServiceImpl implements ProductService {
         if (id >= INITIAL_ID_VALUE_CASE && id <= FINAL_ID_VALUE_CASE) {
             reduceCountById(id, countToBeReduced, caseDAO);
         }
-        if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
+        else if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
             reduceCountById(id, countToBeReduced, coolerDAO);
         }
-        if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
+        else if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
             reduceCountById(id, countToBeReduced, cpuDAO);
         }
-        if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
+        else if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
             reduceCountById(id, countToBeReduced, cpuCoolerDAO);
         }
-        if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
+        else if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
             reduceCountById(id, countToBeReduced, gpuDAO);
         }
-        if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
+        else if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
             reduceCountById(id, countToBeReduced, internalHardDriveDAO);
         }
-        if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
+        else if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
             reduceCountById(id, countToBeReduced, motherboardDAO);
         }
-        if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
+        else if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
             reduceCountById(id, countToBeReduced, powerSupplyDAO);
         }
-        if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
+        else if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
             reduceCountById(id, countToBeReduced, ramDAO);
         }
-        if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
+        else if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
             reduceCountById(id, countToBeReduced, externalHardDriveDAO);
         }
-        if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
+        else if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
             reduceCountById(id, countToBeReduced, headsetDAO);
         }
-        if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
+        else if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
             reduceCountById(id, countToBeReduced, keyboardDAO);
         }
-        if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
+        else if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
             reduceCountById(id, countToBeReduced, monitorDAO);
         }
-        if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
+        else if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
             reduceCountById(id, countToBeReduced, mouseDAO);
         }
-        if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
+        else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             reduceCountById(id, countToBeReduced, speakerDAO);
         }
-        throw new ProductNotFoundException("aaaaa"); // todo
+        else {
+            throw new ProductNotFoundException("aaaaa"); // todo
+        }
     }
 
     public ProductDTO findById(final Long id) {
@@ -514,7 +516,9 @@ public class ProductServiceImpl implements ProductService {
         if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             return SpeakerDTO.initDTOFromEntity(findById(id, speakerDAO));
         }
+
         throw new ProductNotFoundException("aaaaa"); //todo
+
     }
 
     @Override

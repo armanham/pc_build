@@ -31,43 +31,43 @@ public class Order {
 
     @ManyToMany
     @JoinTable(name = "order_case")
-    List<aCase> cases;
+    List<aCase> cases = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_cooler")
-    List<Cooler> coolers;
+    List<Cooler> coolers = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_cpu")
-    List<CPU> cpus;
+    List<CPU> cpus = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_cpu_cooler")
-    List<CPUCooler> cpuCoolers;
+    List<CPUCooler> cpuCoolers = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_gpu")
-    List<GPU> gpus;
+    List<GPU> gpus = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_internal_hard_drive")
-    List<InternalHardDrive> internalHardDrives;
+    List<InternalHardDrive> internalHardDrives = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_motherboard")
-    List<Motherboard> motherboards;
+    List<Motherboard> motherboards = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_power_supply")
-    List<PowerSupply> powerSupplies;
+    List<PowerSupply> powerSupplies = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_ram")
-    List<RAM> rams;
+    List<RAM> rams = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_external_hard_drive")
-    List<ExternalHardDrive> externalHardDrives;
+    List<ExternalHardDrive> externalHardDrives = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_headset")
@@ -75,7 +75,7 @@ public class Order {
 
     @ManyToMany
     @JoinTable(name = "order_keyboard")
-    List<Keyboard> keyboards;
+    List<Keyboard> keyboards = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_monitor")
@@ -83,11 +83,11 @@ public class Order {
 
     @ManyToMany
     @JoinTable(name = "order_mouse")
-    List<Mouse> mice;
+    List<Mouse> mice = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "order_speaker")
-    List<Speaker> speakers;
+    List<Speaker> speakers = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)

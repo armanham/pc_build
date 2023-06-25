@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
             } else if (product.getId() >= INITIAL_ID_VALUE_RAM && product.getId() <= FINAL_ID_VALUE_RAM) {
                 order.addRAM(ramDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException("aaa")));
             } else if (product.getId() >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && product.getId() <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
-                order.addExternalHardDrive(externalHardDriveDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException("aaa")));
+                order.addExternalHardDrive(externalHardDriveDAO.findById(product.getId()).get());
             } else if (product.getId() >= INITIAL_ID_VALUE_HEADSET && product.getId() <= FINAL_ID_VALUE_HEADSET) {
                 order.addHeadset(headsetDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException("aaa")));
             } else if (product.getId() >= INITIAL_ID_VALUE_KEYBOARD && product.getId() <= FINAL_ID_VALUE_KEYBOARD) {
