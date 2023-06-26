@@ -2,12 +2,12 @@ package com.bdg.pc_build.product.model.request.creation.main_component;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
-
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 
 import static com.bdg.pc_build.product.pattern.Pattern.*;
 
@@ -31,21 +31,13 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "atx_type", required = true)
     String atxType;
 
-    @NotBlank(message = "'memory_max' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "memory_max", required = true)
-    String memoryMax;
+    Integer memoryMax;
 
-    @NotBlank(message = "'memory_slots' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "memory_slots", required = true)
-    String memorySlots;
+    Integer memorySlots;
 
     @NotBlank(message = "'ddr_type' field can not be blank")
     @Pattern(
@@ -71,27 +63,23 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "gpu_interface_type", required = true)
     String gpuInterfaceType;
 
-    @NotBlank(message = "'tdp' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "tdp", required = true)
-    String tdp;
+    Integer tdp;
 
     public MotherboardCreationRequest(
             final String name,
-            final String price,
-            final String purchasedPrice,
-            final String count,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count,
             final String socketType,
             final String atxType,
-            final String memoryMax,
-            final String memorySlots,
+            final Integer memoryMax,
+            final Integer memorySlots,
             final String ddrType,
             final String isM2,
             final String gpuInterfaceType,
-            final String tdp
+            final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
         this.socketType = socketType;

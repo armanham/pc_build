@@ -1,14 +1,13 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 
+import com.bdg.pc_build.product.enumerations.SocketType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPUCooler;
-import com.bdg.pc_build.product.enumerations.SocketType;
 import com.bdg.pc_build.product.model.request.creation.main_component.CPUCoolerCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -51,13 +50,13 @@ public class CPUCoolerDTO extends ProductDTO {
 
     public static CPUCoolerDTO initDTOFromRequest(final CPUCoolerCreationRequest request) {
         return CPUCoolerDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
-                .fanRpm(Integer.valueOf(request.getFanRpm()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
+                .fanRpm(request.getFanRpm())
                 .socketType(SocketType.valueOf(request.getSocketType().trim().toUpperCase()))
-                .tdp(Integer.valueOf(request.getTdp()))
+                .tdp(request.getTdp())
                 .build();
     }
 }

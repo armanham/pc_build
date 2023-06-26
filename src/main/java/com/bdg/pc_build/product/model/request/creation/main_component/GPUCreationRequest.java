@@ -4,12 +4,13 @@ import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.product.pattern.Pattern.*;
-import static com.bdg.pc_build.product.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
+import static com.bdg.pc_build.product.pattern.Pattern.GPU_INTERFACE_TYPE_ENUM_PATTERN;
+import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -23,57 +24,37 @@ public class GPUCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "gpu_interface_type", required = true)
     String gpuInterfaceType;
 
-    @NotBlank(message = "'memory' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "memory", required = true)
-    String memory;
+    Integer memory;
 
-    @NotBlank(message = "'core_clock' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "core_clock", required = true)
-    String coreClock;
+    Double coreClock;
 
-    @NotBlank(message = "'boost_clock' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "boost_clock", required = true)
-    String boostClock;
+    Double boostClock;
 
-    @NotBlank(message = "'length' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "length", required = true)
-    String length;
+    Double length;
 
-    @NotBlank(message = "'tdp' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "tdp", required = true)
-    String tdp;
+    Integer tdp;
 
     public GPUCreationRequest(
             final String name,
-            final String price,
-            final String purchasedPrice,
-            final String count,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count,
             final String gpuInterfaceType,
-            final String memory,
-            final String coreClock,
-            final String boostClock,
-            final String length,
-            final String tdp) {
+            final Integer memory,
+            final Double coreClock,
+            final Double boostClock,
+            final Double length,
+            final Integer tdp) {
         super(name, price, purchasedPrice, count);
         this.gpuInterfaceType = gpuInterfaceType;
         this.memory = memory;

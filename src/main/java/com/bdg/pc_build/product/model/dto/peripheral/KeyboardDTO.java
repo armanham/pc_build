@@ -1,13 +1,12 @@
 package com.bdg.pc_build.product.model.dto.peripheral;
 
+import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
-import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.KeyboardCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -54,14 +53,14 @@ public class KeyboardDTO extends ProductDTO {
 
     public static KeyboardDTO initDTOFromRequest(final KeyboardCreationRequest request) {
         return KeyboardDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
                 .connectivityType(ConnectivityType.valueOf(request.getConnectivityType().trim().toUpperCase()))
-                .cableLength(Double.valueOf(request.getCableLength()))
+                .cableLength(request.getCableLength())
                 .dimension(request.getDimension())
-                .weight(Double.valueOf(request.getWeight()))
+                .weight(request.getWeight())
                 .build();
     }
 }

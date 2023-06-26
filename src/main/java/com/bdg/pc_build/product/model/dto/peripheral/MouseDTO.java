@@ -1,13 +1,12 @@
 package com.bdg.pc_build.product.model.dto.peripheral;
 
+import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
-import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.MouseCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -54,14 +53,14 @@ public class MouseDTO extends ProductDTO {
 
     public static MouseDTO initDTOFromRequest(final MouseCreationRequest request) {
         return MouseDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
                 .connectivityType(ConnectivityType.valueOf(request.getConnectivityType().trim().toUpperCase()))
-                .maxResolution(Integer.valueOf(request.getMaxResolution()))
-                .cableLength(Double.valueOf(request.getCableLength()))
-                .weight(Double.valueOf(request.getWeight()))
+                .maxResolution(request.getMaxResolution())
+                .cableLength(request.getCableLength())
+                .weight(request.getWeight())
                 .build();
     }
 }

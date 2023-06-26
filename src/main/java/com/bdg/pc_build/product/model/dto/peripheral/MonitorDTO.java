@@ -1,8 +1,8 @@
 package com.bdg.pc_build.product.model.dto.peripheral;
 
+import com.bdg.pc_build.product.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
-import com.bdg.pc_build.product.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.MonitorCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -48,17 +48,17 @@ public class MonitorDTO extends ProductDTO {
     }
 
     public static MonitorDTO initDTOFromRequest(final MonitorCreationRequest request) {
-        if (Integer.parseInt(request.getRefreshRate()) > 30) {
+        if (request.getRefreshRate() > 30) {
             throw new IllegalArgumentException("'refreshRate' must be less or equal than 30");
         }
         return MonitorDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
                 .screenType(MonitorScreenType.valueOf(request.getScreenType().trim().toUpperCase()))
-                .refreshRate(Integer.valueOf(request.getRefreshRate()))
-                .screenSize(Double.valueOf(request.getScreenSize()))
+                .refreshRate(request.getRefreshRate())
+                .screenSize(request.getScreenSize())
                 .build();
     }
 }

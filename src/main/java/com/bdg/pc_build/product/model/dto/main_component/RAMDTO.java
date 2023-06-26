@@ -1,14 +1,13 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
 
+import com.bdg.pc_build.product.enumerations.DDRType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.RAM;
-import com.bdg.pc_build.product.enumerations.DDRType;
 import com.bdg.pc_build.product.model.request.creation.main_component.RAMCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -17,7 +16,7 @@ public class RAMDTO extends ProductDTO {
 
     DDRType ddrType;
     Integer countOfRam;
-    Double gbOfRam;
+    Integer gbOfRam;
     Integer tdp;
 
     @Builder
@@ -29,7 +28,7 @@ public class RAMDTO extends ProductDTO {
             final Integer count,
             final DDRType ddrType,
             final Integer countOfRam,
-            final Double gbOfRam,
+            final Integer gbOfRam,
             final Integer tdp
     ) {
         super(id, name, price, purchasedPrice, count);
@@ -54,18 +53,18 @@ public class RAMDTO extends ProductDTO {
     }
 
     public static RAMDTO initDTOFromRequest(final RAMCreationRequest request) {
-        if ((Integer.parseInt(request.getGbOfRam()) & Integer.parseInt(request.getGbOfRam()) - 1) != 0) {
+        if ((request.getGbOfRam() & request.getGbOfRam() - 1) != 0) {
             throw new IllegalArgumentException("'memoryMax' must be power of two");
         }
         return RAMDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
                 .ddrType(DDRType.valueOf(request.getDdrType().trim().toUpperCase()))
-                .countOfRam(Integer.valueOf(request.getCountOfRam()))
-                .gbOfRam(Double.valueOf(request.getGbOfRam()))
-                .tdp(Integer.valueOf(request.getTdp()))
+                .countOfRam(request.getCountOfRam())
+                .gbOfRam(request.getGbOfRam())
+                .tdp(request.getTdp())
                 .build();
     }
 }

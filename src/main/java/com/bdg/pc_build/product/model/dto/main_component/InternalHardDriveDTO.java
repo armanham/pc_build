@@ -1,13 +1,12 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
+import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.InternalHardDrive;
-import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
 import com.bdg.pc_build.product.model.request.creation.main_component.InternalHardDriveCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -49,17 +48,17 @@ public class InternalHardDriveDTO extends ProductDTO {
     }
 
     public static InternalHardDriveDTO initDTOFromRequest(final InternalHardDriveCreationRequest request) {
-        if ((Integer.parseInt(request.getCapacity()) & Integer.parseInt(request.getCapacity()) - 1) != 0) {
+        if ((request.getCapacity() & request.getCapacity() - 1) != 0) {
             throw new IllegalArgumentException("'capacity' must be power of two");
         }
         return InternalHardDriveDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
                 .internalHardDriveInterfaceType(InternalHardDriveInterfaceType.valueOf(request.getInternalHardDriveInterfaceType().trim().toUpperCase()))
-                .capacity(Integer.valueOf(request.getCapacity()))
-                .tdp(Integer.valueOf(request.getTdp()))
+                .capacity(request.getCapacity())
+                .tdp(request.getTdp())
                 .build();
     }
 }

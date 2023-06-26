@@ -6,7 +6,6 @@ import com.bdg.pc_build.product.model.request.creation.peripheral.ExternalHardDr
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -44,16 +43,16 @@ public class ExternalHardDriveDTO extends ProductDTO {
     }
 
     public static ExternalHardDriveDTO initDTOFromRequest(final ExternalHardDriveCreationRequest request) {
-        if ((Integer.parseInt(request.getCapacity()) & Integer.parseInt(request.getCapacity()) - 1) != 0) {
+        if ((request.getCapacity() & request.getCapacity() - 1) != 0) {
             throw new IllegalArgumentException("'capacity' must be power of two");
         }
         return ExternalHardDriveDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
-                .capacity(Integer.valueOf(request.getCapacity()))
-                .tdp(Integer.valueOf(request.getTdp()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
+                .capacity(request.getCapacity())
+                .tdp(request.getTdp())
                 .build();
     }
 }

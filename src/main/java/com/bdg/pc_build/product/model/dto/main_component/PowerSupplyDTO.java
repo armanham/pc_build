@@ -1,14 +1,13 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
 import com.bdg.pc_build.product.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.enumerations.ModularType;
+import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
 import com.bdg.pc_build.product.model.request.creation.main_component.PowerSupplyCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -54,14 +53,14 @@ public class PowerSupplyDTO extends ProductDTO {
 
     public static PowerSupplyDTO initDTOFromRequest(final PowerSupplyCreationRequest request) {
         return PowerSupplyDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
                 .efficiencyRating(EfficiencyRating.valueOf(request.getEfficiencyRating().trim().toUpperCase()))
-                .wattage(Integer.valueOf(request.getWattage()))
+                .wattage(request.getWattage())
                 .modularType(ModularType.valueOf(request.getModularType().trim().toUpperCase()))
-                .tdp(Integer.valueOf(request.getTdp()))
+                .tdp(request.getTdp())
                 .build();
     }
 }

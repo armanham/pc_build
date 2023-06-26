@@ -2,26 +2,23 @@ package com.bdg.pc_build.product.model.request.creation.peripheral;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-
-import static com.bdg.pc_build.product.pattern.Pattern.*;
+import static com.bdg.pc_build.product.pattern.Pattern.CONNECTIVITY_TYPE_ENUM_PATTERN;
+import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class HeadsetCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'frequency' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "frequency", required = true)
-    String frequency;
+    Integer frequency;
 
     @NotBlank(message = "'connectivity_type' field can not be blank")
     @Pattern(
@@ -31,22 +28,18 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "connectivity_type", required = true)
     String connectivityType;
 
-    @NotBlank(message = "'cable_length' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "cable_length", required = true)
-    String cableLength;
+    Double cableLength;
 
     public HeadsetCreationRequest(
             final String name,
-            final String price,
-            final String purchasedPrice,
-            final String count,
-            final String frequency,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count,
+            final Integer frequency,
             final String connectivityType,
-            final String cableLength
+            final Double cableLength
     ) {
         super(name, price, purchasedPrice, count);
         this.frequency = frequency;

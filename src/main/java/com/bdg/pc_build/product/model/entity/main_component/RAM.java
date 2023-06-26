@@ -1,9 +1,9 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.product.enumerations.DDRType;
 import com.bdg.pc_build.product.model.InitialAndMaxValues;
 import com.bdg.pc_build.product.model.dto.main_component.RAMDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.enumerations.DDRType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,7 +23,7 @@ public class RAM extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "ram_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_RAM)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "ddr_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
@@ -33,7 +33,7 @@ public class RAM extends Product {
     Integer countOfRam;
 
     @Column(name = "gb_of_ram", nullable = false, updatable = false)
-    Double gbOfRam;
+    Integer gbOfRam;
 
     @Column(name = "tdp", nullable = false, updatable = false)
     Integer tdp;

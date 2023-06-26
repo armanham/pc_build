@@ -4,12 +4,13 @@ import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.product.pattern.Pattern.*;
-import static com.bdg.pc_build.product.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
+import static com.bdg.pc_build.product.pattern.Pattern.CONNECTIVITY_TYPE_ENUM_PATTERN;
+import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -23,39 +24,27 @@ public class MouseCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "connectivity_type", required = true)
     String connectivityType;
 
-    @NotBlank(message = "'max_resolution' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "max_resolution", required = true)
-    String maxResolution;
+    Integer maxResolution;
 
-    @NotBlank(message = "'cable_length' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "cable_length", required = true)
-    String cableLength;
+    Double cableLength;
 
-    @NotBlank(message = "'weight' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "weight", required = true)
-    String weight;
+    Double weight;
 
     public MouseCreationRequest(
             final String name,
-            final String price,
-            final String purchasedPrice,
-            final String count,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count,
             final String connectivityType,
-            final String maxResolution,
-            final String cableLength,
-            final String weight
+            final Integer maxResolution,
+            final Double cableLength,
+            final Double weight
     ) {
         super(name, price, purchasedPrice, count);
         this.connectivityType = connectivityType;
@@ -63,6 +52,4 @@ public class MouseCreationRequest extends ProductCreationRequest {
         this.cableLength = cableLength;
         this.weight = weight;
     }
-
-
 }

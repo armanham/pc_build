@@ -1,13 +1,12 @@
 package com.bdg.pc_build.product.model.dto.peripheral;
 
+import com.bdg.pc_build.product.enumerations.PowerSourceType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Speaker;
-import com.bdg.pc_build.product.enumerations.PowerSourceType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.SpeakerCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -53,17 +52,17 @@ public class SpeakerDTO extends ProductDTO {
     }
 
     public static SpeakerDTO initDTOFromRequest(final SpeakerCreationRequest request) {
-        if (Integer.parseInt(request.getFrequency()) < 20 || Integer.parseInt(request.getFrequency()) > 20000) {
+        if (request.getFrequency() < 20 || request.getFrequency() > 20000) {
             throw new IllegalArgumentException("'frequency' must be between 20 and 20000 inclusive");
         }
         return SpeakerDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
-                .frequency(Integer.valueOf(request.getFrequency()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
+                .frequency(request.getFrequency())
                 .powerSourceType(PowerSourceType.valueOf(request.getPowerSourceType().trim().toUpperCase()))
-                .cableLength(Double.valueOf(request.getCableLength()))
+                .cableLength(request.getCableLength())
                 .dimension(request.getDimension())
                 .build();
     }

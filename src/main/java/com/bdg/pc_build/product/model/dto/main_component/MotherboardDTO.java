@@ -1,16 +1,15 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
-import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.entity.main_component.Motherboard;
 import com.bdg.pc_build.product.enumerations.ATXType;
 import com.bdg.pc_build.product.enumerations.DDRType;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.enumerations.SocketType;
+import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.entity.main_component.Motherboard;
 import com.bdg.pc_build.product.model.request.creation.main_component.MotherboardCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -72,25 +71,25 @@ public class MotherboardDTO extends ProductDTO {
     }
 
     public static MotherboardDTO initDTOFromRequest(final MotherboardCreationRequest request) {
-        if ((Integer.parseInt(request.getMemoryMax()) & Integer.parseInt(request.getMemoryMax()) - 1) != 0) {
+        if ((request.getMemoryMax() & request.getMemoryMax() - 1) != 0) {
             throw new IllegalArgumentException("'memoryMax' must be power of two");
         }
-        if (Integer.parseInt(request.getMemorySlots()) % 2 != 0) {
+        if (request.getMemorySlots() % 2 != 0) {
             throw new IllegalArgumentException("'memorySlots' must be even number");
         }
         return MotherboardDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
                 .socketType(SocketType.valueOf(request.getSocketType().trim().toUpperCase()))
                 .atxtype(ATXType.valueOf(request.getAtxType().trim().toUpperCase()))
-                .memoryMax(Integer.valueOf(request.getMemoryMax()))
-                .memorySlots(Integer.valueOf(request.getMemorySlots()))
+                .memoryMax(request.getMemoryMax())
+                .memorySlots(request.getMemorySlots())
                 .ddrType(DDRType.valueOf(request.getDdrType().trim().toUpperCase()))
                 .isM2(Boolean.valueOf(request.getIsM2().trim()))
                 .gpuInterfaceType(GPUInterfaceType.valueOf(request.getGpuInterfaceType().trim().toUpperCase()))
-                .tdp(Integer.valueOf(request.getTdp()))
+                .tdp(request.getTdp())
                 .build();
     }
 

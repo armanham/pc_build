@@ -1,13 +1,12 @@
 package com.bdg.pc_build.product.model.dto.peripheral;
 
+import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Headset;
-import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.request.creation.peripheral.HeadsetCreationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -49,17 +48,17 @@ public class HeadsetDTO extends ProductDTO {
     }
 
     public static HeadsetDTO initDTOFromRequest(final HeadsetCreationRequest request) {
-        if (Integer.parseInt(request.getFrequency()) < 20 || Integer.parseInt(request.getFrequency()) > 20000) {
+        if (request.getFrequency() < 20 || request.getFrequency() > 20000) {
             throw new IllegalArgumentException("'frequency' must be between 20 and 20000 inclusive");
         }
         return HeadsetDTO.builder()
-                .name(request.getName())
-                .price(Double.valueOf(request.getPrice()))
-                .purchasedPrice(Double.valueOf(request.getPurchasedPrice()))
-                .count(Integer.valueOf(request.getCount()))
-                .frequency(Integer.valueOf(request.getFrequency()))
+                .name(request.getName().trim())
+                .price(request.getPrice())
+                .purchasedPrice(request.getPurchasedPrice())
+                .count(request.getCount())
+                .frequency(request.getFrequency())
                 .connectivityType(ConnectivityType.valueOf(request.getConnectivityType().trim().toUpperCase()))
-                .cableLength(Double.valueOf(request.getCableLength()))
+                .cableLength(request.getCableLength())
                 .build();
     }
 }

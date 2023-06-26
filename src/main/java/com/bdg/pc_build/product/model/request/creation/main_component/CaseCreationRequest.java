@@ -5,39 +5,29 @@ import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.product.pattern.Pattern.*;
+import static com.bdg.pc_build.product.pattern.Pattern.TOWER_TYPE_ENUM_PATTERN;
+import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class CaseCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'max_cpu_cooler_height' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "max_cpu_cooler_height", required = true)
-    String maxCpuCoolerHeight;
+    Double maxCpuCoolerHeight;
 
-    @NotBlank(message = "'max_gpu_length' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "max_gpu_length", required = true)
-    String maxGpuLength;
+    Double maxGpuLength;
 
-    @NotBlank(message = "'pre_installed_fans' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "pre_installed_fans", required = true)
-    String preInstalledFans;
+    Integer preInstalledFans;
 
     @NotBlank(message = "'tower_type' field can not be blank")
     @Pattern(
@@ -49,12 +39,12 @@ public class CaseCreationRequest extends ProductCreationRequest {
 
     public CaseCreationRequest(
             final String name,
-            final String price,
-            final String purchasedPrice,
-            final String count,
-            final String maxCpuCoolerHeight,
-            final String maxGpuLength,
-            final String preInstalledFans,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count,
+            final Double maxCpuCoolerHeight,
+            final Double maxGpuLength,
+            final Integer preInstalledFans,
             final String towerType
     ) {
         super(name, price, purchasedPrice, count);

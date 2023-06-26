@@ -2,12 +2,12 @@ package com.bdg.pc_build.product.model.request.creation.main_component;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
-
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 
 import static com.bdg.pc_build.product.pattern.Pattern.*;
 
@@ -23,13 +23,9 @@ public class PowerSupplyCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "efficiency_rating", required = true)
     String efficiencyRating;
 
-    @NotBlank(message = "'wattage' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "wattage", required = true)
-    String wattage;
+    Integer wattage;
 
     @NotBlank(message = "'modular_type' field can not be blank")
     @Pattern(
@@ -39,23 +35,19 @@ public class PowerSupplyCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "modular_type", required = true)
     String modularType;
 
-    @NotBlank(message = "'tdp' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "tdp", required = true)
-    String tdp;
+    Integer tdp;
 
     public PowerSupplyCreationRequest(
             final String name,
-            final String price,
-            final String purchasedPrice,
-            final String count,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count,
             final String efficiencyRating,
-            final String wattage,
+            final Integer wattage,
             final String modularType,
-            final String tdp
+            final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
         this.efficiencyRating = efficiencyRating;

@@ -4,30 +4,25 @@ import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.*;
+import jakarta.validation.constraints.Positive;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.product.pattern.Pattern.*;
+import static com.bdg.pc_build.product.pattern.Pattern.MONITOR_SCREEN_TYPE_ENUM_PATTERN;
+import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class MonitorCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'screen_size' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "screen_size", required = true)
-    String screenSize;
+    Double screenSize;
 
-    @NotBlank(message = "'refresh_rate' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "refresh_rate", required = true)
-    String refreshRate;
+    Integer refreshRate;
 
     @NotBlank(message = "'screen_type' field can not be blank")
     @Pattern(
@@ -39,11 +34,11 @@ public class MonitorCreationRequest extends ProductCreationRequest {
 
     public MonitorCreationRequest(
             final String name,
-            final String price,
-            final String purchasedPrice,
-            final String count,
-            final String screenSize,
-            final String refreshRate,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count,
+            final Double screenSize,
+            final Integer refreshRate,
             final String screenType
     ) {
         super(name, price, purchasedPrice, count);

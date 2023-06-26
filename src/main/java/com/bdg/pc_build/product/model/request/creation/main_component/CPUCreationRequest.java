@@ -4,48 +4,33 @@ import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import static com.bdg.pc_build.product.pattern.Pattern.*;
-import static com.bdg.pc_build.product.pattern.Pattern.WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE;
+import static com.bdg.pc_build.product.pattern.Pattern.SOCKET_TYPE_ENUM_PATTERN;
+import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class CPUCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'core_count' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "core_count", required = true)
-    String coreCount;
+    Integer coreCount;
 
-    @NotBlank(message = "'core_clock' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "core_clock", required = true)
-    String coreClock;
+    Double coreClock;
 
-    @NotBlank(message = "'boost_clock' field can not be blank")
-    @Pattern(
-            regexp = FLOATING_POINT_NUMBER_PATTERN,
-            message = WRONG_FLOATING_POINT_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "boost_clock", required = true)
-    String boostClock;
+    Double boostClock;
 
-    @NotBlank(message = "'tdp' field can not be blank")
-    @Pattern(
-            regexp = POSITIVE_INTEGER_NUMBER_PATTERN,
-            message = WRONG_POSITIVE_INTEGER_NUMBER_PATTERN_MESSAGE
-    )
+    @Positive
     @JsonProperty(value = "tdp", required = true)
-    String tdp;
+    Integer tdp;
 
     @NotBlank(message = "'integrated_graphics' field can not be blank")
     @JsonProperty(value = "integrated_graphics", required = true)
@@ -61,13 +46,13 @@ public class CPUCreationRequest extends ProductCreationRequest {
 
     public CPUCreationRequest(
             final String name,
-            final String price,
-            final String purchasedPrice,
-            final String count,
-            final String coreCount,
-            final String coreClock,
-            final String boostClock,
-            final String tdp,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count,
+            final Integer coreCount,
+            final Double coreClock,
+            final Double boostClock,
+            final Integer tdp,
             final String integratedGraphics,
             final String socketType
     ) {
