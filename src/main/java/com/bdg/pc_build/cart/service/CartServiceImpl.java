@@ -2,6 +2,9 @@ package com.bdg.pc_build.cart.service;
 
 import com.bdg.pc_build.cart.model.CartItem;
 import com.bdg.pc_build.config.JwtService;
+import com.bdg.pc_build.exception.InvalidAuthHeaderException;
+import com.bdg.pc_build.exception.InvalidTokenException;
+import com.bdg.pc_build.exception.NotEnoughInStockException;
 import com.bdg.pc_build.exception.UserNotFoundException;
 import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.order.service.OrderService;
@@ -80,12 +83,12 @@ public class CartServiceImpl implements CartService {
     public void checkout(final String authHeader) {
         User user = getUserByAuthHeader(authHeader);
         for (Map.Entry<ProductDTO, Integer> entry : cartItems.entrySet()) {
-            if (entry.getKey().getCount() < entry.getValue()) {
+            ProductDTO currentProduct = entry.getKey();
+            if (currentProduct.getCount() < entry.getValue()) {
                 //todo
-                throw new IllegalArgumentException("Not enough products");
+                throw new NotEnoughInStockException(currentProduct.getClass(), currentProduct.getName(), currentProduct.getCount());
             } else {
-                System.out.println(entry.getKey().getId());
-                productService.reduceCountById(entry.getKey().getId(), entry.getValue());
+                productService.reduceCountById(currentProduct.getId(), entry.getValue());
             }
         }
         orderService.save(cartItems.keySet(), getTotal(), user);
@@ -95,7 +98,7 @@ public class CartServiceImpl implements CartService {
 
     private User getUserByAuthHeader(final String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new IllegalArgumentException(); //TODO
+            throw new InvalidAuthHeaderException(); //TODO
         }
         final String token = authHeader.substring(7);
         final String email = jwtService.extractUsername(token);
@@ -103,7 +106,7 @@ public class CartServiceImpl implements CartService {
         User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 
         if (!jwtService.isTokenValid(token, user)) {
-            throw new IllegalArgumentException(); //TODO
+            throw new InvalidTokenException(); //TODO
         }
         return user;
     }

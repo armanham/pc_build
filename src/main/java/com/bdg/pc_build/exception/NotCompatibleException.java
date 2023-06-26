@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.OK)
-public class NotCompletableException extends RuntimeException{
+public class NotCompatibleException extends RuntimeException{
 
-    public NotCompletableException(String message) {
+    public NotCompatibleException(String message) {
         super(message);
     }
 }

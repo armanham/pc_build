@@ -1,8 +1,6 @@
 package com.bdg.pc_build.desire_log.service;
 
-import com.bdg.pc_build.exception.ProductAlreadyCheckedException;
-import com.bdg.pc_build.exception.ProductNotFoundException;
-import com.bdg.pc_build.exception.UserNotFoundException;
+import com.bdg.pc_build.exception.*;
 import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
@@ -107,7 +105,7 @@ public class DesireLogServiceImpl implements DesireLogService {
 
     private User getUserByAuthHeader(final String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new IllegalArgumentException(); //TODO
+            throw new InvalidAuthHeaderException(); //TODO
         }
         final String token = authHeader.substring(7);
         final String email = jwtService.extractUsername(token);
@@ -115,7 +113,7 @@ public class DesireLogServiceImpl implements DesireLogService {
         User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 
         if (!jwtService.isTokenValid(token, user)) {
-            throw new IllegalArgumentException(); //TODO
+            throw new InvalidTokenException(); //TODO
         }
         return user;
     }

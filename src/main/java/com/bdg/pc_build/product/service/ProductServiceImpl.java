@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.service;
 
+import com.bdg.pc_build.exception.NotEnoughInStockException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
 import com.bdg.pc_build.exception.SameNameDifferentDescriptionException;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
@@ -78,7 +79,7 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findById(id);
         if (optionalENTITY.isEmpty()) {
-            throw new IllegalArgumentException(); //todo
+            throw new ProductNotFoundException(id); //todo
         }
         ENTITY foundedProduct = optionalENTITY.get();
         foundedProduct.setPrice(newPrice);
@@ -92,13 +93,13 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findById(id);
         if (optionalENTITY.isEmpty()) {
-            throw new IllegalArgumentException(); //todo
+            throw new ProductNotFoundException(id); //todo
         }
 
         ENTITY foundedProduct = optionalENTITY.get();
 
         if (foundedProduct.getCount() < countToBeReduced) {
-            throw new IllegalArgumentException(); //todo
+            throw new NotEnoughInStockException(foundedProduct.getClass(), foundedProduct.getName(), foundedProduct.getCount()); //todo
         }
         foundedProduct.setCount(foundedProduct.getCount() - countToBeReduced);
         repository.save(foundedProduct);
@@ -415,7 +416,7 @@ public class ProductServiceImpl implements ProductService {
         if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             updatePriceById(id, newPrice, speakerDAO);
         }
-        throw new ProductNotFoundException("aaaaa"); // todo
+        throw new ProductNotFoundException(id); // todo
     }
 
     @Override
@@ -466,7 +467,7 @@ public class ProductServiceImpl implements ProductService {
             reduceCountById(id, countToBeReduced, speakerDAO);
         }
         else {
-            throw new ProductNotFoundException("aaaaa"); // todo
+            throw new ProductNotFoundException(id); // todo
         }
     }
 
@@ -517,7 +518,7 @@ public class ProductServiceImpl implements ProductService {
             return SpeakerDTO.initDTOFromEntity(findById(id, speakerDAO));
         }
 
-        throw new ProductNotFoundException("aaaaa"); //todo
+        throw new ProductNotFoundException(id); //todo
 
     }
 
