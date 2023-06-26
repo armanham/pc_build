@@ -2,11 +2,7 @@ package com.bdg.pc_build.cart.service;
 
 import com.bdg.pc_build.cart.model.CartItem;
 import com.bdg.pc_build.config.JwtService;
-import com.bdg.pc_build.exception.InvalidAuthHeaderException;
-import com.bdg.pc_build.exception.InvalidTokenException;
-import com.bdg.pc_build.exception.NotEnoughInStockException;
-import com.bdg.pc_build.exception.UserNotFoundException;
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.exception.*;
 import com.bdg.pc_build.order.service.OrderService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.service.ProductService;
@@ -15,11 +11,8 @@ import com.bdg.pc_build.user.repository.UserDAO;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -30,7 +23,6 @@ import java.util.Objects;
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
-//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Transactional
 public class CartServiceImpl implements CartService {
 
@@ -39,8 +31,6 @@ public class CartServiceImpl implements CartService {
     JwtService jwtService;
     UserDAO userDAO;
     private Map<ProductDTO, Integer> cartItems = new HashMap<>();
-
-
 
 
     @Override
@@ -84,8 +74,9 @@ public class CartServiceImpl implements CartService {
         User user = getUserByAuthHeader(authHeader);
         for (Map.Entry<ProductDTO, Integer> entry : cartItems.entrySet()) {
             ProductDTO currentProduct = entry.getKey();
-            if (currentProduct.getCount() < entry.getValue()) {
-                //todo
+            if (currentProduct.getCount() == 0) {
+                throw new OutOfStockException(currentProduct.getClass(), currentProduct.getName());
+            } else if (currentProduct.getCount() < entry.getValue()) {
                 throw new NotEnoughInStockException(currentProduct.getClass(), currentProduct.getName(), currentProduct.getCount());
             } else {
                 productService.reduceCountById(currentProduct.getId(), entry.getValue());
@@ -98,7 +89,7 @@ public class CartServiceImpl implements CartService {
 
     private User getUserByAuthHeader(final String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new InvalidAuthHeaderException(); //TODO
+            throw new InvalidAuthHeaderException();
         }
         final String token = authHeader.substring(7);
         final String email = jwtService.extractUsername(token);
@@ -106,7 +97,7 @@ public class CartServiceImpl implements CartService {
         User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 
         if (!jwtService.isTokenValid(token, user)) {
-            throw new InvalidTokenException(); //TODO
+            throw new InvalidTokenException();
         }
         return user;
     }

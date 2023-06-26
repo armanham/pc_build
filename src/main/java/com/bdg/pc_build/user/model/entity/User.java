@@ -1,5 +1,6 @@
 package com.bdg.pc_build.user.model.entity;
 
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.token.Token;
@@ -64,6 +65,9 @@ public class User implements UserDetails {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Order> orders;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy =  "user")
+    List<Computer> computers;
 
     @Builder
     public User(

@@ -1,14 +1,15 @@
 package com.bdg.pc_build.computer_builder.service;
 
-import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.exception.NotCompatibleException;
-import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.enumerations.ATXType;
 import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
 import com.bdg.pc_build.product.enumerations.TowerType;
+import com.bdg.pc_build.product.model.entity.main_component.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -16,30 +17,29 @@ import java.util.List;
 @Getter
 public class CompatibilityValidator {
 
-    ComputerDTO computerDTOToCompatibilityCheck;
+    Computer computerToCompatibilityCheck;
 
-    public CompatibilityValidator(final ComputerDTO computerDTO) {
-        validateMotherboardWithRam(computerDTO.getMotherboard(), computerDTO.getRams());
-        validateMotherboardWithCpu(computerDTO.getMotherboard(), computerDTO.getCpu());
-        validateMotherboardWithCpuCooler(computerDTO.getMotherboard(), computerDTO.getCpuCooler());
-        validateCpuWithCpuCooler(computerDTO.getCpu(), computerDTO.getCpuCooler());
-        validateMotherboardWithCase(computerDTO.getMotherboard(), computerDTO.getACase());
-        validateMotherboardWithInternalHardDrive(computerDTO.getMotherboard(), computerDTO.getInternalHardDrives());
-        validateMotherboardWithGpu(computerDTO.getMotherboard(), computerDTO.getGpu());
-        validateSumOfTdpsAndPowerSupplyWattage(computerDTO);
+    public CompatibilityValidator(final Computer computer) {
+        validateMotherboardWithRam(computer.getMotherboard(), computer.getRams());
+        validateMotherboardWithCpu(computer.getMotherboard(), computer.getCpu());
+        validateMotherboardWithCpuCooler(computer.getMotherboard(), computer.getCpuCooler());
+        validateCpuWithCpuCooler(computer.getCpu(), computer.getCpuCooler());
+        validateMotherboardWithCase(computer.getMotherboard(), computer.getACase());
+        validateMotherboardWithInternalHardDrive(computer.getMotherboard(), computer.getInternalHardDrives());
+        validateMotherboardWithGpu(computer.getMotherboard(), computer.getGpu());
+        validateSumOfTdpsAndPowerSupplyWattage(computer);
 
-        this.computerDTOToCompatibilityCheck = computerDTO;
+        this.computerToCompatibilityCheck = computer;
     }
 
-    private void validateMotherboardWithRam(MotherboardDTO motherboardDTO, List<RAMDTO> ramDTOs) {
+    private void validateMotherboardWithRam(Motherboard motherboardDTO, List<RAM> ramDTOs) {
         if (motherboardDTO != null && (ramDTOs != null && !ramDTOs.isEmpty())) {
             int countOfRams = 0;
             int sumOfGbOfRams = 0;
 
-            for (RAMDTO ramDTO : ramDTOs) {
+            for (RAM ramDTO : ramDTOs) {
                 if (!motherboardDTO.getDdrType().equals(ramDTO.getDdrType())) {
-                    //TODO NotCompatibleException
-                    throw new NotCompatibleException(" Motherboard not compatible with  " + ramDTO.getDdrType());
+                    throw new NotCompatibleException("Motherboard not compatible with " + ramDTO.getDdrType());
                 }
 
                 countOfRams += ramDTO.getCountOfRam();
@@ -56,7 +56,7 @@ public class CompatibilityValidator {
         }
     }
 
-    private void validateMotherboardWithCpu(MotherboardDTO motherboardDTO, CPUDTO cpuDTO) {
+    private void validateMotherboardWithCpu(Motherboard motherboardDTO, CPU cpuDTO) {
         if (motherboardDTO != null && cpuDTO != null) {
             if (!motherboardDTO.getSocketType().equals(cpuDTO.getSocketType())) {
                 throw new NotCompatibleException(" Motherboard not compatible with  cpu  " );
@@ -64,7 +64,7 @@ public class CompatibilityValidator {
         }
     }
 
-    private void validateCpuWithCpuCooler(CPUDTO cpuDTO, CPUCoolerDTO cpuCoolerDTO) {
+    private void validateCpuWithCpuCooler(CPU cpuDTO, CPUCooler cpuCoolerDTO) {
         if (cpuDTO != null && cpuCoolerDTO != null) {
             if (!cpuDTO.getSocketType().equals(cpuCoolerDTO.getSocketType())) {
                 throw new NotCompatibleException(" cpu not compatible with  cpu cooler " );
@@ -72,7 +72,7 @@ public class CompatibilityValidator {
         }
     }
 
-    private void validateMotherboardWithCpuCooler(MotherboardDTO motherboardDTO, CPUCoolerDTO CpuCoolerDTO) {
+    private void validateMotherboardWithCpuCooler(Motherboard motherboardDTO, CPUCooler CpuCoolerDTO) {
         if (motherboardDTO != null && CpuCoolerDTO != null) {
             if (!motherboardDTO.getSocketType().equals(CpuCoolerDTO.getSocketType())) {
                 throw new NotCompatibleException(" motherboard not compatible with  cpu cooler");
@@ -80,7 +80,7 @@ public class CompatibilityValidator {
         }
     }
 
-    private void validateMotherboardWithCase(MotherboardDTO motherboardDTO, CaseDTO caseDTO) {
+    private void validateMotherboardWithCase(Motherboard motherboardDTO, aCase caseDTO) {
         if (motherboardDTO != null && caseDTO != null) {
             if (caseDTO.getTowerType().equals(TowerType.FULL) && motherboardDTO.getAtxType().equals(ATXType.M_ATX)) {
                 throw new NotCompatibleException(" case not compatible with  motherboard");
@@ -94,9 +94,9 @@ public class CompatibilityValidator {
         }
     }
 
-    private void validateMotherboardWithInternalHardDrive(MotherboardDTO motherboardDTO, List<InternalHardDriveDTO> internalHardDriveDTOs) {
+    private void validateMotherboardWithInternalHardDrive(Motherboard motherboardDTO, List<InternalHardDrive> internalHardDriveDTOs) {
         if (motherboardDTO != null && (internalHardDriveDTOs != null && !internalHardDriveDTOs.isEmpty())) {
-            for (InternalHardDriveDTO internalHardDriveDTO : internalHardDriveDTOs) {
+            for (InternalHardDrive internalHardDriveDTO : internalHardDriveDTOs) {
                 if (!motherboardDTO.getIsM2() && internalHardDriveDTO.getInternalHardDriveInterfaceType().equals(InternalHardDriveInterfaceType.SSD_M2)) {
                     throw new NotCompatibleException(" motherboard not compatible with  internal hard drive");
                 }
@@ -105,7 +105,7 @@ public class CompatibilityValidator {
     }
 
 
-    private void validateMotherboardWithGpu(MotherboardDTO motherboardDTO, GPUDTO gpuDTO) {
+    private void validateMotherboardWithGpu(Motherboard motherboardDTO, GPU gpuDTO) {
         if (motherboardDTO != null && gpuDTO != null) {
             if (!motherboardDTO.getGpuInterfaceType().equals(gpuDTO.getGpuInterfaceType())) {
                 throw new NotCompatibleException(" Motherboard not compatible with  GPU interface");
@@ -113,7 +113,7 @@ public class CompatibilityValidator {
         }
     }
 
-    private void validateSumOfTdpsAndPowerSupplyWattage(ComputerDTO computerDTO) {
+    private void validateSumOfTdpsAndPowerSupplyWattage(Computer computerDTO) {
         if (computerDTO.getPowerSupply() != null) {
             int sumOfTdpsOfAllComponents = computerDTO.getPowerSupply().getTdp();
 
@@ -130,17 +130,17 @@ public class CompatibilityValidator {
                 sumOfTdpsOfAllComponents += computerDTO.getGpu().getTdp();
             }
             if (computerDTO.getCoolers() != null && !computerDTO.getCoolers().isEmpty()) {
-                for (CoolerDTO coolerDTO : computerDTO.getCoolers()) {
+                for (Cooler coolerDTO : computerDTO.getCoolers()) {
                     sumOfTdpsOfAllComponents += coolerDTO.getTdp();
                 }
             }
             if (computerDTO.getRams() != null && !computerDTO.getRams().isEmpty()) {
-                for (RAMDTO ramDTO : computerDTO.getRams()) {
+                for (RAM ramDTO : computerDTO.getRams()) {
                     sumOfTdpsOfAllComponents += ramDTO.getTdp();
                 }
             }
             if (computerDTO.getInternalHardDrives() != null && !computerDTO.getInternalHardDrives().isEmpty()) {
-                for (InternalHardDriveDTO internalHardDriveDTO : computerDTO.getInternalHardDrives()) {
+                for (InternalHardDrive internalHardDriveDTO : computerDTO.getInternalHardDrives()) {
                     sumOfTdpsOfAllComponents += internalHardDriveDTO.getTdp();
                 }
             }
