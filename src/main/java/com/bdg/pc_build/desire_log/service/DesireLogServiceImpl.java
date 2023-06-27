@@ -64,12 +64,12 @@ public class DesireLogServiceImpl implements DesireLogService {
     public DesireLogDTO markAsCheckedById(final Long id) {
         Optional<DesireLog> optionalDesireLog = desireLogDAO.findById(id);
         if (optionalDesireLog.isEmpty()) {
-            throw new ProductNotFoundException("Product with the given id: " + id + " in desire log not found: ");
+            throw new ProductNotFoundException(DesireLog.class, id);
         }
 
         DesireLog desireLog = optionalDesireLog.get();
         if (desireLog.getChecked()) {
-            throw new ProductAlreadyCheckedException("Product with the given id: " + id + " in desire log already checked: ");
+            throw new ProductAlreadyCheckedInDesireLogException(id);
         }
         desireLog.setChecked(true);
         return new DesireLogDTO(desireLogDAO.save(desireLog));
@@ -87,14 +87,14 @@ public class DesireLogServiceImpl implements DesireLogService {
     public DesireLogDTO getById(final Long id) {
         Optional<DesireLog> optionalDesireLog = desireLogDAO.findById(id);
         if (optionalDesireLog.isEmpty()) {
-            throw new ProductNotFoundException("Product with the given id: " + id + " in desire log not found: ");
+            throw new ProductNotFoundException(DesireLog.class, id);
         }
         return new DesireLogDTO(optionalDesireLog.get());
     }
 
     @Override
     public Set<User> getUsersByLogId(final Long id) {
-        DesireLog desireLog = desireLogDAO.findById(id).orElseThrow(()-> new ProductNotFoundException("Product with the given id: " + id + " in desire log not found: "));
+        DesireLog desireLog = desireLogDAO.findById(id).orElseThrow(()-> new ProductNotFoundException(DesireLog.class, id));
 
         return desireLog.getUsers();
     }
@@ -102,7 +102,7 @@ public class DesireLogServiceImpl implements DesireLogService {
 
     private User getUserByAuthHeader(final String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new InvalidAuthHeaderException(); //TODO
+            throw new InvalidAuthHeaderException();
         }
         final String token = authHeader.substring(7);
         final String email = jwtService.extractUsername(token);
@@ -110,7 +110,7 @@ public class DesireLogServiceImpl implements DesireLogService {
         User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 
         if (!jwtService.isTokenValid(token, user)) {
-            throw new InvalidTokenException(); //TODO
+            throw new InvalidTokenException();
         }
         return user;
     }

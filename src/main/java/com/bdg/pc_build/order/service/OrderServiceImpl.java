@@ -1,5 +1,6 @@
 package com.bdg.pc_build.order.service;
 
+import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
 import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.order.repository.OrderDAO;
@@ -45,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
         order.setUser(user);
         for (ProductDTO product : products) {
             if (product.getId() >= INITIAL_ID_VALUE_CASE && product.getId() <= FINAL_ID_VALUE_CASE) {
-                order.addCase(caseDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));//todo
+                order.addCase(caseDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_COOLER && product.getId() <= FINAL_ID_VALUE_COOLER) {
                 order.addCooler(coolerDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_CPU && product.getId() <= FINAL_ID_VALUE_CPU) {
@@ -75,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
             } else if (product.getId() >= INITIAL_ID_VALUE_SPEAKER && product.getId() <= FINAL_ID_VALUE_SPEAKER) {
                 order.addSpeaker(speakerDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
             } else {
-                throw new ProductNotFoundException(product.getId());//todo
+                throw new IdOutOfScopeException(product.getId());
             }
         }
         return orderDAO.save(order);

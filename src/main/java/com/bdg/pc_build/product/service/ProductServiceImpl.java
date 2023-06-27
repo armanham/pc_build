@@ -2,6 +2,7 @@ package com.bdg.pc_build.product.service;
 
 import com.bdg.pc_build.exception.NotEnoughInStockException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
+import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.exception.SameNameDifferentDescriptionException;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
@@ -76,7 +77,7 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findById(id);
         if (optionalENTITY.isEmpty()) {
-            throw new ProductNotFoundException(id); //todo
+            throw new ProductNotFoundException(id);
         }
         ENTITY foundedProduct = optionalENTITY.get();
         foundedProduct.setPrice(newPrice);
@@ -90,13 +91,13 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findById(id);
         if (optionalENTITY.isEmpty()) {
-            throw new ProductNotFoundException(id); //todo
+            throw new ProductNotFoundException(id);
         }
 
         ENTITY foundedProduct = optionalENTITY.get();
 
         if (foundedProduct.getCount() < countToBeReduced) {
-            throw new NotEnoughInStockException(foundedProduct.getClass(), foundedProduct.getName(), foundedProduct.getCount()); //todo
+            throw new NotEnoughInStockException(foundedProduct.getClass(), foundedProduct.getName(), foundedProduct.getCount());
         }
         foundedProduct.setCount(foundedProduct.getCount() - countToBeReduced);
         repository.save(foundedProduct);
@@ -108,14 +109,14 @@ public class ProductServiceImpl implements ProductService {
 
     private <ENTITY extends Product> ENTITY findById(final Long id, final ProductDAO<ENTITY> dao) {
         Optional<ENTITY> result = dao.findById(id);
-        return result.orElseThrow(() -> new ProductNotFoundException("aaa"));
+        return result.orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     @Override
     public MonitorDTO saveMonitor(final MonitorDTO dto) {
         Monitor toSave = save(new Monitor(dto), monitorDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_MONITOR || toSave.getId() > FINAL_ID_VALUE_MONITOR) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return MonitorDTO.initDTOFromEntity(toSave);
     }
@@ -124,7 +125,7 @@ public class ProductServiceImpl implements ProductService {
     public CaseDTO saveCase(final CaseDTO dto) {
         aCase toSave = save(new aCase(dto), caseDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_CASE || toSave.getId() > FINAL_ID_VALUE_CASE) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return CaseDTO.initDTOFromEntity(toSave);
     }
@@ -133,7 +134,7 @@ public class ProductServiceImpl implements ProductService {
     public CoolerDTO saveCooler(final CoolerDTO dto) {
         Cooler toSave = save(new Cooler(dto), coolerDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_COOLER || toSave.getId() > FINAL_ID_VALUE_COOLER) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return CoolerDTO.initDTOFromEntity(toSave);
     }
@@ -142,7 +143,7 @@ public class ProductServiceImpl implements ProductService {
     public CPUCoolerDTO saveCpuCooler(final CPUCoolerDTO dto) {
         CPUCooler toSave = save(new CPUCooler(dto), cpuCoolerDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_CPU_COOLER || toSave.getId() > FINAL_ID_VALUE_CPU_COOLER) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return CPUCoolerDTO.initDTOFromEntity(toSave);
     }
@@ -151,7 +152,7 @@ public class ProductServiceImpl implements ProductService {
     public CPUDTO saveCPU(final CPUDTO dto) {
         CPU toSave = save(new CPU(dto), cpuDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_CPU || toSave.getId() > FINAL_ID_VALUE_CPU) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return CPUDTO.initDTOFromEntity(toSave);
     }
@@ -160,7 +161,7 @@ public class ProductServiceImpl implements ProductService {
     public InternalHardDriveDTO saveInternalHardDrive(final InternalHardDriveDTO dto) {
         InternalHardDrive toSave = save(new InternalHardDrive(dto), internalHardDriveDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE || toSave.getId() > FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return InternalHardDriveDTO.initDTOFromEntity(toSave);
     }
@@ -169,7 +170,7 @@ public class ProductServiceImpl implements ProductService {
     public GPUDTO saveGPU(final GPUDTO dto) {
         GPU toSave = save(new GPU(dto), gpuDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_GPU || toSave.getId() > FINAL_ID_VALUE_GPU) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return GPUDTO.initDTOFromEntity(toSave);
     }
@@ -178,7 +179,7 @@ public class ProductServiceImpl implements ProductService {
     public ExternalHardDriveDTO saveExternalHardDrive(final ExternalHardDriveDTO dto) {
         ExternalHardDrive toSave = save(new ExternalHardDrive(dto), externalHardDriveDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE || toSave.getId() > FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return ExternalHardDriveDTO.initDTOFromEntity(toSave);
     }
@@ -187,7 +188,7 @@ public class ProductServiceImpl implements ProductService {
     public MotherboardDTO saveMotherboard(final MotherboardDTO dto) {
         Motherboard toSave = save(new Motherboard(dto), motherboardDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_MOTHERBOARD || toSave.getId() > FINAL_ID_VALUE_MOTHERBOARD) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return MotherboardDTO.initDTOFromEntity(toSave);
     }
@@ -196,7 +197,7 @@ public class ProductServiceImpl implements ProductService {
     public PowerSupplyDTO savePowerSupply(final PowerSupplyDTO dto) {
         PowerSupply toSave = save(new PowerSupply(dto), powerSupplyDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_POWER_SUPPLY || toSave.getId() > FINAL_ID_VALUE_POWER_SUPPLY) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return PowerSupplyDTO.initDTOFromEntity(toSave);
     }
@@ -205,7 +206,7 @@ public class ProductServiceImpl implements ProductService {
     public RAMDTO saveRAM(final RAMDTO dto) {
         RAM toSave = save(new RAM(dto), ramDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_RAM || toSave.getId() > FINAL_ID_VALUE_RAM) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return RAMDTO.initDTOFromEntity(toSave);
     }
@@ -214,7 +215,7 @@ public class ProductServiceImpl implements ProductService {
     public HeadsetDTO saveHeadset(final HeadsetDTO dto) {
         Headset toSave = save(new Headset(dto), headsetDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_HEADSET || toSave.getId() > FINAL_ID_VALUE_HEADSET) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return HeadsetDTO.initDTOFromEntity(toSave);
     }
@@ -223,7 +224,7 @@ public class ProductServiceImpl implements ProductService {
     public KeyboardDTO saveKeyboard(final KeyboardDTO dto) {
         Keyboard toSave = save(new Keyboard(dto), keyboardDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_KEYBOARD || toSave.getId() > FINAL_ID_VALUE_KEYBOARD) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return KeyboardDTO.initDTOFromEntity(toSave);
     }
@@ -232,7 +233,7 @@ public class ProductServiceImpl implements ProductService {
     public MouseDTO saveMouse(final MouseDTO dto) {
         Mouse toSave = save(new Mouse(dto), mouseDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_MOUSE || toSave.getId() > FINAL_ID_VALUE_MOUSE) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return MouseDTO.initDTOFromEntity(toSave);
     }
@@ -241,7 +242,7 @@ public class ProductServiceImpl implements ProductService {
     public SpeakerDTO saveSpeaker(final SpeakerDTO dto) {
         Speaker toSave = save(new Speaker(dto), speakerDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_SPEAKER || toSave.getId() > FINAL_ID_VALUE_SPEAKER) {
-            throw new IllegalArgumentException(); //todo
+            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
         return SpeakerDTO.initDTOFromEntity(toSave);
     }
@@ -371,49 +372,51 @@ public class ProductServiceImpl implements ProductService {
         if (id >= INITIAL_ID_VALUE_CASE && id <= FINAL_ID_VALUE_CASE) {
             updatePriceById(id, newPrice, caseDAO);
         }
-        if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
+        else if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
             updatePriceById(id, newPrice, coolerDAO);
         }
-        if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
+        else if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
             updatePriceById(id, newPrice, cpuDAO);
         }
-        if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
+        else if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
             updatePriceById(id, newPrice, cpuCoolerDAO);
         }
-        if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
+        else if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
             updatePriceById(id, newPrice, gpuDAO);
         }
-        if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
+        else if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
             updatePriceById(id, newPrice, internalHardDriveDAO);
         }
-        if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
+        else if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
             updatePriceById(id, newPrice, motherboardDAO);
         }
-        if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
+        else if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
             updatePriceById(id, newPrice, powerSupplyDAO);
         }
-        if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
+        else if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
             updatePriceById(id, newPrice, ramDAO);
         }
-        if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
+        else if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
             updatePriceById(id, newPrice, externalHardDriveDAO);
         }
-        if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
+        else if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
             updatePriceById(id, newPrice, headsetDAO);
         }
-        if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
+        else if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
             updatePriceById(id, newPrice, keyboardDAO);
         }
-        if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
+        else if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
             updatePriceById(id, newPrice, monitorDAO);
         }
-        if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
+        else if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
             updatePriceById(id, newPrice, mouseDAO);
         }
-        if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
+        else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             updatePriceById(id, newPrice, speakerDAO);
         }
-        throw new ProductNotFoundException(id); // todo
+        else {
+            throw new IdOutOfScopeException(id);
+        }
     }
 
     @Override
@@ -464,7 +467,7 @@ public class ProductServiceImpl implements ProductService {
             reduceCountById(id, countToBeReduced, speakerDAO);
         }
         else {
-            throw new ProductNotFoundException(id); // todo
+            throw new IdOutOfScopeException(id);
         }
     }
 
@@ -515,8 +518,7 @@ public class ProductServiceImpl implements ProductService {
             return SpeakerDTO.initDTOFromEntity(findById(id, speakerDAO));
         }
 
-        throw new ProductNotFoundException(id); //todo
-
+        throw new IdOutOfScopeException(id);
     }
 
     @Override

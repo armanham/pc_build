@@ -400,7 +400,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(InternalHardDriveDTO::initDTOFromEntity)
                         .toList();
-                internalHardDriveByInternalHardDRiveInterfaceTypeList.addAll(internalHardDriveDTOsByInterfaceType); //
+                internalHardDriveByInternalHardDRiveInterfaceTypeList.addAll(internalHardDriveDTOsByInterfaceType);
             }
         } else {
             internalHardDriveByInternalHardDRiveInterfaceTypeList.addAll(internalHardDriveDAO.findAll()
@@ -466,7 +466,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(MotherboardDTO::initDTOFromEntity)
                         .toList();
-                motherboardsByIsM2List.addAll(motherboardsByIsM2); //
+                motherboardsByIsM2List.addAll(motherboardsByIsM2);
             }
         } else {
             motherboardsByIsM2List.addAll(motherboardDAO.findAll()
@@ -482,7 +482,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(MotherboardDTO::initDTOFromEntity)
                         .toList();
-                motherboardsByDdrTypeList.addAll(motherboardsByDdrType); //
+                motherboardsByDdrTypeList.addAll(motherboardsByDdrType);
             }
         } else {
             motherboardsByDdrTypeList.addAll(motherboardDAO.findAll()
@@ -498,7 +498,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(MotherboardDTO::initDTOFromEntity)
                         .toList();
-                motherboardsByGpuInterfaceTypeList.addAll(motherboardsByGpuInterfaceType); //
+                motherboardsByGpuInterfaceTypeList.addAll(motherboardsByGpuInterfaceType);
             }
         } else {
             motherboardsByGpuInterfaceTypeList.addAll(motherboardDAO.findAll()
@@ -514,7 +514,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(MotherboardDTO::initDTOFromEntity)
                         .toList();
-                motherboardsBySocketTypeList.addAll(motherboardsBySocketType); //
+                motherboardsBySocketTypeList.addAll(motherboardsBySocketType);
             }
         } else {
             motherboardsBySocketTypeList.addAll(motherboardDAO.findAll()
@@ -530,7 +530,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(MotherboardDTO::initDTOFromEntity)
                         .toList();
-                motherboardsByAtxTypeList.addAll(motherboardsByAtxType); //
+                motherboardsByAtxTypeList.addAll(motherboardsByAtxType);
             }
         } else {
             motherboardsByAtxTypeList.addAll(motherboardDAO.findAll()
@@ -596,7 +596,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(PowerSupplyDTO::initDTOFromEntity)
                         .toList();
-                powerSuppliesByEfficiencyRatingList.addAll(powerSuppliesByEfficiencyRating); //
+                powerSuppliesByEfficiencyRatingList.addAll(powerSuppliesByEfficiencyRating);
             }
         } else {
             powerSuppliesByEfficiencyRatingList.addAll(powerSupplyDAO.findAll()
@@ -612,7 +612,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(PowerSupplyDTO::initDTOFromEntity)
                         .toList();
-                powerSuppliesByModularTypeList.addAll(powerSuppliesDTOsByModularType); //
+                powerSuppliesByModularTypeList.addAll(powerSuppliesDTOsByModularType);
             }
         } else {
             powerSuppliesByModularTypeList.addAll(powerSupplyDAO.findAll()
@@ -680,7 +680,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(RAMDTO::initDTOFromEntity)
                         .toList();
-                ramsByDdrTypeList.addAll(ramsByDdrType); //
+                ramsByDdrTypeList.addAll(ramsByDdrType);
             }
         } else {
             ramsByDdrTypeList.addAll(ramDAO.findAll()
@@ -783,7 +783,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(HeadsetDTO::initDTOFromEntity)
                         .toList();
-                headsetsByConnectivityTypeList.addAll(headsetsByConnectivityType); //
+                headsetsByConnectivityTypeList.addAll(headsetsByConnectivityType);
             }
         } else {
             headsetsByConnectivityTypeList.addAll(headsetDAO.findAll()
@@ -920,7 +920,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(MonitorDTO::initDTOFromEntity)
                         .toList();
-                monitorsByMonitorScreenTypeList.addAll(monitorsByMonitorScreenType); //
+                monitorsByMonitorScreenTypeList.addAll(monitorsByMonitorScreenType);
             }
         } else {
             monitorsByMonitorScreenTypeList.addAll(monitorDAO.findAll()
@@ -985,7 +985,7 @@ public class FilterServiceImpl implements FilterService {
                         .stream()
                         .map(MouseDTO::initDTOFromEntity)
                         .toList();
-                miceByConnectivityTypeList.addAll(mouseDTOsByConnectivityType); //
+                miceByConnectivityTypeList.addAll(mouseDTOsByConnectivityType);
             }
         } else {
             miceByConnectivityTypeList.addAll(mouseDAO.findAll()
