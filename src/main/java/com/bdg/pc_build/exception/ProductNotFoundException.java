@@ -11,8 +11,9 @@ public class ProductNotFoundException extends RuntimeException {
     }
 
     public ProductNotFoundException(Class clazz, Long id) {
-        super("Product of type " + clazz.getSimpleName() + " with ID " + id + " not found.");
+        super("Product of type: " + clazz.getSimpleName() + " with id: " + id + " not found: ");
     }
+
     public ProductNotFoundException(Long id) {
         super("The product with id : " + id + " was not found: ");
     }

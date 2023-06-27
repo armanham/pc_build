@@ -10,4 +10,9 @@ public class OutOfStockException extends RuntimeException {
         super("The product " + name + " of type " + clazz.getSimpleName()
                 + "is out of stock");
     }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage();
+    }
 }

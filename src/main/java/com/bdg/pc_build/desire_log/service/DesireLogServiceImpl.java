@@ -16,8 +16,8 @@ import java.util.Optional;
 import java.util.Set;
 
 @RequiredArgsConstructor
-@Transactional
 @Service
+@Transactional
 public class DesireLogServiceImpl implements DesireLogService {
 
     private final JwtService jwtService;
@@ -36,19 +36,19 @@ public class DesireLogServiceImpl implements DesireLogService {
             return new DesireLogDTO(desireLogDAO.save(desireLogToSave));
         }
 
-        DesireLog desireLog = optionalDesireLog.get();
+        DesireLog findedDesireLog = optionalDesireLog.get();
 
-        if (desireLog.getChecked()) {
-            DesireLog desireLogToSave = new DesireLog(dto);
-            desireLogToSave.addUser(user);
-            return new DesireLogDTO(desireLogDAO.save(desireLogToSave));
+        if (findedDesireLog.getChecked()) {
+            DesireLog duplicateDesireLogToSave = new DesireLog(dto);
+            duplicateDesireLogToSave.addUser(user);
+            return new DesireLogDTO(desireLogDAO.save(duplicateDesireLogToSave));
         }
-        if (desireLog.getUsers().contains(user)) {
-            throw new IllegalArgumentException();//TODO
+        if (findedDesireLog.getUsers().contains(user)) {
+            throw new ProductAlreadyReportedInDesireLogException(user);
         }
-        desireLog.setCount(desireLog.getCount() + 1);
-        desireLog.addUser(user);
-        return new DesireLogDTO(desireLog);
+        findedDesireLog.setCount(findedDesireLog.getCount() + 1);
+        findedDesireLog.addUser(user);
+        return new DesireLogDTO(desireLogDAO.save(findedDesireLog));
     }
 
     @Override

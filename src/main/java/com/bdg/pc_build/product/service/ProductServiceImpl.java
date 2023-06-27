@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
         if (optionalENTITY.isPresent()) {
             ENTITY foundedProduct = optionalENTITY.get();
             if (!foundedProduct.equals(product)) {
-                throw new SameNameDifferentDescriptionException(foundedProduct.getClass());
+                throw new SameNameDifferentDescriptionException(foundedProduct.getClass(), foundedProduct.getName());
             }
             foundedProduct.setCount(foundedProduct.getCount() + product.getCount());
             return repository.save(foundedProduct);

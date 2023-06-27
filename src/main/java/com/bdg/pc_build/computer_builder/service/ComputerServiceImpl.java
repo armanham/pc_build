@@ -53,7 +53,7 @@ public class ComputerServiceImpl implements ComputerService {
 
     @Override
     public Computer getComputerById(final Long id) {
-        return computerDAO.findById(id).orElseThrow(() -> new ProductNotFoundException("Computer"));//todo exception
+        return computerDAO.findById(id).orElseThrow(() -> new ProductNotFoundException(Computer.class, id));
     }
 
     @Override

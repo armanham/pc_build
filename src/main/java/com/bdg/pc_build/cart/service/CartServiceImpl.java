@@ -18,8 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-@Service
 @RequiredArgsConstructor
+@Service
 @Transactional
 public class CartServiceImpl implements CartService {
 
@@ -27,7 +27,7 @@ public class CartServiceImpl implements CartService {
     private final OrderService orderService;
     private final JwtService jwtService;
     private final UserDAO userDAO;
-    private Map<ProductDTO, Integer> cartItems = new HashMap<>();
+    private final Map<ProductDTO, Integer> cartItems = new HashMap<>();
 
 
     @Override

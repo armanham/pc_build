@@ -5,7 +5,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.OK)
 public class InvalidAuthHeaderException extends RuntimeException{
+
     public InvalidAuthHeaderException() {
         super("Invalid authentication header: ");
+    }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage();
     }
 }

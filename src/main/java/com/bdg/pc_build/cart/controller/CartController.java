@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/shopping-cart")
-@RequiredArgsConstructor
 @SecurityRequirement(name = "bearerAuth")
 public class CartController {
 

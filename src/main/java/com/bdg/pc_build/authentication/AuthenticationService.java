@@ -1,10 +1,10 @@
 package com.bdg.pc_build.authentication;
 
+import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.exception.EmailAlreadyExistsException;
 import com.bdg.pc_build.exception.UserNotFoundException;
-import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.token.Token;
-import com.bdg.pc_build.token.TokenRepository;
+import com.bdg.pc_build.token.TokenDAO;
 import com.bdg.pc_build.token.TokenType;
 import com.bdg.pc_build.user.enumerations.Role;
 import com.bdg.pc_build.user.model.entity.User;
@@ -26,14 +26,14 @@ import java.util.Optional;
 @Service
 public class AuthenticationService {
 
-    private final UserDAO userRepository;
-    private final TokenRepository tokenRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserDAO userDAO;
+    private final TokenDAO tokenDAO;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
+        Optional<User> optionalUser = userDAO.findByEmail(request.getEmail());
         if (optionalUser.isPresent()) {
             throw new EmailAlreadyExistsException(request.getEmail());
         }
@@ -44,7 +44,7 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword().trim()))
                 .role(Role.USER)
                 .build();
-        var savedUser = userRepository.save(user);
+        var savedUser = userDAO.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
@@ -61,8 +61,8 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        var optionalUser = userRepository.findByEmail(request.getEmail());
-        if (optionalUser.isEmpty()){
+        var optionalUser = userDAO.findByEmail(request.getEmail());
+        if (optionalUser.isEmpty()) {
             throw new UserNotFoundException(request.getEmail());
         }
         User user = optionalUser.get();
@@ -84,18 +84,18 @@ public class AuthenticationService {
                 .expired(false)
                 .revoked(false)
                 .build();
-        tokenRepository.save(token);
+        tokenDAO.save(token);
     }
 
     private void revokeAllUserTokens(User user) {
-        var validUserTokens = tokenRepository.findAllValidTokenByUserId(user.getId());
+        var validUserTokens = tokenDAO.findAllValidTokenByUserId(user.getId());
         if (validUserTokens.isEmpty())
             return;
         validUserTokens.forEach(token -> {
             token.setExpired(true);
             token.setRevoked(true);
         });
-        tokenRepository.saveAll(validUserTokens);
+        tokenDAO.saveAll(validUserTokens);
     }
 
     public void refreshToken(
@@ -111,8 +111,8 @@ public class AuthenticationService {
         refreshToken = authHeader.substring(7);
         userEmail = jwtService.extractUsername(refreshToken);
         if (userEmail != null) {
-            var user = this.userRepository.findByEmail(userEmail)
-                    .orElseThrow();
+            var user = this.userDAO.findByEmail(userEmail)
+                    .orElseThrow(() -> new UserNotFoundException(userEmail));
             if (jwtService.isTokenValid(refreshToken, user)) {
                 var accessToken = jwtService.generateToken(user);
                 revokeAllUserTokens(user);

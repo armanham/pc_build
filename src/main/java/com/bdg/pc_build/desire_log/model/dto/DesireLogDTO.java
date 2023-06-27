@@ -3,17 +3,15 @@ package com.bdg.pc_build.desire_log.model.dto;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.desire_log.model.request.DesireLogCreationRequest;
 import lombok.Getter;
+
 import java.util.Objects;
 
 @Getter
 public class DesireLogDTO {
 
     private final String componentType;
-
     private final String name;
-
     private final String description;
-
     private final Integer count;
 
     public DesireLogDTO(final DesireLogCreationRequest request) {
