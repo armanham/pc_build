@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 
-import static com.bdg.pc_build.product.pattern.Pattern.MONITOR_SCREEN_TYPE_ENUM_PATTERN;
-import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
+import static com.bdg.pc_build.util.Pattern.MONITOR_SCREEN_TYPE_ENUM_PATTERN;
+import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @Getter
 public class MonitorCreationRequest extends ProductCreationRequest {

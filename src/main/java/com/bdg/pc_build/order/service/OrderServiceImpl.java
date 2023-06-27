@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import static com.bdg.pc_build.product.model.InitialAndFinalIdValues.*;
+import static com.bdg.pc_build.util.InitialAndFinalIdValues.*;
 
 @RequiredArgsConstructor
 @Service

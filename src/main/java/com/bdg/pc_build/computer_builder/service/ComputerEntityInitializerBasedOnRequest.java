@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-import static com.bdg.pc_build.product.model.InitialAndFinalIdValues.*;
+import static com.bdg.pc_build.util.InitialAndFinalIdValues.*;
 
 @RequiredArgsConstructor
 @Component

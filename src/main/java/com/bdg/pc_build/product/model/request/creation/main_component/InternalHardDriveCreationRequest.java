@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 
-import static com.bdg.pc_build.product.pattern.Pattern.INTERNAL_HARD_DRIVE_INTERFACE_TYPE_ENUM_PATTERN;
-import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
+import static com.bdg.pc_build.util.Pattern.INTERNAL_HARD_DRIVE_INTERFACE_TYPE_ENUM_PATTERN;
+import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
 @Getter
 public class InternalHardDriveCreationRequest extends ProductCreationRequest {

@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
-import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.peripheral.MouseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.*;

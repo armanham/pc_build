@@ -1,4 +1,4 @@
-package com.bdg.pc_build.filter.validaton;
+package com.bdg.pc_build.util;
 
 import com.bdg.pc_build.exception.NotCompatibleMinMaxValues;
 

@@ -1,4 +1,4 @@
-package com.bdg.pc_build.product.model;
+package com.bdg.pc_build.util;
 
 public final class InitialAndFinalIdValues {
 

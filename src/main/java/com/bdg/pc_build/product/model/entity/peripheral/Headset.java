@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;

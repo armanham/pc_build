@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 
-import static com.bdg.pc_build.product.pattern.Pattern.*;
+import static com.bdg.pc_build.util.Pattern.*;
 
 @Getter
 public class MotherboardCreationRequest extends ProductCreationRequest {

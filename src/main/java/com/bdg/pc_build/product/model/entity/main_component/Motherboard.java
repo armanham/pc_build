@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 
-import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.MotherboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.ATXType;
@@ -10,7 +10,6 @@ import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.enumerations.SocketType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 

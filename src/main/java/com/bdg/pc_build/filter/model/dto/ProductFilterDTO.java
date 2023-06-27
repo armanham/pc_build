@@ -1,6 +1,6 @@
 package com.bdg.pc_build.filter.model.dto;
 
-import com.bdg.pc_build.filter.validaton.ValidationUtil;
+import com.bdg.pc_build.util.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.ProductFilterRequest;
 import lombok.Getter;
 
