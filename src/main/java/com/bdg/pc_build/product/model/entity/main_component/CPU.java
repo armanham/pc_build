@@ -7,7 +7,7 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.SocketType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
+
 
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +17,6 @@ import java.util.Objects;
  * <p>
  * Entity for CPU
  */
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -30,29 +29,29 @@ public class CPU extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CPU)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "core_count", nullable = false, updatable = false)
-    Integer coreCount;
+    private Integer coreCount;
 
     @Column(name = "core_clock", nullable = false, updatable = false)
-    Double coreClock;
+    private Double coreClock;
 
     @Column(name = "boost_clock", nullable = false, updatable = false)
-    Double boostClock;
+    private Double boostClock;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
+    private Integer tdp;
 
     @Column(name = "integrated_graphics", updatable = false)
-    String integratedGraphics;
+    private String integratedGraphics;
 
     @Column(name = "socket_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    SocketType socketType;
+    private SocketType socketType;
 
     @ManyToMany(mappedBy = "cpus")
-    List<Order> orders;
+    private List<Order> orders;
 
     public CPU(final CPUDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

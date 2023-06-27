@@ -7,11 +7,9 @@ import com.bdg.pc_build.product.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.enumerations.ModularType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -24,20 +22,20 @@ public class PowerSupply extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "power_supply_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_POWER_SUPPLY)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "efficiency_rating", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    EfficiencyRating efficiencyRating;
+    private EfficiencyRating efficiencyRating;
 
     @Column(name = "wattage", nullable = false, updatable = false)
-    Integer wattage;
+    private Integer wattage;
 
     @Column(name = "modular_type", nullable = false, updatable = false)
-    ModularType modularType;
+    private ModularType modularType;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
+    private Integer tdp;
 
     public PowerSupply(final PowerSupplyDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

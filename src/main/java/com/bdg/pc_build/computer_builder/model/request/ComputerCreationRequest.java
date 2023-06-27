@@ -10,12 +10,11 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
 public class ComputerCreationRequest {
 
     @JsonProperty("cart_items")
-    List<CartItem> cartItems;
+    private List<CartItem> cartItems;
 }

@@ -7,9 +7,7 @@ import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.desire_log.repository.DesireLogDAO;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.repository.UserDAO;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,15 +15,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @Transactional
 @Service
 public class DesireLogServiceImpl implements DesireLogService {
 
-    JwtService jwtService;
-    UserDAO userDAO;
-    DesireLogDAO desireLogDAO;
+    private final JwtService jwtService;
+    private final UserDAO userDAO;
+    private final DesireLogDAO desireLogDAO;
 
     @Override
     public DesireLogDTO save(final String authHeader, final DesireLogDTO dto) {

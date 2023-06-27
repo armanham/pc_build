@@ -3,38 +3,35 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.GPUFilterRequest;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class GPUFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minMemory;
-    Integer maxMemory;
+    private Integer minMemory;
+    private Integer maxMemory;
 
-    Double minCoreClock;
-    Double maxCoreClock;
+    private Double minCoreClock;
+    private Double maxCoreClock;
 
-    Double minBoostClock;
-    Double maxBoostClock;
+    private Double minBoostClock;
+    private Double maxBoostClock;
 
-    Double minLength;
-    Double maxLength;
+    private Double minLength;
+    private Double maxLength;
 
-    Integer minTdp;
-    Integer maxTdp;
+    private Integer minTdp;
+    private Integer maxTdp;
 
-    final Set<GPUInterfaceType> gpuInterfaceTypes;
+    private final Set<GPUInterfaceType> gpuInterfaceTypes;
 
 
     public GPUFilterDTO(final GPUFilterRequest request) {

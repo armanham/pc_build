@@ -6,11 +6,9 @@ import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -23,20 +21,20 @@ public class Speaker extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "speaker_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_SPEAKER)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "frequency", nullable = false, updatable = false)
-    Integer frequency;
+    private Integer frequency;
 
     @Column(name = "power_source", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    PowerSourceType powerSourceType;
+    private PowerSourceType powerSourceType;
 
     @Column(name = "cable_length", nullable = false, updatable = false)
-    Double cableLength;
+    private Double cableLength;
 
     @Column(name = "dimension", nullable = false, updatable = false)
-    String dimension;
+    private String dimension;
 
     public Speaker(final SpeakerDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

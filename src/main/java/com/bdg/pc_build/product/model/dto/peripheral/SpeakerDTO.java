@@ -4,19 +4,16 @@ import com.bdg.pc_build.product.enumerations.PowerSourceType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Speaker;
 import com.bdg.pc_build.product.model.request.creation.peripheral.SpeakerCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class SpeakerDTO extends ProductDTO {
 
-    Integer frequency;
-    PowerSourceType powerSourceType;
-    Double cableLength;
-    String dimension;
+    private final Integer frequency;
+    private final PowerSourceType powerSourceType;
+    private final Double cableLength;
+    private final String dimension;
 
     @Builder
     public SpeakerDTO(

@@ -3,29 +3,26 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.CPUCoolerFilterRequest;
 import com.bdg.pc_build.product.enumerations.SocketType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class CPUCoolerFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minFanRpm;
-    Integer maxFanRpm;
+    private Integer minFanRpm;
+    private Integer maxFanRpm;
 
-    Integer minTdp;
-    Integer maxTdp;
+    private Integer minTdp;
+    private Integer maxTdp;
 
-    final Set<SocketType> socketTypes;
+    private final Set<SocketType> socketTypes;
 
     public CPUCoolerFilterDTO(final CPUCoolerFilterRequest request) {
         this.name = request.name();

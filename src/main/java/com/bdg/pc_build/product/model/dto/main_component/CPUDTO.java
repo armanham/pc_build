@@ -4,21 +4,18 @@ import com.bdg.pc_build.product.enumerations.SocketType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPU;
 import com.bdg.pc_build.product.model.request.creation.main_component.CPUCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class CPUDTO extends ProductDTO {
 
-    Integer coreCount;
-    Double coreClock;
-    Double boostClock;
-    Integer tdp;
-    String integratedGraphics;
-    SocketType socketType;
+    private final Integer coreCount;
+    private final Double coreClock;
+    private final Double boostClock;
+    private final Integer tdp;
+    private final String integratedGraphics;
+    private final SocketType socketType;
 
     @Builder
 

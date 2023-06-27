@@ -9,9 +9,7 @@ import com.bdg.pc_build.product.model.request.creation.peripheral.*;
 import com.bdg.pc_build.product.service.ProductService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +18,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/product")
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @SecurityRequirement(name = "bearerAuth")
 public class ProductController {
 
-    ProductService productService;
+    private final ProductService productService;
 
     @PostMapping("/new/monitor")
     @PreAuthorize("hasRole('ROLE_ADMIN')")

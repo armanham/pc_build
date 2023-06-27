@@ -10,20 +10,17 @@ import com.bdg.pc_build.filter.service.FilterService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/filter")
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class FilterController {
 
-    FilterService filterService;
+    private final FilterService filterService;
 
     @GetMapping(value = "/all")
     public List<ProductDTO> filterAllProductsByNameAndPrice(

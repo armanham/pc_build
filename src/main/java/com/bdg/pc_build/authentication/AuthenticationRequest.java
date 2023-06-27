@@ -2,9 +2,7 @@ package com.bdg.pc_build.authentication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -13,8 +11,8 @@ import lombok.experimental.FieldDefaults;
 public class AuthenticationRequest {
 
     @JsonProperty(value = "email", required = true)
-    String email;
+    private String email;
 
     @JsonProperty(value = "password", required = true)
-    String password;
+    private String password;
 }

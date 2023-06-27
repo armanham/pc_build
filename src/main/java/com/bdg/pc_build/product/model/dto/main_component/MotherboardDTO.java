@@ -7,23 +7,20 @@ import com.bdg.pc_build.product.enumerations.SocketType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.Motherboard;
 import com.bdg.pc_build.product.model.request.creation.main_component.MotherboardCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class MotherboardDTO extends ProductDTO {
 
-    SocketType socketType;
-    ATXType atxType;
-    Integer memoryMax;
-    Integer memorySlots;
-    DDRType ddrType;
-    Boolean isM2;
-    GPUInterfaceType gpuInterfaceType;
-    Integer tdp;
+    private final SocketType socketType;
+    private final ATXType atxType;
+    private final Integer memoryMax;
+    private final Integer memorySlots;
+    private final DDRType ddrType;
+    private final Boolean isM2;
+    private final GPUInterfaceType gpuInterfaceType;
+    private final Integer tdp;
 
     @Builder
     public MotherboardDTO(

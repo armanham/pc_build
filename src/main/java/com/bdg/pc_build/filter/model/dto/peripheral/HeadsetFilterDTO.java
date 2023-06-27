@@ -3,29 +3,26 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.HeadsetFilterRequest;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class HeadsetFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minFrequency;
-    Integer maxFrequency;
+    private Integer minFrequency;
+    private Integer maxFrequency;
 
-    Double minCableLength;
-    Double maxCableLength;
+    private Double minCableLength;
+    private Double maxCableLength;
 
-   final Set<ConnectivityType> connectivityTypes;
+   private final Set<ConnectivityType> connectivityTypes;
 
     public HeadsetFilterDTO(final HeadsetFilterRequest request) {
         this.name = request.name();

@@ -3,32 +3,29 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.CaseFilterRequest;
 import com.bdg.pc_build.product.enumerations.TowerType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class CaseFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Double minCpuCoolerHeight;
-    Double maxCpuCoolerHeight;
+    private Double minCpuCoolerHeight;
+    private Double maxCpuCoolerHeight;
 
-    Double minGpuLength;
-    Double maxGpuLength;
+    private Double minGpuLength;
+    private Double maxGpuLength;
 
-    Integer minPreInstalledFans;
-    Integer maxPreInstalledFans;
+    private Integer minPreInstalledFans;
+    private Integer maxPreInstalledFans;
 
-    final Set<TowerType> towerTypes;
+    private final Set<TowerType> towerTypes;
 
     public CaseFilterDTO(final CaseFilterRequest request) {
         this.name = request.name();

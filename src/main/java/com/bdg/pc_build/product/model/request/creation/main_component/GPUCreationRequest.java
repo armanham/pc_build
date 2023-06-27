@@ -5,14 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.product.pattern.Pattern.GPU_INTERFACE_TYPE_ENUM_PATTERN;
 import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class GPUCreationRequest extends ProductCreationRequest {
 
@@ -22,27 +19,27 @@ public class GPUCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "gpu_interface_type", required = true)
-    String gpuInterfaceType;
+    private String gpuInterfaceType;
 
     @Positive
     @JsonProperty(value = "memory", required = true)
-    Integer memory;
+    private Integer memory;
 
     @Positive
     @JsonProperty(value = "core_clock", required = true)
-    Double coreClock;
+    private Double coreClock;
 
     @Positive
     @JsonProperty(value = "boost_clock", required = true)
-    Double boostClock;
+    private Double boostClock;
 
     @Positive
     @JsonProperty(value = "length", required = true)
-    Double length;
+    private Double length;
 
     @Positive
     @JsonProperty(value = "tdp", required = true)
-    Integer tdp;
+    private Integer tdp;
 
     public GPUCreationRequest(
             final String name,

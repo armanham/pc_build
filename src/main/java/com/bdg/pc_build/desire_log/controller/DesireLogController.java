@@ -7,9 +7,7 @@ import com.bdg.pc_build.user.model.entity.User;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,14 +16,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Set;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/desire-log")
 @SecurityRequirement(name = "bearerAuth")
 public class DesireLogController {
 
-    DesireLogService desireLogService;
+    private final DesireLogService desireLogService;
 
     @PostMapping("/new")
     @PreAuthorize("hasRole('ROLE_USER')")

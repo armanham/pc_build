@@ -1,34 +1,30 @@
 package com.bdg.pc_build.product.model.request.creation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
 public class ProductCreationRequest {
 
     @NotBlank(message = "'name' field can not be blank")
     @JsonProperty(value = "name", required = true)
-    String name;
+    private String name;
 
     @Positive
     @JsonProperty(value = "price", required = true)
-    Double price;
+    private Double price;
 
     @Positive
     @JsonProperty(value = "purchased_price", required = true)
-    Double purchasedPrice;
+    private Double purchasedPrice;
 
     @Positive
     @JsonProperty(value = "count", required = true)
-    Integer count;
+    private Integer count;
 
     public ProductCreationRequest(
             final String name,

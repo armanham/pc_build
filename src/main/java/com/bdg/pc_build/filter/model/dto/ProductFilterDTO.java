@@ -2,18 +2,15 @@ package com.bdg.pc_build.filter.model.dto;
 
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.ProductFilterRequest;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class ProductFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
     public ProductFilterDTO(final ProductFilterRequest request) {
         this.name = request.name();

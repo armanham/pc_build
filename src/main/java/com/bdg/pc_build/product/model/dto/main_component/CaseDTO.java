@@ -4,19 +4,16 @@ import com.bdg.pc_build.product.enumerations.TowerType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.aCase;
 import com.bdg.pc_build.product.model.request.creation.main_component.CaseCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class CaseDTO extends ProductDTO {
 
-    Double maxCpuCoolerHeight;
-    Double maxGpuLength;
-    Integer preInstalledFans;
-    TowerType towerType;
+    private final Double maxCpuCoolerHeight;
+    private final Double maxGpuLength;
+    private final Integer preInstalledFans;
+    private final TowerType towerType;
 
     @Builder
     public CaseDTO(

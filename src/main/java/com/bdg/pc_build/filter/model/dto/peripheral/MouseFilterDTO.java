@@ -3,32 +3,29 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.MouseFilterRequest;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class MouseFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minResolution;
-    Integer maxResolution;
+    private Integer minResolution;
+    private Integer maxResolution;
 
-    Double minCableLength;
-    Double maxCableLength;
+    private Double minCableLength;
+    private Double maxCableLength;
 
-    Double minWeight;
-    Double maxWeight;
+    private Double minWeight;
+    private Double maxWeight;
 
-    final Set<ConnectivityType> connectivityTypes;
+    private final Set<ConnectivityType> connectivityTypes;
 
     public MouseFilterDTO(final MouseFilterRequest request) {
         this.name = request.name();

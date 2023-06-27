@@ -11,9 +11,7 @@ import com.bdg.pc_build.user.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,14 +19,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/api/v1/user")
 @SecurityRequirement(name = "bearerAuth")
 public class UserController {
 
-    UserService userService;
+    private final UserService userService;
 
     @PutMapping("/update/first-name")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")

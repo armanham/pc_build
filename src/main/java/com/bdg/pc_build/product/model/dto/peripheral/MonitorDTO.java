@@ -4,18 +4,15 @@ import com.bdg.pc_build.product.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Monitor;
 import com.bdg.pc_build.product.model.request.creation.peripheral.MonitorCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class MonitorDTO extends ProductDTO {
 
-    Double screenSize;
-    Integer refreshRate;
-    MonitorScreenType screenType;
+    private final Double screenSize;
+    private final Integer refreshRate;
+    private final MonitorScreenType screenType;
 
     @Builder
     public MonitorDTO(

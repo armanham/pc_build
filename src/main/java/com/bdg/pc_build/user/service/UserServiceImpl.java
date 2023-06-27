@@ -8,22 +8,19 @@ import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.user.enumerations.Role;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.repository.UserDAO;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
 
-    AuthenticationService authenticationService;
-    JwtService jwtService;
-    UserDAO userDAO;
+    private final AuthenticationService authenticationService;
+    private final JwtService jwtService;
+    private final UserDAO userDAO;
 
     @Override
     public User findUserByAuthHeader(final String authHeader) {

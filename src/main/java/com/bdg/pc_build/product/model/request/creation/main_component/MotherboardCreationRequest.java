@@ -5,13 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.product.pattern.Pattern.*;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class MotherboardCreationRequest extends ProductCreationRequest {
 
@@ -21,7 +18,7 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "socket_type", required = true)
-    String socketType;
+    private String socketType;
 
     @NotBlank(message = "'atx_type' field can not be blank")
     @Pattern(
@@ -29,15 +26,15 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "atx_type", required = true)
-    String atxType;
+    private String atxType;
 
     @Positive
     @JsonProperty(value = "memory_max", required = true)
-    Integer memoryMax;
+    private Integer memoryMax;
 
     @Positive
     @JsonProperty(value = "memory_slots", required = true)
-    Integer memorySlots;
+    private Integer memorySlots;
 
     @NotBlank(message = "'ddr_type' field can not be blank")
     @Pattern(
@@ -45,7 +42,7 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "ddr_type", required = true)
-    String ddrType;
+    private String ddrType;
 
     @NotBlank(message = "'is_m2' field can not be blank")
     @Pattern(
@@ -53,7 +50,7 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
             message = WRONG_BOOLEAN_PATTERN
     )
     @JsonProperty(value = "is_m2", required = true)
-    String isM2;
+    private String isM2;
 
     @NotBlank(message = "'gpu_interface_type' field can not be blank")
     @Pattern(
@@ -61,11 +58,11 @@ public class MotherboardCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "gpu_interface_type", required = true)
-    String gpuInterfaceType;
+    private String gpuInterfaceType;
 
     @Positive
     @JsonProperty(value = "tdp", required = true)
-    Integer tdp;
+    private Integer tdp;
 
     public MotherboardCreationRequest(
             final String name,

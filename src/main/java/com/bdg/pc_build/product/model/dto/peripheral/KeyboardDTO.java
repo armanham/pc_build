@@ -4,19 +4,16 @@ import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
 import com.bdg.pc_build.product.model.request.creation.peripheral.KeyboardCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class KeyboardDTO extends ProductDTO {
 
-    ConnectivityType connectivityType;
-    Double cableLength;
-    String dimension;
-    Double weight;
+    private final ConnectivityType connectivityType;
+    private final Double cableLength;
+    private final String dimension;
+    private final Double weight;
 
     @Builder
     public KeyboardDTO(

@@ -6,37 +6,34 @@ import com.bdg.pc_build.product.enumerations.ATXType;
 import com.bdg.pc_build.product.enumerations.DDRType;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.enumerations.SocketType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class MotherboardFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minMemory;
-    Integer maxMemory;
+    private Integer minMemory;
+    private Integer maxMemory;
 
-    Integer minMemorySlots;
-    Integer maxMemorySlots;
+    private Integer minMemorySlots;
+    private Integer maxMemorySlots;
 
-    Integer minTdp;
-    Integer maxTdp;
+    private Integer minTdp;
+    private Integer maxTdp;
 
-    final Set<Boolean> isM2;
+    private final Set<Boolean> isM2;
 
-    final Set<DDRType> ddrTypes;
-    final Set<GPUInterfaceType> gpuInterfaceTypes;
-    final Set<SocketType> socketTypes;
-    final Set<ATXType> atxTypes;
+    private final Set<DDRType> ddrTypes;
+    private final Set<GPUInterfaceType> gpuInterfaceTypes;
+    private final Set<SocketType> socketTypes;
+    private final Set<ATXType> atxTypes;
 
     public MotherboardFilterDTO(final MotherboardFilterRequest request) {
         this.name = request.name();

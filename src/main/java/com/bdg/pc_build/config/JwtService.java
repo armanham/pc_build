@@ -5,8 +5,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -17,16 +15,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Service
 public class JwtService {
 
     @Value("${application.security.jwt.secret-key}")
-    String secretKey;
+    private String secretKey;
     @Value("${application.security.jwt.expiration}")
-    long jwtExpiration;
+    private long jwtExpiration;
     @Value("${application.security.jwt.refresh-token.expiration}")
-    long refreshExpiration;
+    private long refreshExpiration;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

@@ -5,11 +5,9 @@ import com.bdg.pc_build.product.model.dto.peripheral.ExternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -22,13 +20,13 @@ public class ExternalHardDrive extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "external_hard_drive_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE)
     @Column(name = "id")
-   Long id;
+    private Long id;
 
     @Column(name = "capacity", nullable = false, updatable = false)
-    Integer capacity;
+    private Integer capacity;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
+    private Integer tdp;
 
     public ExternalHardDrive(final ExternalHardDriveDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

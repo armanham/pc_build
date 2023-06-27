@@ -3,31 +3,28 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.KeyboardFilterRequest;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class KeyboardFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Double minCableLength;
-    Double maxCableLength;
+    private Double minCableLength;
+    private Double maxCableLength;
 
-    Double minWeight;
-    Double maxWeight;
+    private Double minWeight;
+    private Double maxWeight;
 
-    final Set<String> dimensions;
+    private final Set<String> dimensions;
 
-    final Set<ConnectivityType> connectivityTypes;
+    private final Set<ConnectivityType> connectivityTypes;
 
     public KeyboardFilterDTO(final KeyboardFilterRequest request) {
         this.name = request.name();

@@ -3,31 +3,28 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.SpeakerFilterRequest;
 import com.bdg.pc_build.product.enumerations.PowerSourceType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class SpeakerFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minFrequency;
-    Integer maxFrequency;
+    private Integer minFrequency;
+    private Integer maxFrequency;
 
-    Double minCableLength;
-    Double maxCableLength;
+    private Double minCableLength;
+    private Double maxCableLength;
 
-    final Set<String> dimensions;
+    private final Set<String> dimensions;
 
-    final Set<PowerSourceType> powerSourceTypes;
+    private final Set<PowerSourceType> powerSourceTypes;
 
     public SpeakerFilterDTO(final SpeakerFilterRequest request) {
         this.name = request.name();

@@ -16,27 +16,23 @@ import com.bdg.pc_build.product.model.entity.main_component.RAM;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.repository.UserDAO;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @Service
 public class ComputerServiceImpl implements ComputerService {
 
-    ComputerDAO computerDAO;
-    UserDAO userDAO;
+    private final ComputerDAO computerDAO;
+    private final UserDAO userDAO;
 
-    CartService cartService;
-    JwtService jwtService;
+    private final CartService cartService;
+    private final JwtService jwtService;
 
-    ComputerEntityInitializerBasedOnRequest entityInitializerBasedOnRequest;
-    CompatibilityValidator compatibilityValidator;
+    private final ComputerEntityInitializerBasedOnRequest entityInitializerBasedOnRequest;
+    private final CompatibilityValidator compatibilityValidator;
 
     @Override
     public void checkComputer(final Computer computer) {

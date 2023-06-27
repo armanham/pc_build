@@ -7,36 +7,33 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import com.bdg.pc_build.product.repository.main_component.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @Service
 public class FilterFieldsValueResolver {
 
     //Main component repositories
-    CaseDAO caseDAO;
-    CoolerDAO coolerDAO;
-    CPUCoolerDAO cpuCoolerDAO;
-    CPUDAO cpuDAO;
-    GPUDAO gpuDAO;
-    InternalHardDriveDAO internalHardDriveDAO;
-    MotherboardDAO motherboardDAO;
-    PowerSupplyDAO powerSupplyDAO;
-    RAMDAO ramDAO;
+    private final CaseDAO caseDAO;
+    private final CoolerDAO coolerDAO;
+    private final CPUCoolerDAO cpuCoolerDAO;
+    private final CPUDAO cpuDAO;
+    private final GPUDAO gpuDAO;
+    private final InternalHardDriveDAO internalHardDriveDAO;
+    private final MotherboardDAO motherboardDAO;
+    private final PowerSupplyDAO powerSupplyDAO;
+    private final RAMDAO ramDAO;
 
     //Peripheral repositories
-    ExternalHardDriveDAO externalHardDriveDAO;
-    MonitorDAO monitorDAO;
-    HeadsetDAO headsetDAO;
-    KeyboardDAO keyboardDAO;
-    MouseDAO mouseDAO;
-    SpeakerDAO speakerDAO;
+    private final ExternalHardDriveDAO externalHardDriveDAO;
+    private final MonitorDAO monitorDAO;
+    private final HeadsetDAO headsetDAO;
+    private final KeyboardDAO keyboardDAO;
+    private final MouseDAO mouseDAO;
+    private final SpeakerDAO speakerDAO;
 
 
     public CaseFieldsHolderBasedOnFilterDTO resolveAndGetCaseFieldsValuesFromFilterDTO(final CaseFilterDTO filterDTO) {

@@ -3,17 +3,14 @@ package com.bdg.pc_build.product.model.dto.peripheral;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.ExternalHardDrive;
 import com.bdg.pc_build.product.model.request.creation.peripheral.ExternalHardDriveCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class ExternalHardDriveDTO extends ProductDTO {
 
-    Integer capacity;
-    Integer tdp;
+    private final Integer capacity;
+    private final Integer tdp;
 
     @Builder
     public ExternalHardDriveDTO(

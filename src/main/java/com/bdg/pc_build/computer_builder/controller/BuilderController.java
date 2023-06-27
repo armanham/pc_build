@@ -6,9 +6,7 @@ import com.bdg.pc_build.computer_builder.service.ComputerEntityInitializerBasedO
 import com.bdg.pc_build.computer_builder.service.ComputerService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,14 +14,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/builder")
 public class BuilderController {
 
-    ComputerService computerService;
-    ComputerEntityInitializerBasedOnRequest entityInitializerBasedOnRequest;
+    private final ComputerService computerService;
+    private final ComputerEntityInitializerBasedOnRequest entityInitializerBasedOnRequest;
 
     @PostMapping("/check")
     public ResponseEntity<?> check(

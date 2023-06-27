@@ -5,18 +5,15 @@ import com.bdg.pc_build.product.enumerations.SocketType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.CPUCooler;
 import com.bdg.pc_build.product.model.request.creation.main_component.CPUCoolerCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class CPUCoolerDTO extends ProductDTO {
 
-    Integer fanRpm;
-    SocketType socketType;
-    Integer tdp;
+    private final Integer fanRpm;
+    private final SocketType socketType;
+    private final Integer tdp;
 
     @Builder
     public CPUCoolerDTO(

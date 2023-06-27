@@ -1,22 +1,19 @@
 package com.bdg.pc_build.product.model.dto;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
 public abstract class ProductDTO {
 
-    Long id;
-    String name;
-    Double price;
-    Double purchasedPrice;
-    Integer count;
+    private Long id;
+    private String name;
+    private Double price;
+    private Double purchasedPrice;
+    private Integer count;
 
     public ProductDTO(
             final Long id,

@@ -8,7 +8,6 @@ import com.bdg.pc_build.user.enumerations.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
 @Setter
@@ -29,47 +27,47 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(name = "first_name", nullable = false)
-    String firstName;
+    private String firstName;
 
     @Column(name = "last_name")
-    String lastName;
+    private String lastName;
 
     @Column(name = "email", nullable = false, unique = true)
-    String email;
+    private String email;
 
     @Column(name = "password", nullable = false)
-    String password;
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    Role role;
+    private Role role;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    Timestamp created_at;
+    private Timestamp created_at;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    Timestamp updated_at;
+    private Timestamp updated_at;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    List<Token> tokens;
+    private List<Token> tokens;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    List<DesireLog> desireLogs = new ArrayList<>();
+    private List<DesireLog> desireLogs = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    List<Order> orders;
+    private List<Order> orders;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy =  "user")
-    List<Computer> computers;
+    private List<Computer> computers;
 
     @Builder
     public User(

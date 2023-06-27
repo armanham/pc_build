@@ -6,11 +6,9 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.TowerType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -23,20 +21,20 @@ public class aCase extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "case_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CASE)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "max_cpu_cooler_height", nullable = false, updatable = false)
-    Double maxCpuCoolerHeight;
+    private Double maxCpuCoolerHeight;
 
     @Column(name = "max_gpu_length", nullable = false, updatable = false)
-    Double maxGpuLength;
+    private Double maxGpuLength;
 
     @Column(name = "pre_installed_fans", nullable = false, updatable = false)
-    Integer preInstalledFans;
+    private Integer preInstalledFans;
 
     @Column(name = "tower_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    TowerType towerType;
+    private TowerType towerType;
 
     public aCase(final CaseDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

@@ -2,23 +2,19 @@ package com.bdg.pc_build.desire_log.model.dto;
 
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.desire_log.model.request.DesireLogCreationRequest;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
-
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class DesireLogDTO {
 
-    String componentType;
+    private final String componentType;
 
-    String name;
+    private final String name;
 
-    String description;
+    private final String description;
 
-    Integer count;
+    private final Integer count;
 
     public DesireLogDTO(final DesireLogCreationRequest request) {
         if (request.getComponentType() != null) {

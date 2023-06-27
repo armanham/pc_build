@@ -5,36 +5,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.product.pattern.Pattern.SOCKET_TYPE_ENUM_PATTERN;
 import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class CPUCreationRequest extends ProductCreationRequest {
 
     @Positive
     @JsonProperty(value = "core_count", required = true)
-    Integer coreCount;
+    private Integer coreCount;
 
     @Positive
     @JsonProperty(value = "core_clock", required = true)
-    Double coreClock;
+    private Double coreClock;
 
     @Positive
     @JsonProperty(value = "boost_clock", required = true)
-    Double boostClock;
+    private Double boostClock;
 
     @Positive
     @JsonProperty(value = "tdp", required = true)
-    Integer tdp;
+    private Integer tdp;
 
     @NotBlank(message = "'integrated_graphics' field can not be blank")
     @JsonProperty(value = "integrated_graphics", required = true)
-    String integratedGraphics;
+    private String integratedGraphics;
 
     @NotBlank(message = "'socket_type' field can not be blank")
     @Pattern(
@@ -42,7 +39,7 @@ public class CPUCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "socket_type", required = true)
-    String socketType;
+    private String socketType;
 
     public CPUCreationRequest(
             final String name,

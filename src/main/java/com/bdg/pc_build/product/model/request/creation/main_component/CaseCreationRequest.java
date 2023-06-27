@@ -6,28 +6,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.product.pattern.Pattern.TOWER_TYPE_ENUM_PATTERN;
 import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class CaseCreationRequest extends ProductCreationRequest {
 
     @Positive
     @JsonProperty(value = "max_cpu_cooler_height", required = true)
-    Double maxCpuCoolerHeight;
+    private Double maxCpuCoolerHeight;
 
     @Positive
     @JsonProperty(value = "max_gpu_length", required = true)
-    Double maxGpuLength;
+    private Double maxGpuLength;
 
     @Positive
     @JsonProperty(value = "pre_installed_fans", required = true)
-    Integer preInstalledFans;
+    private Integer preInstalledFans;
 
     @NotBlank(message = "'tower_type' field can not be blank")
     @Pattern(
@@ -35,7 +32,7 @@ public class CaseCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "tower_type", required = true)
-    String towerType;
+    private String towerType;
 
     public CaseCreationRequest(
             final String name,

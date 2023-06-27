@@ -3,19 +3,15 @@ package com.bdg.pc_build.desire_log.model.entity;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.user.model.entity.User;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
 @Setter
@@ -25,34 +21,34 @@ public class DesireLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(name = "component_type", updatable = false, length = 64)
-    String componentType;
+    private String componentType;
 
     @Column(name = "name", updatable = false, length = 64)
-    String name;
+    private String name;
 
     @Column(name = "description", updatable = false)
-    String description;
+    private String description;
 
     @Column(name = "count", nullable = false)
-    Integer count;
+    private Integer count;
 
     @Column(name = "checked", nullable = false)
-    Boolean checked = false;
+    private Boolean checked = false;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    Timestamp createdAt;
+    private Timestamp createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    Timestamp updatedAt;
+    private Timestamp updatedAt;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_desire_log")
-    Set<User> users = new LinkedHashSet<>();
+    private Set<User> users = new LinkedHashSet<>();
 
     public void addUser(User user){
         users.add(user);

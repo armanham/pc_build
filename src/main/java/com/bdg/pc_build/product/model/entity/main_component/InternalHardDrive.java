@@ -6,11 +6,9 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -23,17 +21,17 @@ public class InternalHardDrive extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "internal_hard_drive_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "internal_hard_drive_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    InternalHardDriveInterfaceType internalHardDriveInterfaceType;
+    private InternalHardDriveInterfaceType internalHardDriveInterfaceType;
 
     @Column(name = "capacity", nullable = false, updatable = false)
-    Integer capacity;
+    private Integer capacity;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
+    private Integer tdp;
 
     public InternalHardDrive(final InternalHardDriveDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

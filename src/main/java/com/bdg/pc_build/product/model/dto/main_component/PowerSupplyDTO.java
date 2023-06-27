@@ -5,19 +5,16 @@ import com.bdg.pc_build.product.enumerations.ModularType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
 import com.bdg.pc_build.product.model.request.creation.main_component.PowerSupplyCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class PowerSupplyDTO extends ProductDTO {
 
-    EfficiencyRating efficiencyRating;
-    Integer wattage;
-    ModularType modularType;
-    Integer tdp;
+    private final EfficiencyRating efficiencyRating;
+    private final Integer wattage;
+    private final ModularType modularType;
+    private final Integer tdp;
 
     @Builder
     public PowerSupplyDTO(

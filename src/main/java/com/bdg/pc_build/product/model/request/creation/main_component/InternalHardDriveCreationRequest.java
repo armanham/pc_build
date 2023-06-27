@@ -5,14 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.product.pattern.Pattern.INTERNAL_HARD_DRIVE_INTERFACE_TYPE_ENUM_PATTERN;
 import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class InternalHardDriveCreationRequest extends ProductCreationRequest {
 
@@ -22,15 +19,15 @@ public class InternalHardDriveCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "internal_hard_drive_interface_type", required = true)
-    String internalHardDriveInterfaceType;
+    private String internalHardDriveInterfaceType;
 
     @Positive
     @JsonProperty(value = "capacity", required = true)
-    Integer capacity;
+    private Integer capacity;
 
     @Positive
     @JsonProperty(value = "tdp", required = true)
-    Integer tdp;
+    private Integer tdp;
 
     public InternalHardDriveCreationRequest(
             final String name,

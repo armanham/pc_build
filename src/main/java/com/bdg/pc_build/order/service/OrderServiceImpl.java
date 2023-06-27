@@ -7,9 +7,7 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.repository.main_component.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -17,28 +15,27 @@ import java.util.Set;
 
 import static com.bdg.pc_build.product.model.InitialAndFinalIdValues.*;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    OrderDAO orderDAO;
+    private final OrderDAO orderDAO;
 
-    CaseDAO caseDAO;
-    CoolerDAO coolerDAO;
-    CPUDAO cpuDAO;
-    CPUCoolerDAO cpuCoolerDAO;
-    GPUDAO gpudao;
-    InternalHardDriveDAO internalHardDriveDAO;
-    MotherboardDAO motherboardDAO;
-    PowerSupplyDAO powerSupplyDAO;
-    RAMDAO ramDAO;
-    ExternalHardDriveDAO externalHardDriveDAO;
-    HeadsetDAO headsetDAO;
-    KeyboardDAO keyboardDAO;
-    MonitorDAO monitorDAO;
-    MouseDAO mouseDAO;
-    SpeakerDAO speakerDAO;
+    private final CaseDAO caseDAO;
+    private final CoolerDAO coolerDAO;
+    private final CPUDAO cpuDAO;
+    private final CPUCoolerDAO cpuCoolerDAO;
+    private final GPUDAO gpudao;
+    private final InternalHardDriveDAO internalHardDriveDAO;
+    private final MotherboardDAO motherboardDAO;
+    private final PowerSupplyDAO powerSupplyDAO;
+    private final RAMDAO ramDAO;
+    private final ExternalHardDriveDAO externalHardDriveDAO;
+    private final HeadsetDAO headsetDAO;
+    private final KeyboardDAO keyboardDAO;
+    private final MonitorDAO monitorDAO;
+    private final MouseDAO mouseDAO;
+    private final SpeakerDAO speakerDAO;
 
     @Override
     public Order save(final Set<ProductDTO> products, final BigDecimal totalPrice, final User user, final Boolean isFromBuilder) {

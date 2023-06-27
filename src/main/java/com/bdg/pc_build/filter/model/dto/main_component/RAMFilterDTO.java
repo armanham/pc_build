@@ -3,32 +3,29 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.RAMFilterRequest;
 import com.bdg.pc_build.product.enumerations.DDRType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class RAMFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minCountOfRam;
-    Integer maxCountOfRam;
+    private Integer minCountOfRam;
+    private Integer maxCountOfRam;
 
-    Double minGbOfRam;
-    Double maxGbOfRam;
+    private Double minGbOfRam;
+    private Double maxGbOfRam;
 
-    Integer minTdp;
-    Integer maxTdp;
+    private Integer minTdp;
+    private Integer maxTdp;
 
-    final Set<DDRType> ddrTypes;
+    private final Set<DDRType> ddrTypes;
 
     public RAMFilterDTO(final RAMFilterRequest request) {
         this.name = request.name();

@@ -3,37 +3,34 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.CPUFilterRequest;
 import com.bdg.pc_build.product.enumerations.SocketType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class CPUFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minCoreCount;
-    Integer maxCoreCount;
+    private Integer minCoreCount;
+    private Integer maxCoreCount;
 
-    Double minCoreClock;
-    Double maxCoreClock;
+    private Double minCoreClock;
+    private Double maxCoreClock;
 
-    Double minBoostClock;
-    Double maxBoostClock;
+    private Double minBoostClock;
+    private Double maxBoostClock;
 
-    Integer minTdp;
-    Integer maxTdp;
+    private Integer minTdp;
+    private Integer maxTdp;
 
-    final Set<String> integratedGraphics;
+    private final Set<String> integratedGraphics;
 
-    final Set<SocketType> socketTypes;
+    private final Set<SocketType> socketTypes;
 
     public CPUFilterDTO(final CPUFilterRequest request) {
         this.name = request.name();

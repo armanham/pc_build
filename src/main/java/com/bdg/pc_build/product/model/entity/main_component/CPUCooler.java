@@ -6,11 +6,10 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.SocketType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
+
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -23,17 +22,17 @@ public class CPUCooler extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_cooler_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CPU_COOLER)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "fan_rpm", nullable = false, updatable = false)
-    Integer fanRpm;
+    private Integer fanRpm;
 
     @Column(name = "socket_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    SocketType socketType;
+    private SocketType socketType;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
+    private Integer tdp;
 
     public CPUCooler(final CPUCoolerDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

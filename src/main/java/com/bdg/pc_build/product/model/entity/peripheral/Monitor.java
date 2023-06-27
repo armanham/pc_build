@@ -6,12 +6,10 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.MonitorScreenType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -24,17 +22,17 @@ public class Monitor extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "monitor_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_MONITOR)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "screen_size", nullable = false, updatable = false)
-    Double screenSize;
+    private Double screenSize;
 
     @Column(name = "refresh_rate", nullable = false, updatable = false)
-    Integer refreshRate;
+    private Integer refreshRate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "screen_type", nullable = false, updatable = false)
-    MonitorScreenType screenType;
+    private MonitorScreenType screenType;
 
     public Monitor(final MonitorDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

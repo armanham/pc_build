@@ -7,12 +7,10 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -25,29 +23,29 @@ public class GPU extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "gpu_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_GPU)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "gpu_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    GPUInterfaceType gpuInterfaceType;
+    private GPUInterfaceType gpuInterfaceType;
 
     @Column(name = "memory", nullable = false, updatable = false)
-    Integer memory;
+    private Integer memory;
 
     @Column(name = "core_clock", nullable = false, updatable = false)
-    Double coreClock;
+    private Double coreClock;
 
     @Column(name = "boost_clock", nullable = false, updatable = false)
-    Double boostClock;
+    private Double boostClock;
 
     @Column(name = "length", nullable = false, updatable = false)
-    Double length;
+    private Double length;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
+    private Integer tdp;
 
     @ManyToMany(mappedBy = "gpus")
-    List<Order> orders;
+    private List<Order> orders;
 
     public GPU(final GPUDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

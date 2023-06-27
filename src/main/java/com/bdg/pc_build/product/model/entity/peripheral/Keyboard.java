@@ -6,11 +6,9 @@ import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -23,20 +21,20 @@ public class Keyboard extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "keyboard_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_KEYBOARD)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "connectivity_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    ConnectivityType connectivityType;
+    private ConnectivityType connectivityType;
 
     @Column(name = "cable_length", nullable = false, updatable = false)
-    Double cableLength;
+    private Double cableLength;
 
     @Column(name = "dimension", nullable = false, updatable = false)
-    String dimension;
+    private String dimension;
 
     @Column(name = "weight", nullable = false, updatable = false)
-    Double weight;
+    private Double weight;
 
     public Keyboard(final KeyboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

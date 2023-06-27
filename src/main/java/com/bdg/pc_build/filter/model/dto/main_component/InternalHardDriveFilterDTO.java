@@ -3,29 +3,26 @@ package com.bdg.pc_build.filter.model.dto.main_component;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.InternalHardDriveFilterRequest;
 import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class InternalHardDriveFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minCapacity;
-    Integer maxCapacity;
+    private Integer minCapacity;
+    private Integer maxCapacity;
 
-    Integer minTdp;
-    Integer maxTdp;
+    private Integer minTdp;
+    private Integer maxTdp;
 
-    final Set<InternalHardDriveInterfaceType> internalHardDriveInterfaceTypes;
+    private final Set<InternalHardDriveInterfaceType> internalHardDriveInterfaceTypes;
 
     public InternalHardDriveFilterDTO(final InternalHardDriveFilterRequest request) {
         this.name = request.name();

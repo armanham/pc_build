@@ -2,24 +2,21 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.ExternalHardDriveFilterRequest;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class ExternalHardDriveFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minCapacity;
-    Integer maxCapacity;
+    private Integer minCapacity;
+    private Integer maxCapacity;
 
-    Integer minTdp;
-    Integer maxTdp;
+    private Integer minTdp;
+    private Integer maxTdp;
 
     public ExternalHardDriveFilterDTO(final ExternalHardDriveFilterRequest request) {
         this.name = request.name();

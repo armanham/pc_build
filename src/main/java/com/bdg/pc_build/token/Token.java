@@ -3,9 +3,7 @@ package com.bdg.pc_build.token;
 import com.bdg.pc_build.user.model.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -17,22 +15,22 @@ public class Token {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(name = "token", unique = true)
-    String token;
+    private String token;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "token_type")
-    TokenType tokenType = TokenType.BEARER;
+    private TokenType tokenType = TokenType.BEARER;
 
     @Column(name = "revoked")
-    boolean revoked;
+    private boolean revoked;
 
     @Column(name = "expired")
-    boolean expired;
+    private boolean expired;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    public User user;
+    private User user;
 }

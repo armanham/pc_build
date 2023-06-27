@@ -4,30 +4,27 @@ import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.PowerSupplyFilterRequest;
 import com.bdg.pc_build.product.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.enumerations.ModularType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class PowerSupplyFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Integer minWattage;
-    Integer maxWattage;
+    private Integer minWattage;
+    private Integer maxWattage;
 
-    Integer minTdp;
-    Integer maxTdp;
+    private Integer minTdp;
+    private Integer maxTdp;
 
-    final Set<ModularType> modularTypes;
-    final Set<EfficiencyRating> efficiencyRatings;
+    private final Set<ModularType> modularTypes;
+    private final Set<EfficiencyRating> efficiencyRatings;
 
     public PowerSupplyFilterDTO(final PowerSupplyFilterRequest request) {
         this.name = request.name();

@@ -3,29 +3,26 @@ package com.bdg.pc_build.filter.model.dto.peripheral;
 import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.MonitorFilterRequest;
 import com.bdg.pc_build.product.enumerations.MonitorScreenType;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class MonitorFilterDTO {
 
-    final String name;
+    private final String name;
 
-    Double minPrice;
-    Double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
 
-    Double minScreenSize;
-    Double maxScreenSize;
+    private Double minScreenSize;
+    private Double maxScreenSize;
 
-    Integer minRefreshRate;
-    Integer maxRefreshRate;
+    private Integer minRefreshRate;
+    private Integer maxRefreshRate;
 
-    final Set<MonitorScreenType> screenTypes;
+    private final Set<MonitorScreenType> screenTypes;
 
     public MonitorFilterDTO(final MonitorFilterRequest request) {
         this.name = request.name();

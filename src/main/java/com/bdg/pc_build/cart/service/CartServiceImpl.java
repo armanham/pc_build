@@ -8,9 +8,7 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.service.ProductService;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.repository.UserDAO;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,15 +19,14 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @Transactional
 public class CartServiceImpl implements CartService {
 
-    ProductService productService;
-    OrderService orderService;
-    JwtService jwtService;
-    UserDAO userDAO;
+    private final ProductService productService;
+    private final OrderService orderService;
+    private final JwtService jwtService;
+    private final UserDAO userDAO;
     private Map<ProductDTO, Integer> cartItems = new HashMap<>();
 
 

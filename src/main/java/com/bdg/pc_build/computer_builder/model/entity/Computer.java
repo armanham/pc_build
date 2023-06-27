@@ -6,13 +6,11 @@ import com.bdg.pc_build.user.model.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -23,76 +21,76 @@ public class Computer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @ManyToOne
     @JsonIgnore
-    aCase aCase;
+    private aCase aCase;
 
     @ManyToMany
     @JsonIgnore
-    List<Cooler> coolers = new ArrayList<>();
+    private List<Cooler> coolers = new ArrayList<>();
 
     @ManyToOne
     @JsonIgnore
-    CPU cpu;
+    private CPU cpu;
 
     @ManyToOne
     @JsonIgnore
-    CPUCooler cpuCooler;
+    private CPUCooler cpuCooler;
 
     @ManyToOne
     @JsonIgnore
-    GPU gpu;
+    private GPU gpu;
 
     @ManyToMany
     @JsonIgnore
-    List<InternalHardDrive> internalHardDrives = new ArrayList<>();
+    private List<InternalHardDrive> internalHardDrives = new ArrayList<>();
 
     @ManyToOne
     @JsonIgnore
-    Motherboard motherboard;
+    private Motherboard motherboard;
 
     @ManyToOne
     @JsonIgnore
-    PowerSupply powerSupply;
+    private PowerSupply powerSupply;
 
     @ManyToMany
     @JsonIgnore
-    List<RAM> rams = new ArrayList<>();
+    private List<RAM> rams = new ArrayList<>();
 
     @ManyToMany
     @JsonIgnore
-    List<ExternalHardDrive> externalHardDrives = new ArrayList<>();
+    private List<ExternalHardDrive> externalHardDrives = new ArrayList<>();
 
     @ManyToMany
     @JsonIgnore
-    List<Headset> headsets = new ArrayList<>();
+    private List<Headset> headsets = new ArrayList<>();
 
     @ManyToMany
     @JsonIgnore
-    List<Keyboard> keyboards = new ArrayList<>();
+    private List<Keyboard> keyboards = new ArrayList<>();
 
     @ManyToMany
     @JsonIgnore
-    List<Monitor> monitors = new ArrayList<>();
+    private List<Monitor> monitors = new ArrayList<>();
 
     @ManyToMany
     @JsonIgnore
-    List<Mouse> mice = new ArrayList<>();
+    private List<Mouse> mice = new ArrayList<>();
 
     @ManyToMany
     @JsonIgnore
-    List<Speaker> speakers = new ArrayList<>();
+    private List<Speaker> speakers = new ArrayList<>();
 
     @ManyToOne
     @JsonIgnore
-    User user;
+    private User user;
 
     @Column(name = "total_price", nullable = false)
-    BigDecimal totalPrice;
+    private BigDecimal totalPrice;
 
-    Boolean isOrdered = false;
+    private Boolean isOrdered = false;
 
     public void addCooler(Cooler cooler) {
         this.coolers.add(cooler);

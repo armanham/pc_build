@@ -12,9 +12,7 @@ import com.bdg.pc_build.user.repository.UserDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,16 +22,15 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.Optional;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @Service
 public class AuthenticationService {
 
-    UserDAO userRepository;
-    TokenRepository tokenRepository;
-    PasswordEncoder passwordEncoder;
-    JwtService jwtService;
-    AuthenticationManager authenticationManager;
+    private final UserDAO userRepository;
+    private final TokenRepository tokenRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
         Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());

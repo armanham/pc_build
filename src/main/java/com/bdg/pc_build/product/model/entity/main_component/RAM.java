@@ -6,11 +6,9 @@ import com.bdg.pc_build.product.model.dto.main_component.RAMDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -23,20 +21,20 @@ public class RAM extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "ram_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_RAM)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "ddr_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    DDRType ddrType;
+    private DDRType ddrType;
 
     @Column(name = "count_of_ram", nullable = false, updatable = false)
-    Integer countOfRam;
+    private Integer countOfRam;
 
     @Column(name = "gb_of_ram", nullable = false, updatable = false)
-    Integer gbOfRam;
+    private Integer gbOfRam;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
+    private Integer tdp;
 
     public RAM(final RAMDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

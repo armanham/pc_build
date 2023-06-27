@@ -4,18 +4,15 @@ import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Headset;
 import com.bdg.pc_build.product.model.request.creation.peripheral.HeadsetCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class HeadsetDTO extends ProductDTO {
 
-    Integer frequency;
-    ConnectivityType connectivityType;
-    Double cableLength;
+    private final Integer frequency;
+    private final ConnectivityType connectivityType;
+    private final Double cableLength;
 
     @Builder
     public HeadsetDTO(

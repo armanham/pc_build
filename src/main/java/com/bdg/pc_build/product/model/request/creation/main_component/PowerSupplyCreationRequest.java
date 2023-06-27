@@ -5,13 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.product.pattern.Pattern.*;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class PowerSupplyCreationRequest extends ProductCreationRequest {
 
@@ -21,11 +18,11 @@ public class PowerSupplyCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "efficiency_rating", required = true)
-    String efficiencyRating;
+    private String efficiencyRating;
 
     @Positive
     @JsonProperty(value = "wattage", required = true)
-    Integer wattage;
+    private Integer wattage;
 
     @NotBlank(message = "'modular_type' field can not be blank")
     @Pattern(
@@ -33,11 +30,11 @@ public class PowerSupplyCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "modular_type", required = true)
-    String modularType;
+    private String modularType;
 
     @Positive
     @JsonProperty(value = "tdp", required = true)
-    Integer tdp;
+    private Integer tdp;
 
     public PowerSupplyCreationRequest(
             final String name,

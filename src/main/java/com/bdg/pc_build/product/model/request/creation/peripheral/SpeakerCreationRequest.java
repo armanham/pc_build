@@ -5,20 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.product.pattern.Pattern.POWER_SOURCE_TYPE_ENUM_PATTERN;
 import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class SpeakerCreationRequest extends ProductCreationRequest {
 
     @Positive
     @JsonProperty(value = "frequency", required = true)
-    Integer frequency;
+    private Integer frequency;
 
     @NotBlank(message = "'power_source_type' field can not be blank")
     @Pattern(
@@ -26,15 +23,15 @@ public class SpeakerCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "power_source_type", required = true)
-    String powerSourceType;
+    private String powerSourceType;
 
     @Positive
     @JsonProperty(value = "cable_length", required = true)
-    Double cableLength;
+    private Double cableLength;
 
     @NotBlank(message = "'dimension' field can not be blank")
     @JsonProperty(value = "dimension", required = true)
-    String dimension;
+    private String dimension;
 
     public SpeakerCreationRequest(
             final String name,

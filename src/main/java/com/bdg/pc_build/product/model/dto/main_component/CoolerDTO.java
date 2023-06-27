@@ -3,16 +3,13 @@ package com.bdg.pc_build.product.model.dto.main_component;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.Cooler;
 import com.bdg.pc_build.product.model.request.creation.main_component.CoolerCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class CoolerDTO extends ProductDTO {
 
-    Integer tdp;
+    private final Integer tdp;
 
     @Builder
     public CoolerDTO(

@@ -5,20 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.product.pattern.Pattern.CONNECTIVITY_TYPE_ENUM_PATTERN;
 import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class HeadsetCreationRequest extends ProductCreationRequest {
 
     @Positive
     @JsonProperty(value = "frequency", required = true)
-    Integer frequency;
+    private Integer frequency;
 
     @NotBlank(message = "'connectivity_type' field can not be blank")
     @Pattern(
@@ -26,11 +23,11 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "connectivity_type", required = true)
-    String connectivityType;
+    private String connectivityType;
 
     @Positive
     @JsonProperty(value = "cable_length", required = true)
-    Double cableLength;
+    private Double cableLength;
 
     public HeadsetCreationRequest(
             final String name,

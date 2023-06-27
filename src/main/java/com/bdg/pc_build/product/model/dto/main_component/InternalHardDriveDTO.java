@@ -4,18 +4,15 @@ import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.InternalHardDrive;
 import com.bdg.pc_build.product.model.request.creation.main_component.InternalHardDriveCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class InternalHardDriveDTO extends ProductDTO {
 
-    InternalHardDriveInterfaceType internalHardDriveInterfaceType;
-    Integer capacity;
-    Integer tdp;
+    private final InternalHardDriveInterfaceType internalHardDriveInterfaceType;
+    private final Integer capacity;
+    private final Integer tdp;
 
     @Builder
     public InternalHardDriveDTO(

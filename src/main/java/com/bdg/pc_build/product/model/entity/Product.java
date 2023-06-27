@@ -2,17 +2,14 @@ package com.bdg.pc_build.product.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Setter
 @Getter
@@ -20,24 +17,24 @@ import java.sql.Timestamp;
 public abstract class Product {
 
     @Column(name = "name", updatable = false, unique = true)
-    String name;
+    private String name;
 
     @Column(name = "price", nullable = false)
-    Double price;
+    private Double price;
 
     @Column(name = "purchased_price", nullable = false)
-    Double purchasedPrice;
+    private Double purchasedPrice;
 
     @Column(name = "count", nullable = false)
-    Integer count;
+    private Integer count;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
-    Timestamp createdAt;
+    private Timestamp createdAt;
 
     @Column(name = "updated_at")
     @UpdateTimestamp
-    Timestamp updatedAt;
+    private Timestamp updatedAt;
 
     public Product(
             final String name,

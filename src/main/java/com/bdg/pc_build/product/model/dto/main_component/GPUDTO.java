@@ -4,21 +4,19 @@ import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.GPU;
 import com.bdg.pc_build.product.model.request.creation.main_component.GPUCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+
 @Getter
 public class GPUDTO extends ProductDTO {
 
-    GPUInterfaceType gpuInterfaceType;
-    Integer memory;
-    Double coreClock;
-    Double boostClock;
-    Double length;
-    Integer tdp;
+    private final GPUInterfaceType gpuInterfaceType;
+    private final Integer memory;
+    private final Double coreClock;
+    private final Double boostClock;
+    private final Double length;
+    private final Integer tdp;
 
     @Builder
     public GPUDTO(

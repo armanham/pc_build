@@ -6,20 +6,17 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 import static com.bdg.pc_build.product.pattern.Pattern.SOCKET_TYPE_ENUM_PATTERN;
 import static com.bdg.pc_build.product.pattern.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class CPUCoolerCreationRequest extends ProductCreationRequest {
 
     @Positive
     @JsonProperty(value = "fan_rpm", required = true)
-    Integer fanRpm;
+    private Integer fanRpm;
 
     @NotBlank(message = "'socket_type' field can not be blank")
     @Pattern(
@@ -27,11 +24,11 @@ public class CPUCoolerCreationRequest extends ProductCreationRequest {
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
     )
     @JsonProperty(value = "socket_type", required = true)
-    String socketType;
+    private String socketType;
 
     @Min(0)
     @JsonProperty(value = "tdp", required = true)
-    Integer tdp;
+    private Integer tdp;
 
     public CPUCoolerCreationRequest(
             final String name,

@@ -14,7 +14,6 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -27,35 +26,35 @@ public class Motherboard extends Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
     @SequenceGenerator(name = "entity_seq", sequenceName = "motherboard_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_MOTHERBOARD)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "socket_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    SocketType socketType;
+    private SocketType socketType;
 
     @Column(name = "atx_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    ATXType atxType;
+    private ATXType atxType;
 
     @Column(name = "memory_max", nullable = false, updatable = false)
-    Integer memoryMax;
+    private Integer memoryMax;
 
     @Column(name = "memory_slots", nullable = false, updatable = false)
-    Integer memorySlots;
+    private Integer memorySlots;
 
     @Column(name = "ddr_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    DDRType ddrType;
+    private DDRType ddrType;
 
     @Column(name = "is_m2", nullable = false, updatable = false)
-    Boolean isM2;
+    private Boolean isM2;
 
     @Column(name = "gpu_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    GPUInterfaceType gpuInterfaceType;
+    private GPUInterfaceType gpuInterfaceType;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    Integer tdp;
+    private Integer tdp;
 
     public Motherboard(final MotherboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

@@ -4,19 +4,16 @@ import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
 import com.bdg.pc_build.product.model.request.creation.peripheral.MouseCreationRequest;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
 public class MouseDTO extends ProductDTO {
 
-    ConnectivityType connectivityType;
-    Integer maxResolution;
-    Double cableLength;
-    Double weight;
+    private final ConnectivityType connectivityType;
+    private final Integer maxResolution;
+    private final Double cableLength;
+    private final Double weight;
 
     @Builder
     public MouseDTO(
