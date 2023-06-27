@@ -1,10 +1,9 @@
 package com.bdg.pc_build.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-@ResponseStatus(HttpStatus.ALREADY_REPORTED)
-public class SameNameDifferentDescriptionException extends RuntimeException {
+public class SameNameDifferentDescriptionException extends ResponseStatusException {
 
     public SameNameDifferentDescriptionException(Class clazz, String name) {
         super(clazz.getSimpleName() + " Product with the existing name:  " + name + "but different description not allowed: ");

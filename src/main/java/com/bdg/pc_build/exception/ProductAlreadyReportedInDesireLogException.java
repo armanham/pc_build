@@ -2,12 +2,11 @@ package com.bdg.pc_build.exception;
 
 import com.bdg.pc_build.user.model.entity.User;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-@ResponseStatus(HttpStatus.ALREADY_REPORTED)
-public class ProductAlreadyReportedInDesireLogException extends RuntimeException {
+public class ProductAlreadyReportedInDesireLogException extends ResponseStatusException {
     public ProductAlreadyReportedInDesireLogException(User user) {
-        super("The product has already been reported in Desire Log by " + user.getUsername() + ": ");
+        super(HttpStatus.ALREADY_REPORTED, "The product has already been reported in Desire Log by " + user.getUsername() + ": ");
     }
 
     @Override

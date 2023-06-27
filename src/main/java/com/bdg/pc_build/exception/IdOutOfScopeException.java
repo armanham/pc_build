@@ -1,17 +1,16 @@
 package com.bdg.pc_build.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-@ResponseStatus(HttpStatus.OK)
-public class IdOutOfScopeException extends RuntimeException{
+public class IdOutOfScopeException extends ResponseStatusException {
 
     public IdOutOfScopeException(Class aClass, Long id) {
-        super("The specified ID " + id + " is out of scope for product of type " + aClass.getSimpleName() + ": ");
+        super(HttpStatus.CONFLICT, "The specified ID " + id + " is out of scope for product of type " + aClass.getSimpleName() + ": ");
     }
 
-    public IdOutOfScopeException(Long id){
-        super("The specified ID " + id + " is not in a valid range: ");
+    public IdOutOfScopeException(Long id) {
+        super(HttpStatus.CONFLICT, "The specified ID " + id + " is not in a valid range: ");
     }
 
     @Override

@@ -1,13 +1,12 @@
 package com.bdg.pc_build.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-@ResponseStatus(HttpStatus.OK)
-public class InvalidTokenException extends RuntimeException {
+public class InvalidTokenException extends ResponseStatusException {
 
     public InvalidTokenException() {
-        super("Provided token is not valid: ");
+        super(HttpStatus.BAD_REQUEST, "Provided token is not valid: ");
     }
 
     @Override

@@ -1,12 +1,12 @@
 package com.bdg.pc_build.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-@ResponseStatus(HttpStatus.ALREADY_REPORTED)
-public class EmailAlreadyExistsException extends RuntimeException {
+public class EmailAlreadyExistsException extends ResponseStatusException {
+
     public EmailAlreadyExistsException(String email) {
-        super("Email: " + email + " already exists: ");
+        super(HttpStatus.ALREADY_REPORTED, "Email: " + email + " already exists: ");
     }
 
     @Override

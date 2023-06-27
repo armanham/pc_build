@@ -1,13 +1,12 @@
 package com.bdg.pc_build.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-@ResponseStatus(HttpStatus.OK)
-public class InvalidAuthHeaderException extends RuntimeException{
+public class InvalidAuthHeaderException extends ResponseStatusException {
 
     public InvalidAuthHeaderException() {
-        super("Invalid authentication header: ");
+        super(HttpStatus.BAD_REQUEST, "Invalid authentication header: ");
     }
 
     @Override
