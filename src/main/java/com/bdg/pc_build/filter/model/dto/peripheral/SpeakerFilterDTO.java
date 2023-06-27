@@ -13,14 +13,14 @@ public class SpeakerFilterDTO {
 
     private final String name;
 
-    private Double minPrice;
-    private Double maxPrice;
+    private final Double minPrice;
+    private final Double maxPrice;
 
-    private Integer minFrequency;
-    private Integer maxFrequency;
+    private final Integer minFrequency;
+    private final Integer maxFrequency;
 
-    private Double minCableLength;
-    private Double maxCableLength;
+    private final Double minCableLength;
+    private final Double maxCableLength;
 
     private final Set<String> dimensions;
 
@@ -29,32 +29,21 @@ public class SpeakerFilterDTO {
     public SpeakerFilterDTO(final SpeakerFilterRequest request) {
         this.name = request.name();
 
-        if (request.minPrice() != null && !request.minPrice().isBlank()) {
-            this.minPrice = Double.valueOf(request.minPrice());
-        }
-        if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
-            this.maxPrice = Double.valueOf(request.maxPrice());
-        }
+
+        this.minPrice = request.minPrice();
+        this.maxPrice = request.maxPrice();
         if (this.minPrice != null && this.maxPrice != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
         }
 
-        if (request.minFrequency() != null && !request.minFrequency().isBlank()) {
-            this.minFrequency = Integer.valueOf(request.minFrequency());
-        }
-        if (request.maxFrequency() != null && !request.maxFrequency().isBlank()) {
-            this.maxFrequency = Integer.valueOf(request.maxFrequency());
-        }
+        this.minFrequency = request.minFrequency();
+        this.maxFrequency = request.maxFrequency();
         if (this.minFrequency != null && this.maxFrequency != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minFrequency, maxFrequency);
         }
 
-        if (request.minCableLength() != null && !request.minCableLength().isBlank()) {
-            this.minCableLength = Double.valueOf(request.minCableLength());
-        }
-        if (request.maxCableLength() != null && !request.maxCableLength().isBlank()) {
-            this.maxCableLength = Double.valueOf(request.maxCableLength());
-        }
+        this.minCableLength = request.minCableLength();
+        this.maxCableLength = request.maxCableLength();
         if (this.minCableLength != null && this.maxCableLength != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minCableLength, maxCableLength);
         }

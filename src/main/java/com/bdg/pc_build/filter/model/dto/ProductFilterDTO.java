@@ -9,18 +9,14 @@ public class ProductFilterDTO {
 
     private final String name;
 
-    private Double minPrice;
-    private Double maxPrice;
+    private final Double minPrice;
+    private final Double maxPrice;
 
     public ProductFilterDTO(final ProductFilterRequest request) {
         this.name = request.name();
 
-        if (request.minPrice() != null && !request.minPrice().isBlank()) {
-            this.minPrice = Double.valueOf(request.minPrice());
-        }
-        if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
-            this.maxPrice = Double.valueOf(request.maxPrice());
-        }
+        this.minPrice = request.minPrice();
+        this.maxPrice = request.maxPrice();
         if (this.minPrice != null && this.maxPrice != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
         }

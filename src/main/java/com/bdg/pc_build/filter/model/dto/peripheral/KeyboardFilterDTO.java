@@ -13,14 +13,14 @@ public class KeyboardFilterDTO {
 
     private final String name;
 
-    private Double minPrice;
-    private Double maxPrice;
+    private final Double minPrice;
+    private final Double maxPrice;
 
-    private Double minCableLength;
-    private Double maxCableLength;
+    private final Double minCableLength;
+    private final Double maxCableLength;
 
-    private Double minWeight;
-    private Double maxWeight;
+    private final Double minWeight;
+    private final Double maxWeight;
 
     private final Set<String> dimensions;
 
@@ -29,32 +29,21 @@ public class KeyboardFilterDTO {
     public KeyboardFilterDTO(final KeyboardFilterRequest request) {
         this.name = request.name();
 
-        if (request.minPrice() != null && !request.minPrice().isBlank()) {
-            this.minPrice = Double.valueOf(request.minPrice());
-        }
-        if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
-            this.maxPrice = Double.valueOf(request.maxPrice());
-        }
+        this.minPrice = request.minPrice();
+        this.maxPrice = request.maxPrice();
         if (this.minPrice != null && this.maxPrice != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
         }
 
-        if (request.minCableLength() != null && !request.minCableLength().isBlank()) {
-            this.minCableLength = Double.valueOf(request.minCableLength());
-        }
-        if (request.maxCableLength() != null && !request.maxCableLength().isBlank()) {
-            this.maxCableLength = Double.valueOf(request.maxCableLength());
-        }
+
+        this.minCableLength = request.minCableLength();
+        this.maxCableLength = request.maxCableLength();
         if (this.minCableLength != null && this.maxCableLength != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minCableLength, maxCableLength);
         }
 
-        if (request.minWeight() != null && !request.minWeight().isBlank()) {
-            this.minWeight = Double.valueOf(request.minWeight());
-        }
-        if (request.maxWeight() != null && !request.maxWeight().isBlank()) {
-            this.maxWeight = Double.valueOf(request.maxWeight());
-        }
+        this.minWeight = request.minWeight();
+        this.maxWeight = request.maxWeight();
         if (this.minWeight != null && this.maxWeight != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minWeight, maxWeight);
         }

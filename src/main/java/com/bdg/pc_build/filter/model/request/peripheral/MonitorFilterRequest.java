@@ -19,9 +19,9 @@ public record MonitorFilterRequest(
         Double maxScreenSize,
 
         @JsonProperty(value = "min_refresh_rate")
-        String minRefreshRate,
+        Integer minRefreshRate,
         @JsonProperty(value = "max_refresh_rate")
-        String maxRefreshRate,
+        Integer maxRefreshRate,
 
         @JsonProperty(value = "screen_types")
         List<String> screenTypes
