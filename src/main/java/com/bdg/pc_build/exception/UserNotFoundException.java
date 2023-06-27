@@ -1,13 +1,16 @@
 package com.bdg.pc_build.exception;
 
-public class UserNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+public class UserNotFoundException extends ResponseStatusException {
 
     public UserNotFoundException(String email) {
-        super("User with email: " + email + " not found");
+        super(HttpStatus.NOT_FOUND, "User with email: " + email + " not found");
     }
 
     public UserNotFoundException(Long id) {
-        super("User with id: " + id + " not found");
+        super(HttpStatus.NOT_FOUND, "User with id: " + id + " not found");
     }
 
     @Override
