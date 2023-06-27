@@ -11,4 +11,6 @@ public interface ComputerService {
 
     Computer getComputerById(Long id);
 
+    void checkout(Long id, String authHeader);
+
 }

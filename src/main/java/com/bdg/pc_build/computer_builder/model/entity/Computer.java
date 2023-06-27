@@ -3,6 +3,8 @@ package com.bdg.pc_build.computer_builder.model.entity;
 import com.bdg.pc_build.product.model.entity.main_component.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -25,51 +27,67 @@ public class Computer {
     Long id;
 
     @ManyToOne
+    @JsonIgnore
     aCase aCase;
 
     @ManyToMany
+    @JsonIgnore
     List<Cooler> coolers = new ArrayList<>();
 
     @ManyToOne
+    @JsonIgnore
     CPU cpu;
 
     @ManyToOne
+    @JsonIgnore
     CPUCooler cpuCooler;
 
     @ManyToOne
+    @JsonIgnore
     GPU gpu;
 
     @ManyToMany
+    @JsonIgnore
     List<InternalHardDrive> internalHardDrives = new ArrayList<>();
 
     @ManyToOne
+    @JsonIgnore
     Motherboard motherboard;
 
     @ManyToOne
+    @JsonIgnore
     PowerSupply powerSupply;
 
     @ManyToMany
+    @JsonIgnore
     List<RAM> rams = new ArrayList<>();
 
     @ManyToMany
+    @JsonIgnore
     List<ExternalHardDrive> externalHardDrives = new ArrayList<>();
 
     @ManyToMany
+    @JsonIgnore
     List<Headset> headsets = new ArrayList<>();
 
     @ManyToMany
+    @JsonIgnore
     List<Keyboard> keyboards = new ArrayList<>();
 
     @ManyToMany
+    @JsonIgnore
     List<Monitor> monitors = new ArrayList<>();
 
     @ManyToMany
+    @JsonIgnore
     List<Mouse> mice = new ArrayList<>();
 
     @ManyToMany
+    @JsonIgnore
     List<Speaker> speakers = new ArrayList<>();
 
     @ManyToOne
+    @JsonIgnore
     User user;
 
     @Column(name = "total_price", nullable = false)

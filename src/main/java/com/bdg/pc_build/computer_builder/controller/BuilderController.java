@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class BuilderController {
     ComputerEntityInitializerBasedOnRequest entityInitializerBasedOnRequest;
 
     @PostMapping("/check")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<?> build(
             @RequestBody ComputerCreationRequest request
     ) {
@@ -32,6 +34,7 @@ public class BuilderController {
     }
 
     @PostMapping("/save")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<?> save(
             @RequestBody ComputerCreationRequest computerCreationRequest,
             HttpServletRequest httpServletRequest
@@ -43,4 +46,15 @@ public class BuilderController {
 //    public List<ComputerDTO> getAllComputers() {
 //        return computerDAOOO.getComputerDTOList();
 //    }
+
+    @PostMapping("/checkout/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<?> checkout(
+            @PathVariable Long id,
+            HttpServletRequest httpServletRequest
+    ) {
+        computerService.checkout(id, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
+        return ResponseEntity.ok().body("Computer is bought successfully!!!");
+    }
+
 }

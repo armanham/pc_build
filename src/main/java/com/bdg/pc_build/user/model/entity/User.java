@@ -63,9 +63,11 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     List<DesireLog> desireLogs = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Order> orders;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy =  "user")
     List<Computer> computers;
 
