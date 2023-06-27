@@ -1,7 +1,7 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
-import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.MotherboardFilterRequest;
+import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.product.enumerations.ATXType;
 import com.bdg.pc_build.product.enumerations.DDRType;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
@@ -16,17 +16,17 @@ public class MotherboardFilterDTO {
 
     private final String name;
 
-    private Double minPrice;
-    private Double maxPrice;
+    private final Double minPrice;
+    private final Double maxPrice;
 
-    private Integer minMemory;
-    private Integer maxMemory;
+    private final Integer minMemory;
+    private final Integer maxMemory;
 
-    private Integer minMemorySlots;
-    private Integer maxMemorySlots;
+    private final Integer minMemorySlots;
+    private final Integer maxMemorySlots;
 
-    private Integer minTdp;
-    private Integer maxTdp;
+    private final Integer minTdp;
+    private final Integer maxTdp;
 
     private final Set<Boolean> isM2;
 
@@ -38,42 +38,26 @@ public class MotherboardFilterDTO {
     public MotherboardFilterDTO(final MotherboardFilterRequest request) {
         this.name = request.name();
 
-        if (request.minPrice() != null && !request.minPrice().isBlank()) {
-            this.minPrice = Double.valueOf(request.minPrice());
-        }
-        if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
-            this.maxPrice = Double.valueOf(request.maxPrice());
-        }
+        this.minPrice = request.minPrice();
+        this.maxPrice = request.maxPrice();
         if (this.minPrice != null && this.maxPrice != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
         }
 
-        if (request.minMemory() != null && !request.minMemory().isBlank()) {
-            this.minMemory = Integer.valueOf(request.minMemory());
-        }
-        if (request.maxMemory() != null && !request.maxMemory().isBlank()) {
-            this.maxMemory = Integer.valueOf(request.maxMemory());
-        }
+        this.minMemory = request.minMemory();
+        this.maxMemory = request.maxMemory();
         if (this.minMemory != null && this.maxMemory != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(maxMemory, maxMemory);
         }
 
-        if (request.minMemorySlots() != null && !request.minMemorySlots().isBlank()) {
-            this.minMemorySlots = Integer.valueOf(request.minMemorySlots());
-        }
-        if (request.maxMemorySlots() != null && !request.maxMemorySlots().isBlank()) {
-            this.maxMemorySlots = Integer.valueOf(request.maxMemorySlots());
-        }
+        this.minMemorySlots = request.minMemorySlots();
+        this.maxMemorySlots = request.maxMemorySlots();
         if (this.minMemorySlots != null && this.maxMemorySlots != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minMemorySlots, maxMemorySlots);
         }
 
-        if (request.minTdp() != null && !request.minTdp().isBlank()) {
-            this.minTdp = Integer.valueOf(request.minTdp());
-        }
-        if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
-            this.maxTdp = Integer.valueOf(request.maxTdp());
-        }
+        this.minTdp = request.minTdp();
+        this.maxTdp = request.maxTdp();
         if (this.minTdp != null && this.maxTdp != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }

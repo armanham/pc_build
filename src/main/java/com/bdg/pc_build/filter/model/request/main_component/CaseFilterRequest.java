@@ -9,24 +9,24 @@ public record CaseFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice,
+        Double maxPrice,
 
         @JsonProperty(value = "min_cpu_cooler_height")
-        String minCpuCoolerHeight,
+        Double minCpuCoolerHeight,
         @JsonProperty(value = "max_cpu_cooler_height")
-        String maxCpuCoolerHeight,
+        Double maxCpuCoolerHeight,
 
         @JsonProperty(value = "min_gpu_length")
-        String minGpuLength,
+        Double minGpuLength,
         @JsonProperty(value = "max_gpu_length")
-        String maxGpuLength,
+        Double maxGpuLength,
 
         @JsonProperty(value = "min_pre_installed_fans")
-        String minPreInstalledFans,
+        Integer minPreInstalledFans,
         @JsonProperty(value = "max_pre_installed_fans")
-        String maxPreInstalledFans,
+        Integer maxPreInstalledFans,
 
         @JsonProperty(value = "tower_types")
         List<String> towerTypes

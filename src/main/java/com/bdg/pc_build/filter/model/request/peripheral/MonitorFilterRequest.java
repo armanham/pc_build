@@ -2,8 +2,6 @@ package com.bdg.pc_build.filter.model.request.peripheral;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public record MonitorFilterRequest(
@@ -11,14 +9,14 @@ public record MonitorFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice,
+        Double maxPrice,
 
         @JsonProperty(value = "min_screen_size")
-        String minScreenSize,
+        Double minScreenSize,
         @JsonProperty(value = "max_screen_size")
-        String maxScreenSize,
+        Double maxScreenSize,
 
         @JsonProperty(value = "min_refresh_rate")
         String minRefreshRate,

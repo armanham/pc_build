@@ -9,19 +9,19 @@ public record CPUCoolerFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice,
+        Double maxPrice,
 
         @JsonProperty(value = "min_fan_rpm")
-        String minFanRpm,
+        Integer minFanRpm,
         @JsonProperty(value = "max_fan_rpm")
-        String maxFanRpm,
+        Integer maxFanRpm,
 
         @JsonProperty(value = "min_tdp")
-        String minTdp,
+        Integer minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp,
+        Integer maxTdp,
 
         @JsonProperty(value = "socket_types")
         List<String> socketTypes

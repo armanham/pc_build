@@ -9,29 +9,29 @@ public record CPUFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice,
+        Double maxPrice,
 
         @JsonProperty(value = "min_core_count")
-        String minCoreCount,
+        Integer minCoreCount,
         @JsonProperty(value = "max_core_count")
-        String maxCoreCount,
+        Integer maxCoreCount,
 
         @JsonProperty(value = "min_core_clock")
-        String minCoreClock,
+        Double minCoreClock,
         @JsonProperty(value = "max_core_clock")
-        String maxCoreClock,
+        Double maxCoreClock,
 
         @JsonProperty(value = "min_boost_clock")
-        String minBoostClock,
+        Double minBoostClock,
         @JsonProperty(value = "max_boost_clock")
-        String maxBoostClock,
+        Double maxBoostClock,
 
         @JsonProperty(value = "min_tdp")
-        String minTdp,
+        Integer minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp,
+        Integer maxTdp,
 
         @JsonProperty(value = "socket_types")
         List<String> socketTypes,

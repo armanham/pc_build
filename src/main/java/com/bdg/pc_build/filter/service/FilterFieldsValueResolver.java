@@ -445,8 +445,8 @@ public class FilterFieldsValueResolver {
             maxCountOfRam = ramDAO.getMaxCountOfRamOfRams();
         }
 
-        Double minGbOfRam;
-        Double maxGbOfRam;
+        Integer minGbOfRam;
+        Integer maxGbOfRam;
         if (filterDTO.getMinGbOfRam() != null) {
             minGbOfRam = filterDTO.getMinGbOfRam();
         } else {
@@ -812,7 +812,7 @@ public class FilterFieldsValueResolver {
             String name,
             Double minPrice, Double maxPrice,
             Integer minCountOfRam, Integer maxCountOfRam,
-            Double minGbOfRam, Double maxGbOfRam,
+            Integer minGbOfRam, Integer maxGbOfRam,
             Integer minTdp, Integer maxTdp,
             Set<DDRType> ddrTypes
     ) {

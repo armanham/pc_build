@@ -1,7 +1,7 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
-import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.GPUFilterRequest;
+import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import lombok.Getter;
 
@@ -13,23 +13,23 @@ public class GPUFilterDTO {
 
     private final String name;
 
-    private Double minPrice;
-    private Double maxPrice;
+    private final Double minPrice;
+    private final Double maxPrice;
 
-    private Integer minMemory;
-    private Integer maxMemory;
+    private final Integer minMemory;
+    private final Integer maxMemory;
 
-    private Double minCoreClock;
-    private Double maxCoreClock;
+    private final Double minCoreClock;
+    private final Double maxCoreClock;
 
-    private Double minBoostClock;
-    private Double maxBoostClock;
+    private final Double minBoostClock;
+    private final Double maxBoostClock;
 
-    private Double minLength;
-    private Double maxLength;
+    private final Double minLength;
+    private final Double maxLength;
 
-    private Integer minTdp;
-    private Integer maxTdp;
+    private final Integer minTdp;
+    private final Integer maxTdp;
 
     private final Set<GPUInterfaceType> gpuInterfaceTypes;
 
@@ -37,62 +37,38 @@ public class GPUFilterDTO {
     public GPUFilterDTO(final GPUFilterRequest request) {
         this.name = request.name();
 
-        if (request.minPrice() != null && !request.minPrice().isBlank()) {
-            this.minPrice = Double.valueOf(request.minPrice());
-        }
-        if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
-            this.maxPrice = Double.valueOf(request.maxPrice());
-        }
+        this.minPrice = request.minPrice();
+        this.maxPrice = request.maxPrice();
         if (this.minPrice != null && this.maxPrice != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
         }
 
-        if (request.minMemory() != null && !request.minMemory().isBlank()) {
-            this.minMemory = Integer.valueOf(request.minMemory());
-        }
-        if (request.maxMemory() != null && !request.maxMemory().isBlank()) {
-            this.maxMemory = Integer.valueOf(request.maxMemory());
-        }
+        this.minMemory = request.minMemory();
+        this.maxMemory = request.maxMemory();
         if (this.minMemory != null && this.maxMemory != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minMemory, maxMemory);
         }
 
-        if (request.minCoreClock() != null && !request.minCoreClock().isBlank()) {
-            this.minCoreClock = Double.valueOf(request.minCoreClock());
-        }
-        if (request.maxCoreClock() != null && !request.maxCoreClock().isBlank()) {
-            this.maxCoreClock = Double.valueOf(request.maxCoreClock());
-        }
+        this.minCoreClock = request.minCoreClock();
+        this.maxCoreClock = request.maxCoreClock();
         if (this.minCoreClock != null && this.maxCoreClock != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minCoreClock, maxCoreClock);
         }
 
-        if (request.minBoostClock() != null && !request.minBoostClock().isBlank()) {
-            this.minBoostClock = Double.valueOf(request.minBoostClock());
-        }
-        if (request.maxBoostClock() != null && !request.maxBoostClock().isBlank()) {
-            this.maxBoostClock = Double.valueOf(request.maxBoostClock());
-        }
+        this.minBoostClock = request.minBoostClock();
+        this.maxBoostClock = request.maxBoostClock();
         if (this.minBoostClock != null && this.maxBoostClock != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minBoostClock, maxBoostClock);
         }
 
-        if (request.minLength() != null && !request.minLength().isBlank()) {
-            this.minLength = Double.valueOf(request.minLength());
-        }
-        if (request.maxLength() != null && !request.maxLength().isBlank()) {
-            this.maxLength = Double.valueOf(request.maxLength());
-        }
+        this.minLength = request.minLength();
+        this.maxLength = request.maxLength();
         if (this.minLength != null && this.maxLength != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minLength, maxLength);
         }
 
-        if (request.minTdp() != null && !request.minTdp().isBlank()) {
-            this.minTdp = Integer.valueOf(request.minTdp());
-        }
-        if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
-            this.maxTdp = Integer.valueOf(request.maxTdp());
-        }
+        this.minTdp = request.minTdp();
+        this.maxTdp = request.maxTdp();
         if (this.minTdp != null && this.maxTdp != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }

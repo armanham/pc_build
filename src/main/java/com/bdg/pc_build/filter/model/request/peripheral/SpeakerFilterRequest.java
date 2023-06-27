@@ -9,19 +9,19 @@ public record SpeakerFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice,
+        Double maxPrice,
 
         @JsonProperty(value = "min_frequency")
-        String minFrequency,
+        Integer minFrequency,
         @JsonProperty(value = "max_frequency")
-        String maxFrequency,
+        Integer maxFrequency,
 
         @JsonProperty(value = "min_cable_length")
-        String minCableLength,
+        Double minCableLength,
         @JsonProperty(value = "max_cable_length")
-        String maxCableLength,
+        Double maxCableLength,
 
         @JsonProperty(value = "dimensions")
         List<String> dimensions,

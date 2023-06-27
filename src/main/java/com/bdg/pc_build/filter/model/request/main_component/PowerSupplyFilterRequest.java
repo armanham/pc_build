@@ -9,20 +9,20 @@ public record PowerSupplyFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice,
+        Double maxPrice,
 
 
         @JsonProperty(value = "min_wattage")
-        String minWattage,
+        Integer minWattage,
         @JsonProperty(value = "max_wattage")
-        String maxWattage,
+        Integer maxWattage,
 
         @JsonProperty(value = "min_tdp")
-        String minTdp,
+        Integer minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp,
+        Integer maxTdp,
 
         @JsonProperty(value = "modular_types")
         List<String> modularTypes,

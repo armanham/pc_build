@@ -9,25 +9,25 @@ public record MotherboardFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice,
+        Double maxPrice,
 
         @JsonProperty(value = "min_memory")
-        String minMemory,
+        Integer minMemory,
         @JsonProperty(value = "max_memory")
-        String maxMemory,
+        Integer maxMemory,
 
         @JsonProperty(value = "min_memory_slots")
-        String minMemorySlots,
+        Integer minMemorySlots,
         @JsonProperty(value = "max_memory_slots")
-        String maxMemorySlots,
+        Integer maxMemorySlots,
 
 
         @JsonProperty(value = "min_tdp")
-        String minTdp,
+        Integer minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp,
+        Integer maxTdp,
 
         @JsonProperty(value = "socket_types")
         List<String> socketTypes,

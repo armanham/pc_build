@@ -9,25 +9,25 @@ public record RAMFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice,
+        Double maxPrice,
 
 
         @JsonProperty(value = "min_count_of_ram")
-        String minCountOfRam,
+        Integer minCountOfRam,
         @JsonProperty(value = "max_count_of_ram")
-        String maxCountOfRam,
+        Integer maxCountOfRam,
 
         @JsonProperty(value = "min_gb_of_ram")
-        String minGbOfRam,
+        Integer minGbOfRam,
         @JsonProperty(value = "max_gb_of_ram")
-        String maxGbOfRam,
+        Integer maxGbOfRam,
 
         @JsonProperty(value = "min_tdp")
-        String minTdp,
+        Integer minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp,
+        Integer maxTdp,
 
         @JsonProperty(value = "ddr_types")
         List<String> ddrTypes

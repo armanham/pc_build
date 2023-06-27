@@ -1,7 +1,7 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
-import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.main_component.PowerSupplyFilterRequest;
+import com.bdg.pc_build.filter.validaton.ValidationUtil;
 import com.bdg.pc_build.product.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.enumerations.ModularType;
 import lombok.Getter;
@@ -14,14 +14,14 @@ public class PowerSupplyFilterDTO {
 
     private final String name;
 
-    private Double minPrice;
-    private Double maxPrice;
+    private final Double minPrice;
+    private final Double maxPrice;
 
-    private Integer minWattage;
-    private Integer maxWattage;
+    private final Integer minWattage;
+    private final Integer maxWattage;
 
-    private Integer minTdp;
-    private Integer maxTdp;
+    private final Integer minTdp;
+    private final Integer maxTdp;
 
     private final Set<ModularType> modularTypes;
     private final Set<EfficiencyRating> efficiencyRatings;
@@ -29,32 +29,20 @@ public class PowerSupplyFilterDTO {
     public PowerSupplyFilterDTO(final PowerSupplyFilterRequest request) {
         this.name = request.name();
 
-        if (request.minPrice() != null && !request.minPrice().isBlank()) {
-            this.minPrice = Double.valueOf(request.minPrice());
-        }
-        if (request.maxPrice() != null && !request.maxPrice().isBlank()) {
-            this.maxPrice = Double.valueOf(request.maxPrice());
-        }
+        this.minPrice = request.minPrice();
+        this.maxPrice = request.maxPrice();
         if (this.minPrice != null && this.maxPrice != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minPrice, maxPrice);
         }
 
-        if (request.minWattage() != null && !request.minWattage().isBlank()) {
-            this.minWattage = Integer.valueOf(request.minWattage());
-        }
-        if (request.maxWattage() != null && !request.maxWattage().isBlank()) {
-            this.maxWattage = Integer.valueOf(request.maxWattage());
-        }
+        this.minWattage = request.minWattage();
+        this.maxWattage = request.maxWattage();
         if (this.minWattage != null && this.maxWattage != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minWattage, maxWattage);
         }
 
-        if (request.minTdp() != null && !request.minTdp().isBlank()) {
-            this.minTdp = Integer.valueOf(request.minTdp());
-        }
-        if (request.maxTdp() != null && !request.maxTdp().isBlank()) {
-            this.maxTdp = Integer.valueOf(request.maxTdp());
-        }
+        this.minTdp = request.minTdp();
+        this.maxTdp = request.maxTdp();
         if (this.minTdp != null && this.maxTdp != null) {
             ValidationUtil.validateNonNegativeMinMaxValues(minTdp, maxTdp);
         }

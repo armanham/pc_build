@@ -14,7 +14,7 @@ public interface RAMDAO extends ProductDAO<RAM> {
 
     List<RAM> findAllByCountOfRamBetween(Integer minCountOfRam, Integer maxCountOfRam);
 
-    List<RAM> findAllByGbOfRamBetween(Double minGbOfRam, Double maxGbOfRam);
+    List<RAM> findAllByGbOfRamBetween(Integer minGbOfRam, Integer maxGbOfRam);
 
     List<RAM> findAllByTdpBetween(Integer minTdp, Integer maxTdp);
 
@@ -42,8 +42,8 @@ public interface RAMDAO extends ProductDAO<RAM> {
     Integer getMaxCountOfRamOfRams();
 
     @Query("select min(p.gbOfRam) from RAM p")
-    Double getMinGbOfRamOfRams();
+    Integer getMinGbOfRamOfRams();
 
     @Query("select max(p.gbOfRam) from RAM p")
-    Double getMaxGbOfRamOfRams();
+    Integer getMaxGbOfRamOfRams();
 }

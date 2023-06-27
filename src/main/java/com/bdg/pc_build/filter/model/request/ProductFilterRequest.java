@@ -7,8 +7,8 @@ public record ProductFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice
+        Double maxPrice
 ) {
 }

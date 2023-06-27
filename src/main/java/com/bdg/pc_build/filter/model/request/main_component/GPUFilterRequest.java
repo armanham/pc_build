@@ -9,34 +9,34 @@ public record GPUFilterRequest(
         String name,
 
         @JsonProperty(value = "min_price")
-        String minPrice,
+        Double minPrice,
         @JsonProperty(value = "max_price")
-        String maxPrice,
+        Double maxPrice,
 
         @JsonProperty(value = "min_memory")
-        String minMemory,
+        Integer minMemory,
         @JsonProperty(value = "max_memory")
-        String maxMemory,
+        Integer maxMemory,
 
         @JsonProperty(value = "min_core_clock")
-        String minCoreClock,
+        Double minCoreClock,
         @JsonProperty(value = "max_core_clock")
-        String maxCoreClock,
+        Double maxCoreClock,
 
         @JsonProperty(value = "min_boost_clock")
-        String minBoostClock,
+        Double minBoostClock,
         @JsonProperty(value = "max_boost_clock")
-        String maxBoostClock,
+        Double maxBoostClock,
 
         @JsonProperty(value = "min_length")
-        String minLength,
+        Double minLength,
         @JsonProperty(value = "max_length")
-        String maxLength,
+        Double maxLength,
 
         @JsonProperty(value = "min_tdp")
-        String minTdp,
+        Integer minTdp,
         @JsonProperty(value = "max_tdp")
-        String maxTdp,
+        Integer maxTdp,
 
         @JsonProperty(value = "gpu_interface_types")
         List<String> gpuInterfaceTypes
