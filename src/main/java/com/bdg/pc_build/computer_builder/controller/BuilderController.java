@@ -1,9 +1,10 @@
 package com.bdg.pc_build.computer_builder.controller;
 
-import com.bdg.pc_build.cart.service.CartService;
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.computer_builder.model.request.ComputerCreationRequest;
 import com.bdg.pc_build.computer_builder.service.ComputerEntityInitializerBasedOnRequest;
 import com.bdg.pc_build.computer_builder.service.ComputerService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -22,18 +23,18 @@ import java.util.List;
 public class BuilderController {
 
     ComputerService computerService;
-    CartService cartService;
     ComputerEntityInitializerBasedOnRequest entityInitializerBasedOnRequest;
 
     @PostMapping("/check")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<?> build(
+    public ResponseEntity<?> check(
             @RequestBody ComputerCreationRequest request
     ) {
-        return ResponseEntity.ok().body(computerService.checkComputer(entityInitializerBasedOnRequest.initEntityFromRequest(request)));
+        computerService.checkComputer(entityInitializerBasedOnRequest.initEntityFromRequest(request));
+        return ResponseEntity.ok().body("Compatibility validation passed!");
     }
 
     @PostMapping("/save")
+    @SecurityRequirement(name = "bearerAuth")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<?> save(
             @RequestBody ComputerCreationRequest computerCreationRequest,
@@ -42,19 +43,19 @@ public class BuilderController {
         return ResponseEntity.ok().body(computerService.save(computerCreationRequest, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION)));
     }
 
-//    @GetMapping("/built-computers")
-//    public List<ComputerDTO> getAllComputers() {
-//        return computerDAOOO.getComputerDTOList();
-//    }
-
     @PostMapping("/checkout/{id}")
+    @SecurityRequirement(name = "bearerAuth")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<?> checkout(
             @PathVariable Long id,
             HttpServletRequest httpServletRequest
     ) {
         computerService.checkout(id, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
-        return ResponseEntity.ok().body("Computer is bought successfully!!!");
+        return ResponseEntity.ok().body("Computer is bought successfully!");
     }
 
+    @GetMapping("/built-computers")
+    public ResponseEntity<List<Computer>> getAllOrderedComputers() {
+        return ResponseEntity.ok().body(computerService.getAllComputersByIsOrdered(true));
+    }
 }

@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.peripheral.KeyboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
@@ -16,14 +16,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "keyboard")
+@Table(name = "keyboard", schema = "product")
 public class Keyboard extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "keyboard_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_KEYBOARD)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "keyboard_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_KEYBOARD)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "connectivity_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)

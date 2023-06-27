@@ -1,9 +1,9 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.enumerations.ConnectivityType;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.peripheral.MouseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -16,14 +16,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "mouse")
+@Table(name = "mouse", schema = "product")
 public class Mouse extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "mouse_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_MOUSE)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "mouse_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_MOUSE)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "connectivity_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)

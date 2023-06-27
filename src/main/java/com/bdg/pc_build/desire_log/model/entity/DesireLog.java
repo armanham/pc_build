@@ -20,7 +20,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "desire_log")
+@Table(name = "desire_log", schema = "desire_log")
 public class DesireLog {
 
     @Id

@@ -70,7 +70,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void checkout(final String authHeader) {
+    public void checkout(final String authHeader, final Boolean isFromBuilder) {
         User user = getUserByAuthHeader(authHeader);
         for (Map.Entry<ProductDTO, Integer> entry : cartItems.entrySet()) {
             ProductDTO currentProduct = entry.getKey();
@@ -82,7 +82,7 @@ public class CartServiceImpl implements CartService {
                 productService.reduceCountById(currentProduct.getId(), entry.getValue());
             }
         }
-        orderService.save(cartItems.keySet(), getTotal(), user);
+        orderService.save(cartItems.keySet(), getTotal(), user, isFromBuilder);
         cartItems.clear();
     }
 

@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model;
 
-public final class InitialAndMaxValues {
+public final class InitialAndFinalIdValues {
 
     public static final int INITIAL_ID_VALUE_CASE = 1;
     public static final int INITIAL_ID_VALUE_COOLER = 301;

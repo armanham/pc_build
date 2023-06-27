@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface UserService {
 
+    User findUserByAuthHeader(String authHeader);
+
+    User findUserById(Long id);
+
     User updateFirstNameByAuthHeader(String authHeader, String newFirstName);
 
     User updateLastNameByAuthHeader(String authHeader, String newLastName);

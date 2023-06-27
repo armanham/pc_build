@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.CPUCoolerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.SocketType;
@@ -16,14 +16,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "cpu_cooler")
+@Table(name = "cpu_cooler", schema = "product")
 public class CPUCooler extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_cooler_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_CPU_COOLER)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_cooler_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CPU_COOLER)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "fan_rpm", nullable = false, updatable = false)
     Integer fanRpm;

@@ -52,7 +52,7 @@ public class CartController {
     public ResponseEntity<?> checkout(
             HttpServletRequest request
     ) {
-        cartService.checkout(request.getHeader(HttpHeaders.AUTHORIZATION));
+        cartService.checkout(request.getHeader(HttpHeaders.AUTHORIZATION), false);
         return ResponseEntity.ok("All products are bought successfully");
     }
 }

@@ -1,6 +1,8 @@
 package com.bdg.pc_build.user.controller;
 
 
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
+import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.model.request.EmailUpdateRequest;
 import com.bdg.pc_build.user.model.request.FirstNameUpdateRequest;
@@ -75,6 +77,38 @@ public class UserController {
     ) {
         userService.changeAdminRoleToUserByEmail(email);
         return ResponseEntity.ok("Role updated successfully");
+    }
+
+    @GetMapping("/built_computers")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<List<Computer>> getBuiltComputers(
+            HttpServletRequest request
+    ) {
+        return ResponseEntity.ok(userService.findUserByAuthHeader(request.getHeader(HttpHeaders.AUTHORIZATION)).getComputers());
+    }
+
+    @GetMapping("/orders")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<List<Order>> getOrders(
+            HttpServletRequest request
+    ) {
+        return ResponseEntity.ok(userService.findUserByAuthHeader(request.getHeader(HttpHeaders.AUTHORIZATION)).getOrders());
+    }
+
+    @GetMapping("/{id}/built_computers")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ResponseEntity<List<Computer>> getBuiltComputersByUserId(
+            @PathVariable("id") Long id
+    ) {
+        return ResponseEntity.ok(userService.findUserById(id).getComputers());
+    }
+
+    @GetMapping("/{id}/orders")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ResponseEntity<List<Order>> getOrdersByUserId(
+            @PathVariable("id") Long id
+    ) {
+        return ResponseEntity.ok(userService.findUserById(id).getOrders());
     }
 
     @GetMapping("/get-all")

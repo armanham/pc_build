@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.MotherboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.ATXType;
@@ -20,14 +20,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "motherboard")
+@Table(name = "motherboard", schema = "product")
 public class Motherboard extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "motherboard_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_MOTHERBOARD)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "motherboard_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_MOTHERBOARD)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "socket_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)

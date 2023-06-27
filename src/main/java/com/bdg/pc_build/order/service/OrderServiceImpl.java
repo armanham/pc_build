@@ -4,7 +4,6 @@ import com.bdg.pc_build.exception.ProductNotFoundException;
 import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.order.repository.OrderDAO;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.main_component.CaseDTO;
 import com.bdg.pc_build.product.repository.main_component.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import static com.bdg.pc_build.product.model.InitialAndMaxValues.*;
+import static com.bdg.pc_build.product.model.InitialAndFinalIdValues.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
@@ -42,9 +41,10 @@ public class OrderServiceImpl implements OrderService {
     SpeakerDAO speakerDAO;
 
     @Override
-    public Order save(final Set<ProductDTO> products, final BigDecimal totalPrice, final User user) {
+    public Order save(final Set<ProductDTO> products, final BigDecimal totalPrice, final User user, final Boolean isFromBuilder) {
         Order order = new Order();
         order.setTotalPrice(totalPrice);
+        order.setIsFromBuilder(isFromBuilder);
         order.setUser(user);
         for (ProductDTO product : products) {
             if (product.getId() >= INITIAL_ID_VALUE_CASE && product.getId() <= FINAL_ID_VALUE_CASE) {

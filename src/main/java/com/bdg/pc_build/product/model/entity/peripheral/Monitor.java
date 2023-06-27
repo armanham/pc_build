@@ -1,13 +1,12 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.MonitorScreenType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Objects;
 
@@ -18,14 +17,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "monitor")
+@Table(name = "monitor", schema = "product")
 public class Monitor extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "monitor_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_MONITOR)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "monitor_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_MONITOR)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "screen_size", nullable = false, updatable = false)
     Double screenSize;

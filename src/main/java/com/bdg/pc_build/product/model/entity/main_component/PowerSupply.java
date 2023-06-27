@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.EfficiencyRating;
@@ -17,14 +17,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "power_supply")
+@Table(name = "power_supply", schema = "product")
 public class PowerSupply extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "power_supply_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_POWER_SUPPLY)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "power_supply_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_POWER_SUPPLY)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "efficiency_rating", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)

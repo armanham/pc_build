@@ -12,11 +12,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
-@MappedSuperclass
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Setter
 @Getter
+@MappedSuperclass
 public abstract class Product {
 
     @Column(name = "name", updatable = false, unique = true)

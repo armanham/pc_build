@@ -19,9 +19,10 @@ import com.bdg.pc_build.user.repository.UserDAO;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
@@ -30,24 +31,25 @@ public class ComputerServiceImpl implements ComputerService {
 
     ComputerDAO computerDAO;
     UserDAO userDAO;
-    ComputerEntityInitializerBasedOnRequest entityInitializerBasedOnRequest;
+
     CartService cartService;
     JwtService jwtService;
 
+    ComputerEntityInitializerBasedOnRequest entityInitializerBasedOnRequest;
+    CompatibilityValidator compatibilityValidator;
+
     @Override
-    public Computer checkComputer(final Computer computer) {
-        CompatibilityValidator validator = new CompatibilityValidator(computer);
-        return validator.getComputerToCompatibilityCheck();
+    public void checkComputer(final Computer computer) {
+        compatibilityValidator.validateComputer(computer);
     }
 
     @Override
     public Computer save(final ComputerCreationRequest computerCreationRequest, final String authHeader) {
         User user = getUserByAuthHeader(authHeader);
         Computer computer = entityInitializerBasedOnRequest.initEntityFromRequest(computerCreationRequest);
-        computer = checkComputer(computer);
+        checkComputer(computer);
         if (computer != null) {
             computer.setUser(user);
-            computer.setTotalPrice(BigDecimal.valueOf(9999)); //todooo
             return computerDAO.save(computer);
         }
         throw new IllegalArgumentException();
@@ -59,7 +61,7 @@ public class ComputerServiceImpl implements ComputerService {
     }
 
     @Override
-    public void checkout(Long id, String authHeader) {
+    public void checkout(final Long id, final String authHeader) {
         Computer computer = getComputerById(id);
 
         if (computer.getACase() != null) {
@@ -108,7 +110,14 @@ public class ComputerServiceImpl implements ComputerService {
             cartService.addProduct(new CartItem(speaker.getId(), 1));
         }
 
-        cartService.checkout(authHeader);
+        cartService.checkout(authHeader, true);
+        computer.setIsOrdered(true);
+        computerDAO.save(computer);
+    }
+
+    @Override
+    public List<Computer> getAllComputersByIsOrdered(final Boolean isOrdered) {
+        return computerDAO.findAllByIsOrdered(isOrdered);
     }
 
     private User getUserByAuthHeader(final String authHeader) {

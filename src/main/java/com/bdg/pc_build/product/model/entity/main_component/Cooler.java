@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.CoolerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import jakarta.persistence.*;
@@ -15,17 +15,17 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "cooler")
+@Table(name = "cooler", schema = "product")
 public class Cooler extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "cooler_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_COOLER)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "cooler_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_COOLER)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "tdp", nullable = false, updatable = false)
-    private Integer tdp;
+    Integer tdp;
 
     public Cooler(final CoolerDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

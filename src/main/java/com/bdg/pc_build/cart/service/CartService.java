@@ -14,7 +14,7 @@ public interface CartService {
 
     Map<ProductDTO, Integer> getProductsInCart();
 
-    void checkout(String authHeader);
+    void checkout(String authHeader, Boolean isFromBuilder);
 
     BigDecimal getTotal();
 }

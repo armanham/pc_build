@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.InternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
@@ -16,14 +16,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "internal_hard_drive")
+@Table(name = "internal_hard_drive", schema = "product")
 public class InternalHardDrive extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "internal_hard_drive_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "internal_hard_drive_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "internal_hard_drive_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)

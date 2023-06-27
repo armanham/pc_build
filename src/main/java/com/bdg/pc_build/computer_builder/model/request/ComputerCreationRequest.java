@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -17,7 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 public class ComputerCreationRequest {
 
-    @JsonProperty("cart_item")
+    @JsonProperty("cart_items")
     List<CartItem> cartItems;
-
 }

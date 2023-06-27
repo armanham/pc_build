@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
@@ -16,14 +16,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "headset")
+@Table(name = "headset", schema = "product")
 public class Headset extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "headset_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_HEADSET)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "headset_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_HEADSET)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "frequency", nullable = false, updatable = false)
     Integer frequency;

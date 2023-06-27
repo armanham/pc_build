@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.order.entity.Order;
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
@@ -18,14 +18,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "gpu")
+@Table(name = "gpu", schema = "product")
 public class GPU extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "gpu_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_GPU)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "gpu_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_GPU)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "gpu_interface_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)

@@ -1,9 +1,9 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.enumerations.PowerSourceType;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.enumerations.PowerSourceType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -16,14 +16,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "speaker")
+@Table(name = "speaker", schema = "product")
 public class Speaker extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "speaker_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_SPEAKER)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "speaker_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_SPEAKER)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "frequency", nullable = false, updatable = false)
     Integer frequency;

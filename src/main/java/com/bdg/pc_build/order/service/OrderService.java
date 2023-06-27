@@ -9,5 +9,5 @@ import java.util.Set;
 
 public interface OrderService {
 
-    Order save(Set<ProductDTO> products, BigDecimal totalPrice, User user);
+    Order save(Set<ProductDTO> products, BigDecimal totalPrice, User user, Boolean isFromBuilder);
 }

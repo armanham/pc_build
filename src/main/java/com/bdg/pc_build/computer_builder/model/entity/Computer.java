@@ -3,7 +3,6 @@ package com.bdg.pc_build.computer_builder.model.entity;
 import com.bdg.pc_build.product.model.entity.main_component.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "computer")
+@Table(name = "computer", schema = "computer")
 public class Computer {
 
     @Id
@@ -93,7 +92,7 @@ public class Computer {
     @Column(name = "total_price", nullable = false)
     BigDecimal totalPrice;
 
-    Boolean aBoolean = false;
+    Boolean isOrdered = false;
 
     public void addCooler(Cooler cooler) {
         this.coolers.add(cooler);

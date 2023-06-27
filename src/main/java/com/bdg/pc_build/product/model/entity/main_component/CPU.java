@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.order.entity.Order;
-import com.bdg.pc_build.product.model.InitialAndMaxValues;
+import com.bdg.pc_build.product.model.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.CPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.enumerations.SocketType;
@@ -23,14 +23,14 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "cpu")
+@Table(name = "cpu", schema = "product")
 public class CPU extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_sequence", initialValue = InitialAndMaxValues.INITIAL_ID_VALUE_CPU)
+    @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CPU)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "core_count", nullable = false, updatable = false)
     Integer coreCount;

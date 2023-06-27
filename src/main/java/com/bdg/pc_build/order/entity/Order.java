@@ -1,5 +1,6 @@
 package com.bdg.pc_build.order.entity;
 
+import com.bdg.pc_build.order.enumerations.OrderStatus;
 import com.bdg.pc_build.product.model.entity.main_component.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
@@ -21,7 +22,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "_order")
+@Table(name = "_order", schema = "_order")
 public class Order {
 
     @Id
@@ -30,63 +31,63 @@ public class Order {
     private Long id;
 
     @ManyToMany
-    @JoinTable(name = "order_case")
+    @JoinTable(name = "order_case", schema = "_order")
     List<aCase> cases = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_cooler")
+    @JoinTable(name = "order_cooler", schema = "_order")
     List<Cooler> coolers = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_cpu")
+    @JoinTable(name = "order_cpu", schema = "_order")
     List<CPU> cpus = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_cpu_cooler")
+    @JoinTable(name = "order_cpu_cooler", schema = "_order")
     List<CPUCooler> cpuCoolers = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_gpu")
+    @JoinTable(name = "order_gpu", schema = "_order")
     List<GPU> gpus = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_internal_hard_drive")
+    @JoinTable(name = "order_internal_hard_drive", schema = "_order")
     List<InternalHardDrive> internalHardDrives = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_motherboard")
+    @JoinTable(name = "order_motherboard", schema = "_order")
     List<Motherboard> motherboards = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_power_supply")
+    @JoinTable(name = "order_power_supply", schema = "_order")
     List<PowerSupply> powerSupplies = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_ram")
+    @JoinTable(name = "order_ram", schema = "_order")
     List<RAM> rams = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_external_hard_drive")
+    @JoinTable(name = "order_external_hard_drive", schema = "_order")
     List<ExternalHardDrive> externalHardDrives = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_headset")
+    @JoinTable(name = "order_headset", schema = "_order")
     List<Headset> headsets = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_keyboard")
+    @JoinTable(name = "order_keyboard", schema = "_order")
     List<Keyboard> keyboards = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_monitor")
+    @JoinTable(name = "order_monitor", schema = "_order")
     List<Monitor> monitors = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_mouse")
+    @JoinTable(name = "order_mouse", schema = "_order")
     List<Mouse> mice = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "order_speaker")
+    @JoinTable(name = "order_speaker", schema = "_order")
     List<Speaker> speakers = new ArrayList<>();
 
     @ManyToOne
@@ -100,49 +101,69 @@ public class Order {
     @Column(name = "created_at", nullable = false, updatable = false)
     Timestamp createdAt;
 
-    public void addCase(aCase acase){
+    @Column(name = "is_from_builder")
+    Boolean isFromBuilder = false;
+
+    @Column(name = "status")
+    OrderStatus status = OrderStatus.NEW;
+
+    public void addCase(aCase acase) {
         this.cases.add(acase);
     }
-    public void addCooler(Cooler cooler){
+
+    public void addCooler(Cooler cooler) {
         this.coolers.add(cooler);
     }
-    public void addCPU(CPU cpu){
+
+    public void addCPU(CPU cpu) {
         this.cpus.add(cpu);
     }
-    public void addCPUCooler(CPUCooler cpuCooler){
+
+    public void addCPUCooler(CPUCooler cpuCooler) {
         this.cpuCoolers.add(cpuCooler);
     }
-    public void addGPU(GPU gpu){
+
+    public void addGPU(GPU gpu) {
         this.gpus.add(gpu);
     }
-    public void addInternalHardDrive(InternalHardDrive internalHardDrive){
+
+    public void addInternalHardDrive(InternalHardDrive internalHardDrive) {
         this.internalHardDrives.add(internalHardDrive);
     }
-    public void addMotherboard(Motherboard motherboard){
+
+    public void addMotherboard(Motherboard motherboard) {
         this.motherboards.add(motherboard);
     }
-    public void addPowerSupply(PowerSupply powerSupply){
+
+    public void addPowerSupply(PowerSupply powerSupply) {
         this.powerSupplies.add(powerSupply);
     }
-    public void addRAM(RAM ram){
+
+    public void addRAM(RAM ram) {
         this.rams.add(ram);
     }
-    public void addExternalHardDrive(ExternalHardDrive externalHardDrive){
+
+    public void addExternalHardDrive(ExternalHardDrive externalHardDrive) {
         this.externalHardDrives.add(externalHardDrive);
     }
-    public void addHeadset(Headset headset){
+
+    public void addHeadset(Headset headset) {
         this.headsets.add(headset);
     }
-    public void addKeyboard(Keyboard keyboard){
+
+    public void addKeyboard(Keyboard keyboard) {
         this.keyboards.add(keyboard);
     }
-    public void addMonitor(Monitor monitor){
+
+    public void addMonitor(Monitor monitor) {
         this.monitors.add(monitor);
     }
-    public void addMouse(Mouse mouse){
+
+    public void addMouse(Mouse mouse) {
         this.mice.add(mouse);
     }
-    public void addSpeaker(Speaker speaker){
+
+    public void addSpeaker(Speaker speaker) {
         this.speakers.add(speaker);
     }
 }

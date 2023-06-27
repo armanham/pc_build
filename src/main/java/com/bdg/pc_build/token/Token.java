@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @Builder
 @Entity
-@Table(name = "token")
+@Table(name = "token", schema = "_user")
 public class Token {
 
     @Id

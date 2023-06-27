@@ -1,9 +1,9 @@
 package com.bdg.pc_build.user.service;
 
 import com.bdg.pc_build.authentication.AuthenticationService;
+import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.exception.EmailAlreadyExistsException;
 import com.bdg.pc_build.exception.UserNotFoundException;
-import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.user.enumerations.Role;
 import com.bdg.pc_build.user.model.entity.User;
@@ -24,6 +24,16 @@ public class UserServiceImpl implements UserService {
     AuthenticationService authenticationService;
     JwtService jwtService;
     UserDAO userDAO;
+
+    @Override
+    public User findUserByAuthHeader(final String authHeader) {
+        return getUserByAuthHeader(authHeader);
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return userDAO.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+    }
 
     @Override
     public User updateFirstNameByAuthHeader(final String authHeader, final String newFirstName) {

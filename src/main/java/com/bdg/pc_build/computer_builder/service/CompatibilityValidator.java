@@ -15,11 +15,10 @@ import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Getter
+@Component
 public class CompatibilityValidator {
 
-    Computer computerToCompatibilityCheck;
-
-    public CompatibilityValidator(final Computer computer) {
+    public void validateComputer(final Computer computer) {
         validateMotherboardWithRam(computer.getMotherboard(), computer.getRams());
         validateMotherboardWithCpu(computer.getMotherboard(), computer.getCpu());
         validateMotherboardWithCpuCooler(computer.getMotherboard(), computer.getCpuCooler());
@@ -28,8 +27,6 @@ public class CompatibilityValidator {
         validateMotherboardWithInternalHardDrive(computer.getMotherboard(), computer.getInternalHardDrives());
         validateMotherboardWithGpu(computer.getMotherboard(), computer.getGpu());
         validateSumOfTdpsAndPowerSupplyWattage(computer);
-
-        this.computerToCompatibilityCheck = computer;
     }
 
     private void validateMotherboardWithRam(Motherboard motherboardDTO, List<RAM> ramDTOs) {
@@ -59,7 +56,7 @@ public class CompatibilityValidator {
     private void validateMotherboardWithCpu(Motherboard motherboardDTO, CPU cpuDTO) {
         if (motherboardDTO != null && cpuDTO != null) {
             if (!motherboardDTO.getSocketType().equals(cpuDTO.getSocketType())) {
-                throw new NotCompatibleException(" Motherboard not compatible with  cpu  " );
+                throw new NotCompatibleException(" Motherboard not compatible with  cpu  ");
             }
         }
     }
@@ -67,7 +64,7 @@ public class CompatibilityValidator {
     private void validateCpuWithCpuCooler(CPU cpuDTO, CPUCooler cpuCoolerDTO) {
         if (cpuDTO != null && cpuCoolerDTO != null) {
             if (!cpuDTO.getSocketType().equals(cpuCoolerDTO.getSocketType())) {
-                throw new NotCompatibleException(" cpu not compatible with  cpu cooler " );
+                throw new NotCompatibleException(" cpu not compatible with  cpu cooler ");
             }
         }
     }
