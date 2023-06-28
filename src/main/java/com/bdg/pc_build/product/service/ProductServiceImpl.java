@@ -61,14 +61,6 @@ public class ProductServiceImpl implements ProductService {
         return repository.save(product);
     }
 
-    private <ENTITY extends Product> List<ENTITY> findAllByPurchasedPrice(
-            final Double minPurchasedPrice,
-            final Double maxPurchasedPrice,
-            final ProductDAO<ENTITY> repository
-    ) {
-        return repository.findAllProductsByPurchasedPriceBetween(minPurchasedPrice, maxPurchasedPrice);
-    }
-
     private <ENTITY extends Product> void updatePriceById(
             final Long id,
             final Double newPrice,
@@ -117,7 +109,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_MONITOR || toSave.getId() > FINAL_ID_VALUE_MONITOR) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return MonitorDTO.initDTOFromEntity(toSave);
+        return new MonitorDTO(toSave);
     }
 
     @Override
@@ -126,7 +118,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_CASE || toSave.getId() > FINAL_ID_VALUE_CASE) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return CaseDTO.initDTOFromEntity(toSave);
+        return new CaseDTO(toSave);
     }
 
     @Override
@@ -135,7 +127,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_COOLER || toSave.getId() > FINAL_ID_VALUE_COOLER) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return CoolerDTO.initDTOFromEntity(toSave);
+        return new CoolerDTO(toSave);
     }
 
     @Override
@@ -144,7 +136,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_CPU_COOLER || toSave.getId() > FINAL_ID_VALUE_CPU_COOLER) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return CPUCoolerDTO.initDTOFromEntity(toSave);
+        return new CPUCoolerDTO(toSave);
     }
 
     @Override
@@ -153,7 +145,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_CPU || toSave.getId() > FINAL_ID_VALUE_CPU) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return CPUDTO.initDTOFromEntity(toSave);
+        return new CPUDTO(toSave);
     }
 
     @Override
@@ -162,7 +154,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE || toSave.getId() > FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return InternalHardDriveDTO.initDTOFromEntity(toSave);
+        return new InternalHardDriveDTO(toSave);
     }
 
     @Override
@@ -171,7 +163,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_GPU || toSave.getId() > FINAL_ID_VALUE_GPU) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return GPUDTO.initDTOFromEntity(toSave);
+        return new GPUDTO(toSave);
     }
 
     @Override
@@ -180,7 +172,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE || toSave.getId() > FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return ExternalHardDriveDTO.initDTOFromEntity(toSave);
+        return new ExternalHardDriveDTO(toSave);
     }
 
     @Override
@@ -189,7 +181,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_MOTHERBOARD || toSave.getId() > FINAL_ID_VALUE_MOTHERBOARD) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return MotherboardDTO.initDTOFromEntity(toSave);
+        return new MotherboardDTO(toSave);
     }
 
     @Override
@@ -198,7 +190,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_POWER_SUPPLY || toSave.getId() > FINAL_ID_VALUE_POWER_SUPPLY) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return PowerSupplyDTO.initDTOFromEntity(toSave);
+        return new PowerSupplyDTO(toSave);
     }
 
     @Override
@@ -207,7 +199,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_RAM || toSave.getId() > FINAL_ID_VALUE_RAM) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return RAMDTO.initDTOFromEntity(toSave);
+        return new RAMDTO(toSave);
     }
 
     @Override
@@ -216,7 +208,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_HEADSET || toSave.getId() > FINAL_ID_VALUE_HEADSET) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return HeadsetDTO.initDTOFromEntity(toSave);
+        return new HeadsetDTO(toSave);
     }
 
     @Override
@@ -225,7 +217,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_KEYBOARD || toSave.getId() > FINAL_ID_VALUE_KEYBOARD) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return KeyboardDTO.initDTOFromEntity(toSave);
+        return new KeyboardDTO(toSave);
     }
 
     @Override
@@ -234,7 +226,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_MOUSE || toSave.getId() > FINAL_ID_VALUE_MOUSE) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return MouseDTO.initDTOFromEntity(toSave);
+        return new MouseDTO(toSave);
     }
 
     @Override
@@ -243,7 +235,7 @@ public class ProductServiceImpl implements ProductService {
         if (toSave.getId() < INITIAL_ID_VALUE_SPEAKER || toSave.getId() > FINAL_ID_VALUE_SPEAKER) {
             throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
         }
-        return SpeakerDTO.initDTOFromEntity(toSave);
+        return new SpeakerDTO(toSave);
     }
 
     @Override
@@ -322,126 +314,125 @@ public class ProductServiceImpl implements ProductService {
 
     public ProductDTO findById(final Long id) {
         if (id >= INITIAL_ID_VALUE_CASE && id <= FINAL_ID_VALUE_CASE) {
-            return CaseDTO.initDTOFromEntity(findById(id, caseDAO));
+            return new CaseDTO(findById(id, caseDAO));
         }
         if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
-            return CoolerDTO.initDTOFromEntity(findById(id, coolerDAO));
+            return new CoolerDTO(findById(id, coolerDAO));
         }
         if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
-            return CPUDTO.initDTOFromEntity(findById(id, cpuDAO));
+            return new CPUDTO(findById(id, cpuDAO));
         }
         if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
-            return CPUCoolerDTO.initDTOFromEntity(findById(id, cpuCoolerDAO));
+            return new CPUCoolerDTO(findById(id, cpuCoolerDAO));
         }
         if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
-            return GPUDTO.initDTOFromEntity(findById(id, gpuDAO));
+            return new GPUDTO(findById(id, gpuDAO));
         }
         if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
-            return InternalHardDriveDTO.initDTOFromEntity(findById(id, internalHardDriveDAO));
+            return new InternalHardDriveDTO(findById(id, internalHardDriveDAO));
         }
         if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
-            return MotherboardDTO.initDTOFromEntity(findById(id, motherboardDAO));
+            return new MotherboardDTO(findById(id, motherboardDAO));
         }
         if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
-            return PowerSupplyDTO.initDTOFromEntity(findById(id, powerSupplyDAO));
+            return new PowerSupplyDTO(findById(id, powerSupplyDAO));
         }
         if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
-            return RAMDTO.initDTOFromEntity(findById(id, ramDAO));
+            return new RAMDTO(findById(id, ramDAO));
         }
         if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
-            return ExternalHardDriveDTO.initDTOFromEntity(findById(id, externalHardDriveDAO));
+            return new ExternalHardDriveDTO(findById(id, externalHardDriveDAO));
         }
         if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
-            return HeadsetDTO.initDTOFromEntity(findById(id, headsetDAO));
+            return new HeadsetDTO(findById(id, headsetDAO));
         }
         if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
-            return KeyboardDTO.initDTOFromEntity(findById(id, keyboardDAO));
+            return new KeyboardDTO(findById(id, keyboardDAO));
         }
         if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
-            return MonitorDTO.initDTOFromEntity(findById(id, monitorDAO));
+            return new MonitorDTO(findById(id, monitorDAO));
         }
         if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
-            return MouseDTO.initDTOFromEntity(findById(id, mouseDAO));
+            return new MouseDTO(findById(id, mouseDAO));
         }
         if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
-            return SpeakerDTO.initDTOFromEntity(findById(id, speakerDAO));
+            return new SpeakerDTO(findById(id, speakerDAO));
         }
-
         throw new IdOutOfScopeException(id);
     }
 
     @Override
     public List<CaseDTO> getAllCases() {
-        return findAll(caseDAO).stream().map(CaseDTO::initDTOFromEntity).toList();
+        return findAll(caseDAO).stream().map(CaseDTO::new).toList();
     }
 
     @Override
     public List<CoolerDTO> getAllCoolers() {
-        return findAll(coolerDAO).stream().map(CoolerDTO::initDTOFromEntity).toList();
+        return findAll(coolerDAO).stream().map(CoolerDTO::new).toList();
     }
 
     @Override
     public List<CPUCoolerDTO> getAllCpuCoolers() {
-        return findAll(cpuCoolerDAO).stream().map(CPUCoolerDTO::initDTOFromEntity).toList();
+        return findAll(cpuCoolerDAO).stream().map(CPUCoolerDTO::new).toList();
     }
 
     @Override
     public List<CPUDTO> getAllCpus() {
-        return findAll(cpuDAO).stream().map(CPUDTO::initDTOFromEntity).toList();
+        return findAll(cpuDAO).stream().map(CPUDTO::new).toList();
     }
 
     @Override
     public List<GPUDTO> getAllGpus() {
-        return findAll(gpuDAO).stream().map(GPUDTO::initDTOFromEntity).toList();
+        return findAll(gpuDAO).stream().map(GPUDTO::new).toList();
     }
 
     @Override
     public List<InternalHardDriveDTO> getAllInternalHardDrives() {
-        return findAll(internalHardDriveDAO).stream().map(InternalHardDriveDTO::initDTOFromEntity).toList();
+        return findAll(internalHardDriveDAO).stream().map(InternalHardDriveDTO::new).toList();
     }
 
     @Override
     public List<MotherboardDTO> getAllMotherboards() {
-        return findAll(motherboardDAO).stream().map(MotherboardDTO::initDTOFromEntity).toList();
+        return findAll(motherboardDAO).stream().map(MotherboardDTO::new).toList();
     }
 
     @Override
     public List<PowerSupplyDTO> getAllPowerSupplies() {
-        return findAll(powerSupplyDAO).stream().map(PowerSupplyDTO::initDTOFromEntity).toList();
+        return findAll(powerSupplyDAO).stream().map(PowerSupplyDTO::new).toList();
     }
 
     @Override
     public List<RAMDTO> getAllRams() {
-        return findAll(ramDAO).stream().map(RAMDTO::initDTOFromEntity).toList();
+        return findAll(ramDAO).stream().map(RAMDTO::new).toList();
     }
 
     @Override
     public List<ExternalHardDriveDTO> getAllExternalHardDrives() {
-        return findAll(externalHardDriveDAO).stream().map(ExternalHardDriveDTO::initDTOFromEntity).toList();
+        return findAll(externalHardDriveDAO).stream().map(ExternalHardDriveDTO::new).toList();
     }
 
     @Override
     public List<HeadsetDTO> getAllHeadsets() {
-        return findAll(headsetDAO).stream().map(HeadsetDTO::initDTOFromEntity).toList();
+        return findAll(headsetDAO).stream().map(HeadsetDTO::new).toList();
     }
 
     @Override
     public List<KeyboardDTO> getAllKeyboards() {
-        return findAll(keyboardDAO).stream().map(KeyboardDTO::initDTOFromEntity).toList();
+        return findAll(keyboardDAO).stream().map(KeyboardDTO::new).toList();
     }
 
     @Override
     public List<MonitorDTO> getAllMonitors() {
-        return findAll(monitorDAO).stream().map(MonitorDTO::initDTOFromEntity).toList();
+        return findAll(monitorDAO).stream().map(MonitorDTO::new).toList();
     }
 
     @Override
     public List<MouseDTO> getAllMice() {
-        return findAll(mouseDAO).stream().map(MouseDTO::initDTOFromEntity).toList();
+        return findAll(mouseDAO).stream().map(MouseDTO::new).toList();
     }
 
     @Override
     public List<SpeakerDTO> getAllSpeakers() {
-        return findAll(speakerDAO).stream().map(SpeakerDTO::initDTOFromEntity).toList();
+        return findAll(speakerDAO).stream().map(SpeakerDTO::new).toList();
     }
 }

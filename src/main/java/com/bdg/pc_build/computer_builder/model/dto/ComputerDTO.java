@@ -35,32 +35,32 @@ public class ComputerDTO {
     public ComputerDTO(final Computer entity) {
         this.id = entity.getId();
         if (entity.getACase() != null) {
-            this.aCase = CaseDTO.initDTOFromEntity(entity.getACase());
+            this.aCase = new CaseDTO(entity.getACase());
         }
-        this.coolers = entity.getCoolers().stream().map(CoolerDTO::initDTOFromEntity).toList();
+        this.coolers = entity.getCoolers().stream().map(CoolerDTO::new).toList();
         if (entity.getCpuCooler() != null) {
-            this.cpuCooler = CPUCoolerDTO.initDTOFromEntity(entity.getCpuCooler());
+            this.cpuCooler = new CPUCoolerDTO(entity.getCpuCooler());
         }
         if (entity.getCpu() != null) {
-            this.cpu = CPUDTO.initDTOFromEntity(entity.getCpu());
+            this.cpu = new CPUDTO(entity.getCpu());
         }
         if (entity.getGpu() != null) {
-            this.gpu = GPUDTO.initDTOFromEntity(entity.getGpu());
+            this.gpu = new GPUDTO(entity.getGpu());
         }
-        this.internalHardDrives = entity.getInternalHardDrives().stream().map(InternalHardDriveDTO::initDTOFromEntity).toList();
+        this.internalHardDrives = entity.getInternalHardDrives().stream().map(InternalHardDriveDTO::new).toList();
         if (entity.getMotherboard() != null) {
-            this.motherboard = MotherboardDTO.initDTOFromEntity(entity.getMotherboard());
+            this.motherboard = new MotherboardDTO(entity.getMotherboard());
         }
         if (entity.getPowerSupply() != null) {
-            this.powerSupply = PowerSupplyDTO.initDTOFromEntity(entity.getPowerSupply());
+            this.powerSupply = new PowerSupplyDTO(entity.getPowerSupply());
         }
-        this.rams = entity.getRams().stream().map(RAMDTO::initDTOFromEntity).toList();
-        this.externalHardDrives = entity.getExternalHardDrives().stream().map(ExternalHardDriveDTO::initDTOFromEntity).toList();
-        this.headsets = entity.getHeadsets().stream().map(HeadsetDTO::initDTOFromEntity).toList();
-        this.keyboards = entity.getKeyboards().stream().map(KeyboardDTO::initDTOFromEntity).toList();
-        this.monitors = entity.getMonitors().stream().map(MonitorDTO::initDTOFromEntity).toList();
-        this.mice = entity.getMice().stream().map(MouseDTO::initDTOFromEntity).toList();
-        this.speakers = entity.getSpeakers().stream().map(SpeakerDTO::initDTOFromEntity).toList();
+        this.rams = entity.getRams().stream().map(RAMDTO::new).toList();
+        this.externalHardDrives = entity.getExternalHardDrives().stream().map(ExternalHardDriveDTO::new).toList();
+        this.headsets = entity.getHeadsets().stream().map(HeadsetDTO::new).toList();
+        this.keyboards = entity.getKeyboards().stream().map(KeyboardDTO::new).toList();
+        this.monitors = entity.getMonitors().stream().map(MonitorDTO::new).toList();
+        this.mice = entity.getMice().stream().map(MouseDTO::new).toList();
+        this.speakers = entity.getSpeakers().stream().map(SpeakerDTO::new).toList();
 
         this.user = new UserDTO(entity.getUser());
         this.totalPrice = entity.getTotalPrice();

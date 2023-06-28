@@ -4,7 +4,6 @@ import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.peripheral.Keyboard;
 import com.bdg.pc_build.product.model.request.creation.peripheral.KeyboardCreationRequest;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -15,49 +14,19 @@ public class KeyboardDTO extends ProductDTO {
     private final String dimension;
     private final Double weight;
 
-    @Builder
-    public KeyboardDTO(
-            final Long id,
-            final String name,
-            final Double price,
-            final Double purchasedPrice,
-            final Integer count,
-            final ConnectivityType connectivityType,
-            final Double cableLength,
-            final String dimension,
-            final Double weight
-    ) {
-        super(id, name, price, purchasedPrice, count);
-        this.connectivityType = connectivityType;
-        this.cableLength = cableLength;
-        this.dimension = dimension;
-        this.weight = weight;
+    public KeyboardDTO(final Keyboard entity) {
+        super(entity.getId(), entity.getName(), entity.getPrice(), entity.getPurchasedPrice(), entity.getCount());
+        this.connectivityType = entity.getConnectivityType();
+        this.cableLength = entity.getCableLength();
+        this.dimension = entity.getDimension();
+        this.weight = entity.getWeight();
     }
 
-    public static KeyboardDTO initDTOFromEntity(final Keyboard entity) {
-        return KeyboardDTO.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .price(entity.getPrice())
-                .purchasedPrice(entity.getPurchasedPrice())
-                .count(entity.getCount())
-                .connectivityType(entity.getConnectivityType())
-                .cableLength(entity.getCableLength())
-                .dimension(entity.getDimension())
-                .weight(entity.getWeight())
-                .build();
-    }
-
-    public static KeyboardDTO initDTOFromRequest(final KeyboardCreationRequest request) {
-        return KeyboardDTO.builder()
-                .name(request.getName().trim())
-                .price(request.getPrice())
-                .purchasedPrice(request.getPurchasedPrice())
-                .count(request.getCount())
-                .connectivityType(ConnectivityType.valueOf(request.getConnectivityType().trim().toUpperCase()))
-                .cableLength(request.getCableLength())
-                .dimension(request.getDimension())
-                .weight(request.getWeight())
-                .build();
+    public KeyboardDTO(final KeyboardCreationRequest request) {
+        super(request.getName(), request.getPrice(), request.getPurchasedPrice(), request.getCount());
+        this.connectivityType = ConnectivityType.valueOf(request.getConnectivityType().trim().toUpperCase());
+        this.cableLength = request.getCableLength();
+        this.dimension = request.getDimension();
+        this.weight = request.getWeight();
     }
 }

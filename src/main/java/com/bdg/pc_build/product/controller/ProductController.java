@@ -2,10 +2,10 @@ package com.bdg.pc_build.product.controller;
 
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
-import com.bdg.pc_build.product.model.request.update.EditPriceRequest;
-import com.bdg.pc_build.product.model.request.update.ReduceCountRequest;
 import com.bdg.pc_build.product.model.request.creation.main_component.*;
 import com.bdg.pc_build.product.model.request.creation.peripheral.*;
+import com.bdg.pc_build.product.model.request.update.EditPriceRequest;
+import com.bdg.pc_build.product.model.request.update.ReduceCountRequest;
 import com.bdg.pc_build.product.service.ProductService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -29,7 +29,7 @@ public class ProductController {
     public ResponseEntity<MonitorDTO> saveMonitor(
             @Valid @RequestBody MonitorCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveMonitor(MonitorDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveMonitor(new MonitorDTO(request)));
     }
 
     @PostMapping("/new/case")
@@ -37,7 +37,7 @@ public class ProductController {
     public ResponseEntity<CaseDTO> saveCase(
             @Valid @RequestBody CaseCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveCase(CaseDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveCase(new CaseDTO(request)));
     }
 
     @PostMapping("/new/cooler")
@@ -45,7 +45,7 @@ public class ProductController {
     public ResponseEntity<CoolerDTO> saveCooler(
             @Valid @RequestBody CoolerCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveCooler(CoolerDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveCooler(new CoolerDTO(request)));
     }
 
     @PostMapping("/new/cpu-cooler")
@@ -53,7 +53,7 @@ public class ProductController {
     public ResponseEntity<CPUCoolerDTO> saveCPUCooler(
             @Valid @RequestBody CPUCoolerCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveCpuCooler(CPUCoolerDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveCpuCooler(new CPUCoolerDTO(request)));
     }
 
     @PostMapping("/new/cpu")
@@ -61,7 +61,7 @@ public class ProductController {
     public ResponseEntity<CPUDTO> saveCPU(
             @Valid @RequestBody CPUCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveCPU(CPUDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveCPU(new CPUDTO(request)));
     }
 
     @PostMapping("/new/gpu")
@@ -69,7 +69,7 @@ public class ProductController {
     public ResponseEntity<GPUDTO> saveGPU(
             @Valid @RequestBody GPUCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveGPU(GPUDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveGPU(new GPUDTO(request)));
     }
 
     @PostMapping("/new/internal-hard-drive")
@@ -77,7 +77,7 @@ public class ProductController {
     public ResponseEntity<InternalHardDriveDTO> saveInternalHardDrive(
             @Valid @RequestBody InternalHardDriveCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveInternalHardDrive(InternalHardDriveDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveInternalHardDrive(new InternalHardDriveDTO(request)));
     }
 
     @PostMapping("/new/motherboard")
@@ -85,7 +85,7 @@ public class ProductController {
     public ResponseEntity<MotherboardDTO> saveMotherboard(
             @Valid @RequestBody MotherboardCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveMotherboard(MotherboardDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveMotherboard(new MotherboardDTO(request)));
     }
 
     @PostMapping("/new/power-supply")
@@ -93,7 +93,7 @@ public class ProductController {
     public ResponseEntity<PowerSupplyDTO> savePowerSupply(
             @Valid @RequestBody PowerSupplyCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.savePowerSupply(PowerSupplyDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.savePowerSupply(new PowerSupplyDTO(request)));
     }
 
     @PostMapping("/new/ram")
@@ -101,7 +101,7 @@ public class ProductController {
     public ResponseEntity<RAMDTO> saveRAM(
             @Valid @RequestBody RAMCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveRAM(RAMDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveRAM(new RAMDTO(request)));
     }
 
     @PostMapping("/new/external-hard-drive")
@@ -109,7 +109,7 @@ public class ProductController {
     public ResponseEntity<ExternalHardDriveDTO> saveExternalHardDrive(
             @Valid @RequestBody ExternalHardDriveCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveExternalHardDrive(ExternalHardDriveDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveExternalHardDrive(new ExternalHardDriveDTO(request)));
     }
 
     @PostMapping("/new/headset")
@@ -117,7 +117,7 @@ public class ProductController {
     public ResponseEntity<HeadsetDTO> saveHeadset(
             @Valid @RequestBody HeadsetCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveHeadset(HeadsetDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveHeadset(new HeadsetDTO(request)));
     }
 
     @PostMapping("/new/keyboard")
@@ -125,7 +125,7 @@ public class ProductController {
     public ResponseEntity<KeyboardDTO> saveKeyboard(
             @Valid @RequestBody KeyboardCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveKeyboard(KeyboardDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveKeyboard(new KeyboardDTO(request)));
     }
 
     @PostMapping("/new/mouse")
@@ -133,7 +133,7 @@ public class ProductController {
     public ResponseEntity<MouseDTO> saveMouse(
             @Valid @RequestBody MouseCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveMouse(MouseDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveMouse(new MouseDTO(request)));
     }
 
     @PostMapping("/new/speaker")
@@ -141,7 +141,7 @@ public class ProductController {
     public ResponseEntity<SpeakerDTO> saveSpeaker(
             @Valid @RequestBody SpeakerCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveSpeaker(SpeakerDTO.initDTOFromRequest(request)));
+        return ResponseEntity.ok(productService.saveSpeaker(new SpeakerDTO(request)));
     }
 
     @PutMapping(value = "/edit-price")

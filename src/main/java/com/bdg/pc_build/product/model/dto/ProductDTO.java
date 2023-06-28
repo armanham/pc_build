@@ -29,6 +29,18 @@ public abstract class ProductDTO {
         this.count = count;
     }
 
+    public ProductDTO(
+            final String name,
+            final Double price,
+            final Double purchasedPrice,
+            final Integer count
+    ) {
+        this.name = name;
+        this.price = price;
+        this.purchasedPrice = purchasedPrice;
+        this.count = count;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

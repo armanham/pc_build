@@ -5,7 +5,6 @@ import com.bdg.pc_build.product.enumerations.ModularType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.PowerSupply;
 import com.bdg.pc_build.product.model.request.creation.main_component.PowerSupplyCreationRequest;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -16,48 +15,19 @@ public class PowerSupplyDTO extends ProductDTO {
     private final ModularType modularType;
     private final Integer tdp;
 
-    @Builder
-    public PowerSupplyDTO(
-            final Long id,
-            final String name,
-            final Double price,
-            final Double purchasedPrice,
-            final Integer count,
-            final EfficiencyRating efficiencyRating,
-            final Integer wattage,
-            final ModularType modularType,
-            final Integer tdp) {
-        super(id, name, price, purchasedPrice, count);
-        this.efficiencyRating = efficiencyRating;
-        this.wattage = wattage;
-        this.modularType = modularType;
-        this.tdp = tdp;
+    public PowerSupplyDTO(final PowerSupply entity) {
+        super(entity.getId(), entity.getName(), entity.getPrice(), entity.getPurchasedPrice(), entity.getCount());
+        this.efficiencyRating = entity.getEfficiencyRating();
+        this.wattage = entity.getWattage();
+        this.modularType = entity.getModularType();
+        this.tdp = entity.getTdp();
     }
 
-    public static PowerSupplyDTO initDTOFromEntity(final PowerSupply entity) {
-        return PowerSupplyDTO.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .price(entity.getPrice())
-                .purchasedPrice(entity.getPurchasedPrice())
-                .count(entity.getCount())
-                .efficiencyRating(entity.getEfficiencyRating())
-                .wattage(entity.getWattage())
-                .modularType(entity.getModularType())
-                .tdp(entity.getTdp())
-                .build();
-    }
-
-    public static PowerSupplyDTO initDTOFromRequest(final PowerSupplyCreationRequest request) {
-        return PowerSupplyDTO.builder()
-                .name(request.getName().trim())
-                .price(request.getPrice())
-                .purchasedPrice(request.getPurchasedPrice())
-                .count(request.getCount())
-                .efficiencyRating(EfficiencyRating.valueOf(request.getEfficiencyRating().trim().toUpperCase()))
-                .wattage(request.getWattage())
-                .modularType(ModularType.valueOf(request.getModularType().trim().toUpperCase()))
-                .tdp(request.getTdp())
-                .build();
+    public PowerSupplyDTO(final PowerSupplyCreationRequest request) {
+        super(request.getName(), request.getPrice(), request.getPurchasedPrice(), request.getCount());
+        this.efficiencyRating = EfficiencyRating.valueOf(request.getEfficiencyRating().trim().toUpperCase());
+        this.wattage = request.getWattage();
+        this.modularType = ModularType.valueOf(request.getModularType().trim().toUpperCase());
+        this.tdp = request.getTdp();
     }
 }
