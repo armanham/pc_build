@@ -1,6 +1,6 @@
 package com.bdg.pc_build.order.repository;
 
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

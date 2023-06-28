@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.PowerSourceType;
 import com.bdg.pc_build.product.model.dto.peripheral.SpeakerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
@@ -44,7 +44,7 @@ public class Speaker extends Product {
     private String dimension;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "speakers")
-    List<Order> orders;
+    private List<Order> orders;
 
     public Speaker(final SpeakerDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

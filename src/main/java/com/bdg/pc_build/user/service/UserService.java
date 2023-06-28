@@ -1,5 +1,6 @@
 package com.bdg.pc_build.user.service;
 
+import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.entity.User;
 
 import java.util.List;
@@ -10,18 +11,18 @@ public interface UserService {
 
     User findUserById(Long id);
 
-    User updateFirstNameByAuthHeader(String authHeader, String newFirstName);
+    void updateFirstNameByAuthHeader(String authHeader, String newFirstName);
 
-    User updateLastNameByAuthHeader(String authHeader, String newLastName);
+    void updateLastNameByAuthHeader(String authHeader, String newLastName);
 
-    User updateEmailByAuthHeader(String authHeader, String newEmail);
+    void updateEmailByAuthHeader(String authHeader, String newEmail);
 
-    User updatePasswordByAuthHeader(String authHeader, String newPassword);
+    void updatePasswordByAuthHeader(String authHeader, String newPassword);
 
-    User changeUserRoleToAdminByEmail(String email);
+    void changeUserRoleToAdminByEmail(String email);
 
-    User changeAdminRoleToUserByEmail(String email);
+    void changeAdminRoleToUserByEmail(String email);
 
-    List<User> findAll();
+    List<UserDTO> findAll();
 
 }

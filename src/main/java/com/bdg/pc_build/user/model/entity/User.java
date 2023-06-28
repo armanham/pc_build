@@ -2,7 +2,7 @@ package com.bdg.pc_build.user.model.entity;
 
 import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.user.enumerations.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,7 +32,7 @@ public class User implements UserDetails {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Column(name = "email", nullable = false, unique = true)
@@ -47,11 +47,11 @@ public class User implements UserDetails {
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Timestamp created_at;
+    private Timestamp createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private Timestamp updated_at;
+    private Timestamp updatedAt;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

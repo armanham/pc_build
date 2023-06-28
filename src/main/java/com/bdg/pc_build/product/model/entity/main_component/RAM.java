@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.DDRType;
 import com.bdg.pc_build.product.model.dto.main_component.RAMDTO;
 import com.bdg.pc_build.product.model.entity.Product;
@@ -44,7 +44,7 @@ public class RAM extends Product {
     private Integer tdp;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "rams")
-    List<Order> orders;
+    private List<Order> orders;
 
     public RAM(final RAMDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.peripheral.KeyboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
@@ -45,7 +45,7 @@ public class Keyboard extends Product {
     private Double weight;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "keyboards")
-    List<Order> orders;
+    private List<Order> orders;
 
     public Keyboard(final KeyboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

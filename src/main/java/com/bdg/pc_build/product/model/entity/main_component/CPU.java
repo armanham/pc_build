@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.CPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;

@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.enumerations.ModularType;
 import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
@@ -46,7 +46,7 @@ public class PowerSupply extends Product {
     private Integer tdp;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "powerSupplies")
-    List<Order> orders;
+    private List<Order> orders;
 
     public PowerSupply(final PowerSupplyDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

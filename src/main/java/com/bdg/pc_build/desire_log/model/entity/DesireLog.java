@@ -22,6 +22,7 @@ public class DesireLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "component_type", updatable = false, length = 64)
@@ -47,11 +48,19 @@ public class DesireLog {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_desire_log")
+    @ManyToMany
+    @JoinTable(
+            name = "user_desire_log", schema = "desire_log",
+            joinColumns = @JoinColumn(
+                    name = "desire_log_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "user_desire_log_desire_log_id")
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "user_desire_log_user_id")
+            )
+    )
     private Set<User> users = new LinkedHashSet<>();
 
-    public void addUser(User user){
+    public void addUser(User user) {
         users.add(user);
         user.getDesireLogs().add(this);
     }

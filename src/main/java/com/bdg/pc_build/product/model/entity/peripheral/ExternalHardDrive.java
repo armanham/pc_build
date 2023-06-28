@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.model.dto.peripheral.ExternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.util.InitialAndFinalIdValues;
@@ -36,7 +36,7 @@ public class ExternalHardDrive extends Product {
     private Integer tdp;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "externalHardDrives")
-    List<Order> orders;
+    private List<Order> orders;
 
     public ExternalHardDrive(final ExternalHardDriveDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

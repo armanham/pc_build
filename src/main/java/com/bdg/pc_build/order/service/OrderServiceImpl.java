@@ -2,7 +2,8 @@ package com.bdg.pc_build.order.service;
 
 import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.dto.OrderDTO;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.order.repository.OrderDAO;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.repository.main_component.*;
@@ -39,7 +40,7 @@ public class OrderServiceImpl implements OrderService {
     private final SpeakerDAO speakerDAO;
 
     @Override
-    public Order save(final Set<ProductDTO> products, final BigDecimal totalPrice, final User user, final Boolean isFromBuilder) {
+    public OrderDTO save(final Set<ProductDTO> products, final BigDecimal totalPrice, final User user, final Boolean isFromBuilder) {
         Order order = new Order();
         order.setTotalPrice(totalPrice);
         order.setIsFromBuilder(isFromBuilder);
@@ -79,6 +80,6 @@ public class OrderServiceImpl implements OrderService {
                 throw new IdOutOfScopeException(product.getId());
             }
         }
-        return orderDAO.save(order);
+        return new OrderDTO(orderDAO.save(order));
     }
 }

@@ -1,8 +1,9 @@
 package com.bdg.pc_build.user.controller;
 
 
-import com.bdg.pc_build.computer_builder.model.entity.Computer;
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
+import com.bdg.pc_build.order.model.dto.OrderDTO;
+import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.model.request.EmailUpdateRequest;
 import com.bdg.pc_build.user.model.request.FirstNameUpdateRequest;
@@ -78,39 +79,65 @@ public class UserController {
 
     @GetMapping("/built_computers")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<List<Computer>> getBuiltComputers(
+    public ResponseEntity<List<ComputerDTO>> getBuiltAndOrderedComputers(
             HttpServletRequest request
     ) {
-        return ResponseEntity.ok(userService.findUserByAuthHeader(request.getHeader(HttpHeaders.AUTHORIZATION)).getComputers());
+        return ResponseEntity.ok(
+                userService.findUserByAuthHeader(
+                                request.getHeader(HttpHeaders.AUTHORIZATION)
+                        )
+                        .getComputers()
+                        .stream()
+                        .map(ComputerDTO::new)
+                        .toList()
+        );
     }
 
     @GetMapping("/orders")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<List<Order>> getOrders(
+    public ResponseEntity<List<OrderDTO>> getOrders(
             HttpServletRequest request
     ) {
-        return ResponseEntity.ok(userService.findUserByAuthHeader(request.getHeader(HttpHeaders.AUTHORIZATION)).getOrders());
+        return ResponseEntity.ok(
+                userService.findUserByAuthHeader(
+                                request.getHeader(HttpHeaders.AUTHORIZATION)
+                        )
+                        .getOrders()
+                        .stream()
+                        .map(OrderDTO::new)
+                        .toList()
+        );
     }
 
-    @GetMapping("/{id}/built_computers")
+    @GetMapping("/{id}/built-computers")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    public ResponseEntity<List<Computer>> getBuiltComputersByUserId(
+    public ResponseEntity<List<ComputerDTO>> getBuiltComputersByUserId(
             @PathVariable("id") Long id
     ) {
-        return ResponseEntity.ok(userService.findUserById(id).getComputers());
+        return ResponseEntity.ok(
+                userService.findUserById(id).getComputers()
+                        .stream()
+                        .map(ComputerDTO::new)
+                        .toList()
+        );
     }
 
     @GetMapping("/{id}/orders")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    public ResponseEntity<List<Order>> getOrdersByUserId(
+    public ResponseEntity<List<OrderDTO>> getOrdersByUserId(
             @PathVariable("id") Long id
     ) {
-        return ResponseEntity.ok(userService.findUserById(id).getOrders());
+        return ResponseEntity.ok(
+                userService.findUserById(id).getOrders()
+                        .stream()
+                        .map(OrderDTO::new)
+                        .toList()
+        );
     }
 
     @GetMapping("/get-all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public List<User> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         return userService.findAll();
     }
 }

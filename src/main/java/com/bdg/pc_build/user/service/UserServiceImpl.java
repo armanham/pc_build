@@ -8,6 +8,7 @@ import com.bdg.pc_build.exception.InvalidTokenException;
 import com.bdg.pc_build.exception.UserNotFoundException;
 import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.user.enumerations.Role;
+import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.repository.UserDAO;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +21,9 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final UserDAO userDAO;
     private final AuthenticationService authenticationService;
     private final JwtService jwtService;
-    private final UserDAO userDAO;
 
     @Override
     public User findUserByAuthHeader(final String authHeader) {
@@ -30,28 +31,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserById(Long id) {
+    public User findUserById(final Long id) {
         return userDAO.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     @Override
-    public User updateFirstNameByAuthHeader(final String authHeader, final String newFirstName) {
+    public void updateFirstNameByAuthHeader(final String authHeader, final String newFirstName) {
         User userToUpdate = getUserByAuthHeader(authHeader);
         userToUpdate.setFirstName(newFirstName);
-//        expireAndRevokeAllOldTokensAndGenerateNewToken(userToUpdate);
-        return userDAO.save(userToUpdate);
+        userDAO.save(userToUpdate);
     }
 
     @Override
-    public User updateLastNameByAuthHeader(final String authHeader, final String newLastName) {
+    public void updateLastNameByAuthHeader(final String authHeader, final String newLastName) {
         User userToUpdate = getUserByAuthHeader(authHeader);
         userToUpdate.setLastName(newLastName);
-//        expireAndRevokeAllOldTokensAndGenerateNewToken(userToUpdate);
-        return userDAO.save(userToUpdate);
+        userDAO.save(userToUpdate);
     }
 
     @Override
-    public User updateEmailByAuthHeader(final String authHeader, final String newEmail) {
+    public void updateEmailByAuthHeader(final String authHeader, final String newEmail) {
         User userToUpdate = getUserByAuthHeader(authHeader);
 
         Optional<User> userOptionalWithNewEmail = userDAO.findByEmail(newEmail);
@@ -60,34 +59,36 @@ public class UserServiceImpl implements UserService {
         }
         userToUpdate.setEmail(newEmail);
         expireAndRevokeAllOldTokensAndGenerateNewToken(userToUpdate);
-        return userDAO.save(userToUpdate);
+        userDAO.save(userToUpdate);
     }
 
     @Override
-    public User updatePasswordByAuthHeader(final String authHeader, final String newPassword) {
+    public void updatePasswordByAuthHeader(final String authHeader, final String newPassword) {
         User userToUpdate = getUserByAuthHeader(authHeader);
         userToUpdate.setLastName(newPassword);
-//        expireAndRevokeAllOldTokensAndGenerateNewToken(userToUpdate);
-        return userDAO.save(userToUpdate);
+        userDAO.save(userToUpdate);
     }
 
     @Override
-    public User changeUserRoleToAdminByEmail(final String email) {
+    public void changeUserRoleToAdminByEmail(final String email) {
         User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
         user.setRole(Role.ADMIN);
-        return userDAO.save(user);
+        userDAO.save(user);
     }
 
     @Override
-    public User changeAdminRoleToUserByEmail(final String email) {
+    public void changeAdminRoleToUserByEmail(final String email) {
         User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
         user.setRole(Role.USER);
-        return userDAO.save(user);
+        userDAO.save(user);
     }
 
     @Override
-    public List<User> findAll() {
-        return userDAO.findAll();
+    public List<UserDTO> findAll() {
+        return userDAO.findAll()
+                .stream()
+                .map(UserDTO::new)
+                .toList();
     }
 
     private User getUserByAuthHeader(final String authHeader) {

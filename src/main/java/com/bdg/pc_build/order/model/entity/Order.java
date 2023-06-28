@@ -1,4 +1,4 @@
-package com.bdg.pc_build.order.entity;
+package com.bdg.pc_build.order.model.entity;
 
 import com.bdg.pc_build.order.enumerations.OrderStatus;
 import com.bdg.pc_build.product.model.entity.main_component.*;

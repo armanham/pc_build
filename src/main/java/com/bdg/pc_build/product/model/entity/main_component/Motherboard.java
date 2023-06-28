@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.ATXType;
 import com.bdg.pc_build.product.enumerations.DDRType;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
@@ -64,7 +64,7 @@ public class Motherboard extends Product {
     private Integer tdp;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "motherboards")
-    List<Order> orders;
+    private List<Order> orders;
 
     public Motherboard(final MotherboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

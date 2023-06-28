@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.TowerType;
 import com.bdg.pc_build.product.model.dto.main_component.CaseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
@@ -45,7 +45,7 @@ public class aCase extends Product {
     private TowerType towerType;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cases")
-    List<Order> orders;
+    private List<Order> orders;
 
     public aCase(final CaseDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
