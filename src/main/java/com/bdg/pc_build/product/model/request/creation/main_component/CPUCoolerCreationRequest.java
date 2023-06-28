@@ -2,7 +2,6 @@ package com.bdg.pc_build.product.model.request.creation.main_component;
 
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
@@ -14,11 +13,11 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class CPUCoolerCreationRequest extends ProductCreationRequest {
 
-    @Positive
+    @Positive(message = "fan_rpm can not be negative or zero")
     @JsonProperty(value = "fan_rpm", required = true)
     private Integer fanRpm;
 
-    @NotBlank(message = "'socket_type' field can not be blank")
+    @NotBlank(message = "socket_type can not be blank")
     @Pattern(
             regexp = SOCKET_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
@@ -26,7 +25,7 @@ public class CPUCoolerCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "socket_type", required = true)
     private String socketType;
 
-    @Min(0)
+    @Positive(message = "tdp can not be negative or zero")
     @JsonProperty(value = "tdp", required = true)
     private Integer tdp;
 

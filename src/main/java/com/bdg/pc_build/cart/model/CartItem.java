@@ -5,11 +5,11 @@ import jakarta.validation.constraints.Positive;
 
 public record CartItem(
 
-        @Positive
+        @Positive(message = "product_id can not be negative or zero")
         @JsonProperty("product_id")
         Long productId,
 
-        @Positive
+        @Positive(message = "quantity can not be negative or zero")
         @JsonProperty("quantity")
         Integer quantity
 ) {

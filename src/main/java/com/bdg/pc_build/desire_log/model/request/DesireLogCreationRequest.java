@@ -19,7 +19,7 @@ public class DesireLogCreationRequest {
     private String name;
 
     @JsonProperty(value = "description", required = true)
-    @Length(min = 8, message = "length of description must be greater than or equal 2")
+    @Length(min = 8, message = "length of description must be greater than or equal 8")
     @NotBlank(message = "description cannot be blank")
     private String description;
 }

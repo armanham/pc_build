@@ -13,6 +13,6 @@ import java.util.List;
 @Getter
 public class ComputerCreationRequest {
 
-    @JsonProperty("cart_items")
+    @JsonProperty(value = "cart_items", required = true)
     private List<CartItem> cartItems;
 }

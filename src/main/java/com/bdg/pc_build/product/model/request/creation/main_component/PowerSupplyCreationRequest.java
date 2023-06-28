@@ -12,7 +12,7 @@ import static com.bdg.pc_build.util.Pattern.*;
 @Getter
 public class PowerSupplyCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'efficiency_rating' field can not be blank")
+    @NotBlank(message = "efficiency_rating can not be blank")
     @Pattern(
             regexp = EFFICIENCY_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
@@ -20,11 +20,11 @@ public class PowerSupplyCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "efficiency_rating", required = true)
     private String efficiencyRating;
 
-    @Positive
+    @Positive(message = "wattage can not be negative or zero")
     @JsonProperty(value = "wattage", required = true)
     private Integer wattage;
 
-    @NotBlank(message = "'modular_type' field can not be blank")
+    @NotBlank(message = "modular_type can not be blank")
     @Pattern(
             regexp = MODULAR_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
@@ -32,7 +32,7 @@ public class PowerSupplyCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "modular_type", required = true)
     private String modularType;
 
-    @Positive
+    @Positive(message = "tdp can not be negative or zero")
     @JsonProperty(value = "tdp", required = true)
     private Integer tdp;
 

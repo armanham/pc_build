@@ -8,11 +8,11 @@ import lombok.Getter;
 @Getter
 public class ExternalHardDriveCreationRequest extends ProductCreationRequest {
 
-    @Positive
+    @Positive(message = "capacity can not be negative or zero")
     @JsonProperty(value = "capacity", required = true)
     private Integer capacity;
 
-    @Positive
+    @Positive(message = "tdp can not be negative or zero")
     @JsonProperty(value = "tdp", required = true)
     private Integer tdp;
 

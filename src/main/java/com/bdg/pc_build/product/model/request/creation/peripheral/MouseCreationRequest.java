@@ -13,7 +13,7 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class MouseCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'connectivity_type' field can not be blank")
+    @NotBlank(message = "connectivity_type can not be blank")
     @Pattern(
             regexp = CONNECTIVITY_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
@@ -21,15 +21,15 @@ public class MouseCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "connectivity_type", required = true)
     private String connectivityType;
 
-    @Positive
+    @Positive(message = "max_resolution can not be negative or zero")
     @JsonProperty(value = "max_resolution", required = true)
     private Integer maxResolution;
 
-    @Positive
+    @Positive(message = "cable_length can not be negative or zero")
     @JsonProperty(value = "cable_length", required = true)
     private Double cableLength;
 
-    @Positive
+    @Positive(message = "weight can not be negative or zero")
     @JsonProperty(value = "weight", required = true)
     private Double weight;
 

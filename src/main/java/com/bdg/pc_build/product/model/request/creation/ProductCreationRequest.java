@@ -1,6 +1,7 @@
 package com.bdg.pc_build.product.model.request.creation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
@@ -10,19 +11,19 @@ import lombok.NoArgsConstructor;
 @Getter
 public class ProductCreationRequest {
 
-    @NotBlank(message = "'name' field can not be blank")
+    @NotBlank(message = "name field can not be blank")
     @JsonProperty(value = "name", required = true)
     private String name;
 
-    @Positive
+    @Positive(message = "price can not be negative or zero")
     @JsonProperty(value = "price", required = true)
     private Double price;
 
-    @Positive
+    @Positive(message = "purchased_price can not be negative or zero")
     @JsonProperty(value = "purchased_price", required = true)
     private Double purchasedPrice;
 
-    @Positive
+    @Min(value = 0, message = "count can not be negative")
     @JsonProperty(value = "count", required = true)
     private Integer count;
 

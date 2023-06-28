@@ -13,19 +13,19 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class CaseCreationRequest extends ProductCreationRequest {
 
-    @Positive
+    @Positive(message = "max_cpu_cooler_height can not be negative or zero")
     @JsonProperty(value = "max_cpu_cooler_height", required = true)
     private Double maxCpuCoolerHeight;
 
-    @Positive
+    @Positive(message = "max_gpu_length can not be negative or zero")
     @JsonProperty(value = "max_gpu_length", required = true)
     private Double maxGpuLength;
 
-    @Positive
+    @Positive(message = "pre_installed_fans cannot be negative or zero")
     @JsonProperty(value = "pre_installed_fans", required = true)
     private Integer preInstalledFans;
 
-    @NotBlank(message = "'tower_type' field can not be blank")
+    @NotBlank(message = "tower_type can not be blank")
     @Pattern(
             regexp = TOWER_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE

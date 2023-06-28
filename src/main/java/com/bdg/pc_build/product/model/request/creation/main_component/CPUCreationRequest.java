@@ -13,27 +13,27 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class CPUCreationRequest extends ProductCreationRequest {
 
-    @Positive
+    @Positive(message = "core_count can not be negative or zero")
     @JsonProperty(value = "core_count", required = true)
     private Integer coreCount;
 
-    @Positive
+    @Positive(message = "core_clock can not be negative or zero")
     @JsonProperty(value = "core_clock", required = true)
     private Double coreClock;
 
-    @Positive
+    @Positive(message = "boost_clock can not be negative or zero")
     @JsonProperty(value = "boost_clock", required = true)
     private Double boostClock;
 
-    @Positive
+    @Positive(message = "tdp can not be negative or zero")
     @JsonProperty(value = "tdp", required = true)
     private Integer tdp;
 
-    @NotBlank(message = "'integrated_graphics' field can not be blank")
+    @NotBlank(message = "integrated_graphics field can not be blank")
     @JsonProperty(value = "integrated_graphics", required = true)
     private String integratedGraphics;
 
-    @NotBlank(message = "'socket_type' field can not be blank")
+    @NotBlank(message = "socket_type can not be blank")
     @Pattern(
             regexp = SOCKET_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE

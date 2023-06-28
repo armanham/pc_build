@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public class CoolerCreationRequest extends ProductCreationRequest {
 
-    @Positive
+    @Positive(message = "tdp can not be negative or zero")
     @JsonProperty(value = "tdp", required = true)
     private Integer tdp;
 

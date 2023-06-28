@@ -13,15 +13,15 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class MonitorCreationRequest extends ProductCreationRequest {
 
-    @Positive
+    @Positive(message = "screen_size can not be negative or zero")
     @JsonProperty(value = "screen_size", required = true)
     private Double screenSize;
 
-    @Positive
+    @Positive(message = "refresh_rate can not be negative or zero")
     @JsonProperty(value = "refresh_rate", required = true)
     private Integer refreshRate;
 
-    @NotBlank(message = "'screen_type' field can not be blank")
+    @NotBlank(message = "screen_type can not be blank")
     @Pattern(
             regexp = MONITOR_SCREEN_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE

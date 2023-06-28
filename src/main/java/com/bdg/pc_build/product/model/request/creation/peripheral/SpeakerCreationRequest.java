@@ -13,11 +13,11 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class SpeakerCreationRequest extends ProductCreationRequest {
 
-    @Positive
+    @Positive(message = "frequency can not be negative or zero")
     @JsonProperty(value = "frequency", required = true)
     private Integer frequency;
 
-    @NotBlank(message = "'power_source_type' field can not be blank")
+    @NotBlank(message = "power_source_type can not be blank")
     @Pattern(
             regexp = POWER_SOURCE_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
@@ -25,11 +25,11 @@ public class SpeakerCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "power_source_type", required = true)
     private String powerSourceType;
 
-    @Positive
+    @Positive(message = "cable_length can not be negative or zero")
     @JsonProperty(value = "cable_length", required = true)
     private Double cableLength;
 
-    @NotBlank(message = "'dimension' field can not be blank")
+    @NotBlank(message = "dimension can not be blank")
     @JsonProperty(value = "dimension", required = true)
     private String dimension;
 

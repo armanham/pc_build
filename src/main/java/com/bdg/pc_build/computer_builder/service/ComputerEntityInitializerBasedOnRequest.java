@@ -4,6 +4,7 @@ import com.bdg.pc_build.cart.model.CartItem;
 import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.computer_builder.model.request.ComputerCreationRequest;
 import com.bdg.pc_build.exception.IdOutOfScopeException;
+import com.bdg.pc_build.exception.NoProductFoundInBuilderException;
 import com.bdg.pc_build.exception.NotCompatibleException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
 import com.bdg.pc_build.product.model.entity.main_component.*;
@@ -42,6 +43,9 @@ public class ComputerEntityInitializerBasedOnRequest {
 
 
     public Computer initEntityFromRequest(final ComputerCreationRequest request) {
+        if (request.getCartItems().isEmpty()){
+            throw new NoProductFoundInBuilderException();
+        }
         Computer computer = new Computer();
         BigDecimal totalPrice = computer.getTotalPrice();
 

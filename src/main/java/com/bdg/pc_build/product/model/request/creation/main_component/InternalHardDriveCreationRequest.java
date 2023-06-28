@@ -13,7 +13,7 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class InternalHardDriveCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'internal_hard_drive_interface_type' field can not be blank")
+    @NotBlank(message = "internal_hard_drive_interface_type can not be blank")
     @Pattern(
             regexp = INTERNAL_HARD_DRIVE_INTERFACE_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
@@ -21,11 +21,11 @@ public class InternalHardDriveCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "internal_hard_drive_interface_type", required = true)
     private String internalHardDriveInterfaceType;
 
-    @Positive
+    @Positive(message = "capacity can not be negative or zero")
     @JsonProperty(value = "capacity", required = true)
     private Integer capacity;
 
-    @Positive
+    @Positive(message = "tdp can not be negative or zero")
     @JsonProperty(value = "tdp", required = true)
     private Integer tdp;
 

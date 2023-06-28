@@ -13,7 +13,7 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class GPUCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'gpu_interface_type' field can not be blank")
+    @NotBlank(message = "gpu_interface_type field can not be blank")
     @Pattern(
             regexp = GPU_INTERFACE_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
@@ -21,23 +21,23 @@ public class GPUCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "gpu_interface_type", required = true)
     private String gpuInterfaceType;
 
-    @Positive
+    @Positive(message = "memory can not be negative or zero")
     @JsonProperty(value = "memory", required = true)
     private Integer memory;
 
-    @Positive
+    @Positive(message = "core_clock can not be negative or zero")
     @JsonProperty(value = "core_clock", required = true)
     private Double coreClock;
 
-    @Positive
+    @Positive(message = "boost_clock can not be negative or zero")
     @JsonProperty(value = "boost_clock", required = true)
     private Double boostClock;
 
-    @Positive
+    @Positive(message = "length can not be negative or zero")
     @JsonProperty(value = "length", required = true)
     private Double length;
 
-    @Positive
+    @Positive(message = "tdp can not be negative or zero")
     @JsonProperty(value = "tdp", required = true)
     private Integer tdp;
 

@@ -13,11 +13,11 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class HeadsetCreationRequest extends ProductCreationRequest {
 
-    @Positive
+    @Positive(message = "frequency can not be negative or zero")
     @JsonProperty(value = "frequency", required = true)
     private Integer frequency;
 
-    @NotBlank(message = "'connectivity_type' field can not be blank")
+    @NotBlank(message = "connectivity_type can not be blank")
     @Pattern(
             regexp = CONNECTIVITY_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
@@ -25,7 +25,7 @@ public class HeadsetCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "connectivity_type", required = true)
     private String connectivityType;
 
-    @Positive
+    @Positive(message = "cable_length can not be negative or zero")
     @JsonProperty(value = "cable_length", required = true)
     private Double cableLength;
 

@@ -13,7 +13,7 @@ import static com.bdg.pc_build.util.Pattern.WRONG_ENUM_PATTERN_COMMON_MESSAGE;
 @Getter
 public class KeyboardCreationRequest extends ProductCreationRequest {
 
-    @NotBlank(message = "'connectivity_type' field can not be blank")
+    @NotBlank(message = "connectivity_type can not be blank")
     @Pattern(
             regexp = CONNECTIVITY_TYPE_ENUM_PATTERN,
             message = WRONG_ENUM_PATTERN_COMMON_MESSAGE
@@ -21,15 +21,15 @@ public class KeyboardCreationRequest extends ProductCreationRequest {
     @JsonProperty(value = "connectivity_type", required = true)
     private String connectivityType;
 
-    @Positive
+    @Positive(message = "cable_length can not be negative or zero")
     @JsonProperty(value = "cable_length", required = true)
     private Double cableLength;
 
-    @NotBlank(message = "'dimension' field can not be blank")
+    @NotBlank(message = "dimension can not be blank")
     @JsonProperty(value = "dimension", required = true)
     private String dimension;
 
-    @Positive
+    @Positive(message = "weight can not be negative or zero")
     @JsonProperty(value = "weight", required = true)
     private Double weight;
 

@@ -13,11 +13,11 @@ import lombok.*;
 public class RegisterRequest {
 
     @JsonProperty(value = "first_name", required = true)
-    @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "The first name is required")
+    @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "The first name must be contain only letters, length of characters must be between 2 and 50 inclusive: ")
     private String firstname;
 
     @JsonProperty(value = "last_name", required = true)
-    @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "The last name is required")
+    @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "The last name must be contain only letters, length of characters must be between 2 and 50 inclusive: ")
     private String lastname;
 
     @JsonProperty(value = "email", required = true)
