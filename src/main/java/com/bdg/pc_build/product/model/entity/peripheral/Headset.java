@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
@@ -42,6 +43,9 @@ public class Headset extends Product {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "headsets")
     private List<Order> orders;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "headsets")
+    private List<Computer> computers;
 
     public Headset(final HeadsetDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

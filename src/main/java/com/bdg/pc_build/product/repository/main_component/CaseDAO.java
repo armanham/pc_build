@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.repository.main_component;
 
-import com.bdg.pc_build.product.model.entity.main_component.aCase;
 import com.bdg.pc_build.product.enumerations.TowerType;
+import com.bdg.pc_build.product.model.entity.main_component.aCase;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,14 +19,14 @@ public interface CaseDAO extends ProductDAO<aCase> {
     List<aCase> findAllByPreInstalledFansBetween(Integer minPreInstalledFans, Integer maxPreInstalledFans);
 
     @Query("SELECT p FROM aCase p WHERE " +
-                    "(:towerType IS NULL OR p.towerType = :towerType) ")
+            "(:towerType IS NULL OR p.towerType = :towerType) ")
     List<aCase> findAllByTowerType(@Param("towerType") TowerType towerType);
 
     @Query("SELECT p FROM aCase p " +
-                    "WHERE :term IS NULL " +
-                    "OR lower(CONCAT(p.name, ' ', p.maxCpuCoolerHeight, ' ', p.maxGpuLength, " +
-                    "' ', p.preInstalledFans, ' ', p.towerType)) " +
-                    "LIKE CONCAT('%', :term, '%') ")
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.maxCpuCoolerHeight, ' ', p.maxGpuLength, " +
+            "' ', p.preInstalledFans, ' ', p.towerType)) " +
+            "LIKE CONCAT('%', :term, '%') ")
     List<aCase> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select max(p.maxCpuCoolerHeight) from aCase p")

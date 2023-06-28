@@ -6,4 +6,5 @@ public record EmailUpdateRequest(
         @JsonProperty(value = "new_email", required = true)
         String newEmail
 ) {
+        //todo pattern
 }

@@ -17,7 +17,7 @@ public interface UserService {
 
     void updateEmailByAuthHeader(String authHeader, String newEmail);
 
-    void updatePasswordByAuthHeader(String authHeader, String newPassword);
+    void updatePasswordByAuthHeader(String authHeader, String newPassword); //todo
 
     void changeUserRoleToAdminByEmail(String email);
 

@@ -1,22 +1,20 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.order.model.entity.Order;
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
+import com.bdg.pc_build.product.enumerations.SocketType;
 import com.bdg.pc_build.product.model.dto.main_component.CPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.enumerations.SocketType;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Objects;
 
-/**
- * @author Arman Hakhverdyan
- * <p>
- * Entity for CPU
- */
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -28,7 +26,7 @@ public class CPU extends Product {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cpu_seq")
     @SequenceGenerator(
-            name = "cpu_seq", sequenceName = "cpu_sequence",  schema = "product",
+            name = "cpu_seq", sequenceName = "cpu_sequence", schema = "product",
             initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CPU, allocationSize = 1
     )
     @Column(name = "id")
@@ -55,6 +53,9 @@ public class CPU extends Product {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cpus")
     private List<Order> orders;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cpu")
+    private List<Computer> computers;
 
     public CPU(final CPUDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

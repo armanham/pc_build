@@ -1,10 +1,8 @@
 package com.bdg.pc_build.user.controller;
 
-
 import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
 import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.user.model.dto.UserDTO;
-import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.model.request.EmailUpdateRequest;
 import com.bdg.pc_build.user.model.request.FirstNameUpdateRequest;
 import com.bdg.pc_build.user.model.request.LastNameUpdateRequest;

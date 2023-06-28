@@ -1,8 +1,8 @@
 package com.bdg.pc_build.product.repository.peripheral;
 
 
-import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
+import com.bdg.pc_build.product.model.entity.peripheral.Mouse;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,14 +20,14 @@ public interface MouseDAO extends ProductDAO<Mouse> {
     List<Mouse> findAllByWeightBetween(Double minWeight, Double maxWeight);
 
     @Query("SELECT p FROM Mouse p WHERE " +
-                    "(:connectivityType IS NULL OR p.connectivityType = :connectivityType) ")
+            "(:connectivityType IS NULL OR p.connectivityType = :connectivityType) ")
     List<Mouse> findAllByConnectivityType(@Param("connectivityType") ConnectivityType connectivityType);
 
     @Query("SELECT p FROM Mouse p " +
-                    "WHERE :term IS NULL " +
-                    "OR lower(CONCAT(p.name, ' ', p.connectivityType, ' ', " +
-                    "p.maxResolution, ' ', p.cableLength, ' ', p.weight)) " +
-                    "LIKE CONCAT('%', :term, '%') ")
+            "WHERE :term IS NULL " +
+            "OR lower(CONCAT(p.name, ' ', p.connectivityType, ' ', " +
+            "p.maxResolution, ' ', p.cableLength, ' ', p.weight)) " +
+            "LIKE CONCAT('%', :term, '%') ")
     List<Mouse> findAllBasedOnTerm(@Param("term") String term);
 
     @Query("select min(p.maxResolution) from Mouse p ")

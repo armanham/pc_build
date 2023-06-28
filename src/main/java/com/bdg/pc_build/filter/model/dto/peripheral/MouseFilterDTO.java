@@ -1,8 +1,8 @@
 package com.bdg.pc_build.filter.model.dto.peripheral;
 
-import com.bdg.pc_build.util.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.MouseFilterRequest;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
+import com.bdg.pc_build.util.ValidationUtil;
 import lombok.Getter;
 
 import java.util.Set;

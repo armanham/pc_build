@@ -1,8 +1,8 @@
 package com.bdg.pc_build.filter.model.dto.peripheral;
 
-import com.bdg.pc_build.util.ValidationUtil;
 import com.bdg.pc_build.filter.model.request.peripheral.HeadsetFilterRequest;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
+import com.bdg.pc_build.util.ValidationUtil;
 import lombok.Getter;
 
 import java.util.Set;
@@ -22,7 +22,7 @@ public class HeadsetFilterDTO {
     private final Double minCableLength;
     private final Double maxCableLength;
 
-   private final Set<ConnectivityType> connectivityTypes;
+    private final Set<ConnectivityType> connectivityTypes;
 
     public HeadsetFilterDTO(final HeadsetFilterRequest request) {
         this.name = request.name();

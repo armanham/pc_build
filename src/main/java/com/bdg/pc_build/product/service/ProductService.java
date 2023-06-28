@@ -46,42 +46,6 @@ public interface ProductService {
     SpeakerDTO saveSpeaker(SpeakerDTO dto);
 
 
-    //find methods for display components
-    List<MonitorDTO> findMonitorByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-
-    //find methods for main components
-    List<CaseDTO> findCaseByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<CoolerDTO> findCoolerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<CPUCoolerDTO> findCpuCoolerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<CPUDTO> findCpuByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<InternalHardDriveDTO> findInternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<GPUDTO> findGpuByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<ExternalHardDriveDTO> findExternalHardDriveByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<MotherboardDTO> findMotherboardByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<PowerSupplyDTO> findPowerSupplyByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<RAMDTO> findRamByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-
-    //find methods for peripheral components
-    List<HeadsetDTO> findHeadsetByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<KeyboardDTO> findKeyboardByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<MouseDTO> findMouseByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-    List<SpeakerDTO> findSpeakerByPurchasedPrice(Double minPurchasedPrice, Double maxPurchasedPrice);
-
-
     void updatePriceById(Long id, Double newPrice);
 
     void reduceCountById(Long id, Integer countToBeReduced);

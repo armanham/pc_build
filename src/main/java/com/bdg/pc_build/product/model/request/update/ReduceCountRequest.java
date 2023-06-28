@@ -1,4 +1,4 @@
-package com.bdg.pc_build.product.model.request;
+package com.bdg.pc_build.product.model.request.update;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Positive;

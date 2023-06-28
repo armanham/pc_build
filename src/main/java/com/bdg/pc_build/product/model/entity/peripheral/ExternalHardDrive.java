@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.model.dto.peripheral.ExternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
@@ -37,6 +38,9 @@ public class ExternalHardDrive extends Product {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "externalHardDrives")
     private List<Order> orders;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "externalHardDrives")
+    private List<Computer> computers;
 
     public ExternalHardDrive(final ExternalHardDriveDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

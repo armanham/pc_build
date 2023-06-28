@@ -1,8 +1,8 @@
 package com.bdg.pc_build.product.service;
 
+import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.exception.NotEnoughInStockException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
-import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.exception.SameNameDifferentDescriptionException;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.bdg.pc_build.util.InitialAndFinalIdValues.*;
-
 
 @Service
 @RequiredArgsConstructor
@@ -248,173 +247,38 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<MonitorDTO> findMonitorByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, monitorDAO)
-                .stream()
-                .map(MonitorDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<CaseDTO> findCaseByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, caseDAO)
-                .stream()
-                .map(CaseDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<CoolerDTO> findCoolerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, coolerDAO)
-                .stream()
-                .map(CoolerDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<CPUCoolerDTO> findCpuCoolerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuCoolerDAO)
-                .stream()
-                .map(CPUCoolerDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<CPUDTO> findCpuByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, cpuDAO)
-                .stream()
-                .map(CPUDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<InternalHardDriveDTO> findInternalHardDriveByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, internalHardDriveDAO)
-                .stream()
-                .map(InternalHardDriveDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<GPUDTO> findGpuByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, gpuDAO)
-                .stream()
-                .map(GPUDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<ExternalHardDriveDTO> findExternalHardDriveByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, externalHardDriveDAO)
-                .stream()
-                .map(ExternalHardDriveDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<MotherboardDTO> findMotherboardByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, motherboardDAO)
-                .stream()
-                .map(MotherboardDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<PowerSupplyDTO> findPowerSupplyByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, powerSupplyDAO)
-                .stream()
-                .map(PowerSupplyDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<RAMDTO> findRamByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, ramDAO)
-                .stream()
-                .map(RAMDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<HeadsetDTO> findHeadsetByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, headsetDAO)
-                .stream()
-                .map(HeadsetDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<KeyboardDTO> findKeyboardByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, keyboardDAO)
-                .stream()
-                .map(KeyboardDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<MouseDTO> findMouseByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, mouseDAO)
-                .stream()
-                .map(MouseDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<SpeakerDTO> findSpeakerByPurchasedPrice(final Double minPurchasedPrice, final Double maxPurchasedPrice) {
-        return findAllByPurchasedPrice(minPurchasedPrice, maxPurchasedPrice, speakerDAO)
-                .stream()
-                .map(SpeakerDTO::initDTOFromEntity)
-                .toList();
-    }
-
-    @Override
     public void updatePriceById(final Long id, final Double newPrice) {
         if (id >= INITIAL_ID_VALUE_CASE && id <= FINAL_ID_VALUE_CASE) {
             updatePriceById(id, newPrice, caseDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
+        } else if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
             updatePriceById(id, newPrice, coolerDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
+        } else if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
             updatePriceById(id, newPrice, cpuDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
+        } else if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
             updatePriceById(id, newPrice, cpuCoolerDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
+        } else if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
             updatePriceById(id, newPrice, gpuDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
+        } else if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
             updatePriceById(id, newPrice, internalHardDriveDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
+        } else if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
             updatePriceById(id, newPrice, motherboardDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
+        } else if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
             updatePriceById(id, newPrice, powerSupplyDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
+        } else if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
             updatePriceById(id, newPrice, ramDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
+        } else if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
             updatePriceById(id, newPrice, externalHardDriveDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
+        } else if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
             updatePriceById(id, newPrice, headsetDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
+        } else if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
             updatePriceById(id, newPrice, keyboardDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
+        } else if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
             updatePriceById(id, newPrice, monitorDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
+        } else if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
             updatePriceById(id, newPrice, mouseDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
+        } else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             updatePriceById(id, newPrice, speakerDAO);
-        }
-        else {
+        } else {
             throw new IdOutOfScopeException(id);
         }
     }
@@ -423,50 +287,35 @@ public class ProductServiceImpl implements ProductService {
     public void reduceCountById(final Long id, final Integer countToBeReduced) {
         if (id >= INITIAL_ID_VALUE_CASE && id <= FINAL_ID_VALUE_CASE) {
             reduceCountById(id, countToBeReduced, caseDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
+        } else if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
             reduceCountById(id, countToBeReduced, coolerDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
+        } else if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
             reduceCountById(id, countToBeReduced, cpuDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
+        } else if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
             reduceCountById(id, countToBeReduced, cpuCoolerDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
+        } else if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
             reduceCountById(id, countToBeReduced, gpuDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
+        } else if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
             reduceCountById(id, countToBeReduced, internalHardDriveDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
+        } else if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
             reduceCountById(id, countToBeReduced, motherboardDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
+        } else if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
             reduceCountById(id, countToBeReduced, powerSupplyDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
+        } else if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
             reduceCountById(id, countToBeReduced, ramDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
+        } else if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
             reduceCountById(id, countToBeReduced, externalHardDriveDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
+        } else if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
             reduceCountById(id, countToBeReduced, headsetDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
+        } else if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
             reduceCountById(id, countToBeReduced, keyboardDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
+        } else if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
             reduceCountById(id, countToBeReduced, monitorDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
+        } else if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
             reduceCountById(id, countToBeReduced, mouseDAO);
-        }
-        else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
+        } else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             reduceCountById(id, countToBeReduced, speakerDAO);
-        }
-        else {
+        } else {
             throw new IdOutOfScopeException(id);
         }
     }

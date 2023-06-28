@@ -1,6 +1,5 @@
 package com.bdg.pc_build.product.model.request.creation.main_component;
 
-
 import com.bdg.pc_build.product.model.request.creation.ProductCreationRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;

@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.ATXType;
 import com.bdg.pc_build.product.enumerations.DDRType;
@@ -65,6 +65,9 @@ public class Motherboard extends Product {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "motherboards")
     private List<Order> orders;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "motherboard")
+    private List<Computer> computers;
 
     public Motherboard(final MotherboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

@@ -1,13 +1,11 @@
 package com.bdg.pc_build.product.model.dto.main_component;
 
-
 import com.bdg.pc_build.product.enumerations.DDRType;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.entity.main_component.RAM;
 import com.bdg.pc_build.product.model.request.creation.main_component.RAMCreationRequest;
 import lombok.Builder;
 import lombok.Getter;
-
 
 @Getter
 public class RAMDTO extends ProductDTO {

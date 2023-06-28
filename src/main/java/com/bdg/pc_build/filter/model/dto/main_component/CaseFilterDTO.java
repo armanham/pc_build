@@ -1,8 +1,8 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
 import com.bdg.pc_build.filter.model.request.main_component.CaseFilterRequest;
-import com.bdg.pc_build.util.ValidationUtil;
 import com.bdg.pc_build.product.enumerations.TowerType;
+import com.bdg.pc_build.util.ValidationUtil;
 import lombok.Getter;
 
 import java.util.Set;

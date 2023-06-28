@@ -1,10 +1,10 @@
 package com.bdg.pc_build.desire_log.service;
 
-import com.bdg.pc_build.exception.*;
 import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.desire_log.repository.DesireLogDAO;
+import com.bdg.pc_build.exception.*;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.repository.UserDAO;
 import lombok.RequiredArgsConstructor;
@@ -94,7 +94,7 @@ public class DesireLogServiceImpl implements DesireLogService {
 
     @Override
     public Set<User> getUsersByLogId(final Long id) {
-        DesireLog desireLog = desireLogDAO.findById(id).orElseThrow(()-> new ProductNotFoundException(DesireLog.class, id));
+        DesireLog desireLog = desireLogDAO.findById(id).orElseThrow(() -> new ProductNotFoundException(DesireLog.class, id));
 
         return desireLog.getUsers();
     }

@@ -1,7 +1,6 @@
 package com.bdg.pc_build.order.service;
 
 import com.bdg.pc_build.order.model.dto.OrderDTO;
-import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.user.model.entity.User;
 

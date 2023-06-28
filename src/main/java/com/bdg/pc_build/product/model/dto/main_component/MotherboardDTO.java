@@ -89,18 +89,4 @@ public class MotherboardDTO extends ProductDTO {
                 .tdp(request.getTdp())
                 .build();
     }
-
-    @Override
-    public String toString() {
-        return "MotherboardDTO{" +
-                "socketType=" + socketType +
-                ", atxType=" + atxType +
-                ", memoryMax=" + memoryMax +
-                ", memorySlots=" + memorySlots +
-                ", ddrType=" + ddrType +
-                ", isM2=" + isM2 +
-                ", gpuInterfaceType=" + gpuInterfaceType +
-                ", tdp=" + tdp +
-                "}\n";
-    }
 }

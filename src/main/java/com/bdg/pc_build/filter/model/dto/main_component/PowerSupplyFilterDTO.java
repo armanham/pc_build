@@ -1,9 +1,9 @@
 package com.bdg.pc_build.filter.model.dto.main_component;
 
 import com.bdg.pc_build.filter.model.request.main_component.PowerSupplyFilterRequest;
-import com.bdg.pc_build.util.ValidationUtil;
 import com.bdg.pc_build.product.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.enumerations.ModularType;
+import com.bdg.pc_build.util.ValidationUtil;
 import lombok.Getter;
 
 import java.util.Set;

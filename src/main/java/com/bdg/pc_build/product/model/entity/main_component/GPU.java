@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
@@ -52,6 +53,9 @@ public class GPU extends Product {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "gpus")
     private List<Order> orders;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gpu")
+    private List<Computer> computers;
 
     public GPU(final GPUDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

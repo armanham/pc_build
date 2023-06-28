@@ -41,15 +41,4 @@ public abstract class ProductDTO {
     public int hashCode() {
         return Objects.hash(name);
     }
-
-    @Override
-    public String toString() {
-        return "ProductDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", purchasedPrice=" + purchasedPrice +
-                ", count=" + count +
-                '}';
-    }
 }

@@ -1,8 +1,8 @@
 package com.bdg.pc_build.filter.model.dto.peripheral;
 
 import com.bdg.pc_build.filter.model.request.peripheral.SpeakerFilterRequest;
-import com.bdg.pc_build.util.ValidationUtil;
 import com.bdg.pc_build.product.enumerations.PowerSourceType;
+import com.bdg.pc_build.util.ValidationUtil;
 import lombok.Getter;
 
 import java.util.Set;

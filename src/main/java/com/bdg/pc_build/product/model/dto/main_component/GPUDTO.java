@@ -7,7 +7,6 @@ import com.bdg.pc_build.product.model.request.creation.main_component.GPUCreatio
 import lombok.Builder;
 import lombok.Getter;
 
-
 @Getter
 public class GPUDTO extends ProductDTO {
 

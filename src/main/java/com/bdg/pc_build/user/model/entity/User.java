@@ -7,7 +7,10 @@ import com.bdg.pc_build.token.Token;
 import com.bdg.pc_build.user.enumerations.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -66,7 +69,7 @@ public class User implements UserDetails {
     private List<Order> orders;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy =  "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Computer> computers;
 
     @Builder

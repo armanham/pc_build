@@ -1,5 +1,6 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
@@ -13,7 +14,6 @@ import lombok.Setter;
 
 import java.util.List;
 import java.util.Objects;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -43,6 +43,9 @@ public class Monitor extends Product {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "monitors")
     private List<Order> orders;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "monitors")
+    private List<Computer> computers;
 
     public Monitor(final MonitorDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
