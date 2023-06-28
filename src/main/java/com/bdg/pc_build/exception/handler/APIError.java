@@ -1,4 +1,4 @@
-package com.bdg.pc_build.exception;
+package com.bdg.pc_build.exception.handler;
 
 import lombok.Builder;
 import lombok.Getter;

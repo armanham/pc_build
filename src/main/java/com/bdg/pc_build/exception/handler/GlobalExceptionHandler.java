@@ -1,4 +1,4 @@
-package com.bdg.pc_build.exception;
+package com.bdg.pc_build.exception.handler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
