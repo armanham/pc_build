@@ -26,8 +26,11 @@ import java.util.Objects;
 public class CPU extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "cpu_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CPU)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cpu_seq")
+    @SequenceGenerator(
+            name = "cpu_seq", sequenceName = "cpu_sequence",  schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CPU, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -50,7 +53,7 @@ public class CPU extends Product {
     @Enumerated(EnumType.STRING)
     private SocketType socketType;
 
-    @ManyToMany(mappedBy = "cpus")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cpus")
     private List<Order> orders;
 
     public CPU(final CPUDTO dto) {

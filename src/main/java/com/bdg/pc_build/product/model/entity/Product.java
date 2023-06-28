@@ -40,7 +40,8 @@ public abstract class Product {
             final String name,
             final Double price,
             final Double purchasedPrice,
-            final Integer count) {
+            final Integer count
+    ) {
         this.name = name;
         this.price = price;
         this.purchasedPrice = purchasedPrice;

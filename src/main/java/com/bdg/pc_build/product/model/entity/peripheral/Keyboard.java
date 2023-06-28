@@ -1,12 +1,17 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
+import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.peripheral.KeyboardDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.enumerations.ConnectivityType;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -18,8 +23,11 @@ import java.util.Objects;
 public class Keyboard extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "keyboard_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_KEYBOARD)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "keyboard_seq")
+    @SequenceGenerator(
+            name = "keyboard_seq", sequenceName = "keyboard_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_KEYBOARD, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -35,6 +43,9 @@ public class Keyboard extends Product {
 
     @Column(name = "weight", nullable = false, updatable = false)
     private Double weight;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "keyboards")
+    List<Order> orders;
 
     public Keyboard(final KeyboardDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
@@ -59,5 +70,5 @@ public class Keyboard extends Product {
     public int hashCode() {
         return Objects.hash(connectivityType, cableLength, dimension, weight);
     }
-    
+
 }

@@ -1,12 +1,17 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
+import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.product.enumerations.TowerType;
 import com.bdg.pc_build.product.model.dto.main_component.CaseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.enumerations.TowerType;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -18,8 +23,11 @@ import java.util.Objects;
 public class aCase extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "case_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CASE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "case_seq")
+    @SequenceGenerator(
+            name = "case_seq", sequenceName = "case_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_CASE, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -35,6 +43,9 @@ public class aCase extends Product {
     @Column(name = "tower_type", nullable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     private TowerType towerType;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cases")
+    List<Order> orders;
 
     public aCase(final CaseDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

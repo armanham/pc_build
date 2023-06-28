@@ -1,11 +1,16 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
+import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.product.model.dto.peripheral.ExternalHardDriveDTO;
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -17,8 +22,10 @@ import java.util.Objects;
 public class ExternalHardDrive extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "external_hard_drive_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "external_hard_drive_seq")
+    @SequenceGenerator(name = "external_hard_drive_seq", sequenceName = "external_hard_drive_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -27,6 +34,9 @@ public class ExternalHardDrive extends Product {
 
     @Column(name = "tdp", nullable = false, updatable = false)
     private Integer tdp;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "externalHardDrives")
+    List<Order> orders;
 
     public ExternalHardDrive(final ExternalHardDriveDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

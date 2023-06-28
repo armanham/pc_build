@@ -1,11 +1,16 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
+import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.product.model.dto.main_component.CoolerDTO;
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -17,13 +22,19 @@ import java.util.Objects;
 public class Cooler extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "cooler_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_COOLER)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cooler_seq")
+    @SequenceGenerator(
+            name = "cooler_seq", sequenceName = "cooler_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_COOLER, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
     @Column(name = "tdp", nullable = false, updatable = false)
     private Integer tdp;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "coolers")
+    List<Order> orders;
 
     public Cooler(final CoolerDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

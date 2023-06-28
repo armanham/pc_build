@@ -1,12 +1,17 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
+import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.product.enumerations.DDRType;
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.main_component.RAMDTO;
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -18,8 +23,10 @@ import java.util.Objects;
 public class RAM extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "ram_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_RAM)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ram_seq")
+    @SequenceGenerator(name = "ram_seq", sequenceName = "ram_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_RAM, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -35,6 +42,9 @@ public class RAM extends Product {
 
     @Column(name = "tdp", nullable = false, updatable = false)
     private Integer tdp;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "rams")
+    List<Order> orders;
 
     public RAM(final RAMDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

@@ -1,12 +1,15 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
 import com.bdg.pc_build.order.entity.Order;
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
+import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.dto.main_component.GPUDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,8 +23,11 @@ import java.util.Objects;
 public class GPU extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "gpu_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_GPU)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gpu_seq")
+    @SequenceGenerator(
+            name = "gpu_seq", sequenceName = "gpu_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_GPU, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -44,7 +50,7 @@ public class GPU extends Product {
     @Column(name = "tdp", nullable = false, updatable = false)
     private Integer tdp;
 
-    @ManyToMany(mappedBy = "gpus")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "gpus")
     private List<Order> orders;
 
     public GPU(final GPUDTO dto) {

@@ -1,13 +1,18 @@
 package com.bdg.pc_build.product.model.entity.main_component;
 
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
-import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
-import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.product.enumerations.EfficiencyRating;
 import com.bdg.pc_build.product.enumerations.ModularType;
+import com.bdg.pc_build.product.model.dto.main_component.PowerSupplyDTO;
+import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -19,8 +24,11 @@ import java.util.Objects;
 public class PowerSupply extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "power_supply_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_POWER_SUPPLY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "power_supply_seq")
+    @SequenceGenerator(
+            name = "power_supply_seq", sequenceName = "power_supply_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_POWER_SUPPLY, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -36,6 +44,9 @@ public class PowerSupply extends Product {
 
     @Column(name = "tdp", nullable = false, updatable = false)
     private Integer tdp;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "powerSupplies")
+    List<Order> orders;
 
     public PowerSupply(final PowerSupplyDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

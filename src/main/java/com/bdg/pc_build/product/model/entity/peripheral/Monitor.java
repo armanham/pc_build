@@ -1,12 +1,17 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
+import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.product.enumerations.MonitorScreenType;
 import com.bdg.pc_build.product.model.dto.peripheral.MonitorDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.enumerations.MonitorScreenType;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -19,8 +24,10 @@ import java.util.Objects;
 public class Monitor extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "monitor_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_MONITOR)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "monitor_seq")
+    @SequenceGenerator(name = "monitor_seq", sequenceName = "monitor_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_MONITOR, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -33,6 +40,9 @@ public class Monitor extends Product {
     @Enumerated(EnumType.STRING)
     @Column(name = "screen_type", nullable = false, updatable = false)
     private MonitorScreenType screenType;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "monitors")
+    List<Order> orders;
 
     public Monitor(final MonitorDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

@@ -1,12 +1,17 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
+import com.bdg.pc_build.order.entity.Order;
+import com.bdg.pc_build.product.enumerations.ConnectivityType;
 import com.bdg.pc_build.product.model.dto.peripheral.HeadsetDTO;
 import com.bdg.pc_build.product.model.entity.Product;
-import com.bdg.pc_build.product.enumerations.ConnectivityType;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -18,8 +23,10 @@ import java.util.Objects;
 public class Headset extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "headset_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_HEADSET)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "headset_seq")
+    @SequenceGenerator(name = "headset_seq", sequenceName = "headset_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_HEADSET, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -32,6 +39,9 @@ public class Headset extends Product {
 
     @Column(name = "cable_length", nullable = false, updatable = false)
     private Double cableLength;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "headsets")
+    List<Order> orders;
 
     public Headset(final HeadsetDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());

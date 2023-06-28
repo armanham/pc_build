@@ -1,12 +1,17 @@
 package com.bdg.pc_build.product.model.entity.peripheral;
 
+import com.bdg.pc_build.order.entity.Order;
 import com.bdg.pc_build.product.enumerations.ConnectivityType;
-import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import com.bdg.pc_build.product.model.dto.peripheral.MouseDTO;
 import com.bdg.pc_build.product.model.entity.Product;
+import com.bdg.pc_build.util.InitialAndFinalIdValues;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -18,8 +23,11 @@ import java.util.Objects;
 public class Mouse extends Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_seq")
-    @SequenceGenerator(name = "entity_seq", sequenceName = "mouse_sequence", initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_MOUSE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mouse_seq")
+    @SequenceGenerator(
+            name = "mouse_seq", sequenceName = "mouse_sequence", schema = "product",
+            initialValue = InitialAndFinalIdValues.INITIAL_ID_VALUE_MOUSE, allocationSize = 1
+    )
     @Column(name = "id")
     private Long id;
 
@@ -35,6 +43,9 @@ public class Mouse extends Product {
 
     @Column(name = "weight", nullable = false, updatable = false)
     private Double weight;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "mice")
+    List<Order> orders;
 
     public Mouse(final MouseDTO dto) {
         super(dto.getName(), dto.getPrice(), dto.getPurchasedPrice(), dto.getCount());
