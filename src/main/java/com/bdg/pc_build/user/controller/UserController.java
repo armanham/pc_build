@@ -1,6 +1,7 @@
 package com.bdg.pc_build.user.controller;
 
 import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
+import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.request.EmailUpdateRequest;
@@ -107,6 +108,22 @@ public class UserController {
         );
     }
 
+    @GetMapping("/desire-logs")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<List<DesireLogDTO>> getDesireLogs(
+            HttpServletRequest request
+    ) {
+        return ResponseEntity.ok(
+                userService.findUserByAuthHeader(
+                                request.getHeader(HttpHeaders.AUTHORIZATION)
+                        )
+                        .getDesireLogs()
+                        .stream()
+                        .map(DesireLogDTO::new)
+                        .toList()
+        );
+    }
+
     @GetMapping("/{id}/built-computers")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<List<ComputerDTO>> getBuiltComputersByUserId(
@@ -129,6 +146,19 @@ public class UserController {
                 userService.findUserById(id).getOrders()
                         .stream()
                         .map(OrderDTO::new)
+                        .toList()
+        );
+    }
+
+    @GetMapping("/{id}/desire-logs")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ResponseEntity<List<DesireLogDTO>> getDesireLogsByUserId(
+            @PathVariable("id") Long id
+    ) {
+        return ResponseEntity.ok(
+                userService.findUserById(id).getDesireLogs()
+                        .stream()
+                        .map(DesireLogDTO::new)
                         .toList()
         );
     }
