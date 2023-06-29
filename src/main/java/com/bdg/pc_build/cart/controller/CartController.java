@@ -23,13 +23,13 @@ public class CartController {
     private final CartService cartService;
 
     @GetMapping("/get")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<Map<ProductDTO, Integer>> getCartItems() {
         return ResponseEntity.ok(cartService.getProductsInCart());
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<?> addCartItem(
             @Valid @RequestBody CartItem cartItem
     ) {
@@ -38,7 +38,7 @@ public class CartController {
     }
 
     @DeleteMapping("/remove")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<?> removeCartItem(
             @Valid @RequestBody CartItem cartItem
     ) {
@@ -47,7 +47,7 @@ public class CartController {
     }
 
     @GetMapping("/checkout")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<?> checkout(
             HttpServletRequest request
     ) {

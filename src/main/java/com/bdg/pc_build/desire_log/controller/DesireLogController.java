@@ -25,7 +25,7 @@ public class DesireLogController {
     private final DesireLogService desireLogService;
 
     @PostMapping("/new")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<?> save(
             @Valid @RequestBody final DesireLogCreationRequest desireLogCreationRequest,
             HttpServletRequest httpServletRequest
