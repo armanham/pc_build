@@ -82,13 +82,7 @@ public class UserController {
             HttpServletRequest request
     ) {
         return ResponseEntity.ok(
-                userService.findUserByAuthHeader(
-                                request.getHeader(HttpHeaders.AUTHORIZATION)
-                        )
-                        .getComputers()
-                        .stream()
-                        .map(ComputerDTO::new)
-                        .toList()
+                userService.getBuiltComputersByAuthHeader(request.getHeader(HttpHeaders.AUTHORIZATION))
         );
     }
 
@@ -98,13 +92,7 @@ public class UserController {
             HttpServletRequest request
     ) {
         return ResponseEntity.ok(
-                userService.findUserByAuthHeader(
-                                request.getHeader(HttpHeaders.AUTHORIZATION)
-                        )
-                        .getOrders()
-                        .stream()
-                        .map(OrderDTO::new)
-                        .toList()
+                userService.getOrdersByAuthHeader(request.getHeader(HttpHeaders.AUTHORIZATION))
         );
     }
 
@@ -114,13 +102,7 @@ public class UserController {
             HttpServletRequest request
     ) {
         return ResponseEntity.ok(
-                userService.findUserByAuthHeader(
-                                request.getHeader(HttpHeaders.AUTHORIZATION)
-                        )
-                        .getDesireLogs()
-                        .stream()
-                        .map(DesireLogDTO::new)
-                        .toList()
+                userService.getDesireLogsByAuthHeader(request.getHeader(HttpHeaders.AUTHORIZATION))
         );
     }
 
@@ -129,12 +111,7 @@ public class UserController {
     public ResponseEntity<List<ComputerDTO>> getBuiltComputersByUserId(
             @PathVariable("id") Long id
     ) {
-        return ResponseEntity.ok(
-                userService.findUserById(id).getComputers()
-                        .stream()
-                        .map(ComputerDTO::new)
-                        .toList()
-        );
+        return ResponseEntity.ok(userService.getBuiltComputersByUserId(id));
     }
 
     @GetMapping("/{id}/orders")
@@ -142,12 +119,7 @@ public class UserController {
     public ResponseEntity<List<OrderDTO>> getOrdersByUserId(
             @PathVariable("id") Long id
     ) {
-        return ResponseEntity.ok(
-                userService.findUserById(id).getOrders()
-                        .stream()
-                        .map(OrderDTO::new)
-                        .toList()
-        );
+        return ResponseEntity.ok(userService.getOrdersByUserId(id));
     }
 
     @GetMapping("/{id}/desire-logs")
@@ -155,12 +127,7 @@ public class UserController {
     public ResponseEntity<List<DesireLogDTO>> getDesireLogsByUserId(
             @PathVariable("id") Long id
     ) {
-        return ResponseEntity.ok(
-                userService.findUserById(id).getDesireLogs()
-                        .stream()
-                        .map(DesireLogDTO::new)
-                        .toList()
-        );
+        return ResponseEntity.ok(userService.getDesireLogsByUserId(id));
     }
 
     @GetMapping("/get-all")

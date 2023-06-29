@@ -6,6 +6,7 @@ import com.bdg.pc_build.computer_builder.service.ComputerEntityInitializerBasedO
 import com.bdg.pc_build.computer_builder.service.ComputerService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class BuilderController {
 
     @PostMapping("/check")
     public ResponseEntity<?> check(
-            @RequestBody ComputerCreationRequest request
+            @Valid @RequestBody ComputerCreationRequest request
     ) {
         computerService.checkComputer(entityInitializerBasedOnRequest.initEntityFromRequest(request));
         return ResponseEntity.ok().body("Compatibility validation passed!");
@@ -34,7 +35,7 @@ public class BuilderController {
     @SecurityRequirement(name = "bearerAuth")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<?> save(
-            @RequestBody ComputerCreationRequest computerCreationRequest,
+            @Valid @RequestBody ComputerCreationRequest computerCreationRequest,
             HttpServletRequest httpServletRequest
     ) {
         return ResponseEntity.ok().body(computerService.save(computerCreationRequest, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION)));

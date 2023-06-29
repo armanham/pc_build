@@ -5,6 +5,7 @@ import com.bdg.pc_build.cart.service.CartService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -29,14 +30,18 @@ public class CartController {
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> addCartItem(@RequestBody CartItem cartItem) {
+    public ResponseEntity<?> addCartItem(
+            @Valid @RequestBody CartItem cartItem
+    ) {
         cartService.addProduct(cartItem);
         return ResponseEntity.ok("Product is added to the cart successfully");
     }
 
     @DeleteMapping("/remove")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> removeCartItem(@RequestBody CartItem cartItem) {
+    public ResponseEntity<?> removeCartItem(
+            @Valid @RequestBody CartItem cartItem
+    ) {
         cartService.removeProduct(cartItem);
         return ResponseEntity.ok("Product is removed from the cart successfully");
     }

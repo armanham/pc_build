@@ -147,7 +147,7 @@ public class ProductController {
     @PutMapping(value = "/edit-price")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> editPrice(
-            @RequestBody EditPriceRequest request
+            @Valid @RequestBody EditPriceRequest request
     ) {
         productService.updatePriceById(request.productId(), request.newPrice());
         return ResponseEntity.ok().body("Product price updated successfully");
@@ -156,7 +156,7 @@ public class ProductController {
     @PutMapping(value = "/reduce")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> reduceCount(
-            @RequestBody ReduceCountRequest request
+            @Valid @RequestBody ReduceCountRequest request
     ) {
         productService.reduceCountById(request.productId(), request.countToBeReduced());
         return ResponseEntity.ok().body("Product count reduced successfully");
