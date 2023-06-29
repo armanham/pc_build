@@ -20,7 +20,7 @@ import java.util.Objects;
 @Setter
 @Getter
 @Entity
-@Table(name = "a_case", schema = "product")
+@Table(name = "_case", schema = "product")
 public class aCase extends Product {
 
     @Id

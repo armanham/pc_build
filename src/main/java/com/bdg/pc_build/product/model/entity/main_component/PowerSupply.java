@@ -41,6 +41,7 @@ public class PowerSupply extends Product {
     private Integer wattage;
 
     @Column(name = "modular_type", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     private ModularType modularType;
 
     @Column(name = "tdp", nullable = false, updatable = false)
