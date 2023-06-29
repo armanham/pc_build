@@ -164,91 +164,91 @@ public class ProductController {
 
     @GetMapping("/case")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<CaseDTO> getAllCases() {
-        return productService.getAllCases();
+    public ResponseEntity<List<CaseDTO>> getAllCases() {
+        return ResponseEntity.ok().body(productService.getAllCases());
     }
 
     @GetMapping("/cooler")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<CoolerDTO> getAllCoolers() {
-        return productService.getAllCoolers();
+    public ResponseEntity<List<CoolerDTO>> getAllCoolers() {
+        return ResponseEntity.ok().body(productService.getAllCoolers());
     }
 
     @GetMapping("/cpu-cooler")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<CPUCoolerDTO> getAllCpuCoolers() {
-        return productService.getAllCpuCoolers();
+    public ResponseEntity<List<CPUCoolerDTO>> getAllCpuCoolers() {
+        return ResponseEntity.ok().body(productService.getAllCpuCoolers());
     }
 
     @GetMapping("/cpu")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<CPUDTO> getAllCpus() {
-        return productService.getAllCpus();
+    public ResponseEntity<List<CPUDTO>> getAllCpus() {
+        return ResponseEntity.ok().body(productService.getAllCpus());
     }
 
     @GetMapping("/gpu")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<GPUDTO> getAllGpus() {
-        return productService.getAllGpus();
+    public ResponseEntity<List<GPUDTO>> getAllGpus() {
+        return ResponseEntity.ok().body(productService.getAllGpus());
     }
 
     @GetMapping("/internal-hard-drive")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<InternalHardDriveDTO> getAllInternalHardDrives() {
-        return productService.getAllInternalHardDrives();
+    public ResponseEntity<List<InternalHardDriveDTO>> getAllInternalHardDrives() {
+        return ResponseEntity.ok().body(productService.getAllInternalHardDrives());
     }
 
     @GetMapping("/motherboard")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<MotherboardDTO> getAllMotherboards() {
-        return productService.getAllMotherboards();
+    public ResponseEntity<List<MotherboardDTO>> getAllMotherboards() {
+        return ResponseEntity.ok().body(productService.getAllMotherboards());
     }
 
     @GetMapping("/power-supply")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<PowerSupplyDTO> getAllPowerSupplies() {
-        return productService.getAllPowerSupplies();
+    public ResponseEntity<List<PowerSupplyDTO>> getAllPowerSupplies() {
+        return ResponseEntity.ok().body(productService.getAllPowerSupplies());
     }
 
     @GetMapping("/ram")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<RAMDTO> getAllRams() {
-        return productService.getAllRams();
+    public ResponseEntity<List<RAMDTO>> getAllRams() {
+        return ResponseEntity.ok().body(productService.getAllRams());
     }
 
     @GetMapping("/external-hard-drive")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<ExternalHardDriveDTO> getAllExternalHardDrives() {
-        return productService.getAllExternalHardDrives();
+    public ResponseEntity<List<ExternalHardDriveDTO>> getAllExternalHardDrives() {
+        return ResponseEntity.ok().body(productService.getAllExternalHardDrives());
     }
 
     @GetMapping("/headset")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<HeadsetDTO> getAllHeadsets() {
-        return productService.getAllHeadsets();
+    public ResponseEntity<List<HeadsetDTO>> getAllHeadsets() {
+        return ResponseEntity.ok().body(productService.getAllHeadsets());
     }
 
     @GetMapping("/keyboard")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<KeyboardDTO> getAllKeyboards() {
-        return productService.getAllKeyboards();
+    public ResponseEntity<List<KeyboardDTO>> getAllKeyboards() {
+        return ResponseEntity.ok().body(productService.getAllKeyboards());
     }
 
     @GetMapping("/monitor")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<MonitorDTO> getAllMonitors() {
-        return productService.getAllMonitors();
+    public ResponseEntity<List<MonitorDTO>> getAllMonitors() {
+        return ResponseEntity.ok().body(productService.getAllMonitors());
     }
 
     @GetMapping("/mouse")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<MouseDTO> getAllMice() {
-        return productService.getAllMice();
+    public ResponseEntity<List<MouseDTO>> getAllMice() {
+        return ResponseEntity.ok().body(productService.getAllMice());
     }
 
     @GetMapping("/speaker")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public List<SpeakerDTO> getAllSpeakers() {
-        return productService.getAllSpeakers();
+    public ResponseEntity<List<SpeakerDTO>> getAllSpeakers() {
+        return ResponseEntity.ok().body(productService.getAllSpeakers());
     }
 }

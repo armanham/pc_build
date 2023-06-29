@@ -1,6 +1,7 @@
 package com.bdg.pc_build.desire_log.service;
 
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
+import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.entity.User;
 
 import java.util.List;
@@ -18,5 +19,5 @@ public interface DesireLogService {
 
     DesireLogDTO getById(Long id);
 
-    Set<User> getUsersByLogId(Long id);
+    Set<UserDTO> getUsersByLogId(Long id);
 }

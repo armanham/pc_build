@@ -11,6 +11,7 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.model.dto.main_component.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,153 +24,121 @@ public class FilterController {
     private final FilterService filterService;
 
     @GetMapping(value = "/all")
-    public List<ProductDTO> filterAllProductsByNameAndPrice(
+    public ResponseEntity<List<ProductDTO>> filterAllProductsByNameAndPrice(
             @RequestBody ProductFilterRequest request
     ) {
-        return filterService.filterAllProductsByNameAndPrice(
-                new ProductFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllProductsByNameAndPrice(new ProductFilterDTO(request)));
     }
 
     @GetMapping(value = "/case")
-    public List<CaseDTO> filterCasesBasedOnSpecification(
+    public ResponseEntity<List<CaseDTO>> filterCasesBasedOnSpecification(
             @RequestBody CaseFilterRequest request
     ) {
-        return filterService.filterAllCasesBasedOnSpecification(
-                new CaseFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllCasesBasedOnSpecification(new CaseFilterDTO(request)));
     }
 
     @GetMapping(value = "/cooler")
-    public List<CoolerDTO> filterCoolersBasedOnSpecification(
+    public ResponseEntity<List<CoolerDTO>> filterCoolersBasedOnSpecification(
             @RequestBody CoolerFilterRequest request
     ) {
-        return filterService.filterAllCoolersBasedOnSpecification(
-                new CoolerFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllCoolersBasedOnSpecification(new CoolerFilterDTO(request)));
     }
 
     @GetMapping(value = "/cpu")
-    public List<CPUDTO> filterCpusBasedOnSpecification(
+    public ResponseEntity<List<CPUDTO>> filterCpusBasedOnSpecification(
             @RequestBody CPUFilterRequest request
     ) {
-        return filterService.filterAllCpusBasedOnSpecification(
-                new CPUFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllCpusBasedOnSpecification(new CPUFilterDTO(request)));
     }
 
     @GetMapping(value = "/cpu-cooler")
-    public List<CPUCoolerDTO> filterCpuCoolersBasedOnSpecification(
+    public ResponseEntity<List<CPUCoolerDTO>> filterCpuCoolersBasedOnSpecification(
             @RequestBody CPUCoolerFilterRequest request
     ) {
-        return filterService.filterAllCpuCoolersBasedOnSpecification(
-                new CPUCoolerFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllCpuCoolersBasedOnSpecification(new CPUCoolerFilterDTO(request)));
     }
 
     @GetMapping(value = "/gpu")
-    public List<GPUDTO> filterGpusBasedOnSpecification(
+    public ResponseEntity<List<GPUDTO>> filterGpusBasedOnSpecification(
             @RequestBody GPUFilterRequest request
     ) {
-        return filterService.filterAllGpusBasedOnSpecification(
-                new GPUFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllGpusBasedOnSpecification(new GPUFilterDTO(request)));
     }
 
     @GetMapping(value = "/internal-hard-drive")
-    public List<InternalHardDriveDTO> filterInternalHardDrivesBasedOnSpecification(
+    public ResponseEntity<List<InternalHardDriveDTO>> filterInternalHardDrivesBasedOnSpecification(
             @RequestBody InternalHardDriveFilterRequest request
     ) {
-        return filterService.filterAllInternalHardDrivesBasedOnSpecification(
-                new InternalHardDriveFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllInternalHardDrivesBasedOnSpecification(new InternalHardDriveFilterDTO(request)));
     }
 
     @GetMapping(value = "/motherboard")
-    public List<MotherboardDTO> filterMotherboardsBasedOnSpecification(
+    public ResponseEntity<List<MotherboardDTO>> filterMotherboardsBasedOnSpecification(
             @RequestBody MotherboardFilterRequest request
     ) {
-        return filterService.filterAllMotherboardsBasedOnSpecification(
-                new MotherboardFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllMotherboardsBasedOnSpecification(new MotherboardFilterDTO(request)));
     }
 
     @GetMapping(value = "/power-supply")
-    public List<PowerSupplyDTO> filterPowerSuppliesBasedOnSpecification(
+    public ResponseEntity<List<PowerSupplyDTO>> filterPowerSuppliesBasedOnSpecification(
             @RequestBody PowerSupplyFilterRequest request
     ) {
-        return filterService.filterAllPowerSuppliesBasedOnSpecification(
-                new PowerSupplyFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllPowerSuppliesBasedOnSpecification(new PowerSupplyFilterDTO(request)));
     }
 
     @GetMapping(value = "/ram")
-    public List<RAMDTO> filterRamsBasedOnSpecification(
+    public ResponseEntity<List<RAMDTO>> filterRamsBasedOnSpecification(
             @RequestBody RAMFilterRequest request
     ) {
-        return filterService.filterAllRamsBasedOnSpecification(
-                new RAMFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllRamsBasedOnSpecification(new RAMFilterDTO(request)));
     }
 
     @GetMapping(value = "/external-hard-drive")
-    public List<ExternalHardDriveDTO> filterExternalHardDrivesBasedOnSpecification(
+    public ResponseEntity<List<ExternalHardDriveDTO>> filterExternalHardDrivesBasedOnSpecification(
             @RequestBody ExternalHardDriveFilterRequest request
     ) {
-        return filterService.filterAllExternalHardDrivesBasedOnSpecification(
-                new ExternalHardDriveFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllExternalHardDrivesBasedOnSpecification(new ExternalHardDriveFilterDTO(request)));
     }
 
     @GetMapping(value = "/headset")
-    public List<HeadsetDTO> filterHeadsetsBasedOnSpecification(
+    public ResponseEntity<List<HeadsetDTO>> filterHeadsetsBasedOnSpecification(
             @RequestBody HeadsetFilterRequest request
     ) {
-        return filterService.filterAllHeadsetsBasedOnSpecification(
-                new HeadsetFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllHeadsetsBasedOnSpecification(new HeadsetFilterDTO(request)));
     }
 
     @GetMapping(value = "/keyboard")
-    public List<KeyboardDTO> filterKeyboardsBasedOnSpecification(
+    public ResponseEntity<List<KeyboardDTO>> filterKeyboardsBasedOnSpecification(
             @RequestBody KeyboardFilterRequest request
     ) {
-        return filterService.filterAllKeyboardsBasedOnSpecification(
-                new KeyboardFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllKeyboardsBasedOnSpecification(new KeyboardFilterDTO(request)));
     }
 
     @GetMapping(value = "/monitor")
-    public List<MonitorDTO> filterMonitorsBasedOnSpecification(
+    public ResponseEntity<List<MonitorDTO>> filterMonitorsBasedOnSpecification(
             @RequestBody MonitorFilterRequest request
     ) {
-        return filterService.filterAllMonitorsBasedOnSpecification(
-                new MonitorFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllMonitorsBasedOnSpecification(new MonitorFilterDTO(request)));
     }
 
     @GetMapping(value = "/mouse")
-    public List<MouseDTO> filterMiceBasedOnSpecification(
+    public ResponseEntity<List<MouseDTO>> filterMiceBasedOnSpecification(
             @RequestBody MouseFilterRequest request
     ) {
-        return filterService.filterAllMiceBasedOnSpecification(
-                new MouseFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllMiceBasedOnSpecification(new MouseFilterDTO(request)));
     }
 
     @GetMapping(value = "/speaker")
-    public List<SpeakerDTO> filterSpeakersBasedOnSpecification(
+    public ResponseEntity<List<SpeakerDTO>> filterSpeakersBasedOnSpecification(
             @RequestBody SpeakerFilterRequest request
     ) {
-        return filterService.filterAllSpeakersBasedOnSpecification(
-                new SpeakerFilterDTO(request)
-        );
+        return ResponseEntity.ok().body(filterService.filterAllSpeakersBasedOnSpecification(new SpeakerFilterDTO(request)));
     }
 
     @GetMapping(value = "/{term}")
-    public List<ProductDTO> filterAllByTerm(
+    public ResponseEntity<List<ProductDTO>> filterAllByTerm(
             @PathVariable String term
     ) {
-        return filterService.findAllProductsBasedOnTerm(term);
+        return ResponseEntity.ok().body(filterService.findAllProductsBasedOnTerm(term));
     }
 }

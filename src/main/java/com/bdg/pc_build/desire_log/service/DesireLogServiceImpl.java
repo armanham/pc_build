@@ -5,6 +5,7 @@ import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.desire_log.repository.DesireLogDAO;
 import com.bdg.pc_build.exception.*;
+import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.repository.UserDAO;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -93,10 +95,13 @@ public class DesireLogServiceImpl implements DesireLogService {
     }
 
     @Override
-    public Set<User> getUsersByLogId(final Long id) {
+    public Set<UserDTO> getUsersByLogId(final Long id) {
         DesireLog desireLog = desireLogDAO.findById(id).orElseThrow(() -> new ProductNotFoundException(DesireLog.class, id));
 
-        return desireLog.getUsers();
+        return desireLog.getUsers()
+                .stream()
+                .map(UserDTO::new)
+                .collect(Collectors.toSet());
     }
 
 

@@ -3,7 +3,7 @@ package com.bdg.pc_build.desire_log.controller;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.desire_log.model.request.DesireLogCreationRequest;
 import com.bdg.pc_build.desire_log.service.DesireLogService;
-import com.bdg.pc_build.user.model.entity.User;
+import com.bdg.pc_build.user.model.dto.UserDTO;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -35,15 +35,15 @@ public class DesireLogController {
 
     @GetMapping("/get/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public DesireLogDTO getById(
+    public ResponseEntity<DesireLogDTO> getById(
             @PathVariable("id") final Long id
     ) {
-        return desireLogService.getById(id);
+        return ResponseEntity.ok().body(desireLogService.getById(id));
     }
 
     @GetMapping("/getAll")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<List<DesireLogDTO>> getAll() {
         return ResponseEntity.ok().body(desireLogService.getAllLogs());
     }
 
@@ -57,17 +57,17 @@ public class DesireLogController {
 
     @PutMapping("/mark-as-checked/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public DesireLogDTO markAsChecked(
+    public ResponseEntity<DesireLogDTO> markAsChecked(
             @PathVariable("id") Long id
     ) {
-        return desireLogService.markAsCheckedById(id);
+        return ResponseEntity.ok().body(desireLogService.markAsCheckedById(id));
     }
 
     @GetMapping("/get/{id}/users")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Set<User> getUsersByLogId(
+    public ResponseEntity<Set<UserDTO>> getUsersByLogId(
             @PathVariable("id") Long id
     ) {
-        return desireLogService.getUsersByLogId(id);
+        return ResponseEntity.ok().body(desireLogService.getUsersByLogId(id));
     }
 }
