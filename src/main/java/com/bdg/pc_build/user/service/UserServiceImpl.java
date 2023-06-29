@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatePasswordByAuthHeader(final String authHeader, final String newPassword) {
         User userToUpdate = getUserByAuthHeader(authHeader);
-        userToUpdate.setLastName(newPassword);
+        userToUpdate.setPassword(newPassword);
         userDAO.save(userToUpdate);
     }
 

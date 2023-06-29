@@ -2,8 +2,6 @@ package com.bdg.pc_build.util;
 
 public final class Pattern {
 
-    private static final String COMMON_MESSAGE = "must look like one of those: \n";
-
     public static final String BOOLEAN_PATTERN = "\\s*(?i:true|false)\\s*";
 
     public static final String WRONG_BOOLEAN_PATTERN = "field must be either 'true' or 'false'";

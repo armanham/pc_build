@@ -7,7 +7,6 @@ import lombok.*;
 
 import static com.bdg.pc_build.util.Pattern.*;
 
-//todo patterns
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
