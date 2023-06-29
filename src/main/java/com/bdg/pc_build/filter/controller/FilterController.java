@@ -23,112 +23,112 @@ public class FilterController {
 
     private final FilterService filterService;
 
-    @GetMapping(value = "/all")
+    @PostMapping(value = "/all")
     public ResponseEntity<List<ProductDTO>> filterAllProductsByNameAndPrice(
             @RequestBody ProductFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllProductsByNameAndPrice(new ProductFilterDTO(request)));
     }
 
-    @GetMapping(value = "/case")
+    @PostMapping(value = "/case")
     public ResponseEntity<List<CaseDTO>> filterCasesBasedOnSpecification(
             @RequestBody CaseFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllCasesBasedOnSpecification(new CaseFilterDTO(request)));
     }
 
-    @GetMapping(value = "/cooler")
+    @PostMapping(value = "/cooler")
     public ResponseEntity<List<CoolerDTO>> filterCoolersBasedOnSpecification(
             @RequestBody CoolerFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllCoolersBasedOnSpecification(new CoolerFilterDTO(request)));
     }
 
-    @GetMapping(value = "/cpu")
+    @PostMapping(value = "/cpu")
     public ResponseEntity<List<CPUDTO>> filterCpusBasedOnSpecification(
             @RequestBody CPUFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllCpusBasedOnSpecification(new CPUFilterDTO(request)));
     }
 
-    @GetMapping(value = "/cpu-cooler")
+    @PostMapping(value = "/cpu-cooler")
     public ResponseEntity<List<CPUCoolerDTO>> filterCpuCoolersBasedOnSpecification(
             @RequestBody CPUCoolerFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllCpuCoolersBasedOnSpecification(new CPUCoolerFilterDTO(request)));
     }
 
-    @GetMapping(value = "/gpu")
+    @PostMapping(value = "/gpu")
     public ResponseEntity<List<GPUDTO>> filterGpusBasedOnSpecification(
             @RequestBody GPUFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllGpusBasedOnSpecification(new GPUFilterDTO(request)));
     }
 
-    @GetMapping(value = "/internal-hard-drive")
+    @PostMapping(value = "/internal-hard-drive")
     public ResponseEntity<List<InternalHardDriveDTO>> filterInternalHardDrivesBasedOnSpecification(
             @RequestBody InternalHardDriveFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllInternalHardDrivesBasedOnSpecification(new InternalHardDriveFilterDTO(request)));
     }
 
-    @GetMapping(value = "/motherboard")
+    @PostMapping(value = "/motherboard")
     public ResponseEntity<List<MotherboardDTO>> filterMotherboardsBasedOnSpecification(
             @RequestBody MotherboardFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllMotherboardsBasedOnSpecification(new MotherboardFilterDTO(request)));
     }
 
-    @GetMapping(value = "/power-supply")
+    @PostMapping(value = "/power-supply")
     public ResponseEntity<List<PowerSupplyDTO>> filterPowerSuppliesBasedOnSpecification(
             @RequestBody PowerSupplyFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllPowerSuppliesBasedOnSpecification(new PowerSupplyFilterDTO(request)));
     }
 
-    @GetMapping(value = "/ram")
+    @PostMapping(value = "/ram")
     public ResponseEntity<List<RAMDTO>> filterRamsBasedOnSpecification(
             @RequestBody RAMFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllRamsBasedOnSpecification(new RAMFilterDTO(request)));
     }
 
-    @GetMapping(value = "/external-hard-drive")
+    @PostMapping(value = "/external-hard-drive")
     public ResponseEntity<List<ExternalHardDriveDTO>> filterExternalHardDrivesBasedOnSpecification(
             @RequestBody ExternalHardDriveFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllExternalHardDrivesBasedOnSpecification(new ExternalHardDriveFilterDTO(request)));
     }
 
-    @GetMapping(value = "/headset")
+    @PostMapping(value = "/headset")
     public ResponseEntity<List<HeadsetDTO>> filterHeadsetsBasedOnSpecification(
             @RequestBody HeadsetFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllHeadsetsBasedOnSpecification(new HeadsetFilterDTO(request)));
     }
 
-    @GetMapping(value = "/keyboard")
+    @PostMapping(value = "/keyboard")
     public ResponseEntity<List<KeyboardDTO>> filterKeyboardsBasedOnSpecification(
             @RequestBody KeyboardFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllKeyboardsBasedOnSpecification(new KeyboardFilterDTO(request)));
     }
 
-    @GetMapping(value = "/monitor")
+    @PostMapping(value = "/monitor")
     public ResponseEntity<List<MonitorDTO>> filterMonitorsBasedOnSpecification(
             @RequestBody MonitorFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllMonitorsBasedOnSpecification(new MonitorFilterDTO(request)));
     }
 
-    @GetMapping(value = "/mouse")
+    @PostMapping(value = "/mouse")
     public ResponseEntity<List<MouseDTO>> filterMiceBasedOnSpecification(
             @RequestBody MouseFilterRequest request
     ) {
         return ResponseEntity.ok().body(filterService.filterAllMiceBasedOnSpecification(new MouseFilterDTO(request)));
     }
 
-    @GetMapping(value = "/speaker")
+    @PostMapping(value = "/speaker")
     public ResponseEntity<List<SpeakerDTO>> filterSpeakersBasedOnSpecification(
             @RequestBody SpeakerFilterRequest request
     ) {
