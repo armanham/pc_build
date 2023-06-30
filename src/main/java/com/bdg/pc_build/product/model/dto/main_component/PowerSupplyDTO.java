@@ -30,4 +30,14 @@ public class PowerSupplyDTO extends ProductDTO {
         this.modularType = ModularType.valueOf(request.getModularType().trim().toUpperCase());
         this.tdp = request.getTdp();
     }
+
+    @Override
+    public String toString() {
+        return "PowerSupplyDTO{" +
+                "efficiencyRating=" + efficiencyRating +
+                ", wattage=" + wattage +
+                ", modularType=" + modularType +
+                ", tdp=" + tdp +
+                '}';
+    }
 }

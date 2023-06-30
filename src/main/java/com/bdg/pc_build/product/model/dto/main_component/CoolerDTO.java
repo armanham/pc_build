@@ -19,4 +19,11 @@ public class CoolerDTO extends ProductDTO {
         super(request.getName(), request.getPrice(), request.getPurchasedPrice(), request.getCount());
         this.tdp = request.getTdp();
     }
+
+    @Override
+    public String toString() {
+        return "CoolerDTO{" +
+                "tdp=" + tdp +
+                '}';
+    }
 }

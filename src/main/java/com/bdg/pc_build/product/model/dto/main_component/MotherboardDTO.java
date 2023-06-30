@@ -51,4 +51,18 @@ public class MotherboardDTO extends ProductDTO {
         this.gpuInterfaceType = GPUInterfaceType.valueOf(request.getGpuInterfaceType().trim().toUpperCase());
         this.tdp = request.getTdp();
     }
+
+    @Override
+    public String toString() {
+        return "MotherboardDTO{" +
+                "socketType=" + socketType +
+                ", atxType=" + atxType +
+                ", memoryMax=" + memoryMax +
+                ", memorySlots=" + memorySlots +
+                ", ddrType=" + ddrType +
+                ", isM2=" + isM2 +
+                ", gpuInterfaceType=" + gpuInterfaceType +
+                ", tdp=" + tdp +
+                '}';
+    }
 }

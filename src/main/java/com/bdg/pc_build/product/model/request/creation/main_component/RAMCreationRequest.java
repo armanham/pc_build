@@ -44,7 +44,7 @@ public class RAMCreationRequest extends ProductCreationRequest {
             final Integer tdp
     ) {
         super(name, price, purchasedPrice, count);
-        this.ddrType = ddrType.toUpperCase();
+        this.ddrType = ddrType;
         this.countOfRam = countOfRam;
         this.gbOfRam = gbOfRam;
         this.tdp = tdp;

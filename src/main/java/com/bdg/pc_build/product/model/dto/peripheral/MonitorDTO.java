@@ -30,4 +30,13 @@ public class MonitorDTO extends ProductDTO {
         this.refreshRate = request.getRefreshRate();
         this.screenType = MonitorScreenType.valueOf(request.getScreenType().trim().toUpperCase());
     }
+
+    @Override
+    public String toString() {
+        return "MonitorDTO{" +
+                "screenSize=" + screenSize +
+                ", refreshRate=" + refreshRate +
+                ", screenType=" + screenType +
+                '}';
+    }
 }

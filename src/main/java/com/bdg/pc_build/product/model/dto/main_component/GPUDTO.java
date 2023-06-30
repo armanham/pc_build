@@ -42,4 +42,16 @@ public class GPUDTO extends ProductDTO {
         this.length = request.getLength();
         this.tdp = request.getTdp();
     }
+
+    @Override
+    public String toString() {
+        return "GPUDTO{" +
+                "gpuInterfaceType=" + gpuInterfaceType +
+                ", memory=" + memory +
+                ", coreClock=" + coreClock +
+                ", boostClock=" + boostClock +
+                ", length=" + length +
+                ", tdp=" + tdp +
+                '}';
+    }
 }

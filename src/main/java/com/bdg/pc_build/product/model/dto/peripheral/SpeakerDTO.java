@@ -33,4 +33,14 @@ public class SpeakerDTO extends ProductDTO {
         this.cableLength = request.getCableLength();
         this.dimension = request.getDimension();
     }
+
+    @Override
+    public String toString() {
+        return "SpeakerDTO{" +
+                "frequency=" + frequency +
+                ", powerSourceType=" + powerSourceType +
+                ", cableLength=" + cableLength +
+                ", dimension='" + dimension + '\'' +
+                '}';
+    }
 }

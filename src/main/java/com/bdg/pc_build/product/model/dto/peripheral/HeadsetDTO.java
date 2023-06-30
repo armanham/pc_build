@@ -30,4 +30,13 @@ public class HeadsetDTO extends ProductDTO {
         this.connectivityType = ConnectivityType.valueOf(request.getConnectivityType().trim().toUpperCase());
         this.cableLength = request.getCableLength();
     }
+
+    @Override
+    public String toString() {
+        return "HeadsetDTO{" +
+                "frequency=" + frequency +
+                ", connectivityType=" + connectivityType +
+                ", cableLength=" + cableLength +
+                '}';
+    }
 }

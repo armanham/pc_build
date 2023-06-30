@@ -26,4 +26,13 @@ public class CPUCoolerDTO extends ProductDTO {
         this.socketType = SocketType.valueOf(request.getSocketType().trim().toUpperCase());
         this.tdp = request.getTdp();
     }
+
+    @Override
+    public String toString() {
+        return "CPUCoolerDTO{" +
+                "fanRpm=" + fanRpm +
+                ", socketType=" + socketType +
+                ", tdp=" + tdp +
+                '}';
+    }
 }

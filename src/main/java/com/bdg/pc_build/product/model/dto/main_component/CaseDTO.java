@@ -29,4 +29,14 @@ public class CaseDTO extends ProductDTO {
         this.preInstalledFans = request.getPreInstalledFans();
         this.towerType = TowerType.valueOf(request.getTowerType().trim().toUpperCase());
     }
+
+    @Override
+    public String toString() {
+        return "CaseDTO{" +
+                "maxCpuCoolerHeight=" + maxCpuCoolerHeight +
+                ", maxGpuLength=" + maxGpuLength +
+                ", preInstalledFans=" + preInstalledFans +
+                ", towerType=" + towerType +
+                '}';
+    }
 }

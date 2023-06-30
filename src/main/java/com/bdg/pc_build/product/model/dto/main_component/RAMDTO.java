@@ -33,4 +33,14 @@ public class RAMDTO extends ProductDTO {
         this.gbOfRam = request.getGbOfRam();
         this.tdp = request.getTdp();
     }
+
+    @Override
+    public String toString() {
+        return "RAMDTO{" +
+                "ddrType=" + ddrType +
+                ", countOfRam=" + countOfRam +
+                ", gbOfRam=" + gbOfRam +
+                ", tdp=" + tdp +
+                '}';
+    }
 }

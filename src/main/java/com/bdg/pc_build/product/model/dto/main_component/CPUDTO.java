@@ -43,4 +43,16 @@ public class CPUDTO extends ProductDTO {
         this.integratedGraphics = request.getIntegratedGraphics().trim();
         this.socketType = SocketType.valueOf(request.getSocketType().trim().toUpperCase());
     }
+
+    @Override
+    public String toString() {
+        return "CPUDTO{" +
+                "coreCount=" + coreCount +
+                ", coreClock=" + coreClock +
+                ", boostClock=" + boostClock +
+                ", tdp=" + tdp +
+                ", integratedGraphics='" + integratedGraphics + '\'' +
+                ", socketType=" + socketType +
+                '}';
+    }
 }

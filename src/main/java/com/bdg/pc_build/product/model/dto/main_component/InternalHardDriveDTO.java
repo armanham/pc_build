@@ -30,4 +30,13 @@ public class InternalHardDriveDTO extends ProductDTO {
         this.capacity = request.getCapacity();
         this.tdp = request.getTdp();
     }
+
+    @Override
+    public String toString() {
+        return "InternalHardDriveDTO{" +
+                "internalHardDriveInterfaceType=" + internalHardDriveInterfaceType +
+                ", capacity=" + capacity +
+                ", tdp=" + tdp +
+                '}';
+    }
 }

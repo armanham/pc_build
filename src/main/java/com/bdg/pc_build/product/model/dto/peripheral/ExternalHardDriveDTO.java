@@ -26,4 +26,12 @@ public class ExternalHardDriveDTO extends ProductDTO {
         this.capacity = request.getCapacity();
         this.tdp = request.getTdp();
     }
+
+    @Override
+    public String toString() {
+        return "ExternalHardDriveDTO{" +
+                "capacity=" + capacity +
+                ", tdp=" + tdp +
+                '}';
+    }
 }

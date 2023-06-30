@@ -29,4 +29,14 @@ public class KeyboardDTO extends ProductDTO {
         this.dimension = request.getDimension();
         this.weight = request.getWeight();
     }
+
+    @Override
+    public String toString() {
+        return "KeyboardDTO{" +
+                "connectivityType=" + connectivityType +
+                ", cableLength=" + cableLength +
+                ", dimension='" + dimension + '\'' +
+                ", weight=" + weight +
+                '}';
+    }
 }

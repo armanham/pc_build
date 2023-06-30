@@ -29,4 +29,14 @@ public class MouseDTO extends ProductDTO {
         this.cableLength = request.getCableLength();
         this.weight = request.getWeight();
     }
+
+    @Override
+    public String toString() {
+        return "MouseDTO{" +
+                "connectivityType=" + connectivityType +
+                ", maxResolution=" + maxResolution +
+                ", cableLength=" + cableLength +
+                ", weight=" + weight +
+                '}';
+    }
 }
