@@ -58,7 +58,7 @@ public class CaseFilterDTO {
             this.towerTypes = request.towerTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> TowerType.toListOfStrings().contains(s))
+                    .filter(s -> TowerType.toSetOfStrings().contains(s))
                     .map(TowerType::valueOf)
                     .collect(Collectors.toSet());
         } else {
