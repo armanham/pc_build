@@ -78,7 +78,7 @@ public class CPUFilterDTO {
             this.socketTypes = request.socketTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> SocketType.toListOfStrings().contains(s))
+                    .filter(s -> SocketType.toSetOfStrings().contains(s))
                     .map(SocketType::valueOf)
                     .collect(Collectors.toSet());
         } else {

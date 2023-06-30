@@ -58,7 +58,7 @@ public class RAMFilterDTO {
             this.ddrTypes = request.ddrTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> DDRType.toListOfStrings().contains(s))
+                    .filter(s -> DDRType.toSetOfStrings().contains(s))
                     .map(DDRType::valueOf)
                     .collect(Collectors.toSet());
         } else {

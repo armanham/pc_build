@@ -61,7 +61,7 @@ public class KeyboardFilterDTO {
             this.connectivityTypes = request.connectivityTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> ConnectivityType.toListOfStrings().contains(s))
+                    .filter(s -> ConnectivityType.toSetOfStrings().contains(s))
                     .map(ConnectivityType::valueOf)
                     .collect(Collectors.toSet());
         } else {

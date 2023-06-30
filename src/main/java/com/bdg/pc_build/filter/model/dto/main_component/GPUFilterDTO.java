@@ -77,7 +77,7 @@ public class GPUFilterDTO {
             this.gpuInterfaceTypes = request.gpuInterfaceTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> GPUInterfaceType.toListOfStrings().contains(s))
+                    .filter(s -> GPUInterfaceType.toSetOfStrings().contains(s))
                     .map(GPUInterfaceType::valueOf)
                     .collect(Collectors.toSet());
         } else {

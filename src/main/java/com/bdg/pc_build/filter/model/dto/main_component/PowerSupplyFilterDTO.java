@@ -51,7 +51,7 @@ public class PowerSupplyFilterDTO {
             this.modularTypes = request.modularTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> ModularType.toListOfStrings().contains(s))
+                    .filter(s -> ModularType.toSetOfStrings().contains(s))
                     .map(ModularType::valueOf)
                     .collect(Collectors.toSet());
         } else {
@@ -62,7 +62,7 @@ public class PowerSupplyFilterDTO {
             this.efficiencyRatings = request.efficiencyRatings()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> EfficiencyRating.toListOfStrings().contains(s))
+                    .filter(s -> EfficiencyRating.toSetOfStrings().contains(s))
                     .map(EfficiencyRating::valueOf)
                     .collect(Collectors.toSet());
         } else {

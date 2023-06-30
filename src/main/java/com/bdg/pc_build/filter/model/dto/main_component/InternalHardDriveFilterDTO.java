@@ -49,7 +49,7 @@ public class InternalHardDriveFilterDTO {
             this.internalHardDriveInterfaceTypes = request.internalHardDriveInterfaceTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> InternalHardDriveInterfaceType.toListOfStrings().contains(s))
+                    .filter(s -> InternalHardDriveInterfaceType.toSetOfStrings().contains(s))
                     .map(InternalHardDriveInterfaceType::valueOf)
                     .collect(Collectors.toSet());
         } else {

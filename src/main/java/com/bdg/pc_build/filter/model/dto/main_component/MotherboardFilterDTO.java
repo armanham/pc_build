@@ -77,7 +77,7 @@ public class MotherboardFilterDTO {
             this.ddrTypes = request.ddrTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> DDRType.toListOfStrings().contains(s))
+                    .filter(s -> DDRType.toSetOfStrings().contains(s))
                     .map(DDRType::valueOf)
                     .collect(Collectors.toSet());
         } else {
@@ -88,7 +88,7 @@ public class MotherboardFilterDTO {
             this.gpuInterfaceTypes = request.gpuInterfaceTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> GPUInterfaceType.toListOfStrings().contains(s))
+                    .filter(s -> GPUInterfaceType.toSetOfStrings().contains(s))
                     .map(GPUInterfaceType::valueOf)
                     .collect(Collectors.toSet());
         } else {
@@ -99,7 +99,7 @@ public class MotherboardFilterDTO {
             this.socketTypes = request.socketTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> SocketType.toListOfStrings().contains(s))
+                    .filter(s -> SocketType.toSetOfStrings().contains(s))
                     .map(SocketType::valueOf)
                     .collect(Collectors.toSet());
         } else {
@@ -110,7 +110,7 @@ public class MotherboardFilterDTO {
             this.atxTypes = request.atxTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> ATXType.toListOfStrings().contains(s))
+                    .filter(s -> ATXType.toSetOfStrings().contains(s))
                     .map(ATXType::valueOf)
                     .collect(Collectors.toSet());
         } else {

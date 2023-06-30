@@ -49,7 +49,7 @@ public class MonitorFilterDTO {
             this.screenTypes = request.screenTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> MonitorScreenType.toListOfStrings().contains(s))
+                    .filter(s -> MonitorScreenType.toSetOfStrings().contains(s))
                     .map(MonitorScreenType::valueOf)
                     .collect(Collectors.toSet());
         } else {

@@ -61,7 +61,7 @@ public class SpeakerFilterDTO {
             this.powerSourceTypes = request.powerSourceTypes()
                     .stream()
                     .map(s -> s.toUpperCase().trim())
-                    .filter(s -> PowerSourceType.toListOfStrings().contains(s))
+                    .filter(s -> PowerSourceType.toSetOfStrings().contains(s))
                     .map(PowerSourceType::valueOf)
                     .collect(Collectors.toSet());
         } else {
