@@ -76,10 +76,10 @@ public class CartServiceImpl implements CartService {
             } else if (currentProduct.getCount() < entry.getValue()) {
                 throw new NotEnoughInStockException(currentProduct.getClass(), currentProduct.getName(), currentProduct.getCount());
             } else {
-                productService.reduceCountById(currentProduct.getId(), entry.getValue());
+//                productService.reduceCountById(currentProduct.getId(), entry.getValue()); //todo remove
             }
         }
-        orderService.save(cartItems.keySet(), getTotal(), user, isFromBuilder);
+        orderService.saveOrder(cartItems.keySet(), getTotal(), user, isFromBuilder);
         cartItems.clear();
     }
 }

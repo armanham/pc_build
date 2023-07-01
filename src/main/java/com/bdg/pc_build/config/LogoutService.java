@@ -1,6 +1,6 @@
 package com.bdg.pc_build.config;
 
-import com.bdg.pc_build.token.TokenDAO;
+import com.bdg.pc_build.token.repository.TokenDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

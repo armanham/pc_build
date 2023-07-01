@@ -1,5 +1,6 @@
-package com.bdg.pc_build.token;
+package com.bdg.pc_build.token.model.entity;
 
+import com.bdg.pc_build.token.enumerations.TokenType;
 import com.bdg.pc_build.user.model.entity.User;
 import jakarta.persistence.*;
 import lombok.*;

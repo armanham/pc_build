@@ -9,7 +9,7 @@ import com.bdg.pc_build.exception.InvalidAuthHeaderException;
 import com.bdg.pc_build.exception.InvalidTokenException;
 import com.bdg.pc_build.exception.UserNotFoundException;
 import com.bdg.pc_build.order.model.dto.OrderDTO;
-import com.bdg.pc_build.token.Token;
+import com.bdg.pc_build.token.model.entity.Token;
 import com.bdg.pc_build.user.enumerations.Role;
 import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.entity.User;

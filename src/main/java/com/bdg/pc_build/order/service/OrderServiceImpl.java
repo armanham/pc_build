@@ -2,10 +2,13 @@ package com.bdg.pc_build.order.service;
 
 import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
+import com.bdg.pc_build.order.enumerations.OrderStatus;
 import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.order.repository.OrderDAO;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.product.model.entity.main_component.*;
+import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.product.repository.main_component.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
@@ -13,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 import static com.bdg.pc_build.util.InitialAndFinalIdValues.*;
@@ -40,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
     private final SpeakerDAO speakerDAO;
 
     @Override
-    public OrderDTO save(final Set<ProductDTO> products, final BigDecimal totalPrice, final User user, final Boolean isFromBuilder) {
+    public OrderDTO saveOrder(final Set<ProductDTO> products, final BigDecimal totalPrice, final User user, final Boolean isFromBuilder) {
         Order order = new Order();
         order.setTotalPrice(totalPrice);
         order.setIsFromBuilder(isFromBuilder);
@@ -81,5 +85,151 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         return new OrderDTO(orderDAO.save(order));
+    }
+
+    @Override
+    public List<OrderDTO> getAllOrders() {
+        return orderDAO.findAll()
+                .stream()
+                .map(OrderDTO::new)
+                .toList();
+    }
+
+    @Override
+    public List<OrderDTO> getAllOrdersByStatus(final OrderStatus status) {
+        return orderDAO.findAllByStatus(status)
+                .stream()
+                .map(OrderDTO::new)
+                .toList();
+    }
+
+    @Override
+    public void markOrderAsInProcessById(final Long id) {
+        Order order = orderDAO.findById(id).orElseThrow(() -> new IllegalArgumentException("Order not found: " + id));
+        if (!order.getStatus().equals(OrderStatus.NEW)) {
+            throw new IllegalStateException("Order status cant be changed"); //todo
+        }
+
+        for (aCase orderCase : order.getCases()) {
+            orderCase.setCount(orderCase.getCount() - 1);
+        }
+        for (Cooler orderCooler : order.getCoolers()) {
+            orderCooler.setCount(orderCooler.getCount() - 1);
+        }
+        for (CPU orderCpu : order.getCpus()) {
+            orderCpu.setCount(orderCpu.getCount() - 1);
+        }
+        for (CPUCooler orderCpuCooler : order.getCpuCoolers()) {
+            orderCpuCooler.setCount(orderCpuCooler.getCount() - 1);
+        }
+        for (GPU orderGpu : order.getGpus()) {
+            orderGpu.setCount(orderGpu.getCount() - 1);
+        }
+        for (InternalHardDrive orderInternalHardDrive : order.getInternalHardDrives()) {
+            orderInternalHardDrive.setCount(orderInternalHardDrive.getCount() - 1);
+        }
+        for (Motherboard orderMotherboard : order.getMotherboards()) {
+            orderMotherboard.setCount(orderMotherboard.getCount() - 1);
+        }
+        for (PowerSupply orderPowerSupply : order.getPowerSupplies()) {
+            orderPowerSupply.setCount(orderPowerSupply.getCount() - 1);
+        }
+        for (RAM orderRam : order.getRams()) {
+            orderRam.setCount(orderRam.getCount() - 1);
+        }
+        for (ExternalHardDrive orderExternalHardDrive : order.getExternalHardDrives()) {
+            orderExternalHardDrive.setCount(orderExternalHardDrive.getCount() - 1);
+        }
+        for (Headset orderHeadset : order.getHeadsets()) {
+            orderHeadset.setCount(orderHeadset.getCount() - 1);
+        }
+        for (Keyboard orderKeyboard : order.getKeyboards()) {
+            orderKeyboard.setCount(orderKeyboard.getCount() - 1);
+        }
+        for (Monitor orderMonitor : order.getMonitors()) {
+            orderMonitor.setCount(orderMonitor.getCount() - 1);
+        }
+        for (Mouse orderMouse : order.getMice()) {
+            orderMouse.setCount(orderMouse.getCount() - 1);
+        }
+        for (Speaker orderSpeaker : order.getSpeakers()) {
+            orderSpeaker.setCount(orderSpeaker.getCount() - 1);
+        }
+        order.setStatus(OrderStatus.IN_PROCESS);
+        orderDAO.save(order);
+    }
+
+    @Override
+    public void markOrderAsCompletedById(final Long id) {
+        Order order = orderDAO.findById(id).orElseThrow(() -> new IllegalArgumentException("Order not found: " + id));
+        if (!order.getStatus().equals(OrderStatus.IN_PROCESS)) {
+            throw new IllegalStateException("Order status cant be changed"); //todo
+        }
+        order.setStatus(OrderStatus.COMPLETED);
+        orderDAO.save(order);
+    }
+
+    @Override
+    public void markOrderAsCanceledById(final Long id) {
+        Order order = orderDAO.findById(id).orElseThrow(() -> new IllegalArgumentException("Order not found: " + id));
+        if (order.getStatus().equals(OrderStatus.COMPLETED)) {
+            throw new IllegalArgumentException(); //todo
+        }
+        if (order.getStatus().equals(OrderStatus.CANCELED)) {
+            throw new IllegalStateException(); //todo
+        }
+
+        if (order.getStatus().equals(OrderStatus.NEW)) {
+            order.setStatus(OrderStatus.CANCELED);
+            orderDAO.save(order);
+        }
+
+        for (aCase orderCase : order.getCases()) {
+            orderCase.setCount(orderCase.getCount() + 1);
+        }
+        for (Cooler orderCooler : order.getCoolers()) {
+            orderCooler.setCount(orderCooler.getCount() + 1);
+        }
+        for (CPU orderCpu : order.getCpus()) {
+            orderCpu.setCount(orderCpu.getCount() + 1);
+        }
+        for (CPUCooler orderCpuCooler : order.getCpuCoolers()) {
+            orderCpuCooler.setCount(orderCpuCooler.getCount() + 1);
+        }
+        for (GPU orderGpu : order.getGpus()) {
+            orderGpu.setCount(orderGpu.getCount() + 1);
+        }
+        for (InternalHardDrive orderInternalHardDrive : order.getInternalHardDrives()) {
+            orderInternalHardDrive.setCount(orderInternalHardDrive.getCount() + 1);
+        }
+        for (Motherboard orderMotherboard : order.getMotherboards()) {
+            orderMotherboard.setCount(orderMotherboard.getCount() + 1);
+        }
+        for (PowerSupply orderPowerSupply : order.getPowerSupplies()) {
+            orderPowerSupply.setCount(orderPowerSupply.getCount() + 1);
+        }
+        for (RAM orderRam : order.getRams()) {
+            orderRam.setCount(orderRam.getCount() + 1);
+        }
+        for (ExternalHardDrive orderExternalHardDrive : order.getExternalHardDrives()) {
+            orderExternalHardDrive.setCount(orderExternalHardDrive.getCount() + 1);
+        }
+        for (Headset orderHeadset : order.getHeadsets()) {
+            orderHeadset.setCount(orderHeadset.getCount() + 1);
+        }
+        for (Keyboard orderKeyboard : order.getKeyboards()) {
+            orderKeyboard.setCount(orderKeyboard.getCount() + 1);
+        }
+        for (Monitor orderMonitor : order.getMonitors()) {
+            orderMonitor.setCount(orderMonitor.getCount() + 1);
+        }
+        for (Mouse orderMouse : order.getMice()) {
+            orderMouse.setCount(orderMouse.getCount() + 1);
+        }
+        for (Speaker orderSpeaker : order.getSpeakers()) {
+            orderSpeaker.setCount(orderSpeaker.getCount() + 1);
+        }
+        order.setStatus(OrderStatus.CANCELED);
+        orderDAO.save(order);
     }
 }

@@ -76,7 +76,7 @@ public class UserController {
         return ResponseEntity.ok("Role updated successfully");
     }
 
-    @GetMapping("/built_computers")
+    @GetMapping("/built-computers")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<List<ComputerDTO>> getBuiltAndOrderedComputers(
             HttpServletRequest request
@@ -96,7 +96,7 @@ public class UserController {
         );
     }
 
-    @GetMapping("/desire-logs")
+    @GetMapping("/desire-log")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<List<DesireLogDTO>> getDesireLogs(
             HttpServletRequest request

@@ -1,5 +1,6 @@
-package com.bdg.pc_build.token;
+package com.bdg.pc_build.token.repository;
 
+import com.bdg.pc_build.token.model.entity.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

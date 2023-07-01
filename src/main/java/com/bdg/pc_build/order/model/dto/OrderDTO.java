@@ -32,6 +32,7 @@ public class OrderDTO {
     private final List<MonitorDTO> monitors;
     private final List<MouseDTO> mice;
     private final List<SpeakerDTO> speakers;
+
     private final UserDTO user;
     private final BigDecimal totalPrice;
     private final Boolean isFromBuilder;
