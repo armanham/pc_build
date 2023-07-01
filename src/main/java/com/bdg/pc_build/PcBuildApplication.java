@@ -1,6 +1,6 @@
 package com.bdg.pc_build;
 
-import com.bdg.pc_build.authentication.AuthenticationService;
+import com.bdg.pc_build.authentication.service.AuthenticationService;
 import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.token.TokenDAO;
 import com.bdg.pc_build.user.enumerations.Role;

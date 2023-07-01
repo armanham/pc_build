@@ -12,6 +12,8 @@ public interface UserService {
 
     User findUserById(Long id);
 
+    public User getUserByAuthHeader(final String authHeader);
+
     void updateFirstNameByAuthHeader(String authHeader, String newFirstName);
 
     void updateLastNameByAuthHeader(String authHeader, String newLastName);

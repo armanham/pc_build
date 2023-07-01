@@ -5,17 +5,13 @@ import com.bdg.pc_build.cart.service.CartService;
 import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.computer_builder.model.request.ComputerCreationRequest;
 import com.bdg.pc_build.computer_builder.repository.ComputerDAO;
-import com.bdg.pc_build.config.JwtService;
-import com.bdg.pc_build.exception.InvalidAuthHeaderException;
-import com.bdg.pc_build.exception.InvalidTokenException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
-import com.bdg.pc_build.exception.UserNotFoundException;
 import com.bdg.pc_build.product.model.entity.main_component.Cooler;
 import com.bdg.pc_build.product.model.entity.main_component.InternalHardDrive;
 import com.bdg.pc_build.product.model.entity.main_component.RAM;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
-import com.bdg.pc_build.user.repository.UserDAO;
+import com.bdg.pc_build.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +22,9 @@ import java.util.List;
 public class ComputerServiceImpl implements ComputerService {
 
     private final ComputerDAO computerDAO;
-    private final UserDAO userDAO;
 
     private final CartService cartService;
-    private final JwtService jwtService;
+    private final UserService userService;
 
     private final ComputerEntityInitializerBasedOnRequest entityInitializerBasedOnRequest;
     private final CompatibilityValidator compatibilityValidator;
@@ -41,7 +36,7 @@ public class ComputerServiceImpl implements ComputerService {
 
     @Override
     public Computer save(final ComputerCreationRequest computerCreationRequest, final String authHeader) {
-        User user = getUserByAuthHeader(authHeader);
+        User user = userService.getUserByAuthHeader(authHeader);
         Computer computer = entityInitializerBasedOnRequest.initEntityFromRequest(computerCreationRequest);
         checkComputer(computer);
         if (computer != null) {
@@ -114,20 +109,5 @@ public class ComputerServiceImpl implements ComputerService {
     @Override
     public List<Computer> getAllComputersByIsOrdered(final Boolean isOrdered) {
         return computerDAO.findAllByIsOrdered(isOrdered);
-    }
-
-    private User getUserByAuthHeader(final String authHeader) {
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new InvalidAuthHeaderException();
-        }
-        final String token = authHeader.substring(7);
-        final String email = jwtService.extractUsername(token);
-
-        User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
-
-        if (!jwtService.isTokenValid(token, user)) {
-            throw new InvalidTokenException();
-        }
-        return user;
     }
 }

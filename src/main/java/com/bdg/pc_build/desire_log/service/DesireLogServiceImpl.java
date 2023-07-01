@@ -8,6 +8,7 @@ import com.bdg.pc_build.exception.*;
 import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.repository.UserDAO;
+import com.bdg.pc_build.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,13 +23,12 @@ import java.util.stream.Collectors;
 @Transactional
 public class DesireLogServiceImpl implements DesireLogService {
 
-    private final JwtService jwtService;
-    private final UserDAO userDAO;
     private final DesireLogDAO desireLogDAO;
+    private final UserService userService;
 
     @Override
     public DesireLogDTO save(final String authHeader, final DesireLogDTO dto) {
-        User user = getUserByAuthHeader(authHeader);
+        User user = userService.getUserByAuthHeader(authHeader);
         Optional<DesireLog> optionalDesireLog =
                 desireLogDAO
                         .findByNameAndComponentTypeAndDescriptionAndChecked(dto.getName(), dto.getComponentType(), dto.getDescription(), false);
@@ -102,21 +102,5 @@ public class DesireLogServiceImpl implements DesireLogService {
                 .stream()
                 .map(UserDTO::new)
                 .collect(Collectors.toSet());
-    }
-
-
-    private User getUserByAuthHeader(final String authHeader) {
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new InvalidAuthHeaderException();
-        }
-        final String token = authHeader.substring(7);
-        final String email = jwtService.extractUsername(token);
-
-        User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
-
-        if (!jwtService.isTokenValid(token, user)) {
-            throw new InvalidTokenException();
-        }
-        return user;
     }
 }

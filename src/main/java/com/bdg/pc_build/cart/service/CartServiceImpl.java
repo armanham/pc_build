@@ -1,13 +1,13 @@
 package com.bdg.pc_build.cart.service;
 
 import com.bdg.pc_build.cart.model.CartItem;
-import com.bdg.pc_build.config.JwtService;
-import com.bdg.pc_build.exception.*;
+import com.bdg.pc_build.exception.NotEnoughInStockException;
+import com.bdg.pc_build.exception.OutOfStockException;
 import com.bdg.pc_build.order.service.OrderService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.service.ProductService;
 import com.bdg.pc_build.user.model.entity.User;
-import com.bdg.pc_build.user.repository.UserDAO;
+import com.bdg.pc_build.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +25,8 @@ public class CartServiceImpl implements CartService {
 
     private final ProductService productService;
     private final OrderService orderService;
-    private final JwtService jwtService;
-    private final UserDAO userDAO;
+    private final UserService userService;
+
     private final Map<ProductDTO, Integer> cartItems = new HashMap<>();
 
 
@@ -68,7 +68,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void checkout(final String authHeader, final Boolean isFromBuilder) {
-        User user = getUserByAuthHeader(authHeader);
+        User user = userService.getUserByAuthHeader(authHeader);
         for (Map.Entry<ProductDTO, Integer> entry : cartItems.entrySet()) {
             ProductDTO currentProduct = entry.getKey();
             if (currentProduct.getCount() == 0) {
@@ -81,21 +81,5 @@ public class CartServiceImpl implements CartService {
         }
         orderService.save(cartItems.keySet(), getTotal(), user, isFromBuilder);
         cartItems.clear();
-    }
-
-
-    private User getUserByAuthHeader(final String authHeader) {
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new InvalidAuthHeaderException();
-        }
-        final String token = authHeader.substring(7);
-        final String email = jwtService.extractUsername(token);
-
-        User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
-
-        if (!jwtService.isTokenValid(token, user)) {
-            throw new InvalidTokenException();
-        }
-        return user;
     }
 }

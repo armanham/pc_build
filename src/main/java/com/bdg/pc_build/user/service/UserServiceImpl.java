@@ -1,6 +1,6 @@
 package com.bdg.pc_build.user.service;
 
-import com.bdg.pc_build.authentication.AuthenticationService;
+import com.bdg.pc_build.authentication.service.AuthenticationService;
 import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
 import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
@@ -139,7 +139,7 @@ public class UserServiceImpl implements UserService {
                 .toList();
     }
 
-    private User getUserByAuthHeader(final String authHeader) {
+    public User getUserByAuthHeader(final String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new InvalidAuthHeaderException();
         }
