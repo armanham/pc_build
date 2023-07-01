@@ -30,7 +30,7 @@ public class ComputerServiceImpl implements ComputerService {
     private final CompatibilityValidator compatibilityValidator;
 
     @Override
-    public void checkComputer(final Computer computer) {
+    public void checkCompatibilityBetweenComponentsOfComputer(final Computer computer) {
         compatibilityValidator.validateComputer(computer);
     }
 
@@ -38,12 +38,12 @@ public class ComputerServiceImpl implements ComputerService {
     public Computer save(final ComputerCreationRequest computerCreationRequest, final String authHeader) {
         User user = userService.getUserByAuthHeader(authHeader);
         Computer computer = entityInitializerBasedOnRequest.initEntityFromRequest(computerCreationRequest);
-        checkComputer(computer);
+        checkCompatibilityBetweenComponentsOfComputer(computer);
         if (computer != null) {
             computer.setUser(user);
             return computerDAO.save(computer);
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(); //todo
     }
 
     @Override
@@ -104,6 +104,12 @@ public class ComputerServiceImpl implements ComputerService {
         cartService.checkout(authHeader, true);
         computer.setIsOrdered(true);
         computerDAO.save(computer);
+    }
+
+    @Override
+    public void checkSaveCheckout(final ComputerCreationRequest computerCreationRequest, final String authHeader) {
+        Computer savedComputer = save(computerCreationRequest, authHeader);
+        checkout(savedComputer.getId(), authHeader);
     }
 
     @Override

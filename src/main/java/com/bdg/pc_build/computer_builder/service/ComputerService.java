@@ -7,13 +7,15 @@ import java.util.List;
 
 public interface ComputerService {
 
-    void checkComputer(Computer computer);
+    void checkCompatibilityBetweenComponentsOfComputer(Computer computer);
 
     Computer save(ComputerCreationRequest computerCreationRequest, String authHeader);
 
     Computer getComputerById(Long id);
 
     void checkout(Long id, String authHeader);
+
+    void checkSaveCheckout(ComputerCreationRequest computerCreationRequest, String authHeader);
 
     List<Computer> getAllComputersByIsOrdered(Boolean isOrdered);
 

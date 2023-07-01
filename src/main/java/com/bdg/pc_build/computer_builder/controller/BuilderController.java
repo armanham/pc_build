@@ -27,7 +27,7 @@ public class BuilderController {
     public ResponseEntity<?> check(
             @Valid @RequestBody ComputerCreationRequest request
     ) {
-        computerService.checkComputer(entityInitializerBasedOnRequest.initEntityFromRequest(request));
+        computerService.checkCompatibilityBetweenComponentsOfComputer(entityInitializerBasedOnRequest.initEntityFromRequest(request));
         return ResponseEntity.ok().body("Compatibility validation passed!");
     }
 
@@ -38,7 +38,8 @@ public class BuilderController {
             @Valid @RequestBody ComputerCreationRequest computerCreationRequest,
             HttpServletRequest httpServletRequest
     ) {
-        return ResponseEntity.ok().body(computerService.save(computerCreationRequest, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION)));
+        computerService.save(computerCreationRequest, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
+        return ResponseEntity.ok().body("Computer is saved successfully!");
     }
 
     @PostMapping("/checkout/{id}")
@@ -49,7 +50,18 @@ public class BuilderController {
             HttpServletRequest httpServletRequest
     ) {
         computerService.checkout(id, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
-        return ResponseEntity.ok().body("Computer is bought successfully!");
+        return ResponseEntity.ok().body("Computer is ordered successfully!");
+    }
+
+    @PostMapping("/buy")
+    @SecurityRequirement(name = "bearerAuth")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<?> buy(
+            @Valid @RequestBody ComputerCreationRequest computerCreationRequest,
+            HttpServletRequest httpServletRequest
+    ) {
+        computerService.checkSaveCheckout(computerCreationRequest, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
+        return ResponseEntity.ok().body("Compatibility validation passed! Computer is saved and ordered successfully!");
     }
 
     @GetMapping("/built-computers")

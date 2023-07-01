@@ -32,12 +32,12 @@ public class Computer {
 
     @ManyToMany
     @JoinTable(
-            name = "computer_case", schema = "computer",
+            name = "computer_cooler", schema = "computer",
             joinColumns = @JoinColumn(
-                    name = "computer_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_computer_case_computer_id")
+                    name = "computer_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_computer_cooler_computer_id")
             ),
             inverseJoinColumns = @JoinColumn(
-                    name = "case_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_computer_case_case_id")
+                    name = "cooler_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_computer_cooler_cooler_id")
             )
     )
     private List<Cooler> coolers = new ArrayList<>();

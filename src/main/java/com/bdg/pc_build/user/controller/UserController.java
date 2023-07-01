@@ -122,7 +122,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getOrdersByUserId(id));
     }
 
-    @GetMapping("/{id}/desire-logs")
+    @GetMapping("/{id}/desire-log")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<List<DesireLogDTO>> getDesireLogsByUserId(
             @PathVariable("id") Long id
