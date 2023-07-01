@@ -53,6 +53,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public void clearCart() {
+        cartItems.clear();
+    }
+
+    @Override
     public Map<ProductDTO, Integer> getProductsInCart() {
         return Collections.unmodifiableMap(cartItems);
     }
@@ -75,8 +80,6 @@ public class CartServiceImpl implements CartService {
                 throw new OutOfStockException(currentProduct.getClass(), currentProduct.getName());
             } else if (currentProduct.getCount() < entry.getValue()) {
                 throw new NotEnoughInStockException(currentProduct.getClass(), currentProduct.getName(), currentProduct.getCount());
-            } else {
-//                productService.reduceCountById(currentProduct.getId(), entry.getValue()); //todo remove
             }
         }
         orderService.saveOrder(cartItems.keySet(), getTotal(), user, isFromBuilder);

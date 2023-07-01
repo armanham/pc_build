@@ -46,12 +46,19 @@ public class CartController {
         return ResponseEntity.ok("Product is removed from the cart successfully");
     }
 
+    @DeleteMapping("/clear")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public ResponseEntity<?> removeCartItem() {
+        cartService.clearCart();
+        return ResponseEntity.ok("All products are removed from the cart successfully");
+    }
+
     @GetMapping("/checkout")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<?> checkout(
             HttpServletRequest request
     ) {
         cartService.checkout(request.getHeader(HttpHeaders.AUTHORIZATION), false);
-        return ResponseEntity.ok("All products are bought successfully");
+        return ResponseEntity.ok("All products are ordered successfully");
     }
 }

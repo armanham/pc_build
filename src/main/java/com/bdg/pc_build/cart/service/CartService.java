@@ -12,6 +12,8 @@ public interface CartService {
 
     void removeProduct(CartItem item);
 
+    void clearCart();
+
     Map<ProductDTO, Integer> getProductsInCart();
 
     void checkout(String authHeader, Boolean isFromBuilder);
