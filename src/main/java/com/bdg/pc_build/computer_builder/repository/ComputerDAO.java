@@ -10,4 +10,6 @@ import java.util.List;
 public interface ComputerDAO extends JpaRepository<Computer, Long> {
 
     List<Computer> findAllByIsOrdered(Boolean isOrdered);
+
+    List<Computer> findAllByIsFully(Boolean isOrdered);
 }
