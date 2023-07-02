@@ -1,0 +1,169 @@
+INSERT INTO product.case(id,name, price, purchased_price, count, max_cpu_cooler_height, max_gpu_length, pre_installed_fans, tower_type, created_at)
+VALUES
+  (1,'Cool Master Tower', 129.99, 99.99, 10, 170.5, 320.0, 3, 'FULL', date_trunc('second', now() - (random() * interval '60' || ' days'))),
+  (2,'Mid-Tower Pro', 89.99, 69.99, 5, 150.0, 300.0, 2, 'MID', date_trunc('second', now() - (random() * interval '60' || ' days'))),
+  (3,'Compact Mini', 49.99, 39.99, 3, 130.0, 250.0, 1, 'MINI', date_trunc('second', now() - (random() * interval '60' || ' days'))),
+  (4,'Gaming Beast', 199.99, 179.99, 8, 180.0, 350.0, 4, 'FULL', date_trunc('second', now() - (random() * interval '60' || ' days'))),
+  (5,'Sleek Mini', 79.99, 59.99, 2, 120.0, 200.0, 1, 'MINI', date_trunc('second', now() - (random() * interval '60' || ' days'))),
+  (6,'Power Tower', 149.99, 129.99, 6, 160.0, 300.0, 3, 'MID', date_trunc('second', now() - (random() * interval '60' || ' days'))),
+  (7,'Ultra Tower', 299.99, 279.99, 4, 200.0, 400.0, 3, 'FULL', date_trunc('second', now() - (random() * interval '60' || ' days'))),
+  (8,'Compact Mid', 99.99, 79.99, 3, 150.0, 280.0, 2, 'MID', date_trunc('second', now() - (random() * interval '60' || ' days'))),
+  (9,'Mini Power', 129.99, 109.99, 5, 140.0, 250.0, 2, 'MINI', date_trunc('second', now() - (random() * interval '60' || ' days'))),
+  (10,'High-End Tower', 399.99, 379.99, 2, 180.0, 350.0, 4, 'FULL', date_trunc('second', now() - (random() * interval '60' || ' days')));
+
+
+INSERT INTO coolers (id, cooler_name, price, purchased_price, count, tdp, created_at)
+VALUES
+  (301,'NZXT Kraken X53', 119.99, 99.99, 4, 135, TIMESTAMP '2023-06-17 11:20:00' + make_interval(secs => random() * 31536000)),
+  (302,'Cooler Master Hyper 212 Black Edition', 39.99, 29.99, 6, 150, TIMESTAMP '2023-06-17 13:45:00' + make_interval(secs => random() * 31536000)),
+  (303,'Noctua NH-U12S', 79.99, 59.99, 3, 95, TIMESTAMP '2023-06-17 16:10:00' + make_interval(secs => random() * 31536000)),
+  (304,'be quiet! Dark Rock 4', 69.99, 49.99, 2, 150, TIMESTAMP '2023-06-17 18:35:00' + make_interval(secs => random() * 31536000)),
+  (305,'Corsair iCUE H150i ELITE CAPELLIX', 179.99, 159.99, 5, 180, TIMESTAMP '2023-06-17 21:00:00' + make_interval(secs => random() * 31536000)),
+  (306,'Deepcool Castle 360EX', 139.99, 119.99, 7, 150, TIMESTAMP '2023-06-17 23:25:00' + make_interval(secs => random() * 31536000)),
+  (307,'ARCTIC Liquid Freezer II 280', 129.99, 109.99, 3, 140, TIMESTAMP '2023-06-18 01:50:00' + make_interval(secs => random() * 31536000)),
+  (308,'Cooler Master MasterAir MA620M', 89.99, 79.99, 6, 150, TIMESTAMP '2023-06-18 04:15:00' + make_interval(secs => random() * 31536000)),
+  (309,'NZXT Kraken Z73', 299.99, 279.99, 2, 160, TIMESTAMP '2023-06-18 06:40:00' + make_interval(secs => random() * 31536000)),
+  (310,'Corsair Hydro Series H60', 79.99, 59.99, 4, 120, TIMESTAMP '2023-06-18 09:05:00' + make_interval(secs => random() * 31536000));
+
+
+INSERT INTO cpu_coolers (id,cooler_name, price, purchased_price, count, fan_rpm, socket_type, tdp, created_at)
+VALUES
+  (901,'Cooler Master Hyper 212 RGB', 49.99, 39.99, 10, 1500, 'LGA1200', 150, TIMESTAMP '2023-06-16 10:30:00' + make_interval(secs => random() * 31536000)),
+  (902,'Noctua NH-D15', 89.99, 79.99, 5, 1200, 'AM4', 160, TIMESTAMP '2023-06-16 12:45:00' + make_interval(secs => random() * 31536000)),
+  (903,'Corsair H100i RGB Platinum', 149.99, 129.99, 3, 2000, 'LGA1151', 125, TIMESTAMP '2023-06-16 15:20:00' + make_interval(secs => random() * 31536000)),
+  (904,'NZXT Kraken X63', 129.99, 109.99, 8, 1800, 'AM4', 135, TIMESTAMP '2023-06-16 17:50:00' + make_interval(secs => random() * 31536000)),
+  (905,'be quiet! Dark Rock Pro 4', 79.99, 59.99, 2, 1400, 'LGA1200', 150, TIMESTAMP '2023-06-16 20:15:00' + make_interval(secs => random() * 31536000)),
+  (906,'Cooler Master MasterLiquid ML240R', 119.99, 99.99, 6, 1600, 'LGA1151', 120, TIMESTAMP '2023-06-16 22:40:00' + make_interval(secs => random() * 31536000)),
+  (907,'ARCTIC Freezer 34 eSports DUO', 49.99, 39.99, 4, 1800, 'AM4', 150, TIMESTAMP '2023-06-17 01:05:00' + make_interval(secs => random() * 31536000)),
+  (908,'Deepcool Gammaxx 400', 39.99, 29.99, 3, 2000, 'LGA1200', 95, TIMESTAMP '2023-06-17 03:30:00' + make_interval(secs => random() * 31536000)),
+  (909,'Thermaltake Floe Riing RGB 360', 179.99, 159.99, 5, 1500, 'LGA1151', 180, TIMESTAMP '2023-06-17 06:10:00' + make_interval(secs => random() * 31536000)),
+  (910,'CRYORIG H7 Tower Cooler', 49.99, 39.99, 2, 1200, 'AM4', 100, TIMESTAMP '2023-06-17 08:45:00' + make_interval(secs => random() * 31536000));
+
+INSERT INTO cpus (id, cpu_name, price, purchased_price, count, core_count, core_clock, boost_clock, tdp, integrated_graphics, socket_type, created_at)
+VALUES
+    (601, 'AMD Ryzen 5 5600X', 299.99, 279.99, 10, 6, 3.7, 4.6, 65, 'None', 'AM4', NOW() - INTERVAL '30 days' * RANDOM()),
+    (602, 'Intel Core i7-11700K', 419.99, 399.99, 5, 8, 3.6, 5.0, 125, 'None', 'LGA1200', NOW() - INTERVAL '30 days' * RANDOM()),
+    (603, 'AMD Ryzen 9 5950X', 749.99, 729.99, 3, 16, 3.4, 4.9, 105, 'None', 'AM4', NOW() - INTERVAL '30 days' * RANDOM()),
+    (604, 'Intel Core i9-11900KF', 539.99, 519.99, 8, 8, 3.5, 5.3, 125, 'None', 'LGA1200', NOW() - INTERVAL '30 days' * RANDOM()),
+    (605, 'AMD Ryzen 7 5800X', 449.99, 429.99, 2, 8, 3.8, 4.7, 105, 'None', 'AM4', NOW() - INTERVAL '30 days' * RANDOM()),
+    (606, 'Intel Core i5-11600K', 269.99, 249.99, 6, 6, 3.9, 4.9, 125, 'None', 'LGA1200', NOW() - INTERVAL '30 days' * RANDOM()),
+    (607, 'AMD Ryzen 5 3600', 199.99, 179.99, 4, 6, 3.6, 4.2, 65, 'None', 'AM4', NOW() - INTERVAL '30 days' * RANDOM()),
+    (608, 'Intel Core i3-10100', 139.99, 119.99, 3, 4, 3.6, 4.3, 65, 'Intel UHD Graphics 630', 'LGA1200', NOW() - INTERVAL '30 days' * RANDOM()),
+    (609, 'AMD Ryzen 3 3300X', 129.99, 109.99, 5, 4, 3.8, 4.3, 65, 'None', 'AM4', NOW() - INTERVAL '30 days' * RANDOM()),
+    (610, 'Intel Core i9-10900K', 549.99, 529.99, 2, 10, 3.7, 5.3, 125, 'None', 'LGA1200', NOW() - INTERVAL '30 days' * RANDOM());
+
+
+INSERT INTO gpus (id,gpu_name, price, purchased_price, count, gpu_interface_type, memory, core_clock, boost_clock, length, tdp, created_at)
+VALUES
+    (1201,'NVIDIA GeForce RTX 3070', 699.99, 649.99, 10, 'PCIE_4_0_X16', 8, 1500, 1725, 11.2, 220, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1202,'AMD Radeon RX 6800 XT', 999.99, 949.99, 5, 'PCIE_4_0_X16', 16, 1825, 2250, 13.3, 300, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1203,'NVIDIA GeForce RTX 3080', 999.99, 949.99, 3, ' PCIE_3_0_X16', 10, 1440, 1710, 11.2, 320, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1204,'AMD Radeon RX 6700 XT', 479.99, 449.99, 8, ' PCIE_3_0_X16', 12, 2424, 2581, 10.6, 230, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1205,'NVIDIA GeForce RTX 3060', 329.99, 299.99, 2, ' PCIE_3_0_X16', 12, 1320, 1777, 8.7, 170, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1206,'AMD Radeon RX 6600 XT', 379.99, 349.99, 6, 'PCIE_4_0_X16', 8, 2359, 2589, 10.4, 160, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1207,'NVIDIA GeForce RTX 3090', 1499.99, 1449.99, 4, ' PCIE_3_0_X16', 24, 1395, 1695, 12.3, 350, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1208,'AMD Radeon RX 6900 XT', 1499.99, 1449.99, 3, 'PCIE_4_0_X16', 16, 2015, 2250, 12.5, 300, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1209,'NVIDIA GeForce RTX 3050 Ti', 249.99, 229.99, 5, ' PCIE_3_0_X16', 4, 1485, 1695, 8.8, 120, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1210,'AMD Radeon RX 6700', 399.99, 369.99, 2, 'PCIE_4_0_X16', 6, 2424, 2581, 10.6, 160, NOW() - INTERVAL '30 days' * RANDOM()),
+
+INSERT INTO internal_hard_drives (id,internal_hard_drive_name, price, purchased_price, count, internal_hard_drive_interface_type, capacity, tdp, created_at)
+VALUES
+    (1501,'Samsung 970 EVO Plus',129.99,119.99,10,'SSD_M2',512,3, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1502,'Crucial MX500',89.99,79.99,5,'SSD',1024,2,NOW() - INTERVAL '30 days' * RANDOM()),
+    (1503,'Western Digital Blue',59.99,49.99,3,'SSD',256,2,NOW() - INTERVAL '30 days' * RANDOM()),
+    (1504,'Seagate Barracuda',79.99,69.99,8,'HDD',4096,3,NOW() - INTERVAL '30 days' * RANDOM()),
+    (1505,'Samsung 860 EVO',109.99,99.99,2,'SSD',2048,2,NOW() - INTERVAL '30 days' * RANDOM()),
+    (1506,'Crucial P2',59.99,49.99,6,'SSD_M2',128,3,NOW() - INTERVAL '30 days' * RANDOM()),
+    (1507,'Western Digital Black',149.99,139.99, 4,'SSD_M2', 1024, 5,NOW() - INTERVAL '30 days' * RANDOM()),
+    (1508,'Seagate FireCuda',179.99,169.99,3,'HDD',8192,4,NOW() - INTERVAL '30 days' * RANDOM()),
+    (1509,'Samsung 970 PRO',249.99,239.99,5,'SSD_M2',2048,5,NOW() - INTERVAL '30 days' * RANDOM()),
+    (1510,'Crucial BX500',49.99,39.99,2,'SSD',512,2,NOW() - INTERVAL '30 days' * RANDOM());
+
+INSERT INTO motherboards (id,motherboard_name, price, purchased_price, count, socket_type, atx_type, memory_max, memory_slots, ddr_type, is_m2, gpu_interface_type, tdp, created_at)
+VALUES
+    (1801,'ASUS ROG Strix X570-E Gaming', 349.99, 329.99, 10, 'AM4', 'ATX', 128, 4, 'DDR4', true, 'PCIE_4_0_X16', 150, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1802,'GIGABYTE B550 AORUS Elite', 179.99, 159.99, 5, 'AM4', 'ATX', 64, 4, 'DDR4', true, 'PCIE_4_0_X16', 120, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1803,'ASRock B460M Steel Legend', 109.99, 99.99, 3, 'LGA1200', 'M_ATX', 64, 2, 'DDR4', false, 'PCIE_3_0_X16', 95, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1804,'MSI MEG Z590 ACE', 469.99, 449.99, 8, 'LGA1200', 'ATX', 256, 4, 'DDR4', true, 'PCIE_4_0_X16', 160, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1805,'ASUS ROG Crosshair VIII Hero', 379.99, 359.99, 2, 'AM4', 'ATX', 128, 4, 'DDR4', true, 'PCIE_4_0_X16', 150, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1806,'GIGABYTE X570 AORUS Master', 369.99, 349.99, 6, 'AM4', 'ATX', 256, 4, 'DDR4', true, 'PCIE_4_0_X16', 160, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1807,'ASRock X570 Phantom Gaming 4', 189.99, 169.99, 4, 'AM4', 'ATX', 128, 4, 'DDR4', true, 'PCIE_4_0_X16', 150, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1808,'MSI MAG B550 TOMAHAWK', 179.99, 159.99, 3, 'AM4', 'ATX', 128, 4, 'DDR4', true, 'PCIE_4_0_X16', 150, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1809,'ASUS TUF Gaming B560M-Plus', 129.99, 109.99, 5, 'LGA1200', 'M_ATX', 128, 4, 'DDR4', true, 'PCIE_X8', 120, NOW() - INTERVAL '30 days' * RANDOM()),
+    (1810,'GIGABYTE Z590 AORUS Ultra', 379.99, 359.99, 2, 'LGA1200', 'ATX', 256, 4, 'DDR4', true, 'PCIE_4_0_X16', 160, NOW() - INTERVAL '30 days' * RANDOM());
+
+INSERT INTO power_supplies (id,power_supply_name, price, purchased_price, count, efficiency_rating, wattage, modular_type, tdp, created_at)
+VALUES
+    (2101,'EVGA 600 W1', 49.99, 39.99, 10, 'BRONZE', 600, 'NO', 80, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2102,'Corsair CX650M', 79.99, 69.99, 5, 'BRONZE', 650, 'SEMI', 85, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2103,'Seasonic Focus GX-750', 129.99, 119.99, 3, 'GOLD', 750, 'FULL', 90, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2104,'be quiet! Straight Power 11', 149.99, 139.99, 8, 'PLATINUM', 850, 'FULL', 92, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2105,'Corsair RM1000x', 189.99, 169.99, 2, 'GOLD', 1000, 'FULL', 92, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2106,'EVGA SuperNOVA 750 G3', 129.99, 119.99, 6, 'GOLD', 750, 'FULL', 90, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2107,'Thermaltake Toughpower GF1', 199.99, 179.99, 4, 'PLATINUM', 850, 'FULL', 92, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2108,'Cooler Master MWE Gold 650 V2', 89.99, 79.99, 3, 'GOLD', 650, 'SEMI', 90, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2109,'Seasonic PRIME GX-1000', 249.99, 229.99, 5, 'PLATINUM', 1000, 'FULL', 92, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2110,'EVGA SuperNOVA 850 T2', 349.99, 329.99, 2, 'TITANIUM', 850, 'FULL', 94, NOW() - INTERVAL '30 days' * RANDOM());
+
+INSERT INTO ram_modules (id,ram_name, price, purchased_price, count, ddr_type, count_of_ram, gb_of_ram, tdp, created_at)
+VALUES
+    (2401,'Crucial Ballistix Sport', 49.99, 39.99, 10, 'DDR3', 2, 8, 5, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2402,'Kingston HyperX Fury', 59.99, 49.99, 5, 'DDR3', 2, 8, 5, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2403,'Corsair Vengeance LP', 69.99, 59.99, 3, 'DDR3', 2, 16, 5, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2404,'G.Skill Ripjaws X Series', 79.99, 69.99, 8, 'DDR3', 2, 16, 5, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2405,'Crucial Ballistix Tactical', 89.99, 79.99, 2, 'DDR3', 4, 32, 5, NOW() - INTERVAL '30 days' * RANDOM());
+    (2406,'Crucial Ballistix MAX', 129.99, 119.99, 6, 'DDR4', 4, 32, 5, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2407,'Corsair Vengeance RGB Pro', 149.99, 139.99, 4, 'DDR4', 4, 32, 5, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2408,'G.Skill Trident Z RGB', 169.99, 159.99, 3, 'DDR4', 4, 32, 5, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2409,'Kingston HyperX Predator', 199.99, 189.99, 5, 'DDR4', 4, 64, 5, NOW() - INTERVAL '30 days' * RANDOM()),
+    (2410,'Corsair Dominator Platinum RGB', 249.99, 239.99, 2, 'DDR4', 4, 64, 5, NOW() - INTERVAL '30 days' * RANDOM());
+
+
+    *******************************************************************************************************************************************************
+
+INSERT INTO headsets (id, name, price, purchased_price, count, frequency, connectivity_type, cable_length, created_at)
+    VALUES
+        (3301, 'Sony WH-1000XM4', 349.99, 329.99, 10, 20, 'WIRELESS', 1.2, TIMESTAMP '2023-06-17 10:00:00'),
+        (3302, 'SteelSeries Arctis 7', 149.99, 129.99, 5, 20, 'WIRELESS', 1.5, TIMESTAMP '2023-06-17 12:30:00'),
+        (3303, 'HyperX Cloud II', 99.99, 79.99, 8, 20, 'WIRED', 2.0, TIMESTAMP '2023-06-17 14:45:00'),
+        (3304, 'Bose QuietComfort 35 II', 299.99, 279.99, 3, 20, 'WIRELESS', 1.2, TIMESTAMP '2023-06-17 16:20:00'),
+        (3305, 'Logitech G Pro X', 129.99, 109.99, 6, 20, 'WIRED', 2.5, TIMESTAMP '2023-06-17 18:50:00'),
+        (3306, 'Razer BlackShark V2', 99.99, 89.99, 4, 20, 'WIRED', 2.0, TIMESTAMP '2023-06-17 20:15:00'),
+        (3307, 'Corsair HS70 Pro Wireless', 129.99, 119.99, 2, 20, 'WIRELESS', 1.5, TIMESTAMP '2023-06-17 22:40:00'),
+        (3308, 'Astro A50', 299.99, 279.99, 3, 20, 'WIRELESS', 1.2, TIMESTAMP '2023-06-18 01:05:00'),
+        (3309, 'Sennheiser Game One', 159.99, 139.99, 5, 20, 'WIRED', 2.0, TIMESTAMP '2023-06-18 03:30:00'),
+        (3310, 'JBL Quantum 800', 199.99, 179.99, 3, 20, 'WIRELESS', 1.5, TIMESTAMP '2023-06-18 06:00:00');
+
+INSERT INTO external_hard_drive (id, name, price, purchased_price, count, capacity, transfer_speed, created_at)
+VALUES
+    (3001, 'Samsung T5 Portable SSD', 99.99, 79.99, 8, 512, 540, '2023-06-01 09:30:00'),
+    (3002, 'WD My Passport', 79.99, 59.99, 10, 2048, 120, '2023-06-02 14:45:00'),
+    (3003, 'Seagate Backup Plus Hub', 139.99, 119.99, 5, 8192, 160, '2023-06-03 16:20:00'),
+    (3004, 'SanDisk Extreme Portable SSD', 129.99, 109.99, 6, 1024, 550, '2023-06-04 18:50:00'),
+    (3005, 'Toshiba Canvio Basics', 49.99, 39.99, 12, 1024, 120, '2023-06-05 20:15:00'),
+    (3006, 'LaCie Rugged Mini', 89.99, 69.99, 7, 2048, 130, '2023-06-06 22:40:00'),
+    (3007, 'ADATA SD700', 89.99, 79.99, 4, 1024, 440, '2023-06-07 01:05:00'),
+    (3008, 'G-Technology G-DRIVE', 199.99, 179.99, 3, 8192, 245, '2023-06-08 03:30:00'),
+    (3009, 'Seagate Expansion Desktop', 129.99, 109.99, 6, 6144, 160, '2023-06-09 06:00:00'),
+    (3010, 'Transcend StoreJet 25M3', 79.99, 69.99, 5, 2048, 120, '2023-06-10 08:25:00');
+
+
+
+INSERT INTO product.mouse (id, connectivity_type, max_resolution, cable_length, weight, created_at, name, price, purchased_price, count)
+VALUES
+    (4201, 'WIRED', 1600, 1.2, 0.08, '2023-06-01 09:30:00', 'Logitech MX Master 3', 89.99, 79.99, 8),
+    (4202, 'WIRELESS', 2400, NULL, 0.06, '2023-06-02 14:45:00', 'Corsair Dark Core RGB Pro', 79.99, 59.99, 10),
+    (4203, 'WIRED', 2000, 1.5, 0.09, '2023-06-03 16:20:00', 'Razer DeathAdder Elite', 69.99, 59.99, 5),
+    (4204, 'WIRELESS', 1200, NULL, 0.07, '2023-06-04 18:50:00', 'SteelSeries Rival 650', 99.99, 89.99, 6),
+    (4205, 'WIRED', 1600, 1.2, 0.08, '2023-06-05 20:15:00', 'Logitech G502 Hero', 79.99, 69.99, 12),
+    (4206, 'WIRELESS', 2400, NULL, 0.06, '2023-06-06 22:40:00', 'Corsair Harpoon RGB Wireless', 49.99, 39.99, 7),
+    (4207, 'WIRED', 2000, 1.5, 0.09, '2023-06-07 01:05:00', 'Razer Basilisk X HyperSpeed', 59.99, 49.99, 4),
+    (4208, 'WIRELESS', 1200, NULL, 0.07, '2023-06-08 03:30:00', 'SteelSeries Sensei Ten', 69.99, 59.99, 3),
+    (4209, 'WIRED', 1600, 1.2, 0.08, '2023-06-09 06:00:00', 'Logitech G203 Prodigy', 29.99, 24.99, 6),
+    (4210, 'WIRELESS', 2400, NULL, 0.06, '2023-06-10 08:25:00', 'Corsair Ironclaw RGB Wireless', 79.99, 69.99, 5);
+
+
+
+
+
+
