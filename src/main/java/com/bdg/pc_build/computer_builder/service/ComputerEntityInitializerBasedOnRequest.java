@@ -47,7 +47,7 @@ public class ComputerEntityInitializerBasedOnRequest {
         if (request.getCartItems().isEmpty()) {
             throw new NoProductFoundInBuilderException();
         }
-        
+
         Computer computer = new Computer();
         BigDecimal totalPrice = computer.getTotalPrice();
 

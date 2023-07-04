@@ -110,7 +110,7 @@ public class ComputerServiceImpl implements ComputerService {
     }
 
     @Override
-    public List<Computer> getAllComputersByIsOrdered(final Boolean isOrdered) {
-        return computerDAO.findAllByIsOrdered(isOrdered);
+    public List<Computer> getAllComputersByIsOrderedAndIsFullyConstructed(final Boolean isOrdered, final Boolean isFullyConstructed) {
+        return computerDAO.findAllByIsOrderedAndIsFullyConstructed(isOrdered, isFullyConstructed);
     }
 }

@@ -68,8 +68,9 @@ public class BuilderController {
         return ResponseEntity.ok().body("Compatibility validation passed! Computer is saved and ordered successfully!");
     }
 
-    @GetMapping("/built-computers")
-    public ResponseEntity<List<Computer>> getAllOrderedComputers() {
-        return ResponseEntity.ok().body(computerService.getAllComputersByIsOrdered(true));
+    //todo test
+    @GetMapping("/complete-built-computers")
+    public ResponseEntity<List<Computer>> getAllOrderedAndCompleteComputers() {
+        return ResponseEntity.ok().body(computerService.getAllComputersByIsOrderedAndIsFullyConstructed(true,true));
     }
 }
