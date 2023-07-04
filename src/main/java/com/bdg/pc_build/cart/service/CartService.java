@@ -1,10 +1,9 @@
 package com.bdg.pc_build.cart.service;
 
 import com.bdg.pc_build.cart.model.CartItem;
-import com.bdg.pc_build.product.model.dto.ProductDTO;
+import com.bdg.pc_build.cart.service.CartServiceImpl.ProductCountPrice;
 
 import java.math.BigDecimal;
-import java.util.Map;
 
 public interface CartService {
 
@@ -14,9 +13,9 @@ public interface CartService {
 
     void clearCart();
 
-    Map<ProductDTO, Integer> getProductsInCart();
+    ProductCountPrice getCurrentCart();
 
-    void checkout(String authHeader, Boolean isFromBuilder);
+    Long checkout(String authHeader, Boolean isFromBuilder);
 
     BigDecimal getTotal();
 }

@@ -39,11 +39,8 @@ public class ComputerServiceImpl implements ComputerService {
         User user = userService.getUserByAuthHeader(authHeader);
         Computer computer = entityInitializerBasedOnRequest.initEntityFromRequest(computerCreationRequest);
         checkCompatibilityBetweenComponentsOfComputer(computer);
-        if (computer != null) {
-            computer.setUser(user);
-            return computerDAO.save(computer);
-        }
-        throw new IllegalArgumentException(); //todo
+        computer.setUser(user);
+        return computerDAO.save(computer);
     }
 
     @Override

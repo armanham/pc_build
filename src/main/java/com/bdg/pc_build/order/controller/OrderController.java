@@ -1,5 +1,6 @@
 package com.bdg.pc_build.order.controller;
 
+import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.order.enumerations.OrderStatus;
 import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.order.service.OrderService;
@@ -54,6 +55,9 @@ public class OrderController {
     public ResponseEntity<?> markOrderAsInProcess(
             @PathVariable("id") Long id
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         orderService.markOrderAsInProcessById(id);
         return ResponseEntity.ok("Order status changed successfully: NEW -> IN_PROCESS");
     }
@@ -63,6 +67,9 @@ public class OrderController {
     public ResponseEntity<?> markOrderAsCompleted(
             @PathVariable("id") Long id
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         orderService.markOrderAsCompletedById(id);
         return ResponseEntity.ok("Order status changed successfully: IN_PROCESS -> COMPLETED");
     }
@@ -72,6 +79,9 @@ public class OrderController {
     public ResponseEntity<?> markOrderAsCanceled(
             @PathVariable("id") Long id
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         orderService.markOrderAsCanceledById(id);
         return ResponseEntity.ok("Order status changed successfully: CANCELED");
     }

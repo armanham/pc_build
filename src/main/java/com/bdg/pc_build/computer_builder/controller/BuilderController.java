@@ -4,6 +4,7 @@ import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.computer_builder.model.request.ComputerCreationRequest;
 import com.bdg.pc_build.computer_builder.service.ComputerEntityInitializerBasedOnRequest;
 import com.bdg.pc_build.computer_builder.service.ComputerService;
+import com.bdg.pc_build.exception.IdOutOfScopeException;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -49,6 +50,9 @@ public class BuilderController {
             @PathVariable Long id,
             HttpServletRequest httpServletRequest
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         computerService.checkout(id, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
         return ResponseEntity.ok().body("Computer is ordered successfully!");
     }

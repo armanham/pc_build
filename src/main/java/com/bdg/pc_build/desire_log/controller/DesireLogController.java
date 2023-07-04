@@ -3,6 +3,7 @@ package com.bdg.pc_build.desire_log.controller;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.desire_log.model.request.DesireLogCreationRequest;
 import com.bdg.pc_build.desire_log.service.DesireLogService;
+import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.user.model.dto.UserDTO;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,6 +39,9 @@ public class DesireLogController {
     public ResponseEntity<DesireLogDTO> getById(
             @PathVariable("id") final Long id
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         return ResponseEntity.ok().body(desireLogService.getById(id));
     }
 
@@ -60,6 +64,9 @@ public class DesireLogController {
     public ResponseEntity<DesireLogDTO> markAsChecked(
             @PathVariable("id") Long id
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         return ResponseEntity.ok().body(desireLogService.markAsCheckedById(id));
     }
 
@@ -68,6 +75,9 @@ public class DesireLogController {
     public ResponseEntity<Set<UserDTO>> getUsersByLogId(
             @PathVariable("id") Long id
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         return ResponseEntity.ok().body(desireLogService.getUsersByLogId(id));
     }
 }

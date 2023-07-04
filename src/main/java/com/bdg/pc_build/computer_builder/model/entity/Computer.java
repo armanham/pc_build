@@ -168,8 +168,8 @@ public class Computer {
     @Column(name = "is_ordered", nullable = false)
     private Boolean isOrdered = false;
 
-    @Column(name = "is_fully", nullable = false)
-    private Boolean isFully = false;
+    @Column(name = "is_fully_constructed", nullable = false)
+    private Boolean isFullyConstructed = false;
 
     public void addCooler(Cooler cooler) {
         this.coolers.add(cooler);

@@ -3,6 +3,7 @@ package com.bdg.pc_build.cart.service;
 import com.bdg.pc_build.cart.model.CartItem;
 import com.bdg.pc_build.exception.NotEnoughInStockException;
 import com.bdg.pc_build.exception.OutOfStockException;
+import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.order.service.OrderService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.service.ProductService;
@@ -58,8 +59,9 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Map<ProductDTO, Integer> getProductsInCart() {
-        return Collections.unmodifiableMap(cartItems);
+    public ProductCountPrice getCurrentCart() {
+
+        return new ProductCountPrice(Collections.unmodifiableMap(cartItems), getTotal());
     }
 
     @Override
@@ -70,9 +72,8 @@ public class CartServiceImpl implements CartService {
                 .reduce(BigDecimal::add)
                 .orElse(BigDecimal.ZERO);
     }
-
     @Override
-    public void checkout(final String authHeader, final Boolean isFromBuilder) {
+    public Long checkout(final String authHeader, final Boolean isFromBuilder) {
         User user = userService.getUserByAuthHeader(authHeader);
         for (Map.Entry<ProductDTO, Integer> entry : cartItems.entrySet()) {
             ProductDTO currentProduct = entry.getKey();
@@ -82,7 +83,15 @@ public class CartServiceImpl implements CartService {
                 throw new NotEnoughInStockException(currentProduct.getClass(), currentProduct.getName(), currentProduct.getCount());
             }
         }
-        orderService.saveOrder(cartItems.keySet(), getTotal(), user, isFromBuilder);
+        Long id = orderService.saveOrder(cartItems.keySet(), getTotal(), user, isFromBuilder).getId();
         cartItems.clear();
+        return id;
+    }
+
+
+    public record ProductCountPrice(
+            Map<ProductDTO, Integer> productInCart,
+            BigDecimal totalPrice
+    ){
     }
 }

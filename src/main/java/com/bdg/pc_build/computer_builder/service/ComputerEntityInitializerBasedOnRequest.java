@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.Iterator;
 
 import static com.bdg.pc_build.util.InitialAndFinalIdValues.*;
 
@@ -46,9 +47,9 @@ public class ComputerEntityInitializerBasedOnRequest {
         if (request.getCartItems().isEmpty()) {
             throw new NoProductFoundInBuilderException();
         }
+        
         Computer computer = new Computer();
         BigDecimal totalPrice = computer.getTotalPrice();
-        int count = 0;
 
         for (CartItem cartItem : request.getCartItems()) {
             if (cartItem.productId() >= INITIAL_ID_VALUE_CASE && cartItem.productId() <= FINAL_ID_VALUE_CASE) {
@@ -58,12 +59,10 @@ public class ComputerEntityInitializerBasedOnRequest {
                 aCase aCase = caseDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(aCase.class, cartItem.productId()));
                 computer.setACase(aCase);
                 totalPrice = totalPrice.add(BigDecimal.valueOf(aCase.getPrice()));
-                count++;
             } else if (cartItem.productId() >= INITIAL_ID_VALUE_COOLER && cartItem.productId() <= FINAL_ID_VALUE_COOLER) {
                 Cooler cooler = coolerDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(Cooler.class, cartItem.productId()));
                 computer.addCooler(cooler);
                 totalPrice = totalPrice.add(BigDecimal.valueOf(cooler.getPrice()));
-                count++;
             } else if (cartItem.productId() >= INITIAL_ID_VALUE_CPU && cartItem.productId() <= FINAL_ID_VALUE_CPU) {
                 if (cartItem.quantity() != 1) {
                     throw new NotCompatibleException("Count of CPU should not exceed 1: ");
@@ -71,7 +70,6 @@ public class ComputerEntityInitializerBasedOnRequest {
                 CPU cpu = cpuDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(CPU.class, cartItem.productId()));
                 computer.setCpu(cpu);
                 totalPrice = totalPrice.add(BigDecimal.valueOf(cpu.getPrice()));
-                count++;
             } else if (cartItem.productId() >= INITIAL_ID_VALUE_CPU_COOLER && cartItem.productId() <= FINAL_ID_VALUE_CPU_COOLER) {
                 if (cartItem.quantity() != 1) {
                     throw new NotCompatibleException("Count of CPU Cooler should not exceed 1: ");
@@ -79,7 +77,6 @@ public class ComputerEntityInitializerBasedOnRequest {
                 CPUCooler cpuCooler = cpuCoolerDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(CPUCooler.class, cartItem.productId()));
                 computer.setCpuCooler(cpuCooler);
                 totalPrice = totalPrice.add(BigDecimal.valueOf(cpuCooler.getPrice()));
-                count++;
             } else if (cartItem.productId() >= INITIAL_ID_VALUE_GPU && cartItem.productId() <= FINAL_ID_VALUE_GPU) {
                 if (cartItem.quantity() != 1) {
                     throw new NotCompatibleException("Count of GPU should not exceed 1: ");
@@ -87,12 +84,10 @@ public class ComputerEntityInitializerBasedOnRequest {
                 GPU gpu = gpuDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(GPU.class, cartItem.productId()));
                 computer.setGpu(gpu);
                 totalPrice = totalPrice.add(BigDecimal.valueOf(gpu.getPrice()));
-                count++;
             } else if (cartItem.productId() >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && cartItem.productId() <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
                 InternalHardDrive internalHardDrive = internalHardDriveDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(InternalHardDrive.class, cartItem.productId()));
                 computer.addInternalHardDrive(internalHardDrive);
                 totalPrice = totalPrice.add(BigDecimal.valueOf(internalHardDrive.getPrice()));
-                count++;
             } else if (cartItem.productId() >= INITIAL_ID_VALUE_MOTHERBOARD && cartItem.productId() <= FINAL_ID_VALUE_MOTHERBOARD) {
                 if (cartItem.quantity() != 1) {
                     throw new NotCompatibleException("Count of Motherboard should not exceed 1: ");
@@ -100,7 +95,6 @@ public class ComputerEntityInitializerBasedOnRequest {
                 Motherboard motherboard = motherboardDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(Motherboard.class, cartItem.productId()));
                 computer.setMotherboard(motherboard);
                 totalPrice = totalPrice.add(BigDecimal.valueOf(motherboard.getPrice()));
-                count++;
             } else if (cartItem.productId() >= INITIAL_ID_VALUE_POWER_SUPPLY && cartItem.productId() <= FINAL_ID_VALUE_POWER_SUPPLY) {
                 if (cartItem.quantity() != 1) {
                     throw new NotCompatibleException("Count of Power Supply should not exceed 1: ");
@@ -108,12 +102,10 @@ public class ComputerEntityInitializerBasedOnRequest {
                 PowerSupply powerSupply = powerSupplyDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(PowerSupply.class, cartItem.productId()));
                 computer.setPowerSupply(powerSupply);
                 totalPrice = totalPrice.add(BigDecimal.valueOf(powerSupply.getPrice()));
-                count++;
             } else if (cartItem.productId() >= INITIAL_ID_VALUE_RAM && cartItem.productId() <= FINAL_ID_VALUE_RAM) {
                 RAM ram = ramDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(RAM.class, cartItem.productId()));
                 computer.addRAM(ram);
                 totalPrice = totalPrice.add(BigDecimal.valueOf(ram.getPrice()));
-                count++;
             } else if (cartItem.productId() >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && cartItem.productId() <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
                 ExternalHardDrive externalHardDrive = externalHardDriveDAO.findById(cartItem.productId()).orElseThrow(() -> new ProductNotFoundException(ExternalHardDrive.class, cartItem.productId()));
                 computer.addExternalHardDrive(externalHardDrive);
@@ -142,10 +134,21 @@ public class ComputerEntityInitializerBasedOnRequest {
                 throw new IdOutOfScopeException(cartItem.productId());
             }
         }
-        if (count >= 9) {
-            computer.setIsFully(true);
-        }
+
+        computer.setIsFullyConstructed(isFullyConstructedResolver(computer));
         computer.setTotalPrice(totalPrice);
         return computer;
+    }
+
+    private boolean isFullyConstructedResolver(final Computer computer){
+        return computer.getACase() != null
+                && computer.getCpu() != null
+                && computer.getCpuCooler() != null
+                && !computer.getCoolers().isEmpty()
+                && computer.getGpu() != null
+                && !computer.getInternalHardDrives().isEmpty()
+                && computer.getMotherboard() != null
+                && computer.getPowerSupply() != null
+                && !computer.getRams().isEmpty();
     }
 }

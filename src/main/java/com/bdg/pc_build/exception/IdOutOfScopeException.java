@@ -13,6 +13,10 @@ public class IdOutOfScopeException extends ResponseStatusException {
         super(HttpStatus.CONFLICT, "The specified ID " + id + " is not in a valid range: ");
     }
 
+    public IdOutOfScopeException(){
+        super(HttpStatus.BAD_REQUEST, "The specified ID must be positive");
+    }
+
     @Override
     public String getMessage() {
         return super.getMessage();

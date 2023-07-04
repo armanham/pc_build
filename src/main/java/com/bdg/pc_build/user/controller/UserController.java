@@ -2,6 +2,7 @@ package com.bdg.pc_build.user.controller;
 
 import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
+import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.request.EmailUpdateRequest;
@@ -111,6 +112,9 @@ public class UserController {
     public ResponseEntity<List<ComputerDTO>> getBuiltComputersByUserId(
             @PathVariable("id") Long id
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         return ResponseEntity.ok(userService.getBuiltComputersByUserId(id));
     }
 
@@ -119,6 +123,9 @@ public class UserController {
     public ResponseEntity<List<OrderDTO>> getOrdersByUserId(
             @PathVariable("id") Long id
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         return ResponseEntity.ok(userService.getOrdersByUserId(id));
     }
 
@@ -127,6 +134,9 @@ public class UserController {
     public ResponseEntity<List<DesireLogDTO>> getDesireLogsByUserId(
             @PathVariable("id") Long id
     ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException();
+        }
         return ResponseEntity.ok(userService.getDesireLogsByUserId(id));
     }
 

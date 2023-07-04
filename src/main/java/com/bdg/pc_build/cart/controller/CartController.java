@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import com.bdg.pc_build.cart.service.CartServiceImpl.ProductCountPrice;
 
 import java.util.Map;
 
@@ -22,10 +23,11 @@ public class CartController {
 
     private final CartService cartService;
 
+    //todo test
     @GetMapping("/get")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public ResponseEntity<Map<ProductDTO, Integer>> getCartItems() {
-        return ResponseEntity.ok(cartService.getProductsInCart());
+    public ResponseEntity<ProductCountPrice> getCurrentCart() {
+        return ResponseEntity.ok(cartService.getCurrentCart());
     }
 
     @PostMapping("/add")
@@ -48,17 +50,18 @@ public class CartController {
 
     @DeleteMapping("/clear")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public ResponseEntity<?> removeCartItem() {
+    public ResponseEntity<?> clearCart() {
         cartService.clearCart();
         return ResponseEntity.ok("All products are removed from the cart successfully");
     }
 
+    //todo test
     @GetMapping("/checkout")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<?> checkout(
             HttpServletRequest request
     ) {
-        cartService.checkout(request.getHeader(HttpHeaders.AUTHORIZATION), false);
-        return ResponseEntity.ok("All products are ordered successfully");
+        Long id = cartService.checkout(request.getHeader(HttpHeaders.AUTHORIZATION), false);
+        return ResponseEntity.ok("All products are ordered successfully!\nYour order id is " + id);
     }
 }

@@ -31,7 +31,7 @@ public class ComputerDTO {
     private final UserDTO user;
     private final BigDecimal totalPrice;
     private final Boolean isOrdered;
-    private final Boolean isFully;
+    private final Boolean isFullyConstructed;
 
     public ComputerDTO(final Computer entity) {
         this.id = entity.getId();
@@ -66,6 +66,6 @@ public class ComputerDTO {
         this.user = new UserDTO(entity.getUser());
         this.totalPrice = entity.getTotalPrice();
         this.isOrdered = entity.getIsOrdered();
-        this.isFully = entity.getIsFully();
+        this.isFullyConstructed = entity.getIsFullyConstructed();
     }
 }
