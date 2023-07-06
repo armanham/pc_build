@@ -15,13 +15,13 @@ public class DesireLogDTO {
     private final Integer count;
 
     public DesireLogDTO(final DesireLogCreationRequest request) {
-        if (request.getComponentType() != null) {
-            this.componentType = request.getComponentType().trim();
+        if (request.componentType() != null) {
+            this.componentType = request.componentType().trim();
         } else {
             this.componentType = null;
         }
-        this.name = request.getName().trim();
-        this.description = request.getDescription().trim();
+        this.name = request.name().trim();
+        this.description = request.description().trim();
         this.count = 1;
     }
 
