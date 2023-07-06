@@ -1,11 +1,11 @@
 package com.bdg.pc_build.filter.service;
 
-import com.bdg.pc_build.filter.model.dto.main_component.*;
+import com.bdg.pc_build.filter.model.dto.main.*;
 import com.bdg.pc_build.filter.model.dto.peripheral.*;
 import com.bdg.pc_build.product.enumerations.*;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.repository.ProductDAO;
-import com.bdg.pc_build.product.repository.main_component.*;
+import com.bdg.pc_build.product.repository.main.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -725,7 +725,7 @@ public class FilterFieldsValueResolver {
     }
 
 
-    record CaseFieldsHolderBasedOnFilterDTO(
+    public record CaseFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Double minCpuCoolerHeight, Double maxCpuCoolerHeight,
@@ -735,14 +735,14 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record CoolerFieldsHolderBasedOnFilterDTO(
+    public record CoolerFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minTdp, Integer maxTdp
     ) {
     }
 
-    record CpuCoolerFieldsHolderBasedOnFilterDTO(
+    public record CpuCoolerFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minFanRpm, Integer maxFanRpm,
@@ -751,7 +751,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record CpuFieldsHolderBasedOnFilterDTO(
+    public record CpuFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minCoreCount, Integer maxCoreCount,
@@ -763,7 +763,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record GpuFieldsHolderBasedOnFilterDTO(
+    public record GpuFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minMemory, Integer maxMemory,
@@ -775,7 +775,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record InternalHardDriveFieldsHolderBasedOnFilterDTO(
+    public record InternalHardDriveFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minCapacity, Integer maxCapacity,
@@ -784,7 +784,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record MotherboardFieldsHolderBasedOnFilterDTO(
+    public record MotherboardFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minMemory, Integer maxMemory,
@@ -798,7 +798,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record PowerSupplyFieldsHolderBasedOnFilterDTO(
+    public record PowerSupplyFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minWattage, Integer maxWattage,
@@ -808,7 +808,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record RamFieldsHolderBasedOnFilterDTO(
+    public record RamFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minCountOfRam, Integer maxCountOfRam,
@@ -818,7 +818,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record ExternalHardDriveFieldsHolderBasedOnFilterDTO(
+    public record ExternalHardDriveFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minCapacity, Integer maxCapacity,
@@ -826,7 +826,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record HeadsetFieldsHolderBasedOnFilterDTO(
+    public record HeadsetFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minFrequency, Integer maxFrequency,
@@ -835,7 +835,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record KeyboardFieldsHolderBasedOnFilterDTO(
+    public record KeyboardFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Double minCableLength, Double maxCableLength,
@@ -845,7 +845,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record MonitorFieldsHolderBasedOnFilterDTO(
+    public record MonitorFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Double minScreenSize, Double maxScreenSize,
@@ -854,7 +854,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record MouseFieldsHolderBasedOnFilterDTO(
+    public record MouseFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minResolution, Integer maxResolution,
@@ -864,7 +864,7 @@ public class FilterFieldsValueResolver {
     ) {
     }
 
-    record SpeakerFieldsHolderBasedOnFilterDTO(
+    public record SpeakerFieldsHolderBasedOnFilterDTO(
             String name,
             Double minPrice, Double maxPrice,
             Integer minFrequency, Integer maxFrequency,

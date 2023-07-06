@@ -2,7 +2,7 @@ package com.bdg.pc_build.order.model.dto;
 
 import com.bdg.pc_build.order.enumerations.OrderStatus;
 import com.bdg.pc_build.order.model.entity.Order;
-import com.bdg.pc_build.product.model.dto.main_component.*;
+import com.bdg.pc_build.product.model.dto.main.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonRootName;

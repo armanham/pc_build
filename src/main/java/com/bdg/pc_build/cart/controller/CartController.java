@@ -2,7 +2,6 @@ package com.bdg.pc_build.cart.controller;
 
 import com.bdg.pc_build.cart.model.CartItem;
 import com.bdg.pc_build.cart.service.CartService;
-import com.bdg.pc_build.product.model.dto.ProductDTO;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -11,9 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import com.bdg.pc_build.cart.service.CartServiceImpl.ProductCountPrice;
-
-import java.util.Map;
+import com.bdg.pc_build.cart.service.impl.CartServiceImpl.ProductCountPrice;
 
 @RequiredArgsConstructor
 @RestController

@@ -1,8 +1,8 @@
 package com.bdg.pc_build.product.controller;
 
-import com.bdg.pc_build.product.model.dto.main_component.*;
+import com.bdg.pc_build.product.model.dto.main.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
-import com.bdg.pc_build.product.model.request.creation.main_component.*;
+import com.bdg.pc_build.product.model.request.creation.main.*;
 import com.bdg.pc_build.product.model.request.creation.peripheral.*;
 import com.bdg.pc_build.product.model.request.update.EditPriceRequest;
 import com.bdg.pc_build.product.model.request.update.ReduceCountRequest;

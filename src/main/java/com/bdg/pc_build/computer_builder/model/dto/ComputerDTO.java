@@ -1,7 +1,7 @@
 package com.bdg.pc_build.computer_builder.model.dto;
 
 import com.bdg.pc_build.computer_builder.model.entity.Computer;
-import com.bdg.pc_build.product.model.dto.main_component.*;
+import com.bdg.pc_build.product.model.dto.main.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import com.bdg.pc_build.user.model.dto.UserDTO;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.bdg.pc_build.product.service;
 
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.main_component.*;
+import com.bdg.pc_build.product.model.dto.main.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 
 import java.util.List;

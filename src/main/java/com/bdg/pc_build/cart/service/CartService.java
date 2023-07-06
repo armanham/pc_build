@@ -1,7 +1,7 @@
 package com.bdg.pc_build.cart.service;
 
 import com.bdg.pc_build.cart.model.CartItem;
-import com.bdg.pc_build.cart.service.CartServiceImpl.ProductCountPrice;
+import com.bdg.pc_build.cart.service.impl.CartServiceImpl.ProductCountPrice;
 
 import java.math.BigDecimal;
 

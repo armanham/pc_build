@@ -7,15 +7,14 @@ import com.bdg.pc_build.exception.IdOutOfScopeException;
 import com.bdg.pc_build.exception.NoProductFoundInBuilderException;
 import com.bdg.pc_build.exception.NotCompatibleException;
 import com.bdg.pc_build.exception.ProductNotFoundException;
-import com.bdg.pc_build.product.model.entity.main_component.*;
+import com.bdg.pc_build.product.model.entity.main.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
-import com.bdg.pc_build.product.repository.main_component.*;
+import com.bdg.pc_build.product.repository.main.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.Iterator;
 
 import static com.bdg.pc_build.util.InitialAndFinalIdValues.*;
 

@@ -5,7 +5,7 @@ import com.bdg.pc_build.exception.NotCompatibleException;
 import com.bdg.pc_build.product.enumerations.ATXType;
 import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
 import com.bdg.pc_build.product.enumerations.TowerType;
-import com.bdg.pc_build.product.model.entity.main_component.*;
+import com.bdg.pc_build.product.model.entity.main.*;
 import lombok.Getter;
 import org.springframework.stereotype.Component;
 

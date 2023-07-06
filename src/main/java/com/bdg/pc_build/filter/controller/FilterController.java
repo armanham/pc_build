@@ -1,14 +1,14 @@
 package com.bdg.pc_build.filter.controller;
 
 import com.bdg.pc_build.filter.model.dto.ProductFilterDTO;
-import com.bdg.pc_build.filter.model.dto.main_component.*;
+import com.bdg.pc_build.filter.model.dto.main.*;
 import com.bdg.pc_build.filter.model.dto.peripheral.*;
 import com.bdg.pc_build.filter.model.request.ProductFilterRequest;
-import com.bdg.pc_build.filter.model.request.main_component.*;
+import com.bdg.pc_build.filter.model.request.main.*;
 import com.bdg.pc_build.filter.model.request.peripheral.*;
 import com.bdg.pc_build.filter.service.FilterService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
-import com.bdg.pc_build.product.model.dto.main_component.*;
+import com.bdg.pc_build.product.model.dto.main.*;
 import com.bdg.pc_build.product.model.dto.peripheral.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

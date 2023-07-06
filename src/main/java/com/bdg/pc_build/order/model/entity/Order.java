@@ -1,7 +1,7 @@
 package com.bdg.pc_build.order.model.entity;
 
 import com.bdg.pc_build.order.enumerations.OrderStatus;
-import com.bdg.pc_build.product.model.entity.main_component.*;
+import com.bdg.pc_build.product.model.entity.main.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
 import jakarta.persistence.*;
