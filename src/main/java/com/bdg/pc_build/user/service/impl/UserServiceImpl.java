@@ -31,8 +31,13 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User findUserById(final Long id) {
+    public User getUserById(final Long id) {
         return userDAO.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    @Override
+    public User getUserByEmail(final String email) {
+        return userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
     }
 
     @Override
@@ -70,15 +75,42 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateFirstNameById(final Long id, final String newFirstName) {
+        User userToUpdate = getUserById(id);
+        userToUpdate.setFirstName(newFirstName);
+        userDAO.save(userToUpdate);
+    }
+
+    @Override
+    public void updateLastNameById(final Long id, final String newLastName) {
+        User userToUpdate = getUserById(id);
+        userToUpdate.setLastName(newLastName);
+        userDAO.save(userToUpdate);
+    }
+
+    @Override
+    public void updateEmailById(final Long id, final String newEmail) {
+        User userToUpdate = getUserById(id);
+
+        Optional<User> userOptionalWithNewEmail = userDAO.findByEmail(newEmail);
+        if (userOptionalWithNewEmail.isPresent()) {
+            throw new EmailAlreadyExistsException(newEmail);
+        }
+        userToUpdate.setEmail(newEmail);
+        expireAndRevokeAllOldTokensAndGenerateNewToken(userToUpdate);
+        userDAO.save(userToUpdate);
+    }
+
+    @Override
     public void changeUserRoleToAdminByEmail(final String email) {
-        User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
+        User user = getUserByEmail(email);
         user.setRole(Role.ADMIN);
         userDAO.save(user);
     }
 
     @Override
     public void changeAdminRoleToUserByEmail(final String email) {
-        User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
+        User user = getUserByEmail(email);
         user.setRole(Role.USER);
         userDAO.save(user);
     }
@@ -102,7 +134,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<ComputerDTO> getBuiltComputersByUserId(final Long userId) {
-        return findUserById(userId).getComputers()
+        return getUserById(userId).getComputers()
                 .stream()
                 .map(ComputerDTO::new)
                 .toList();
@@ -118,7 +150,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<DesireLogDTO> getDesireLogsByUserId(final Long userId) {
-        return findUserById(userId).getDesireLogs()
+        return getUserById(userId).getDesireLogs()
                 .stream()
                 .map(DesireLogDTO::new)
                 .toList();
@@ -134,7 +166,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<OrderDTO> getOrdersByUserId(final Long userId) {
-        return findUserById(userId).getOrders()
+        return getUserById(userId).getOrders()
                 .stream()
                 .map(OrderDTO::new)
                 .toList();

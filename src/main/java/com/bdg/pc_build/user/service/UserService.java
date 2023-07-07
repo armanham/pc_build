@@ -10,15 +10,23 @@ import java.util.List;
 
 public interface UserService {
 
-    User findUserById(Long id);
+    User getUserById(Long id);
 
-    public User getUserByAuthHeader(final String authHeader);
+    User getUserByEmail(final String email);
+
+    User getUserByAuthHeader(final String authHeader);
 
     void updateFirstNameByAuthHeader(String authHeader, String newFirstName);
 
     void updateLastNameByAuthHeader(String authHeader, String newLastName);
 
     void updateEmailByAuthHeader(String authHeader, String newEmail);
+
+    void updateFirstNameById(Long id, String newFirstName);
+
+    void updateLastNameById(Long id, String newLastName);
+
+    void updateEmailById(Long id, String newEmail);
 
     void updatePasswordByAuthHeader(String authHeader, String newPassword); //todo
 

@@ -38,7 +38,7 @@ public class UserController {
         return ResponseEntity.ok("First name updated successfully");
     }
 
-    @PutMapping("update/last-name")
+    @PutMapping("/update/last-name")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<String> updateLastName(
             @Valid @RequestBody LastNameUpdateRequest lastNameUpdateRequest,
@@ -48,7 +48,7 @@ public class UserController {
         return ResponseEntity.ok("Last name updated successfully");
     }
 
-    @PutMapping("update/email")
+    @PutMapping("/update/email")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<String> updateEmail(
             @Valid @RequestBody EmailUpdateRequest emailUpdateRequest,
@@ -59,7 +59,46 @@ public class UserController {
         return ResponseEntity.ok("Email updated successfully");
     }
 
-    @PutMapping("update/mark-as-admin/{email}")
+    @PutMapping("/{id}/update/first-name")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<String> updateFirstName(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody FirstNameUpdateRequest request
+    ) {
+        if (id <= 0) {
+            throw new IdOutOfScopeException();
+        }
+        userService.updateFirstNameById(id, request.newFirstName());
+        return ResponseEntity.ok("First name updated successfully");
+    }
+
+    @PutMapping("/{id}/update/last-name")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<String> updateLastName(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody LastNameUpdateRequest request
+    ) {
+        if (id <= 0) {
+            throw new IdOutOfScopeException();
+        }
+        userService.updateLastNameById(id, request.newLastName());
+        return ResponseEntity.ok("Last name updated successfully");
+    }
+
+    @PutMapping("/{id}/update/email")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<String> updateEmail(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody EmailUpdateRequest request
+    ) {
+        if (id <= 0) {
+            throw new IdOutOfScopeException();
+        }
+        userService.updateEmailById(id, request.newEmail());
+        return ResponseEntity.ok("Email updated successfully");
+    }
+
+    @PutMapping("/{email}/update/mark-as-admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> markAsAdmin(
             @PathVariable("email") final String email
@@ -68,7 +107,7 @@ public class UserController {
         return ResponseEntity.ok("Role updated successfully");
     }
 
-    @PutMapping("update/mark-as-user/{email}")
+    @PutMapping("/{email}/update/mark-as-user")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> markAsUser(
             @PathVariable("email") final String email
@@ -112,7 +151,7 @@ public class UserController {
     public ResponseEntity<List<ComputerDTO>> getBuiltComputersByUserId(
             @PathVariable("id") Long id
     ) {
-        if(id <= 0){
+        if (id <= 0) {
             throw new IdOutOfScopeException();
         }
         return ResponseEntity.ok(userService.getBuiltComputersByUserId(id));
@@ -123,7 +162,7 @@ public class UserController {
     public ResponseEntity<List<OrderDTO>> getOrdersByUserId(
             @PathVariable("id") Long id
     ) {
-        if(id <= 0){
+        if (id <= 0) {
             throw new IdOutOfScopeException();
         }
         return ResponseEntity.ok(userService.getOrdersByUserId(id));
@@ -134,7 +173,7 @@ public class UserController {
     public ResponseEntity<List<DesireLogDTO>> getDesireLogsByUserId(
             @PathVariable("id") Long id
     ) {
-        if(id <= 0){
+        if (id <= 0) {
             throw new IdOutOfScopeException();
         }
         return ResponseEntity.ok(userService.getDesireLogsByUserId(id));
@@ -142,7 +181,7 @@ public class UserController {
 
     @GetMapping("/get-all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public List<UserDTO> getAllUsers() {
-        return userService.findAll();
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        return ResponseEntity.ok(userService.findAll());
     }
 }
