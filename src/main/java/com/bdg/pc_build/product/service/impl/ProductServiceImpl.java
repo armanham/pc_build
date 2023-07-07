@@ -15,6 +15,7 @@ import com.bdg.pc_build.product.repository.main.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import com.bdg.pc_build.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
         if (optionalENTITY.isPresent()) {
             ENTITY foundedProduct = optionalENTITY.get();
             if (!foundedProduct.equals(product)) {
-                throw new SameNameDifferentDescriptionException(foundedProduct.getClass(), foundedProduct.getName());
+                throw new SameNameDifferentDescriptionException(HttpStatus.NOT_ACCEPTABLE, foundedProduct.getClass(), foundedProduct.getName());
             }
             foundedProduct.setCount(foundedProduct.getCount() + product.getCount());
             return repository.save(foundedProduct);
@@ -89,7 +90,7 @@ public class ProductServiceImpl implements ProductService {
         ENTITY foundedProduct = optionalENTITY.get();
 
         if (foundedProduct.getCount() < countToBeReduced) {
-            throw new NotEnoughInStockException(foundedProduct.getClass(), foundedProduct.getName(), foundedProduct.getCount());
+            throw new NotEnoughInStockException(HttpStatus.OK, foundedProduct.getClass(), foundedProduct.getName(), foundedProduct.getCount());
         }
         foundedProduct.setCount(foundedProduct.getCount() - countToBeReduced);
         repository.save(foundedProduct);

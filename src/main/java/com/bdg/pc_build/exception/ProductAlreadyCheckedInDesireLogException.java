@@ -5,8 +5,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class ProductAlreadyCheckedInDesireLogException extends ResponseStatusException {
 
-    public ProductAlreadyCheckedInDesireLogException(Long id) {
-        super(HttpStatus.NOT_ACCEPTABLE, "Product with id: " + id + " is already checked in Desire Log: ");
+    public ProductAlreadyCheckedInDesireLogException(HttpStatus httpStatus, Long id) {
+        super(httpStatus, "Product with id: " + id + " is already checked in Desire Log: ");
     }
 
     @Override

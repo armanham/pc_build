@@ -5,8 +5,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class NotCompatibleMinMaxValues extends ResponseStatusException {
 
-    public NotCompatibleMinMaxValues(double minValue, double maxValue) {
-        super(HttpStatus.BAD_REQUEST, "The minimum value " + minValue + " and/or maximum value " + maxValue +
+    public NotCompatibleMinMaxValues(HttpStatus httpStatus, double minValue, double maxValue) {
+        super(httpStatus, "The minimum value " + minValue + " and/or maximum value " + maxValue +
                 " are/is not compatible. Minimum value should be non-negative and less than or equal to the maximum value.");
     }
 

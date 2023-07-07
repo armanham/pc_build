@@ -4,13 +4,13 @@ import com.bdg.pc_build.cart.model.CartItem;
 import com.bdg.pc_build.cart.service.CartService;
 import com.bdg.pc_build.exception.NotEnoughInStockException;
 import com.bdg.pc_build.exception.OutOfStockException;
-import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.order.service.OrderService;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.service.ProductService;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,15 +73,16 @@ public class CartServiceImpl implements CartService {
                 .reduce(BigDecimal::add)
                 .orElse(BigDecimal.ZERO);
     }
+
     @Override
     public Long checkout(final String authHeader, final Boolean isFromBuilder) {
         User user = userService.getUserByAuthHeader(authHeader);
         for (Map.Entry<ProductDTO, Integer> entry : cartItems.entrySet()) {
             ProductDTO currentProduct = entry.getKey();
             if (currentProduct.getCount() == 0) {
-                throw new OutOfStockException(currentProduct.getClass(), currentProduct.getName());
+                throw new OutOfStockException(HttpStatus.OK, currentProduct.getClass(), currentProduct.getName());
             } else if (currentProduct.getCount() < entry.getValue()) {
-                throw new NotEnoughInStockException(currentProduct.getClass(), currentProduct.getName(), currentProduct.getCount());
+                throw new NotEnoughInStockException(HttpStatus.OK, currentProduct.getClass(), currentProduct.getName(), currentProduct.getCount());
             }
         }
         Long id = orderService.saveOrder(cartItems.keySet(), getTotal(), user, isFromBuilder).getId();
@@ -93,6 +94,6 @@ public class CartServiceImpl implements CartService {
     public record ProductCountPrice(
             Map<ProductDTO, Integer> productInCart,
             BigDecimal totalPrice
-    ){
+    ) {
     }
 }

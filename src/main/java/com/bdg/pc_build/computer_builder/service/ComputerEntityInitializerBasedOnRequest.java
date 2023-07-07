@@ -12,6 +12,7 @@ import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.product.repository.main.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -44,7 +45,7 @@ public class ComputerEntityInitializerBasedOnRequest {
 
     public Computer initEntityFromRequest(final ComputerCreationRequest request) {
         if (request.getCartItems().isEmpty()) {
-            throw new NoProductFoundInBuilderException();
+            throw new NoProductFoundInBuilderException(HttpStatus.BAD_REQUEST);
         }
 
         Computer computer = new Computer();
@@ -139,7 +140,7 @@ public class ComputerEntityInitializerBasedOnRequest {
         return computer;
     }
 
-    private boolean isFullyConstructedResolver(final Computer computer){
+    private boolean isFullyConstructedResolver(final Computer computer) {
         return computer.getACase() != null
                 && computer.getCpu() != null
                 && computer.getCpuCooler() != null

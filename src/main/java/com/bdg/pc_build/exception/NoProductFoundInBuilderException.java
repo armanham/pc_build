@@ -5,8 +5,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class NoProductFoundInBuilderException extends ResponseStatusException {
 
-    public NoProductFoundInBuilderException() {
-        super(HttpStatus.BAD_REQUEST, "No product found in Builder: ");
+    public NoProductFoundInBuilderException(HttpStatus httpStatus) {
+        super(httpStatus, "No product found in Builder: ");
     }
 
     @Override

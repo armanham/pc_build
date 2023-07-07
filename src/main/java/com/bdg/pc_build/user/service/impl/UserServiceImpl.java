@@ -16,6 +16,7 @@ import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.repository.UserDAO;
 import com.bdg.pc_build.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
         Optional<User> userOptionalWithNewEmail = userDAO.findByEmail(newEmail);
         if (userOptionalWithNewEmail.isPresent()) {
-            throw new EmailAlreadyExistsException(newEmail);
+            throw new EmailAlreadyExistsException(HttpStatus.ALREADY_REPORTED, newEmail);
         }
         userToUpdate.setEmail(newEmail);
         expireAndRevokeAllOldTokensAndGenerateNewToken(userToUpdate);
@@ -94,7 +95,7 @@ public class UserServiceImpl implements UserService {
 
         Optional<User> userOptionalWithNewEmail = userDAO.findByEmail(newEmail);
         if (userOptionalWithNewEmail.isPresent()) {
-            throw new EmailAlreadyExistsException(newEmail);
+            throw new EmailAlreadyExistsException(HttpStatus.ALREADY_REPORTED, newEmail);
         }
         userToUpdate.setEmail(newEmail);
         expireAndRevokeAllOldTokensAndGenerateNewToken(userToUpdate);
@@ -174,7 +175,7 @@ public class UserServiceImpl implements UserService {
 
     public User getUserByAuthHeader(final String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new InvalidAuthHeaderException();
+            throw new InvalidAuthHeaderException(HttpStatus.BAD_REQUEST);
         }
         final String token = authHeader.substring(7);
         final String email = jwtService.extractUsername(token);
@@ -182,7 +183,7 @@ public class UserServiceImpl implements UserService {
         User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 
         if (!jwtService.isTokenValid(token, user)) {
-            throw new InvalidTokenException();
+            throw new InvalidTokenException(HttpStatus.BAD_REQUEST);
         }
         return user;
     }

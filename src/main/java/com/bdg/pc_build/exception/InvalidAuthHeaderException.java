@@ -5,8 +5,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class InvalidAuthHeaderException extends ResponseStatusException {
 
-    public InvalidAuthHeaderException() {
-        super(HttpStatus.BAD_REQUEST, "Invalid authentication header: ");
+    public InvalidAuthHeaderException(HttpStatus httpStatus) {
+        super(httpStatus, "Invalid authentication header: ");
     }
 
     @Override

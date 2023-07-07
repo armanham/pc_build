@@ -5,8 +5,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class EmailAlreadyExistsException extends ResponseStatusException {
 
-    public EmailAlreadyExistsException(String email) {
-        super(HttpStatus.ALREADY_REPORTED, "Email: " + email + " already exists: ");
+    public EmailAlreadyExistsException(HttpStatus httpStatus, String email) {
+        super(httpStatus, "Email: " + email + " already exists: ");
     }
 
     @Override

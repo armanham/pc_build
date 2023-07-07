@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,7 +39,7 @@ public class AuthenticationService {
     public AuthenticationResponse register(RegisterRequest request) {
         Optional<User> optionalUser = userDAO.findByEmail(request.getEmail());
         if (optionalUser.isPresent()) {
-            throw new EmailAlreadyExistsException(request.getEmail());
+            throw new EmailAlreadyExistsException(HttpStatus.ALREADY_REPORTED, request.getEmail());
         }
         var user = User.builder()
                 .firstName(request.getFirstname().trim())

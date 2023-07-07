@@ -5,8 +5,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class SameNameDifferentDescriptionException extends ResponseStatusException {
 
-    public SameNameDifferentDescriptionException(Class clazz, String name) {
-        super(HttpStatus.NOT_ACCEPTABLE, clazz.getSimpleName() + " Product with the existing name:  " + name + "but with different description is not allowed: ");
+    public SameNameDifferentDescriptionException(HttpStatus httpStatus, Class clazz, String name) {
+        super(httpStatus, clazz.getSimpleName() + " Product with the existing name:  " + name + "but with different description is not allowed: ");
     }
 
     @Override

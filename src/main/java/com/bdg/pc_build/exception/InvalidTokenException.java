@@ -5,8 +5,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class InvalidTokenException extends ResponseStatusException {
 
-    public InvalidTokenException() {
-        super(HttpStatus.BAD_REQUEST, "Provided token is not valid: ");
+    public InvalidTokenException(HttpStatus httpStatus) {
+        super(httpStatus, "Provided token is not valid: ");
     }
 
     @Override
