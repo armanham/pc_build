@@ -53,7 +53,7 @@ public class BuilderController {
         if(id <= 0){
             throw new IdOutOfScopeException();
         }
-        computerService.checkout(id, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
+        computerService.orderComputerById(id, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
         return ResponseEntity.ok().body("Computer is ordered successfully!");
     }
 
@@ -64,7 +64,7 @@ public class BuilderController {
             @Valid @RequestBody ComputerCreationRequest computerCreationRequest,
             HttpServletRequest httpServletRequest
     ) {
-        computerService.checkSaveCheckout(computerCreationRequest, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
+        computerService.checkSaveOrder(computerCreationRequest, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
         return ResponseEntity.ok().body("Compatibility validation passed! Computer is saved and ordered successfully!");
     }
 

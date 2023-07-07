@@ -52,7 +52,7 @@ public class ComputerServiceImpl implements ComputerService {
     }
 
     @Override
-    public void checkout(final Long id, final String authHeader) {
+    public void orderComputerById(final Long id, final String authHeader) {
         Computer computer = getComputerById(id);
 
         if (computer.getACase() != null) {
@@ -107,9 +107,9 @@ public class ComputerServiceImpl implements ComputerService {
     }
 
     @Override
-    public void checkSaveCheckout(final ComputerCreationRequest computerCreationRequest, final String authHeader) {
+    public void checkSaveOrder(final ComputerCreationRequest computerCreationRequest, final String authHeader) {
         Computer savedComputer = save(computerCreationRequest, authHeader);
-        checkout(savedComputer.getId(), authHeader);
+        orderComputerById(savedComputer.getId(), authHeader);
     }
 
     @Override

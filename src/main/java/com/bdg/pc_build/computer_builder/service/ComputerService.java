@@ -13,9 +13,9 @@ public interface ComputerService {
 
     Computer getComputerById(Long id);
 
-    void checkout(Long id, String authHeader);
+    void orderComputerById(Long id, String authHeader);
 
-    void checkSaveCheckout(ComputerCreationRequest computerCreationRequest, String authHeader);
+    void checkSaveOrder(ComputerCreationRequest computerCreationRequest, String authHeader);
 
     List<Computer> getAllComputersByIsOrderedAndIsFullyConstructed(final Boolean isOrdered, final Boolean isFullyConstructed);
 
