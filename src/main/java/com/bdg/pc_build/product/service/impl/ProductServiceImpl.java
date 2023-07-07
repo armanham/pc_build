@@ -95,6 +95,22 @@ public class ProductServiceImpl implements ProductService {
         repository.save(foundedProduct);
     }
 
+    private <ENTITY extends Product> void increaseCountById(
+            final Long id,
+            final Integer countToBeIncreased,
+            final ProductDAO<ENTITY> repository
+    ) {
+        Optional<ENTITY> optionalENTITY = repository.findById(id);
+        if (optionalENTITY.isEmpty()) {
+            throw new ProductNotFoundException(id);
+        }
+
+        ENTITY foundedProduct = optionalENTITY.get();
+
+        foundedProduct.setCount(foundedProduct.getCount() + countToBeIncreased);
+        repository.save(foundedProduct);
+    }
+
     private <ENTITY extends Product> List<ENTITY> findAll(final ProductDAO<ENTITY> dao) {
         return dao.findAll();
     }
@@ -308,6 +324,43 @@ public class ProductServiceImpl implements ProductService {
             reduceCountById(id, countToBeReduced, mouseDAO);
         } else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             reduceCountById(id, countToBeReduced, speakerDAO);
+        } else {
+            throw new IdOutOfScopeException(id);
+        }
+    }
+
+    @Override
+    public void increaseCountById(final Long id, final Integer countToBeIncreased) {
+        if (id >= INITIAL_ID_VALUE_CASE && id <= FINAL_ID_VALUE_CASE) {
+            increaseCountById(id, countToBeIncreased, caseDAO);
+        } else if (id >= INITIAL_ID_VALUE_COOLER && id <= FINAL_ID_VALUE_COOLER) {
+            increaseCountById(id, countToBeIncreased, coolerDAO);
+        } else if (id >= INITIAL_ID_VALUE_CPU && id <= FINAL_ID_VALUE_CPU) {
+            increaseCountById(id, countToBeIncreased, cpuDAO);
+        } else if (id >= INITIAL_ID_VALUE_CPU_COOLER && id <= FINAL_ID_VALUE_CPU_COOLER) {
+            increaseCountById(id, countToBeIncreased, cpuCoolerDAO);
+        } else if (id >= INITIAL_ID_VALUE_GPU && id <= FINAL_ID_VALUE_GPU) {
+            increaseCountById(id, countToBeIncreased, gpuDAO);
+        } else if (id >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
+            increaseCountById(id, countToBeIncreased, internalHardDriveDAO);
+        } else if (id >= INITIAL_ID_VALUE_MOTHERBOARD && id <= FINAL_ID_VALUE_MOTHERBOARD) {
+            increaseCountById(id, countToBeIncreased, motherboardDAO);
+        } else if (id >= INITIAL_ID_VALUE_POWER_SUPPLY && id <= FINAL_ID_VALUE_POWER_SUPPLY) {
+            increaseCountById(id, countToBeIncreased, powerSupplyDAO);
+        } else if (id >= INITIAL_ID_VALUE_RAM && id <= FINAL_ID_VALUE_RAM) {
+            increaseCountById(id, countToBeIncreased, ramDAO);
+        } else if (id >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && id <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
+            increaseCountById(id, countToBeIncreased, externalHardDriveDAO);
+        } else if (id >= INITIAL_ID_VALUE_HEADSET && id <= FINAL_ID_VALUE_HEADSET) {
+            increaseCountById(id, countToBeIncreased, headsetDAO);
+        } else if (id >= INITIAL_ID_VALUE_KEYBOARD && id <= FINAL_ID_VALUE_KEYBOARD) {
+            increaseCountById(id, countToBeIncreased, keyboardDAO);
+        } else if (id >= INITIAL_ID_VALUE_MONITOR && id <= FINAL_ID_VALUE_MONITOR) {
+            increaseCountById(id, countToBeIncreased, monitorDAO);
+        } else if (id >= INITIAL_ID_VALUE_MOUSE && id <= FINAL_ID_VALUE_MOUSE) {
+            increaseCountById(id, countToBeIncreased, mouseDAO);
+        } else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
+            increaseCountById(id, countToBeIncreased, speakerDAO);
         } else {
             throw new IdOutOfScopeException(id);
         }

@@ -5,7 +5,7 @@ import com.bdg.pc_build.product.model.dto.peripheral.*;
 import com.bdg.pc_build.product.model.request.creation.main.*;
 import com.bdg.pc_build.product.model.request.creation.peripheral.*;
 import com.bdg.pc_build.product.model.request.update.EditPriceRequest;
-import com.bdg.pc_build.product.model.request.update.ReduceCountRequest;
+import com.bdg.pc_build.product.model.request.update.UpdateProductCountRequest;
 import com.bdg.pc_build.product.service.ProductService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -156,9 +156,18 @@ public class ProductController {
     @PutMapping(value = "/reduce")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> reduceCount(
-            @Valid @RequestBody ReduceCountRequest request
+            @Valid @RequestBody UpdateProductCountRequest request
     ) {
-        productService.reduceCountById(request.productId(), request.countToBeReduced());
+        productService.reduceCountById(request.productId(), request.countToBeChanged());
+        return ResponseEntity.ok().body("Product count reduced successfully");
+    }
+
+    @PutMapping(value = "/increase")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> increaseCount(
+            @Valid @RequestBody UpdateProductCountRequest request
+    ) {
+        productService.increaseCountById(request.productId(), request.countToBeChanged());
         return ResponseEntity.ok().body("Product count reduced successfully");
     }
 

@@ -50,6 +50,8 @@ public interface ProductService {
 
     void reduceCountById(Long id, Integer countToBeReduced);
 
+    void increaseCountById(Long id, Integer countToBeIncreased);
+
 
     List<CaseDTO> getAllCases();
 
@@ -80,4 +82,5 @@ public interface ProductService {
     List<MouseDTO> getAllMice();
 
     List<SpeakerDTO> getAllSpeakers();
+
 }
