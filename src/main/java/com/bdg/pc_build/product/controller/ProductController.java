@@ -168,7 +168,7 @@ public class ProductController {
             @Valid @RequestBody UpdateProductCountRequest request
     ) {
         productService.increaseCountById(request.productId(), request.countToBeChanged());
-        return ResponseEntity.ok().body("Product count reduced successfully");
+        return ResponseEntity.ok().body("Product count increased successfully");
     }
 
     @GetMapping("/case")
