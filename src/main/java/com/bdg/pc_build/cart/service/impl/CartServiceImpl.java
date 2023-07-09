@@ -9,6 +9,7 @@ import com.bdg.pc_build.product.model.dto.ProductDTO;
 import com.bdg.pc_build.product.service.ProductService;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.service.UserService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -61,7 +62,6 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public ProductCountPrice getCurrentCart() {
-
         return new ProductCountPrice(Collections.unmodifiableMap(cartItems), getTotal());
     }
 
@@ -92,7 +92,11 @@ public class CartServiceImpl implements CartService {
 
 
     public record ProductCountPrice(
-            Map<ProductDTO, Integer> productInCart,
+
+            @JsonProperty("product_with_count")
+            Map<ProductDTO, Integer> productInCartWithCount,
+
+            @JsonProperty("total_price")
             BigDecimal totalPrice
     ) {
     }
