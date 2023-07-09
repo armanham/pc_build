@@ -56,29 +56,25 @@ public class User implements UserDetails {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Token> tokens;
 
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     private List<DesireLog> desireLogs = new ArrayList<>();
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Order> orders;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Computer> computers;
 
     @Builder
     public User(
-            String firstName,
-            String lastName,
-            String email,
-            String password,
-            Role role
+            final String firstName,
+            final String lastName,
+            final String email,
+            final String password,
+            final Role role
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
