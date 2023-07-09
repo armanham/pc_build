@@ -53,11 +53,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(
                 APIError.builder()
                         .errorMessage(ex.getFieldError().getDefaultMessage())
-                        .errorCode(HttpStatus.BAD_REQUEST.toString())
+                        .errorCode(ex.getStatusCode().toString())
                         .request(request.getRequestURI())
                         .requestType(request.getMethod())
                         .dateAndTime(String.valueOf(LocalDateTime.now()))
-                        .build(), HttpStatus.BAD_REQUEST
+                        .build(), ex.getStatusCode()
         );
     }
 }
