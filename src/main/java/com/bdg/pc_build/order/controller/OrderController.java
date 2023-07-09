@@ -6,6 +6,7 @@ import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.order.service.OrderService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +57,7 @@ public class OrderController {
             @PathVariable("id") Long id
     ) {
         if(id <= 0){
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         orderService.markOrderAsInProcessById(id);
         return ResponseEntity.ok("Order status changed successfully: NEW -> IN_PROCESS");
@@ -68,7 +69,7 @@ public class OrderController {
             @PathVariable("id") Long id
     ) {
         if(id <= 0){
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         orderService.markOrderAsCompletedById(id);
         return ResponseEntity.ok("Order status changed successfully: IN_PROCESS -> COMPLETED");
@@ -80,7 +81,7 @@ public class OrderController {
             @PathVariable("id") Long id
     ) {
         if(id <= 0){
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         orderService.markOrderAsCanceledById(id);
         return ResponseEntity.ok("Order status changed successfully: CANCELED");

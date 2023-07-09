@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findById(id);
         if (optionalENTITY.isEmpty()) {
-            throw new ProductNotFoundException(id);
+            throw new ProductNotFoundException(HttpStatus.NOT_FOUND, id);
         }
         ENTITY foundedProduct = optionalENTITY.get();
         foundedProduct.setPrice(newPrice);
@@ -84,7 +84,7 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findById(id);
         if (optionalENTITY.isEmpty()) {
-            throw new ProductNotFoundException(id);
+            throw new ProductNotFoundException(HttpStatus.NOT_FOUND, id);
         }
 
         ENTITY foundedProduct = optionalENTITY.get();
@@ -103,7 +103,7 @@ public class ProductServiceImpl implements ProductService {
     ) {
         Optional<ENTITY> optionalENTITY = repository.findById(id);
         if (optionalENTITY.isEmpty()) {
-            throw new ProductNotFoundException(id);
+            throw new ProductNotFoundException(HttpStatus.NOT_FOUND, id);
         }
 
         ENTITY foundedProduct = optionalENTITY.get();
@@ -118,14 +118,14 @@ public class ProductServiceImpl implements ProductService {
 
     private <ENTITY extends Product> ENTITY findById(final Long id, final ProductDAO<ENTITY> dao) {
         Optional<ENTITY> result = dao.findById(id);
-        return result.orElseThrow(() -> new ProductNotFoundException(id));
+        return result.orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, id));
     }
 
     @Override
     public MonitorDTO saveMonitor(final MonitorDTO dto) {
         Monitor toSave = save(new Monitor(dto), monitorDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_MONITOR || toSave.getId() > FINAL_ID_VALUE_MONITOR) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new MonitorDTO(toSave);
     }
@@ -134,7 +134,7 @@ public class ProductServiceImpl implements ProductService {
     public CaseDTO saveCase(final CaseDTO dto) {
         aCase toSave = save(new aCase(dto), caseDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_CASE || toSave.getId() > FINAL_ID_VALUE_CASE) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new CaseDTO(toSave);
     }
@@ -143,7 +143,7 @@ public class ProductServiceImpl implements ProductService {
     public CoolerDTO saveCooler(final CoolerDTO dto) {
         Cooler toSave = save(new Cooler(dto), coolerDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_COOLER || toSave.getId() > FINAL_ID_VALUE_COOLER) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new CoolerDTO(toSave);
     }
@@ -152,16 +152,16 @@ public class ProductServiceImpl implements ProductService {
     public CPUCoolerDTO saveCpuCooler(final CPUCoolerDTO dto) {
         CPUCooler toSave = save(new CPUCooler(dto), cpuCoolerDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_CPU_COOLER || toSave.getId() > FINAL_ID_VALUE_CPU_COOLER) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new CPUCoolerDTO(toSave);
     }
 
     @Override
-    public CPUDTO saveCPU(final CPUDTO dto) {
+    public CPUDTO saveCpu(final CPUDTO dto) {
         CPU toSave = save(new CPU(dto), cpuDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_CPU || toSave.getId() > FINAL_ID_VALUE_CPU) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new CPUDTO(toSave);
     }
@@ -170,16 +170,16 @@ public class ProductServiceImpl implements ProductService {
     public InternalHardDriveDTO saveInternalHardDrive(final InternalHardDriveDTO dto) {
         InternalHardDrive toSave = save(new InternalHardDrive(dto), internalHardDriveDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE || toSave.getId() > FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new InternalHardDriveDTO(toSave);
     }
 
     @Override
-    public GPUDTO saveGPU(final GPUDTO dto) {
+    public GPUDTO saveGpu(final GPUDTO dto) {
         GPU toSave = save(new GPU(dto), gpuDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_GPU || toSave.getId() > FINAL_ID_VALUE_GPU) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new GPUDTO(toSave);
     }
@@ -188,7 +188,7 @@ public class ProductServiceImpl implements ProductService {
     public ExternalHardDriveDTO saveExternalHardDrive(final ExternalHardDriveDTO dto) {
         ExternalHardDrive toSave = save(new ExternalHardDrive(dto), externalHardDriveDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE || toSave.getId() > FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new ExternalHardDriveDTO(toSave);
     }
@@ -197,7 +197,7 @@ public class ProductServiceImpl implements ProductService {
     public MotherboardDTO saveMotherboard(final MotherboardDTO dto) {
         Motherboard toSave = save(new Motherboard(dto), motherboardDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_MOTHERBOARD || toSave.getId() > FINAL_ID_VALUE_MOTHERBOARD) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new MotherboardDTO(toSave);
     }
@@ -206,16 +206,16 @@ public class ProductServiceImpl implements ProductService {
     public PowerSupplyDTO savePowerSupply(final PowerSupplyDTO dto) {
         PowerSupply toSave = save(new PowerSupply(dto), powerSupplyDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_POWER_SUPPLY || toSave.getId() > FINAL_ID_VALUE_POWER_SUPPLY) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new PowerSupplyDTO(toSave);
     }
 
     @Override
-    public RAMDTO saveRAM(final RAMDTO dto) {
+    public RAMDTO saveRam(final RAMDTO dto) {
         RAM toSave = save(new RAM(dto), ramDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_RAM || toSave.getId() > FINAL_ID_VALUE_RAM) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new RAMDTO(toSave);
     }
@@ -224,7 +224,7 @@ public class ProductServiceImpl implements ProductService {
     public HeadsetDTO saveHeadset(final HeadsetDTO dto) {
         Headset toSave = save(new Headset(dto), headsetDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_HEADSET || toSave.getId() > FINAL_ID_VALUE_HEADSET) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new HeadsetDTO(toSave);
     }
@@ -233,7 +233,7 @@ public class ProductServiceImpl implements ProductService {
     public KeyboardDTO saveKeyboard(final KeyboardDTO dto) {
         Keyboard toSave = save(new Keyboard(dto), keyboardDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_KEYBOARD || toSave.getId() > FINAL_ID_VALUE_KEYBOARD) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new KeyboardDTO(toSave);
     }
@@ -242,7 +242,7 @@ public class ProductServiceImpl implements ProductService {
     public MouseDTO saveMouse(final MouseDTO dto) {
         Mouse toSave = save(new Mouse(dto), mouseDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_MOUSE || toSave.getId() > FINAL_ID_VALUE_MOUSE) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new MouseDTO(toSave);
     }
@@ -251,7 +251,7 @@ public class ProductServiceImpl implements ProductService {
     public SpeakerDTO saveSpeaker(final SpeakerDTO dto) {
         Speaker toSave = save(new Speaker(dto), speakerDAO);
         if (toSave.getId() < INITIAL_ID_VALUE_SPEAKER || toSave.getId() > FINAL_ID_VALUE_SPEAKER) {
-            throw new IdOutOfScopeException(toSave.getClass(), toSave.getId());
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, toSave.getClass(), toSave.getId());
         }
         return new SpeakerDTO(toSave);
     }
@@ -289,7 +289,7 @@ public class ProductServiceImpl implements ProductService {
         } else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             updatePriceById(id, newPrice, speakerDAO);
         } else {
-            throw new IdOutOfScopeException(id);
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, id);
         }
     }
 
@@ -326,7 +326,7 @@ public class ProductServiceImpl implements ProductService {
         } else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             reduceCountById(id, countToBeReduced, speakerDAO);
         } else {
-            throw new IdOutOfScopeException(id);
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, id);
         }
     }
 
@@ -363,7 +363,7 @@ public class ProductServiceImpl implements ProductService {
         } else if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             increaseCountById(id, countToBeIncreased, speakerDAO);
         } else {
-            throw new IdOutOfScopeException(id);
+            throw new IdOutOfScopeException(HttpStatus.CONFLICT, id);
         }
     }
 
@@ -413,7 +413,7 @@ public class ProductServiceImpl implements ProductService {
         if (id >= INITIAL_ID_VALUE_SPEAKER && id <= FINAL_ID_VALUE_SPEAKER) {
             return new SpeakerDTO(findById(id, speakerDAO));
         }
-        throw new IdOutOfScopeException(id);
+        throw new IdOutOfScopeException(HttpStatus.CONFLICT, id);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class CartController {
 
     private final CartService cartService;
 
-    //todo test
+    //todo data
     @GetMapping("/get")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<ProductCountPrice> getCurrentCart() {
@@ -52,7 +52,7 @@ public class CartController {
         return ResponseEntity.ok("All products are removed from the cart successfully");
     }
 
-    //todo test
+    //todo data
     @GetMapping("/checkout")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<?> checkout(

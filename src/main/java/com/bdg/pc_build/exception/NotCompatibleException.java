@@ -5,8 +5,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class NotCompatibleException extends ResponseStatusException {
 
-    public NotCompatibleException(String message) {
-        super(HttpStatus.OK, message);
+    public NotCompatibleException(HttpStatus httpStatus, String message) {
+        super(httpStatus, message);
     }
 
     @Override

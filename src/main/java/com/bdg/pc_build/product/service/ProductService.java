@@ -21,11 +21,11 @@ public interface ProductService {
 
     CPUCoolerDTO saveCpuCooler(CPUCoolerDTO dto);
 
-    CPUDTO saveCPU(CPUDTO dto);
+    CPUDTO saveCpu(CPUDTO dto);
 
     InternalHardDriveDTO saveInternalHardDrive(InternalHardDriveDTO dto);
 
-    GPUDTO saveGPU(GPUDTO dto);
+    GPUDTO saveGpu(GPUDTO dto);
 
     ExternalHardDriveDTO saveExternalHardDrive(ExternalHardDriveDTO dto);
 
@@ -33,7 +33,7 @@ public interface ProductService {
 
     PowerSupplyDTO savePowerSupply(PowerSupplyDTO dto);
 
-    RAMDTO saveRAM(RAMDTO dto);
+    RAMDTO saveRam(RAMDTO dto);
 
 
     //save methods for peripheral components

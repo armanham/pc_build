@@ -61,7 +61,7 @@ public class ProductController {
     public ResponseEntity<CPUDTO> saveCPU(
             @Valid @RequestBody CPUCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveCPU(new CPUDTO(request)));
+        return ResponseEntity.ok(productService.saveCpu(new CPUDTO(request)));
     }
 
     @PostMapping("/new/gpu")
@@ -69,7 +69,7 @@ public class ProductController {
     public ResponseEntity<GPUDTO> saveGPU(
             @Valid @RequestBody GPUCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveGPU(new GPUDTO(request)));
+        return ResponseEntity.ok(productService.saveGpu(new GPUDTO(request)));
     }
 
     @PostMapping("/new/internal-hard-drive")
@@ -101,7 +101,7 @@ public class ProductController {
     public ResponseEntity<RAMDTO> saveRAM(
             @Valid @RequestBody RAMCreationRequest request
     ) {
-        return ResponseEntity.ok(productService.saveRAM(new RAMDTO(request)));
+        return ResponseEntity.ok(productService.saveRam(new RAMDTO(request)));
     }
 
     @PostMapping("/new/external-hard-drive")

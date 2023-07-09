@@ -2,7 +2,7 @@ package com.bdg.pc_build.computer_builder.controller;
 
 import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.computer_builder.model.request.ComputerCreationRequest;
-import com.bdg.pc_build.computer_builder.service.ComputerEntityInitializerBasedOnRequest;
+import com.bdg.pc_build.computer_builder.converter.ComputerEntityInitializerBasedOnRequest;
 import com.bdg.pc_build.computer_builder.service.ComputerService;
 import com.bdg.pc_build.exception.IdOutOfScopeException;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +52,7 @@ public class BuilderController {
             HttpServletRequest httpServletRequest
     ) {
         if(id <= 0){
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         computerService.orderComputerById(id, httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
         return ResponseEntity.ok().body("Computer is ordered successfully!");
@@ -68,7 +69,7 @@ public class BuilderController {
         return ResponseEntity.ok().body("Compatibility validation passed! Computer is saved and ordered successfully!");
     }
 
-    //todo test
+    //todo data
     @GetMapping("/complete-built-computers")
     public ResponseEntity<List<Computer>> getAllOrderedAndCompleteComputers() {
         return ResponseEntity.ok().body(computerService.getAllComputersByIsOrderedAndIsFullyConstructed(true,true));

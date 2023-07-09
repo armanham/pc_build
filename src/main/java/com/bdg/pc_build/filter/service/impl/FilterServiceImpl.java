@@ -3,8 +3,9 @@ package com.bdg.pc_build.filter.service.impl;
 import com.bdg.pc_build.filter.model.dto.ProductFilterDTO;
 import com.bdg.pc_build.filter.model.dto.main.*;
 import com.bdg.pc_build.filter.model.dto.peripheral.*;
-import com.bdg.pc_build.filter.service.FilterFieldsValueResolver;
-import com.bdg.pc_build.filter.service.FilterFieldsValueResolver.*;
+import com.bdg.pc_build.filter.model.filter_fileds_holder.main.*;
+import com.bdg.pc_build.filter.model.filter_fileds_holder.peripheral.*;
+import com.bdg.pc_build.filter.resolver.FilterFieldsValueResolver;
 import com.bdg.pc_build.filter.service.FilterService;
 import com.bdg.pc_build.product.enumerations.*;
 import com.bdg.pc_build.product.model.dto.ProductDTO;
@@ -49,36 +50,36 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<CaseDTO> filterAllCasesBasedOnSpecification(final CaseFilterDTO filterDTO) {
-        CaseFieldsHolderBasedOnFilterDTO caseFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCaseFieldsValuesFromFilterDTO(filterDTO);
+        CaseFilterFieldsHolderBasedOnFilterDTO caseFilterFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCaseFieldsValuesFromFilterDTO(filterDTO);
 
-        List<CaseDTO> casesByName = caseDAO.findAllProductsByNameLike(caseFieldsHolderBasedOnFilterDTO.name())
+        List<CaseDTO> casesByName = caseDAO.findAllProductsByNameLike(caseFilterFieldsHolderBasedOnFilterDTO.name())
                 .stream()
                 .map(CaseDTO::new)
                 .toList();
 
-        List<CaseDTO> casesByPrice = caseDAO.findAllProductsByPriceBetween(caseFieldsHolderBasedOnFilterDTO.minPrice(), caseFieldsHolderBasedOnFilterDTO.maxPrice())
+        List<CaseDTO> casesByPrice = caseDAO.findAllProductsByPriceBetween(caseFilterFieldsHolderBasedOnFilterDTO.minPrice(), caseFilterFieldsHolderBasedOnFilterDTO.maxPrice())
                 .stream()
                 .map(CaseDTO::new)
                 .toList();
 
-        List<CaseDTO> casesByCpuCoolerHeight = caseDAO.findAllByMaxCpuCoolerHeightBetween(caseFieldsHolderBasedOnFilterDTO.minCpuCoolerHeight(), caseFieldsHolderBasedOnFilterDTO.maxCpuCoolerHeight())
+        List<CaseDTO> casesByCpuCoolerHeight = caseDAO.findAllByMaxCpuCoolerHeightBetween(caseFilterFieldsHolderBasedOnFilterDTO.minCpuCoolerHeight(), caseFilterFieldsHolderBasedOnFilterDTO.maxCpuCoolerHeight())
                 .stream()
                 .map(CaseDTO::new)
                 .toList();
 
-        List<CaseDTO> casesByGpuLength = caseDAO.findAllByMaxGpuLengthBetween(caseFieldsHolderBasedOnFilterDTO.minGpuLength(), caseFieldsHolderBasedOnFilterDTO.maxGpuLength())
+        List<CaseDTO> casesByGpuLength = caseDAO.findAllByMaxGpuLengthBetween(caseFilterFieldsHolderBasedOnFilterDTO.minGpuLength(), caseFilterFieldsHolderBasedOnFilterDTO.maxGpuLength())
                 .stream()
                 .map(CaseDTO::new)
                 .toList();
 
-        List<CaseDTO> casesByPreInstalledFans = caseDAO.findAllByPreInstalledFansBetween(caseFieldsHolderBasedOnFilterDTO.minPreInstalledFans(), caseFieldsHolderBasedOnFilterDTO.maxPreInstalledFans())
+        List<CaseDTO> casesByPreInstalledFans = caseDAO.findAllByPreInstalledFansBetween(caseFilterFieldsHolderBasedOnFilterDTO.minPreInstalledFans(), caseFilterFieldsHolderBasedOnFilterDTO.maxPreInstalledFans())
                 .stream()
                 .map(CaseDTO::new)
                 .toList();
 
         List<CaseDTO> casesByTowerTypeList = new ArrayList<>();
-        if (caseFieldsHolderBasedOnFilterDTO.towerTypes() != null && !caseFieldsHolderBasedOnFilterDTO.towerTypes().isEmpty()) {
-            for (TowerType towerType : caseFieldsHolderBasedOnFilterDTO.towerTypes()) {
+        if (caseFilterFieldsHolderBasedOnFilterDTO.towerTypes() != null && !caseFilterFieldsHolderBasedOnFilterDTO.towerTypes().isEmpty()) {
+            for (TowerType towerType : caseFilterFieldsHolderBasedOnFilterDTO.towerTypes()) {
                 List<CaseDTO> casesByTowerType = caseDAO.findAllByTowerType(towerType)
                         .stream()
                         .map(CaseDTO::new)
@@ -112,19 +113,19 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<CoolerDTO> filterAllCoolersBasedOnSpecification(final CoolerFilterDTO filterDTO) {
-        CoolerFieldsHolderBasedOnFilterDTO coolerFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCoolerFieldsValuesFromFilterDTO(filterDTO);
+        CoolerFilterFieldsHolderBasedOnFilterDTO coolerFilterFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCoolerFieldsValuesFromFilterDTO(filterDTO);
 
-        List<CoolerDTO> coolersByName = coolerDAO.findAllProductsByNameLike(coolerFieldsHolderBasedOnFilterDTO.name())
+        List<CoolerDTO> coolersByName = coolerDAO.findAllProductsByNameLike(coolerFilterFieldsHolderBasedOnFilterDTO.name())
                 .stream()
                 .map(CoolerDTO::new)
                 .toList();
 
-        List<CoolerDTO> coolersByPrice = coolerDAO.findAllProductsByPriceBetween(coolerFieldsHolderBasedOnFilterDTO.minPrice(), coolerFieldsHolderBasedOnFilterDTO.maxPrice())
+        List<CoolerDTO> coolersByPrice = coolerDAO.findAllProductsByPriceBetween(coolerFilterFieldsHolderBasedOnFilterDTO.minPrice(), coolerFilterFieldsHolderBasedOnFilterDTO.maxPrice())
                 .stream()
                 .map(CoolerDTO::new)
                 .toList();
 
-        List<CoolerDTO> coolerByTdp = coolerDAO.findAllByTdpBetween(coolerFieldsHolderBasedOnFilterDTO.minTdp(), coolerFieldsHolderBasedOnFilterDTO.maxTdp())
+        List<CoolerDTO> coolerByTdp = coolerDAO.findAllByTdpBetween(coolerFilterFieldsHolderBasedOnFilterDTO.minTdp(), coolerFilterFieldsHolderBasedOnFilterDTO.maxTdp())
                 .stream()
                 .map(CoolerDTO::new)
                 .toList();
@@ -146,31 +147,31 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<CPUCoolerDTO> filterAllCpuCoolersBasedOnSpecification(final CPUCoolerFilterDTO filterDTO) {
-        CpuCoolerFieldsHolderBasedOnFilterDTO cpuCoolerFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCpuCoolerFieldsValuesFromFilterDTO(filterDTO);
+        CpuCoolerFilterFieldsHolderBasedOnFilterDTO cpuCoolerFilterFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCpuCoolerFieldsValuesFromFilterDTO(filterDTO);
 
-        List<CPUCoolerDTO> cpuCoolersByName = cpuCoolerDAO.findAllProductsByNameLike(cpuCoolerFieldsHolderBasedOnFilterDTO.name())
+        List<CPUCoolerDTO> cpuCoolersByName = cpuCoolerDAO.findAllProductsByNameLike(cpuCoolerFilterFieldsHolderBasedOnFilterDTO.name())
                 .stream()
                 .map(CPUCoolerDTO::new)
                 .toList();
 
-        List<CPUCoolerDTO> cpuCoolersByPrice = cpuCoolerDAO.findAllProductsByPriceBetween(cpuCoolerFieldsHolderBasedOnFilterDTO.minPrice(), cpuCoolerFieldsHolderBasedOnFilterDTO.maxPrice())
+        List<CPUCoolerDTO> cpuCoolersByPrice = cpuCoolerDAO.findAllProductsByPriceBetween(cpuCoolerFilterFieldsHolderBasedOnFilterDTO.minPrice(), cpuCoolerFilterFieldsHolderBasedOnFilterDTO.maxPrice())
                 .stream()
                 .map(CPUCoolerDTO::new)
                 .toList();
 
-        List<CPUCoolerDTO> cpuCoolersByFamRpm = cpuCoolerDAO.findAllByFanRpmBetween(cpuCoolerFieldsHolderBasedOnFilterDTO.minFanRpm(), cpuCoolerFieldsHolderBasedOnFilterDTO.maxFanRpm())
+        List<CPUCoolerDTO> cpuCoolersByFamRpm = cpuCoolerDAO.findAllByFanRpmBetween(cpuCoolerFilterFieldsHolderBasedOnFilterDTO.minFanRpm(), cpuCoolerFilterFieldsHolderBasedOnFilterDTO.maxFanRpm())
                 .stream()
                 .map(CPUCoolerDTO::new)
                 .toList();
 
-        List<CPUCoolerDTO> cpuCoolersByTdp = cpuCoolerDAO.findAllByTdpBetween(cpuCoolerFieldsHolderBasedOnFilterDTO.minTdp(), cpuCoolerFieldsHolderBasedOnFilterDTO.maxTdp())
+        List<CPUCoolerDTO> cpuCoolersByTdp = cpuCoolerDAO.findAllByTdpBetween(cpuCoolerFilterFieldsHolderBasedOnFilterDTO.minTdp(), cpuCoolerFilterFieldsHolderBasedOnFilterDTO.maxTdp())
                 .stream()
                 .map(CPUCoolerDTO::new)
                 .toList();
 
         List<CPUCoolerDTO> cpuCoolersBySocketTypeList = new ArrayList<>();
-        if (cpuCoolerFieldsHolderBasedOnFilterDTO.socketTypes() != null && !cpuCoolerFieldsHolderBasedOnFilterDTO.socketTypes().isEmpty()) {
-            for (SocketType socketType : cpuCoolerFieldsHolderBasedOnFilterDTO.socketTypes()) {
+        if (cpuCoolerFilterFieldsHolderBasedOnFilterDTO.socketTypes() != null && !cpuCoolerFilterFieldsHolderBasedOnFilterDTO.socketTypes().isEmpty()) {
+            for (SocketType socketType : cpuCoolerFilterFieldsHolderBasedOnFilterDTO.socketTypes()) {
                 List<CPUCoolerDTO> casesBySocketType = cpuCoolerDAO.findAllBySocketType(socketType)
                         .stream()
                         .map(CPUCoolerDTO::new)
@@ -206,40 +207,40 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<CPUDTO> filterAllCpusBasedOnSpecification(final CPUFilterDTO filterDTO) {
-        CpuFieldsHolderBasedOnFilterDTO cpuFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCpuFieldsValuesFromFilterDTO(filterDTO);
+        CpuFilterFieldsHolderBasedOnFilterDTO cpuFilterFieldsHolderBasedOnFilterDTO = filterFieldsValueResolver.resolveAndGetCpuFieldsValuesFromFilterDTO(filterDTO);
 
-        List<CPUDTO> cpusByName = cpuDAO.findAllProductsByNameLike(cpuFieldsHolderBasedOnFilterDTO.name())
+        List<CPUDTO> cpusByName = cpuDAO.findAllProductsByNameLike(cpuFilterFieldsHolderBasedOnFilterDTO.name())
                 .stream()
                 .map(CPUDTO::new)
                 .toList();
 
-        List<CPUDTO> cpusByPrice = cpuDAO.findAllProductsByPriceBetween(cpuFieldsHolderBasedOnFilterDTO.minPrice(), cpuFieldsHolderBasedOnFilterDTO.maxPrice())
+        List<CPUDTO> cpusByPrice = cpuDAO.findAllProductsByPriceBetween(cpuFilterFieldsHolderBasedOnFilterDTO.minPrice(), cpuFilterFieldsHolderBasedOnFilterDTO.maxPrice())
                 .stream()
                 .map(CPUDTO::new)
                 .toList();
 
-        List<CPUDTO> cpusByCoreCount = cpuDAO.findAllByCoreCountBetween(cpuFieldsHolderBasedOnFilterDTO.minCoreCount(), cpuFieldsHolderBasedOnFilterDTO.maxCoreCount())
+        List<CPUDTO> cpusByCoreCount = cpuDAO.findAllByCoreCountBetween(cpuFilterFieldsHolderBasedOnFilterDTO.minCoreCount(), cpuFilterFieldsHolderBasedOnFilterDTO.maxCoreCount())
                 .stream()
                 .map(CPUDTO::new)
                 .toList();
 
-        List<CPUDTO> cpusByCoreCLock = cpuDAO.findAllByCoreClockBetween(cpuFieldsHolderBasedOnFilterDTO.minCoreClock(), cpuFieldsHolderBasedOnFilterDTO.maxCoreClock())
+        List<CPUDTO> cpusByCoreCLock = cpuDAO.findAllByCoreClockBetween(cpuFilterFieldsHolderBasedOnFilterDTO.minCoreClock(), cpuFilterFieldsHolderBasedOnFilterDTO.maxCoreClock())
                 .stream()
                 .map(CPUDTO::new)
                 .toList();
 
-        List<CPUDTO> cpusByBoostCLock = cpuDAO.findAllByBoostClockBetween(cpuFieldsHolderBasedOnFilterDTO.minBoostClock(), cpuFieldsHolderBasedOnFilterDTO.maxBoostClock())
+        List<CPUDTO> cpusByBoostCLock = cpuDAO.findAllByBoostClockBetween(cpuFilterFieldsHolderBasedOnFilterDTO.minBoostClock(), cpuFilterFieldsHolderBasedOnFilterDTO.maxBoostClock())
                 .stream()
                 .map(CPUDTO::new)
                 .toList();
 
-        List<CPUDTO> cpusByTdp = cpuDAO.findAllByTdpBetween(cpuFieldsHolderBasedOnFilterDTO.minTdp(), cpuFieldsHolderBasedOnFilterDTO.maxTdp())
+        List<CPUDTO> cpusByTdp = cpuDAO.findAllByTdpBetween(cpuFilterFieldsHolderBasedOnFilterDTO.minTdp(), cpuFilterFieldsHolderBasedOnFilterDTO.maxTdp())
                 .stream()
                 .map(CPUDTO::new)
                 .toList();
 
         List<CPUDTO> cpusBySocketTypeList = new ArrayList<>();
-        if (cpuFieldsHolderBasedOnFilterDTO.socketTypes() != null && !cpuFieldsHolderBasedOnFilterDTO.socketTypes().isEmpty()) {
+        if (cpuFilterFieldsHolderBasedOnFilterDTO.socketTypes() != null && !cpuFilterFieldsHolderBasedOnFilterDTO.socketTypes().isEmpty()) {
             for (SocketType socketType : filterDTO.getSocketTypes()) {
                 List<CPUDTO> cpuDTOsBySocketType = cpuDAO.findAllBySocketType(socketType)
                         .stream()
@@ -255,7 +256,7 @@ public class FilterServiceImpl implements FilterService {
         }
 
         List<CPUDTO> cpusByIntergratedGraphicsList = new ArrayList<>();
-        if (cpuFieldsHolderBasedOnFilterDTO.integratedGraphics() != null && !cpuFieldsHolderBasedOnFilterDTO.integratedGraphics().isEmpty()) {
+        if (cpuFilterFieldsHolderBasedOnFilterDTO.integratedGraphics() != null && !cpuFilterFieldsHolderBasedOnFilterDTO.integratedGraphics().isEmpty()) {
             for (String integratedGraphics : filterDTO.getIntegratedGraphics()) {
                 List<CPUDTO> cpuDTOsByIntegratedGraphics = cpuDAO.findAllByIntegratedGraphics(integratedGraphics)
                         .stream()
@@ -292,51 +293,51 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<GPUDTO> filterAllGpusBasedOnSpecification(final GPUFilterDTO filterDTO) {
-        GpuFieldsHolderBasedOnFilterDTO gpuFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetGpuFieldsValuesFromFilterDTO(filterDTO);
+        GpuFilterFieldsHolderBasedOnFilterDTO gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetGpuFieldsValuesFromFilterDTO(filterDTO);
 
-        List<GPUDTO> gpusByName = gpuDAO.findAllProductsByNameLike(gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<GPUDTO> gpusByName = gpuDAO.findAllProductsByNameLike(gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(GPUDTO::new)
                 .toList();
 
         List<GPUDTO> gpusByPrice = gpuDAO.findAllProductsByPriceBetween(
-                        gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(GPUDTO::new)
                 .toList();
 
         List<GPUDTO> gpusByMemory = gpuDAO.findAllByMemoryBetween(
-                        gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minMemory(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxMemory())
+                        gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minMemory(), gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxMemory())
                 .stream()
                 .map(GPUDTO::new)
                 .toList();
 
         List<GPUDTO> gpusByCoreClock = gpuDAO.findAllByCoreClockBetween(
-                        gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minCoreClock(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCoreClock())
+                        gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minCoreClock(), gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCoreClock())
                 .stream()
                 .map(GPUDTO::new)
                 .toList();
 
         List<GPUDTO> gpusByBoostClock = gpuDAO.findAllByBoostClockBetween(
-                        gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minBoostClock(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxBoostClock())
+                        gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minBoostClock(), gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxBoostClock())
                 .stream()
                 .map(GPUDTO::new)
                 .toList();
 
         List<GPUDTO> gpusByLength = gpuDAO.findAllByLengthBetween(
-                        gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minLength(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxLength())
+                        gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minLength(), gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxLength())
                 .stream()
                 .map(GPUDTO::new)
                 .toList();
 
         List<GPUDTO> gpusByTdp = gpuDAO.findAllByTdpBetween(
-                        gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
+                        gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
                 .stream()
                 .map(GPUDTO::new)
                 .toList();
 
         List<GPUDTO> gpusByInterfaceTypeList = new ArrayList<>();
-        if (gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes() != null && !gpuFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes().isEmpty()) {
+        if (gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes() != null && !gpuFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes().isEmpty()) {
             for (GPUInterfaceType gpuInterfaceType : filterDTO.getGpuInterfaceTypes()) {
                 List<GPUDTO> gpuDTOsByGpuInterfaceType = gpuDAO.findAllByGpuInterfaceType(gpuInterfaceType)
                         .stream()
@@ -371,32 +372,32 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<InternalHardDriveDTO> filterAllInternalHardDrivesBasedOnSpecification(final InternalHardDriveFilterDTO filterDTO) {
-        InternalHardDriveFieldsHolderBasedOnFilterDTO internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetInternalHardDriveFieldsValuesFromFilterDTO(filterDTO);
+        InternalHardDriveFilterFieldsHolderBasedOnFilterDTO internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetInternalHardDriveFieldsValuesFromFilterDTO(filterDTO);
 
-        List<InternalHardDriveDTO> internalHardDrivesByName = internalHardDriveDAO.findAllProductsByNameLike(internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<InternalHardDriveDTO> internalHardDrivesByName = internalHardDriveDAO.findAllProductsByNameLike(internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(InternalHardDriveDTO::new)
                 .toList();
 
-        List<InternalHardDriveDTO> internalHardDrivesByPrice = internalHardDriveDAO.findAllProductsByPriceBetween(internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+        List<InternalHardDriveDTO> internalHardDrivesByPrice = internalHardDriveDAO.findAllProductsByPriceBetween(internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(InternalHardDriveDTO::new)
                 .toList();
 
         List<InternalHardDriveDTO> internalHardDrivesByCapacity = internalHardDriveDAO.findAllByCapacityBetween(
-                        internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.minCapacity(), internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCapacity())
+                        internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minCapacity(), internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCapacity())
                 .stream()
                 .map(InternalHardDriveDTO::new)
                 .toList();
 
         List<InternalHardDriveDTO> internalHardDrivesByTdp = internalHardDriveDAO.findAllByTdpBetween(
-                        internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
+                        internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
                 .stream()
                 .map(InternalHardDriveDTO::new)
                 .toList();
 
         List<InternalHardDriveDTO> internalHardDriveByInternalHardDRiveInterfaceTypeList = new ArrayList<>();
-        if (internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.internalHardDriveInterfaceTypes() != null && !internalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.internalHardDriveInterfaceTypes().isEmpty()) {
+        if (internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.internalHardDriveInterfaceTypes() != null && !internalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.internalHardDriveInterfaceTypes().isEmpty()) {
             for (InternalHardDriveInterfaceType internalHardDriveInterfaceType : filterDTO.getInternalHardDriveInterfaceTypes()) {
                 List<InternalHardDriveDTO> internalHardDriveDTOsByInterfaceType = internalHardDriveDAO.findAllByInternalHardDriveInterfaceType(internalHardDriveInterfaceType)
                         .stream()
@@ -430,39 +431,39 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<MotherboardDTO> filterAllMotherboardsBasedOnSpecification(final MotherboardFilterDTO filterDTO) {
-        MotherboardFieldsHolderBasedOnFilterDTO motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetMotherboardFieldsValuesFromFilterDTO(filterDTO);
+        MotherboardFilterFieldsHolderBasedOnFilterDTO motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetMotherboardFieldsValuesFromFilterDTO(filterDTO);
 
-        List<MotherboardDTO> motherboardsByName = motherboardDAO.findAllProductsByNameLike(motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<MotherboardDTO> motherboardsByName = motherboardDAO.findAllProductsByNameLike(motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(MotherboardDTO::new)
                 .toList();
 
         List<MotherboardDTO> motherboardsByPrice = motherboardDAO.findAllProductsByPriceBetween(
-                        motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(MotherboardDTO::new)
                 .toList();
 
         List<MotherboardDTO> motherboardsByMemoryMax = motherboardDAO.findAllByMemoryMaxBetween(
-                        motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.minMemory(), motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.maxMemory())
+                        motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minMemory(), motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxMemory())
                 .stream()
                 .map(MotherboardDTO::new)
                 .toList();
 
         List<MotherboardDTO> motherboardsByMemorySlots = motherboardDAO.findAllByMemorySlotsBetween(
-                        motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.minMemorySlots(), motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.maxMemorySlots())
+                        motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minMemorySlots(), motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxMemorySlots())
                 .stream()
                 .map(MotherboardDTO::new)
                 .toList();
 
         List<MotherboardDTO> motherboardsByTdp = motherboardDAO.findAllByTdpBetween(
-                        motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
+                        motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
                 .stream()
                 .map(MotherboardDTO::new)
                 .toList();
 
         List<MotherboardDTO> motherboardsByIsM2List = new ArrayList<>();
-        if (motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.isM2() != null && !motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.isM2().isEmpty()) {
+        if (motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.isM2() != null && !motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.isM2().isEmpty()) {
             for (Boolean isM2 : filterDTO.getIsM2()) {
                 List<MotherboardDTO> motherboardsByIsM2 = motherboardDAO.findAllByIsM2(isM2)
                         .stream()
@@ -478,7 +479,7 @@ public class FilterServiceImpl implements FilterService {
         }
 
         List<MotherboardDTO> motherboardsByDdrTypeList = new ArrayList<>();
-        if (motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes() != null && !motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes().isEmpty()) {
+        if (motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes() != null && !motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes().isEmpty()) {
             for (DDRType ddrType : filterDTO.getDdrTypes()) {
                 List<MotherboardDTO> motherboardsByDdrType = motherboardDAO.findAllByDdrType(ddrType)
                         .stream()
@@ -494,7 +495,7 @@ public class FilterServiceImpl implements FilterService {
         }
 
         List<MotherboardDTO> motherboardsByGpuInterfaceTypeList = new ArrayList<>();
-        if (motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes() != null && !motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes().isEmpty()) {
+        if (motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes() != null && !motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.gpuInterfaceTypes().isEmpty()) {
             for (GPUInterfaceType gpuInterfaceType : filterDTO.getGpuInterfaceTypes()) {
                 List<MotherboardDTO> motherboardsByGpuInterfaceType = motherboardDAO.findAllByGpuInterfaceType(gpuInterfaceType)
                         .stream()
@@ -510,7 +511,7 @@ public class FilterServiceImpl implements FilterService {
         }
 
         List<MotherboardDTO> motherboardsBySocketTypeList = new ArrayList<>();
-        if (motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.socketTypes() != null && !motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.socketTypes().isEmpty()) {
+        if (motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.socketTypes() != null && !motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.socketTypes().isEmpty()) {
             for (SocketType socketType : filterDTO.getSocketTypes()) {
                 List<MotherboardDTO> motherboardsBySocketType = motherboardDAO.findAllBySocketType(socketType)
                         .stream()
@@ -526,7 +527,7 @@ public class FilterServiceImpl implements FilterService {
         }
 
         List<MotherboardDTO> motherboardsByAtxTypeList = new ArrayList<>();
-        if (motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.atxTypes() != null && !motherboardFieldsHolderBasedOnFilterDTOFromFilterDTO.atxTypes().isEmpty()) {
+        if (motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.atxTypes() != null && !motherboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.atxTypes().isEmpty()) {
             for (ATXType atxType : filterDTO.getAtxTypes()) {
                 List<MotherboardDTO> motherboardsByAtxType = motherboardDAO.findAllByAtxType(atxType)
                         .stream()
@@ -566,33 +567,33 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<PowerSupplyDTO> filterAllPowerSuppliesBasedOnSpecification(final PowerSupplyFilterDTO filterDTO) {
-        PowerSupplyFieldsHolderBasedOnFilterDTO powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetPowerSupplyFieldsValuesFromFilterDTO(filterDTO);
+        PowerSupplyFilterFieldsHolderBasedOnFilterDTO powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetPowerSupplyFieldsValuesFromFilterDTO(filterDTO);
 
-        List<PowerSupplyDTO> powerSuppliesByName = powerSupplyDAO.findAllProductsByNameLike(powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<PowerSupplyDTO> powerSuppliesByName = powerSupplyDAO.findAllProductsByNameLike(powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(PowerSupplyDTO::new)
                 .toList();
 
         List<PowerSupplyDTO> powerSuppliesByPrice = powerSupplyDAO.findAllProductsByPriceBetween(
-                        powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(PowerSupplyDTO::new)
                 .toList();
 
         List<PowerSupplyDTO> powerSuppliesByWattage = powerSupplyDAO.findAllByWattageBetween(
-                        powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.minWattage(), powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.maxWattage())
+                        powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minWattage(), powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxWattage())
                 .stream()
                 .map(PowerSupplyDTO::new)
                 .toList();
 
         List<PowerSupplyDTO> powerSuppliesByTdp = powerSupplyDAO.findAllByTdpBetween(
-                        powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
+                        powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
                 .stream()
                 .map(PowerSupplyDTO::new)
                 .toList();
 
         List<PowerSupplyDTO> powerSuppliesByEfficiencyRatingList = new ArrayList<>();
-        if (powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.efficiencyRatings() != null && !powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.efficiencyRatings().isEmpty()) {
+        if (powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.efficiencyRatings() != null && !powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.efficiencyRatings().isEmpty()) {
             for (EfficiencyRating efficiencyRating : filterDTO.getEfficiencyRatings()) {
                 List<PowerSupplyDTO> powerSuppliesByEfficiencyRating = powerSupplyDAO.findAllByEfficiencyRating(efficiencyRating)
                         .stream()
@@ -608,7 +609,7 @@ public class FilterServiceImpl implements FilterService {
         }
 
         List<PowerSupplyDTO> powerSuppliesByModularTypeList = new ArrayList<>();
-        if (powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.modularTypes() != null && !powerSupplyFieldsHolderBasedOnFilterDTOFromFilterDTO.modularTypes().isEmpty()) {
+        if (powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.modularTypes() != null && !powerSupplyFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.modularTypes().isEmpty()) {
             for (ModularType modularType : filterDTO.getModularTypes()) {
                 List<PowerSupplyDTO> powerSuppliesDTOsByModularType = powerSupplyDAO.findAllByModularType(modularType)
                         .stream()
@@ -644,39 +645,39 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<RAMDTO> filterAllRamsBasedOnSpecification(final RAMFilterDTO filterDTO) {
-        RamFieldsHolderBasedOnFilterDTO ramFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetRamFieldsValuesFromFilterDTO(filterDTO);
+        RamFilterFieldsHolderBasedOnFilterDTO ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetRamFieldsValuesFromFilterDTO(filterDTO);
 
-        List<RAMDTO> ramsByName = ramDAO.findAllProductsByNameLike(ramFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<RAMDTO> ramsByName = ramDAO.findAllProductsByNameLike(ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(RAMDTO::new)
                 .toList();
 
         List<RAMDTO> ramsByPrice = ramDAO.findAllProductsByPriceBetween(
-                        ramFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), ramFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(RAMDTO::new)
                 .toList();
 
         List<RAMDTO> ramsByCountOfRam = ramDAO.findAllByCountOfRamBetween(
-                        ramFieldsHolderBasedOnFilterDTOFromFilterDTO.minCountOfRam(), ramFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCountOfRam())
+                        ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minCountOfRam(), ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCountOfRam())
                 .stream()
                 .map(RAMDTO::new)
                 .toList();
 
         List<RAMDTO> ramsByGbOfRam = ramDAO.findAllByGbOfRamBetween(
-                        ramFieldsHolderBasedOnFilterDTOFromFilterDTO.minGbOfRam(), ramFieldsHolderBasedOnFilterDTOFromFilterDTO.maxGbOfRam())
+                        ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minGbOfRam(), ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxGbOfRam())
                 .stream()
                 .map(RAMDTO::new)
                 .toList();
 
         List<RAMDTO> ramsByTdp = ramDAO.findAllByTdpBetween(
-                        ramFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), ramFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
+                        ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
                 .stream()
                 .map(RAMDTO::new)
                 .toList();
 
         List<RAMDTO> ramsByDdrTypeList = new ArrayList<>();
-        if (ramFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes() != null && !ramFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes().isEmpty()) {
+        if (ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes() != null && !ramFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.ddrTypes().isEmpty()) {
             for (DDRType ddrType : filterDTO.getDdrTypes()) {
                 List<RAMDTO> ramsByDdrType = ramDAO.findAllByDdrType(ddrType)
                         .stream()
@@ -711,27 +712,27 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<ExternalHardDriveDTO> filterAllExternalHardDrivesBasedOnSpecification(final ExternalHardDriveFilterDTO filterDTO) {
-        ExternalHardDriveFieldsHolderBasedOnFilterDTO externalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetExternalHardDriveFieldsValuesFromFilterDTO(filterDTO);
+        ExternalHardDriveFilterFieldsHolderBasedOnFilterDTO externalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetExternalHardDriveFieldsValuesFromFilterDTO(filterDTO);
 
-        List<ExternalHardDriveDTO> externalHardDrivesByName = externalHardDriveDAO.findAllProductsByNameLike(externalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<ExternalHardDriveDTO> externalHardDrivesByName = externalHardDriveDAO.findAllProductsByNameLike(externalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(ExternalHardDriveDTO::new)
                 .toList();
 
         List<ExternalHardDriveDTO> externalHardDrivesByPrice = externalHardDriveDAO.findAllProductsByPriceBetween(
-                        externalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), externalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        externalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), externalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(ExternalHardDriveDTO::new)
                 .toList();
 
         List<ExternalHardDriveDTO> externalHardDrivesByCapacity = externalHardDriveDAO.findAllByCapacityBetween(
-                        externalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.minCapacity(), externalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCapacity())
+                        externalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minCapacity(), externalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCapacity())
                 .stream()
                 .map(ExternalHardDriveDTO::new)
                 .toList();
 
         List<ExternalHardDriveDTO> externalHardDrivesByTdp = externalHardDriveDAO.findAllByTdpBetween(
-                        externalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), externalHardDriveFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
+                        externalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minTdp(), externalHardDriveFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxTdp())
                 .stream()
                 .map(ExternalHardDriveDTO::new)
                 .toList();
@@ -753,33 +754,33 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<HeadsetDTO> filterAllHeadsetsBasedOnSpecification(final HeadsetFilterDTO filterDTO) {
-        HeadsetFieldsHolderBasedOnFilterDTO headsetFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetHeadsetFieldsValuesFromFilterDTO(filterDTO);
+        HeadsetFilterFieldsHolderBasedOnFilterDTO headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetHeadsetFieldsValuesFromFilterDTO(filterDTO);
 
-        List<HeadsetDTO> headsetsByName = headsetDAO.findAllProductsByNameLike(headsetFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<HeadsetDTO> headsetsByName = headsetDAO.findAllProductsByNameLike(headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(HeadsetDTO::new)
                 .toList();
 
         List<HeadsetDTO> headsetsByPrice = headsetDAO.findAllProductsByPriceBetween(
-                        headsetFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), headsetFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(HeadsetDTO::new)
                 .toList();
 
         List<HeadsetDTO> headsetsByFrequency = headsetDAO.findAllByFrequencyBetween(
-                        headsetFieldsHolderBasedOnFilterDTOFromFilterDTO.minFrequency(), headsetFieldsHolderBasedOnFilterDTOFromFilterDTO.maxFrequency())
+                        headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minFrequency(), headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxFrequency())
                 .stream()
                 .map(HeadsetDTO::new)
                 .toList();
 
         List<HeadsetDTO> headsetsByCableLength = headsetDAO.findAllByCableLengthBetween(
-                        headsetFieldsHolderBasedOnFilterDTOFromFilterDTO.minCableLength(), headsetFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCableLength())
+                        headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minCableLength(), headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCableLength())
                 .stream()
                 .map(HeadsetDTO::new)
                 .toList();
 
         List<HeadsetDTO> headsetsByConnectivityTypeList = new ArrayList<>();
-        if (headsetFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes() != null && !headsetFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes().isEmpty()) {
+        if (headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes() != null && !headsetFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes().isEmpty()) {
             for (ConnectivityType connectivityType : filterDTO.getConnectivityTypes()) {
                 List<HeadsetDTO> headsetsByConnectivityType = headsetDAO.findAllByConnectivityType(connectivityType)
                         .stream()
@@ -813,33 +814,33 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<KeyboardDTO> filterAllKeyboardsBasedOnSpecification(final KeyboardFilterDTO filterDTO) {
-        KeyboardFieldsHolderBasedOnFilterDTO keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetKeyboardFieldsValuesFromFilterDTO(filterDTO);
+        KeyboardFilterFieldsHolderBasedOnFilterDTO keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetKeyboardFieldsValuesFromFilterDTO(filterDTO);
 
-        List<KeyboardDTO> keyboardsByName = keyboardDAO.findAllProductsByNameLike(keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<KeyboardDTO> keyboardsByName = keyboardDAO.findAllProductsByNameLike(keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(KeyboardDTO::new)
                 .toList();
 
         List<KeyboardDTO> keyboardsByPrice = keyboardDAO.findAllProductsByPriceBetween(
-                        keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(KeyboardDTO::new)
                 .toList();
 
         List<KeyboardDTO> keyboardsByCableLength = keyboardDAO.findAllByCableLengthBetween(
-                        keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.minCableLength(), keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCableLength())
+                        keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minCableLength(), keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCableLength())
                 .stream()
                 .map(KeyboardDTO::new)
                 .toList();
 
         List<KeyboardDTO> keyboardsByWeight = keyboardDAO.findAllByWeightBetween(
-                        keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.minWeight(), keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.maxWeight())
+                        keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minWeight(), keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxWeight())
                 .stream()
                 .map(KeyboardDTO::new)
                 .toList();
 
         List<KeyboardDTO> keyboardsByDimensionList = new ArrayList<>();
-        if (keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.dimensions() != null && !keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.dimensions().isEmpty()) {
+        if (keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.dimensions() != null && !keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.dimensions().isEmpty()) {
             for (String dimension : filterDTO.getDimensions()) {
                 List<KeyboardDTO> keyboardsByDimension = keyboardDAO.findAllByDimension(dimension)
                         .stream()
@@ -855,7 +856,7 @@ public class FilterServiceImpl implements FilterService {
         }
 
         List<KeyboardDTO> keyboardsByConnectivityTypeList = new ArrayList<>();
-        if (keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes() != null && !keyboardFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes().isEmpty()) {
+        if (keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes() != null && !keyboardFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes().isEmpty()) {
             for (ConnectivityType connectivityType : filterDTO.getConnectivityTypes()) {
                 List<KeyboardDTO> keyboardsByConnectivityType = keyboardDAO.findAllByConnectivityType(connectivityType)
                         .stream()
@@ -890,33 +891,33 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<MonitorDTO> filterAllMonitorsBasedOnSpecification(final MonitorFilterDTO filterDTO) {
-        MonitorFieldsHolderBasedOnFilterDTO monitorFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetMonitorFieldsValuesFromFilterDTO(filterDTO);
+        MonitorFilterFieldsHolderBasedOnFilterDTO monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetMonitorFieldsValuesFromFilterDTO(filterDTO);
 
-        List<MonitorDTO> monitorsByName = monitorDAO.findAllProductsByNameLike(monitorFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<MonitorDTO> monitorsByName = monitorDAO.findAllProductsByNameLike(monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(MonitorDTO::new)
                 .toList();
 
         List<MonitorDTO> monitorsByPrice = monitorDAO.findAllProductsByPriceBetween(
-                        monitorFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), monitorFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(MonitorDTO::new)
                 .toList();
 
         List<MonitorDTO> monitorsByScreenSize = monitorDAO.findAllByScreenSizeBetween(
-                        monitorFieldsHolderBasedOnFilterDTOFromFilterDTO.minScreenSize(), monitorFieldsHolderBasedOnFilterDTOFromFilterDTO.maxScreenSize())
+                        monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minScreenSize(), monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxScreenSize())
                 .stream()
                 .map(MonitorDTO::new)
                 .toList();
 
         List<MonitorDTO> monitorsByRefreshRate = monitorDAO.findAllByRefreshRateBetween(
-                        monitorFieldsHolderBasedOnFilterDTOFromFilterDTO.minRefreshRate(), monitorFieldsHolderBasedOnFilterDTOFromFilterDTO.maxRefreshRate())
+                        monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minRefreshRate(), monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxRefreshRate())
                 .stream()
                 .map(MonitorDTO::new)
                 .toList();
 
         List<MonitorDTO> monitorsByMonitorScreenTypeList = new ArrayList<>();
-        if (monitorFieldsHolderBasedOnFilterDTOFromFilterDTO.monitorScreenTypes() != null && !monitorFieldsHolderBasedOnFilterDTOFromFilterDTO.monitorScreenTypes().isEmpty()) {
+        if (monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.monitorScreenTypes() != null && !monitorFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.monitorScreenTypes().isEmpty()) {
             for (MonitorScreenType monitorScreenType : filterDTO.getScreenTypes()) {
                 List<MonitorDTO> monitorsByMonitorScreenType = monitorDAO.findAllByMonitorScreenType(monitorScreenType)
                         .stream()
@@ -949,39 +950,39 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<MouseDTO> filterAllMiceBasedOnSpecification(final MouseFilterDTO filterDTO) {
-        MouseFieldsHolderBasedOnFilterDTO mouseFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetMouseFieldsValuesFromFilterDTO(filterDTO);
+        MouseFilterFieldsHolderBasedOnFilterDTO mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetMouseFieldsValuesFromFilterDTO(filterDTO);
 
-        List<MouseDTO> miceByName = mouseDAO.findAllProductsByNameLike(mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<MouseDTO> miceByName = mouseDAO.findAllProductsByNameLike(mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(MouseDTO::new)
                 .toList();
 
         List<MouseDTO> miceByPrice = mouseDAO.findAllProductsByPriceBetween(
-                        mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(MouseDTO::new)
                 .toList();
 
         List<MouseDTO> miceByResolution = mouseDAO.findAllByMaxResolutionBetween(
-                        mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.minResolution(), mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.maxResolution())
+                        mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minResolution(), mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxResolution())
                 .stream()
                 .map(MouseDTO::new)
                 .toList();
 
         List<MouseDTO> miceByCableLength = mouseDAO.findAllByCableLengthBetween(
-                        mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.minCableLength(), mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCableLength())
+                        mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minCableLength(), mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCableLength())
                 .stream()
                 .map(MouseDTO::new)
                 .toList();
 
         List<MouseDTO> miceByWeight = mouseDAO.findAllByWeightBetween(
-                        mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.minWeight(), mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.maxWeight())
+                        mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minWeight(), mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxWeight())
                 .stream()
                 .map(MouseDTO::new)
                 .toList();
 
         List<MouseDTO> miceByConnectivityTypeList = new ArrayList<>();
-        if (mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes() != null && !mouseFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes().isEmpty()) {
+        if (mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes() != null && !mouseFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.connectivityTypes().isEmpty()) {
             for (ConnectivityType connectivityType : filterDTO.getConnectivityTypes()) {
                 List<MouseDTO> mouseDTOsByConnectivityType = mouseDAO.findAllByConnectivityType(connectivityType)
                         .stream()
@@ -1014,33 +1015,33 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<SpeakerDTO> filterAllSpeakersBasedOnSpecification(final SpeakerFilterDTO filterDTO) {
-        SpeakerFieldsHolderBasedOnFilterDTO speakerFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetSpeakerFieldsValuesFromFilterDTO(filterDTO);
+        SpeakerFilterFieldsHolderBasedOnFilterDTO speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO = filterFieldsValueResolver.resolveAndGetSpeakerFieldsValuesFromFilterDTO(filterDTO);
 
-        List<SpeakerDTO> speakersByName = speakerDAO.findAllProductsByNameLike(speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
+        List<SpeakerDTO> speakersByName = speakerDAO.findAllProductsByNameLike(speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.name())
                 .stream()
                 .map(SpeakerDTO::new)
                 .toList();
 
         List<SpeakerDTO> speakersByPrice = speakerDAO.findAllProductsByPriceBetween(
-                        speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
+                        speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minPrice(), speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxPrice())
                 .stream()
                 .map(SpeakerDTO::new)
                 .toList();
 
         List<SpeakerDTO> speakersByFrequency = speakerDAO.findAllByFrequencyBetween(
-                        speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.minFrequency(), speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.maxFrequency())
+                        speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minFrequency(), speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxFrequency())
                 .stream()
                 .map(SpeakerDTO::new)
                 .toList();
 
         List<SpeakerDTO> speakersByCableLength = speakerDAO.findAllByCableLengthBetween(
-                        speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.minCableLength(), speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCableLength())
+                        speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.minCableLength(), speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.maxCableLength())
                 .stream()
                 .map(SpeakerDTO::new)
                 .toList();
 
         List<SpeakerDTO> speakersByDimensionList = new ArrayList<>();
-        if (speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.dimensions() != null && !speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.dimensions().isEmpty()) {
+        if (speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.dimensions() != null && !speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.dimensions().isEmpty()) {
             for (String dimension : filterDTO.getDimensions()) {
                 List<SpeakerDTO> speakersByDimension = speakerDAO.findAllByDimension(dimension)
                         .stream()
@@ -1056,7 +1057,7 @@ public class FilterServiceImpl implements FilterService {
         }
 
         List<SpeakerDTO> speakersByPowerSourceTypeList = new ArrayList<>();
-        if (speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.powerSourceTypes() != null && !speakerFieldsHolderBasedOnFilterDTOFromFilterDTO.powerSourceTypes().isEmpty()) {
+        if (speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.powerSourceTypes() != null && !speakerFilterFieldsHolderBasedOnFilterDTOFromFilterDTO.powerSourceTypes().isEmpty()) {
             for (PowerSourceType powerSourceType : filterDTO.getPowerSourceTypes()) {
                 List<SpeakerDTO> speakersByPowerSourceType = speakerDAO.findAllByPowerSourceType(powerSourceType)
                         .stream()

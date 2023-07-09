@@ -14,6 +14,7 @@ import com.bdg.pc_build.product.repository.main.*;
 import com.bdg.pc_build.product.repository.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -52,37 +53,37 @@ public class OrderServiceImpl implements OrderService {
         order.setUser(user);
         for (ProductDTO product : products) {
             if (product.getId() >= INITIAL_ID_VALUE_CASE && product.getId() <= FINAL_ID_VALUE_CASE) {
-                order.addCase(caseDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addCase(caseDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_COOLER && product.getId() <= FINAL_ID_VALUE_COOLER) {
-                order.addCooler(coolerDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addCooler(coolerDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_CPU && product.getId() <= FINAL_ID_VALUE_CPU) {
-                order.addCPU(cpuDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addCPU(cpuDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_CPU_COOLER && product.getId() <= FINAL_ID_VALUE_CPU_COOLER) {
-                order.addCPUCooler(cpuCoolerDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addCPUCooler(cpuCoolerDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_GPU && product.getId() <= FINAL_ID_VALUE_GPU) {
-                order.addGPU(gpudao.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addGPU(gpudao.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_INTERNAL_HARD_DRIVE && product.getId() <= FINAL_ID_VALUE_INTERNAL_HARD_DRIVE) {
-                order.addInternalHardDrive(internalHardDriveDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addInternalHardDrive(internalHardDriveDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_MOTHERBOARD && product.getId() <= FINAL_ID_VALUE_MOTHERBOARD) {
-                order.addMotherboard(motherboardDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addMotherboard(motherboardDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_POWER_SUPPLY && product.getId() <= FINAL_ID_VALUE_POWER_SUPPLY) {
-                order.addPowerSupply(powerSupplyDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addPowerSupply(powerSupplyDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_RAM && product.getId() <= FINAL_ID_VALUE_RAM) {
-                order.addRAM(ramDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addRAM(ramDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_EXTERNAL_HARD_DRIVE && product.getId() <= FINAL_ID_VALUE_EXTERNAL_HARD_DRIVE) {
-                order.addExternalHardDrive(externalHardDriveDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addExternalHardDrive(externalHardDriveDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_HEADSET && product.getId() <= FINAL_ID_VALUE_HEADSET) {
-                order.addHeadset(headsetDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addHeadset(headsetDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_KEYBOARD && product.getId() <= FINAL_ID_VALUE_KEYBOARD) {
-                order.addKeyboard(keyboardDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addKeyboard(keyboardDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_MONITOR && product.getId() <= FINAL_ID_VALUE_MONITOR) {
-                order.addMonitor(monitorDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addMonitor(monitorDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_MOUSE && product.getId() <= FINAL_ID_VALUE_MOUSE) {
-                order.addMouse(mouseDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addMouse(mouseDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else if (product.getId() >= INITIAL_ID_VALUE_SPEAKER && product.getId() <= FINAL_ID_VALUE_SPEAKER) {
-                order.addSpeaker(speakerDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getClass(), product.getId())));
+                order.addSpeaker(speakerDAO.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, product.getClass(), product.getId())));
             } else {
-                throw new IdOutOfScopeException(product.getId());
+                throw new IdOutOfScopeException(HttpStatus.CONFLICT, product.getId());
             }
         }
         return new OrderDTO(orderDAO.save(order));

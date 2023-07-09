@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -66,7 +67,7 @@ public class UserController {
             @Valid @RequestBody FirstNameUpdateRequest request
     ) {
         if (id <= 0) {
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         userService.updateFirstNameById(id, request.newFirstName());
         return ResponseEntity.ok("First name updated successfully");
@@ -79,7 +80,7 @@ public class UserController {
             @Valid @RequestBody LastNameUpdateRequest request
     ) {
         if (id <= 0) {
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         userService.updateLastNameById(id, request.newLastName());
         return ResponseEntity.ok("Last name updated successfully");
@@ -92,7 +93,7 @@ public class UserController {
             @Valid @RequestBody EmailUpdateRequest request
     ) {
         if (id <= 0) {
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         userService.updateEmailById(id, request.newEmail());
         return ResponseEntity.ok("Email updated successfully");
@@ -152,7 +153,7 @@ public class UserController {
             @PathVariable("id") Long id
     ) {
         if (id <= 0) {
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(userService.getBuiltComputersByUserId(id));
     }
@@ -163,7 +164,7 @@ public class UserController {
             @PathVariable("id") Long id
     ) {
         if (id <= 0) {
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(userService.getOrdersByUserId(id));
     }
@@ -174,7 +175,7 @@ public class UserController {
             @PathVariable("id") Long id
     ) {
         if (id <= 0) {
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(userService.getDesireLogsByUserId(id));
     }

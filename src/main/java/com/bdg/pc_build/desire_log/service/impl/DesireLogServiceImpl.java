@@ -68,7 +68,7 @@ public class DesireLogServiceImpl implements DesireLogService {
     public DesireLogDTO markAsCheckedById(final Long id) {
         Optional<DesireLog> optionalDesireLog = desireLogDAO.findById(id);
         if (optionalDesireLog.isEmpty()) {
-            throw new ProductNotFoundException(DesireLog.class, id);
+            throw new ProductNotFoundException(HttpStatus.NOT_FOUND, DesireLog.class, id);
         }
 
         DesireLog desireLog = optionalDesireLog.get();
@@ -91,14 +91,14 @@ public class DesireLogServiceImpl implements DesireLogService {
     public DesireLogDTO getById(final Long id) {
         Optional<DesireLog> optionalDesireLog = desireLogDAO.findById(id);
         if (optionalDesireLog.isEmpty()) {
-            throw new ProductNotFoundException(DesireLog.class, id);
+            throw new ProductNotFoundException(HttpStatus.NOT_FOUND, DesireLog.class, id);
         }
         return new DesireLogDTO(optionalDesireLog.get());
     }
 
     @Override
     public Set<UserDTO> getUsersByLogId(final Long id) {
-        DesireLog desireLog = desireLogDAO.findById(id).orElseThrow(() -> new ProductNotFoundException(DesireLog.class, id));
+        DesireLog desireLog = desireLogDAO.findById(id).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, DesireLog.class, id));
 
         return desireLog.getUsers()
                 .stream()

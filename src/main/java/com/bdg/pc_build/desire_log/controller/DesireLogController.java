@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,7 @@ public class DesireLogController {
             @PathVariable("id") final Long id
     ) {
         if(id <= 0){
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok().body(desireLogService.getById(id));
     }
@@ -65,7 +66,7 @@ public class DesireLogController {
             @PathVariable("id") Long id
     ) {
         if(id <= 0){
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok().body(desireLogService.markAsCheckedById(id));
     }
@@ -76,7 +77,7 @@ public class DesireLogController {
             @PathVariable("id") Long id
     ) {
         if(id <= 0){
-            throw new IdOutOfScopeException();
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok().body(desireLogService.getUsersByLogId(id));
     }

@@ -1,4 +1,4 @@
-package com.bdg.pc_build.computer_builder.service;
+package com.bdg.pc_build.computer_builder.validator;
 
 import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.exception.NotCompatibleException;
@@ -7,6 +7,7 @@ import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;
 import com.bdg.pc_build.product.enumerations.TowerType;
 import com.bdg.pc_build.product.model.entity.main.*;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class CompatibilityValidator {
 
             for (RAM ramDTO : ramDTOs) {
                 if (!motherboardDTO.getDdrType().equals(ramDTO.getDdrType())) {
-                    throw new NotCompatibleException("DDR type of Motherboard not compatible with DDR type of RAM: ");
+                    throw new NotCompatibleException(HttpStatus.OK, "DDR type of Motherboard not compatible with DDR type of RAM: ");
                 }
 
                 countOfRams += ramDTO.getCountOfRam();
@@ -41,11 +42,11 @@ public class CompatibilityValidator {
             }
 
             if (motherboardDTO.getMemorySlots() != countOfRams) {
-                throw new NotCompatibleException("Memory slots of the Motherboard not equal to count of rams of RAM: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Memory slots of the Motherboard not equal to count of rams of RAM: ");
             }
 
             if (motherboardDTO.getMemoryMax() < sumOfGbOfRams) {
-                throw new NotCompatibleException("Memory max of Motherboard is greater than sum of gb of RAM or equal to sum of gb of RAM: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Memory max of Motherboard is greater than sum of gb of RAM or equal to sum of gb of RAM: ");
             }
         }
     }
@@ -53,7 +54,7 @@ public class CompatibilityValidator {
     private void validateMotherboardWithCpu(Motherboard motherboardDTO, CPU cpuDTO) {
         if (motherboardDTO != null && cpuDTO != null) {
             if (!motherboardDTO.getSocketType().equals(cpuDTO.getSocketType())) {
-                throw new NotCompatibleException("Socket type of Motherboard not compatible with Socket type of CPU: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Socket type of Motherboard not compatible with Socket type of CPU: ");
             }
         }
     }
@@ -61,7 +62,7 @@ public class CompatibilityValidator {
     private void validateCpuWithCpuCooler(CPU cpuDTO, CPUCooler cpuCoolerDTO) {
         if (cpuDTO != null && cpuCoolerDTO != null) {
             if (!cpuDTO.getSocketType().equals(cpuCoolerDTO.getSocketType())) {
-                throw new NotCompatibleException("Socket type of CPU not compatible with Socket type of CPU Cooler: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Socket type of CPU not compatible with Socket type of CPU Cooler: ");
             }
         }
     }
@@ -69,7 +70,7 @@ public class CompatibilityValidator {
     private void validateMotherboardWithCpuCooler(Motherboard motherboardDTO, CPUCooler CpuCoolerDTO) {
         if (motherboardDTO != null && CpuCoolerDTO != null) {
             if (!motherboardDTO.getSocketType().equals(CpuCoolerDTO.getSocketType())) {
-                throw new NotCompatibleException("Socket type of Motherboard not compatible with Socket type of CPU Cooler: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Socket type of Motherboard not compatible with Socket type of CPU Cooler: ");
             }
         }
     }
@@ -77,13 +78,13 @@ public class CompatibilityValidator {
     private void validateMotherboardWithCase(Motherboard motherboardDTO, aCase caseDTO) {
         if (motherboardDTO != null && caseDTO != null) {
             if (caseDTO.getTowerType().equals(TowerType.FULL) && motherboardDTO.getAtxType().equals(ATXType.M_ATX)) {
-                throw new NotCompatibleException("Tower type of Motherboard not compatible with Tower type of Case: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Tower type of Motherboard not compatible with Tower type of Case: ");
             }
             if (caseDTO.getTowerType().equals(TowerType.MID) && !motherboardDTO.getAtxType().equals(ATXType.ATX)) {
-                throw new NotCompatibleException("Tower type of Motherboard not compatible with Tower type of Case: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Tower type of Motherboard not compatible with Tower type of Case: ");
             }
             if (caseDTO.getTowerType().equals(TowerType.MINI) && !motherboardDTO.getAtxType().equals(ATXType.M_ATX)) {
-                throw new NotCompatibleException("Tower type of Motherboard not compatible with Tower type of Case: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Tower type of Motherboard not compatible with Tower type of Case: ");
             }
         }
     }
@@ -92,7 +93,7 @@ public class CompatibilityValidator {
         if (motherboardDTO != null && (internalHardDriveDTOs != null && !internalHardDriveDTOs.isEmpty())) {
             for (InternalHardDrive internalHardDriveDTO : internalHardDriveDTOs) {
                 if (!motherboardDTO.getIsM2() && internalHardDriveDTO.getInternalHardDriveInterfaceType().equals(InternalHardDriveInterfaceType.SSD_M2)) {
-                    throw new NotCompatibleException("isM2 of Motherboard not compatible with Internal Hard Drive Interface type of Internal Hard Drive: ");
+                    throw new NotCompatibleException(HttpStatus.OK, "isM2 of Motherboard not compatible with Internal Hard Drive Interface type of Internal Hard Drive: ");
                 }
             }
         }
@@ -102,7 +103,7 @@ public class CompatibilityValidator {
     private void validateMotherboardWithGpu(Motherboard motherboardDTO, GPU gpuDTO) {
         if (motherboardDTO != null && gpuDTO != null) {
             if (!motherboardDTO.getGpuInterfaceType().equals(gpuDTO.getGpuInterfaceType())) {
-                throw new NotCompatibleException("Gpu Interface type of Motherboard not compatible with Gpu Interface type of GPU: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Gpu Interface type of Motherboard not compatible with Gpu Interface type of GPU: ");
             }
         }
     }
@@ -140,7 +141,7 @@ public class CompatibilityValidator {
             }
 
             if (sumOfTdpsOfAllComponents > computerDTO.getPowerSupply().getWattage()) {
-                throw new NotCompatibleException("Power Supply is weak for these materials: Wattage of Power Supply must be granter than sum of Tdps of all materials: ");
+                throw new NotCompatibleException(HttpStatus.OK, "Power Supply is weak for these materials: Wattage of Power Supply must be granter than sum of Tdps of all materials: ");
             }
         }
     }

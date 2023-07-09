@@ -5,8 +5,8 @@ import com.bdg.pc_build.cart.service.CartService;
 import com.bdg.pc_build.computer_builder.model.entity.Computer;
 import com.bdg.pc_build.computer_builder.model.request.ComputerCreationRequest;
 import com.bdg.pc_build.computer_builder.repository.ComputerDAO;
-import com.bdg.pc_build.computer_builder.service.CompatibilityValidator;
-import com.bdg.pc_build.computer_builder.service.ComputerEntityInitializerBasedOnRequest;
+import com.bdg.pc_build.computer_builder.validator.CompatibilityValidator;
+import com.bdg.pc_build.computer_builder.converter.ComputerEntityInitializerBasedOnRequest;
 import com.bdg.pc_build.computer_builder.service.ComputerService;
 import com.bdg.pc_build.exception.ProductNotFoundException;
 import com.bdg.pc_build.product.model.entity.main.Cooler;
@@ -16,6 +16,7 @@ import com.bdg.pc_build.product.model.entity.peripheral.*;
 import com.bdg.pc_build.user.model.entity.User;
 import com.bdg.pc_build.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class ComputerServiceImpl implements ComputerService {
 
     @Override
     public Computer getComputerById(final Long id) {
-        return computerDAO.findById(id).orElseThrow(() -> new ProductNotFoundException(Computer.class, id));
+        return computerDAO.findById(id).orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND, Computer.class, id));
     }
 
     @Override
