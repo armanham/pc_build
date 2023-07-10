@@ -20,15 +20,17 @@ public interface UserService {
 
     void updateLastNameByAuthHeader(String authHeader, String newLastName);
 
-    void updateEmailByAuthHeader(String authHeader, String newEmail);
+    String updateEmailByAuthHeader(String authHeader, String newEmail);
+
+    String updatePasswordByAuthHeader(String authHeader, String newPassword); //todo
 
     void updateFirstNameById(Long id, String newFirstName);
 
     void updateLastNameById(Long id, String newLastName);
 
-    void updateEmailById(Long id, String newEmail);
+    String updateEmailById(Long id, String newEmail);
 
-    void updatePasswordByAuthHeader(String authHeader, String newPassword); //todo
+    String updatePasswordById(final Long id, final String newPassword);
 
     void changeUserRoleToAdminByEmail(String email);
 

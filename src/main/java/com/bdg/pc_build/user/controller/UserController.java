@@ -8,6 +8,7 @@ import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.request.EmailUpdateRequest;
 import com.bdg.pc_build.user.model.request.FirstNameUpdateRequest;
 import com.bdg.pc_build.user.model.request.LastNameUpdateRequest;
+import com.bdg.pc_build.user.model.request.PasswordUpdateRequest;
 import com.bdg.pc_build.user.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,7 +33,7 @@ public class UserController {
     @PutMapping("/update/first-name")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<String> updateFirstName(
-            @Valid @RequestBody FirstNameUpdateRequest firstNameUpdateRequest,
+            @Valid @RequestBody final FirstNameUpdateRequest firstNameUpdateRequest,
             HttpServletRequest httpServletRequest
     ) {
         userService.updateFirstNameByAuthHeader(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), firstNameUpdateRequest.newFirstName());
@@ -42,7 +43,7 @@ public class UserController {
     @PutMapping("/update/last-name")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<String> updateLastName(
-            @Valid @RequestBody LastNameUpdateRequest lastNameUpdateRequest,
+            @Valid @RequestBody final LastNameUpdateRequest lastNameUpdateRequest,
             HttpServletRequest httpServletRequest
     ) {
         userService.updateLastNameByAuthHeader(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), lastNameUpdateRequest.newLastName());
@@ -52,19 +53,29 @@ public class UserController {
     @PutMapping("/update/email")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<String> updateEmail(
-            @Valid @RequestBody EmailUpdateRequest emailUpdateRequest,
+            @Valid @RequestBody final EmailUpdateRequest emailUpdateRequest,
             HttpServletRequest httpServletRequest
 
     ) {
-        userService.updateEmailByAuthHeader(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), emailUpdateRequest.newEmail());
-        return ResponseEntity.ok("Email updated successfully");
+        final String newToken = userService.updateEmailByAuthHeader(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), emailUpdateRequest.newEmail());
+        return ResponseEntity.ok("Email updated successfully: New token: " + newToken);
+    }
+
+    @PutMapping("/update/password")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public ResponseEntity<String> updatePassword(
+            @Valid @RequestBody final PasswordUpdateRequest passwordUpdateRequest,
+            HttpServletRequest httpServletRequest
+    ) {
+        final String newToken = userService.updatePasswordByAuthHeader(httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION), passwordUpdateRequest.newPassword());
+        return ResponseEntity.ok("Password updated successfully: New token: " + newToken);
     }
 
     @PutMapping("/{id}/update/first-name")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> updateFirstName(
-            @PathVariable("id") Long id,
-            @Valid @RequestBody FirstNameUpdateRequest request
+            @PathVariable("id") final Long id,
+            @Valid @RequestBody final FirstNameUpdateRequest request
     ) {
         if (id <= 0) {
             throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
@@ -76,8 +87,8 @@ public class UserController {
     @PutMapping("/{id}/update/last-name")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> updateLastName(
-            @PathVariable("id") Long id,
-            @Valid @RequestBody LastNameUpdateRequest request
+            @PathVariable("id") final Long id,
+            @Valid @RequestBody final LastNameUpdateRequest request
     ) {
         if (id <= 0) {
             throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
@@ -89,14 +100,27 @@ public class UserController {
     @PutMapping("/{id}/update/email")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> updateEmail(
-            @PathVariable("id") Long id,
-            @Valid @RequestBody EmailUpdateRequest request
+            @PathVariable("id") final Long id,
+            @Valid @RequestBody final EmailUpdateRequest request
     ) {
         if (id <= 0) {
             throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
-        userService.updateEmailById(id, request.newEmail());
-        return ResponseEntity.ok("Email updated successfully");
+        final String newToken = userService.updateEmailById(id, request.newEmail());
+        return ResponseEntity.ok("Email updated successfully: New token: " + newToken);
+    }
+
+    @PutMapping("/{id}/update/password")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<String> updatePassword(
+            @PathVariable("id") final Long id,
+            @Valid @RequestBody final PasswordUpdateRequest request
+    ) {
+        if (id <= 0) {
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
+        }
+        final String newToken = userService.updatePasswordById(id, request.newPassword());
+        return ResponseEntity.ok("Password updated successfully: New token: " + newToken);
     }
 
     @PutMapping("/{email}/update/mark-as-admin")
@@ -150,7 +174,7 @@ public class UserController {
     @GetMapping("/{id}/built-computers")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<List<ComputerDTO>> getBuiltComputersByUserId(
-            @PathVariable("id") Long id
+            @PathVariable("id") final Long id
     ) {
         if (id <= 0) {
             throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
@@ -161,7 +185,7 @@ public class UserController {
     @GetMapping("/{id}/orders")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<List<OrderDTO>> getOrdersByUserId(
-            @PathVariable("id") Long id
+            @PathVariable("id") final Long id
     ) {
         if (id <= 0) {
             throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
@@ -172,7 +196,7 @@ public class UserController {
     @GetMapping("/{id}/desire-log")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<List<DesireLogDTO>> getDesireLogsByUserId(
-            @PathVariable("id") Long id
+            @PathVariable("id") final Long id
     ) {
         if (id <= 0) {
             throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);

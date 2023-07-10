@@ -9,7 +9,6 @@ import com.bdg.pc_build.exception.InvalidAuthHeaderException;
 import com.bdg.pc_build.exception.InvalidTokenException;
 import com.bdg.pc_build.exception.UserNotFoundException;
 import com.bdg.pc_build.order.model.dto.OrderDTO;
-import com.bdg.pc_build.token.model.entity.Token;
 import com.bdg.pc_build.user.enumerations.Role;
 import com.bdg.pc_build.user.model.dto.UserDTO;
 import com.bdg.pc_build.user.model.entity.User;
@@ -17,6 +16,7 @@ import com.bdg.pc_build.user.repository.UserDAO;
 import com.bdg.pc_build.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
     private final AuthenticationService authenticationService;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -43,75 +44,92 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateFirstNameByAuthHeader(final String authHeader, final String newFirstName) {
-        User userToUpdate = getUserByAuthHeader(authHeader);
+        final User userToUpdate = getUserByAuthHeader(authHeader);
         userToUpdate.setFirstName(newFirstName);
         userDAO.save(userToUpdate);
     }
 
     @Override
     public void updateLastNameByAuthHeader(final String authHeader, final String newLastName) {
-        User userToUpdate = getUserByAuthHeader(authHeader);
+        final User userToUpdate = getUserByAuthHeader(authHeader);
         userToUpdate.setLastName(newLastName);
         userDAO.save(userToUpdate);
     }
 
     @Override
-    public void updateEmailByAuthHeader(final String authHeader, final String newEmail) {
-        User userToUpdate = getUserByAuthHeader(authHeader);
+    public String updateEmailByAuthHeader(final String authHeader, final String newEmail) {
+        final User userToUpdate = getUserByAuthHeader(authHeader);
 
         Optional<User> userOptionalWithNewEmail = userDAO.findByEmail(newEmail);
         if (userOptionalWithNewEmail.isPresent()) {
             throw new EmailAlreadyExistsException(HttpStatus.ALREADY_REPORTED, newEmail);
         }
+
+        authenticationService.revokeAllUserTokens(userToUpdate);
         userToUpdate.setEmail(newEmail);
-        expireAndRevokeAllOldTokensAndGenerateNewToken(userToUpdate);
-        userDAO.save(userToUpdate);
+        final User updatedUser = userDAO.save(userToUpdate);
+        return jwtService.generateToken(updatedUser);
     }
 
     @Override
-    public void updatePasswordByAuthHeader(final String authHeader, final String newPassword) {
-        User userToUpdate = getUserByAuthHeader(authHeader);
-        userToUpdate.setPassword(newPassword);
-        userDAO.save(userToUpdate);
+    public String updatePasswordByAuthHeader(final String authHeader, final String newPassword) {
+        final User userToUpdate = getUserByAuthHeader(authHeader);
+
+        authenticationService.revokeAllUserTokens(userToUpdate);
+        userToUpdate.setPassword(passwordEncoder.encode(newPassword));
+        final User updatedUser = userDAO.save(userToUpdate);
+        return jwtService.generateToken(updatedUser);
     }
 
     @Override
     public void updateFirstNameById(final Long id, final String newFirstName) {
-        User userToUpdate = getUserById(id);
+        final User userToUpdate = getUserById(id);
         userToUpdate.setFirstName(newFirstName);
         userDAO.save(userToUpdate);
     }
 
     @Override
     public void updateLastNameById(final Long id, final String newLastName) {
-        User userToUpdate = getUserById(id);
+        final User userToUpdate = getUserById(id);
         userToUpdate.setLastName(newLastName);
         userDAO.save(userToUpdate);
     }
 
     @Override
-    public void updateEmailById(final Long id, final String newEmail) {
-        User userToUpdate = getUserById(id);
+    public String updateEmailById(final Long id, final String newEmail) {
+        final User userToUpdate = getUserById(id);
 
         Optional<User> userOptionalWithNewEmail = userDAO.findByEmail(newEmail);
         if (userOptionalWithNewEmail.isPresent()) {
             throw new EmailAlreadyExistsException(HttpStatus.ALREADY_REPORTED, newEmail);
         }
+
+        authenticationService.revokeAllUserTokens(userToUpdate);
         userToUpdate.setEmail(newEmail);
-        expireAndRevokeAllOldTokensAndGenerateNewToken(userToUpdate);
-        userDAO.save(userToUpdate);
+        final User updatedUser = userDAO.save(userToUpdate);
+        return jwtService.generateToken(updatedUser);
+    }
+
+    @Override
+    public String updatePasswordById(final Long id, final String newPassword) {
+        final User userToUpdate = getUserById(id);
+
+        authenticationService.revokeAllUserTokens(userToUpdate);
+        userToUpdate.setPassword(passwordEncoder.encode(newPassword));
+        final User updatedUser = userDAO.save(userToUpdate);
+        return jwtService.generateToken(updatedUser);
     }
 
     @Override
     public void changeUserRoleToAdminByEmail(final String email) {
-        User user = getUserByEmail(email);
+        final User user = getUserByEmail(email);
         user.setRole(Role.ADMIN);
         userDAO.save(user);
     }
 
     @Override
     public void changeAdminRoleToUserByEmail(final String email) {
-        User user = getUserByEmail(email);
+        final User user = getUserByEmail(email);
         user.setRole(Role.USER);
         userDAO.save(user);
     }
@@ -180,20 +198,11 @@ public class UserServiceImpl implements UserService {
         final String token = authHeader.substring(7);
         final String email = jwtService.extractUsername(token);
 
-        User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
+        final User user = userDAO.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 
         if (!jwtService.isTokenValid(token, user)) {
             throw new InvalidTokenException(HttpStatus.BAD_REQUEST);
         }
         return user;
-    }
-
-    private void expireAndRevokeAllOldTokensAndGenerateNewToken(final User userToUpdate) { //TODO
-        for (Token token : userToUpdate.getTokens()) {
-            token.setExpired(true);
-            token.setRevoked(true);
-        }
-
-        authenticationService.saveUserToken(userToUpdate, jwtService.generateToken(userToUpdate));
     }
 }

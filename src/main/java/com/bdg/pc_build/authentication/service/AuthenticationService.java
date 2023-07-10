@@ -91,7 +91,7 @@ public class AuthenticationService {
         tokenDAO.save(token);
     }
 
-    void revokeAllUserTokens(User user) {
+    public void revokeAllUserTokens(User user) {
         var validUserTokens = tokenDAO.findAllValidTokenByUserId(user.getId());
         if (validUserTokens.isEmpty())
             return;
