@@ -5,7 +5,9 @@ import com.bdg.pc_build.order.enumerations.OrderStatus;
 import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.order.service.OrderService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -76,7 +78,7 @@ public class OrderController {
     }
 
     @PutMapping("/{id}/mark-as-canceled")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> markOrderAsCanceled(
             @PathVariable("id") Long id
     ) {
@@ -84,6 +86,19 @@ public class OrderController {
             throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
         }
         orderService.markOrderAsCanceledById(id);
+        return ResponseEntity.ok("Order status changed successfully: CANCELED");
+    }
+
+    @PutMapping("/own/{id}/mark-as-canceled")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<?> markOrderAsCanceled(
+            @PathVariable("id") Long id,
+            HttpServletRequest request
+    ) {
+        if(id <= 0){
+            throw new IdOutOfScopeException(HttpStatus.BAD_REQUEST);
+        }
+        orderService.markOrderAsCanceledById(id, request.getHeader(HttpHeaders.AUTHORIZATION));
         return ResponseEntity.ok("Order status changed successfully: CANCELED");
     }
 }

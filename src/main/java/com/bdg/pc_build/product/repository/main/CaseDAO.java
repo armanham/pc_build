@@ -29,6 +29,8 @@ public interface CaseDAO extends ProductDAO<aCase> {
             "LIKE CONCAT('%', :term, '%') ")
     List<aCase> findAllBasedOnTerm(@Param("term") String term);
 
+    List<aCase> findAllByNameIsLikeIgnoreCase(String name);
+
     @Query("select max(p.maxCpuCoolerHeight) from aCase p")
     Double getMaxCpuCoolerHeightOfCases();
 

@@ -4,7 +4,6 @@ import com.bdg.pc_build.filter.model.dto.main.*;
 import com.bdg.pc_build.filter.model.dto.peripheral.*;
 import com.bdg.pc_build.filter.model.filter_fileds_holder.main.*;
 import com.bdg.pc_build.filter.model.filter_fileds_holder.peripheral.*;
-import com.bdg.pc_build.product.enumerations.*;
 import com.bdg.pc_build.product.model.entity.Product;
 import com.bdg.pc_build.product.repository.ProductDAO;
 import com.bdg.pc_build.product.repository.main.*;
@@ -12,13 +11,10 @@ import com.bdg.pc_build.product.repository.peripheral.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-
 @RequiredArgsConstructor
 @Service
 public class FilterFieldsValueResolver {
 
-    //Main component repositories
     private final CaseDAO caseDAO;
     private final CoolerDAO coolerDAO;
     private final CPUCoolerDAO cpuCoolerDAO;
@@ -28,8 +24,6 @@ public class FilterFieldsValueResolver {
     private final MotherboardDAO motherboardDAO;
     private final PowerSupplyDAO powerSupplyDAO;
     private final RAMDAO ramDAO;
-
-    //Peripheral repositories
     private final ExternalHardDriveDAO externalHardDriveDAO;
     private final MonitorDAO monitorDAO;
     private final HeadsetDAO headsetDAO;

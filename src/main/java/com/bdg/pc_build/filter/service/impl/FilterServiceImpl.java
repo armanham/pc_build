@@ -26,7 +26,6 @@ import java.util.List;
 @Service
 public class FilterServiceImpl implements FilterService {
 
-    //Main component repositories
     private final CaseDAO caseDAO;
     private final CoolerDAO coolerDAO;
     private final CPUCoolerDAO cpuCoolerDAO;
@@ -36,8 +35,6 @@ public class FilterServiceImpl implements FilterService {
     private final MotherboardDAO motherboardDAO;
     private final PowerSupplyDAO powerSupplyDAO;
     private final RAMDAO ramDAO;
-
-    //Peripheral repositories
     private final ExternalHardDriveDAO externalHardDriveDAO;
     private final MonitorDAO monitorDAO;
     private final HeadsetDAO headsetDAO;

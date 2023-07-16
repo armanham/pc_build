@@ -7,12 +7,13 @@ import com.bdg.pc_build.user.model.entity.User;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface OrderService {
 
     OrderDTO saveOrder(
-            Set<ProductDTO> products,
+            Map<ProductDTO, Integer> products,
             BigDecimal totalPrice,
             User user,
             Boolean isFromBuilder
@@ -27,4 +28,7 @@ public interface OrderService {
     void markOrderAsCompletedById(Long id);
 
     void markOrderAsCanceledById(Long id);
+
+    void markOrderAsCanceledById(Long id, String authHeader);
+
 }

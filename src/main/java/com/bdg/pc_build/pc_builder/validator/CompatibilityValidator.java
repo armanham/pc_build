@@ -1,6 +1,6 @@
-package com.bdg.pc_build.computer_builder.validator;
+package com.bdg.pc_build.pc_builder.validator;
 
-import com.bdg.pc_build.computer_builder.model.entity.Computer;
+import com.bdg.pc_build.pc_builder.model.entity.Computer;
 import com.bdg.pc_build.exception.NotCompatibleException;
 import com.bdg.pc_build.product.enumerations.ATXType;
 import com.bdg.pc_build.product.enumerations.InternalHardDriveInterfaceType;

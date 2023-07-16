@@ -1,11 +1,10 @@
 package com.bdg.pc_build.user.model.entity;
 
-import com.bdg.pc_build.computer_builder.model.entity.Computer;
+import com.bdg.pc_build.pc_builder.model.entity.Computer;
 import com.bdg.pc_build.desire_log.model.entity.DesireLog;
 import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.token.model.entity.Token;
 import com.bdg.pc_build.user.enumerations.Role;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

@@ -238,15 +238,15 @@ public class Order {
         this.coolers.add(cooler);
     }
 
-    public void addCPU(CPU cpu) {
+    public void addCpu(CPU cpu) {
         this.cpus.add(cpu);
     }
 
-    public void addCPUCooler(CPUCooler cpuCooler) {
+    public void addCpuCooler(CPUCooler cpuCooler) {
         this.cpuCoolers.add(cpuCooler);
     }
 
-    public void addGPU(GPU gpu) {
+    public void addGpu(GPU gpu) {
         this.gpus.add(gpu);
     }
 
@@ -262,7 +262,7 @@ public class Order {
         this.powerSupplies.add(powerSupply);
     }
 
-    public void addRAM(RAM ram) {
+    public void addRam(RAM ram) {
         this.rams.add(ram);
     }
 

@@ -50,7 +50,7 @@ public class ProductController {
 
     @PostMapping("/new/cpu-cooler")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<CPUCoolerDTO> saveCPUCooler(
+    public ResponseEntity<CPUCoolerDTO> saveCpuCooler(
             @Valid @RequestBody CPUCoolerCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveCpuCooler(new CPUCoolerDTO(request)));
@@ -58,7 +58,7 @@ public class ProductController {
 
     @PostMapping("/new/cpu")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<CPUDTO> saveCPU(
+    public ResponseEntity<CPUDTO> saveCpu(
             @Valid @RequestBody CPUCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveCpu(new CPUDTO(request)));
@@ -66,7 +66,7 @@ public class ProductController {
 
     @PostMapping("/new/gpu")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<GPUDTO> saveGPU(
+    public ResponseEntity<GPUDTO> saveGpu(
             @Valid @RequestBody GPUCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveGpu(new GPUDTO(request)));
@@ -98,7 +98,7 @@ public class ProductController {
 
     @PostMapping("/new/ram")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<RAMDTO> saveRAM(
+    public ResponseEntity<RAMDTO> saveRam(
             @Valid @RequestBody RAMCreationRequest request
     ) {
         return ResponseEntity.ok(productService.saveRam(new RAMDTO(request)));
@@ -190,7 +190,7 @@ public class ProductController {
     }
 
     @GetMapping("/cpu")
-    @PreAuthorize("permitAll()")
+    @PreAuthorize("permitAll()") //TODO
     public ResponseEntity<List<CPUDTO>> getAllCpus() {
         return ResponseEntity.ok().body(productService.getAllCpus());
     }

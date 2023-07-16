@@ -1,6 +1,6 @@
 package com.bdg.pc_build.user.service;
 
-import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
+import com.bdg.pc_build.pc_builder.model.dto.ComputerDTO;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.order.model.dto.OrderDTO;
 import com.bdg.pc_build.user.model.dto.UserDTO;

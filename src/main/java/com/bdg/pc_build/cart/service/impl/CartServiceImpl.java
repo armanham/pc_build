@@ -85,7 +85,7 @@ public class CartServiceImpl implements CartService {
                 throw new NotEnoughInStockException(HttpStatus.OK, currentProduct.getClass(), currentProduct.getName(), currentProduct.getCount());
             }
         }
-        Long id = orderService.saveOrder(cartItems.keySet(), getTotal(), user, isFromBuilder).getId();
+        Long id = orderService.saveOrder(cartItems, getTotal(), user, isFromBuilder).getId();
         cartItems.clear();
         return id;
     }

@@ -1,4 +1,4 @@
-package com.bdg.pc_build.computer_builder.model.entity;
+package com.bdg.pc_build.pc_builder.model.entity;
 
 import com.bdg.pc_build.product.model.entity.main.*;
 import com.bdg.pc_build.product.model.entity.peripheral.*;
@@ -179,7 +179,7 @@ public class Computer {
         this.internalHardDrives.add(internalHardDrive);
     }
 
-    public void addRAM(RAM ram) {
+    public void addRam(RAM ram) {
         this.rams.add(ram);
     }
 

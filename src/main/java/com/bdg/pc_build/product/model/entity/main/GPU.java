@@ -1,6 +1,6 @@
 package com.bdg.pc_build.product.model.entity.main;
 
-import com.bdg.pc_build.computer_builder.model.entity.Computer;
+import com.bdg.pc_build.pc_builder.model.entity.Computer;
 import com.bdg.pc_build.order.model.entity.Order;
 import com.bdg.pc_build.product.enumerations.GPUInterfaceType;
 import com.bdg.pc_build.product.model.dto.main.GPUDTO;

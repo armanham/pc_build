@@ -1,7 +1,7 @@
 package com.bdg.pc_build.user.service.impl;
 
 import com.bdg.pc_build.authentication.service.AuthenticationService;
-import com.bdg.pc_build.computer_builder.model.dto.ComputerDTO;
+import com.bdg.pc_build.pc_builder.model.dto.ComputerDTO;
 import com.bdg.pc_build.config.JwtService;
 import com.bdg.pc_build.desire_log.model.dto.DesireLogDTO;
 import com.bdg.pc_build.exception.EmailAlreadyExistsException;
