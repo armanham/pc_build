@@ -46,7 +46,7 @@ public class DesireLogController {
         return ResponseEntity.ok().body(desireLogService.getById(id));
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<DesireLogDTO>> getAll() {
         return ResponseEntity.ok().body(desireLogService.getAllLogs());
