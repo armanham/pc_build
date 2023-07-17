@@ -19,11 +19,11 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/product")
 @RequiredArgsConstructor
-@SecurityRequirement(name = "bearerAuth")
 public class ProductController {
 
     private final ProductService productService;
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/monitor")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MonitorDTO> saveMonitor(
@@ -32,6 +32,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveMonitor(new MonitorDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/case")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CaseDTO> saveCase(
@@ -40,6 +41,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveCase(new CaseDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/cooler")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CoolerDTO> saveCooler(
@@ -56,6 +58,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveCpuCooler(new CPUCoolerDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/cpu")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CPUDTO> saveCpu(
@@ -64,6 +67,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveCpu(new CPUDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/gpu")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<GPUDTO> saveGpu(
@@ -72,6 +76,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveGpu(new GPUDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/internal-hard-drive")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<InternalHardDriveDTO> saveInternalHardDrive(
@@ -80,6 +85,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveInternalHardDrive(new InternalHardDriveDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/motherboard")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MotherboardDTO> saveMotherboard(
@@ -88,6 +94,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveMotherboard(new MotherboardDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/power-supply")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<PowerSupplyDTO> savePowerSupply(
@@ -96,6 +103,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.savePowerSupply(new PowerSupplyDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/ram")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<RAMDTO> saveRam(
@@ -104,6 +112,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveRam(new RAMDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/external-hard-drive")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ExternalHardDriveDTO> saveExternalHardDrive(
@@ -112,6 +121,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveExternalHardDrive(new ExternalHardDriveDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/headset")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<HeadsetDTO> saveHeadset(
@@ -120,6 +130,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveHeadset(new HeadsetDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/keyboard")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<KeyboardDTO> saveKeyboard(
@@ -128,6 +139,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveKeyboard(new KeyboardDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/mouse")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MouseDTO> saveMouse(
@@ -136,6 +148,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveMouse(new MouseDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/new/speaker")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<SpeakerDTO> saveSpeaker(
@@ -144,6 +157,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.saveSpeaker(new SpeakerDTO(request)));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PutMapping(value = "/edit-price")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> editPrice(
@@ -153,6 +167,7 @@ public class ProductController {
         return ResponseEntity.ok().body("Product price updated successfully");
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PutMapping(value = "/reduce")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> reduceCount(
@@ -162,6 +177,7 @@ public class ProductController {
         return ResponseEntity.ok().body("Product count reduced successfully");
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PutMapping(value = "/increase")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> increaseCount(
